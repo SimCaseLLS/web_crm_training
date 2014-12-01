@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.TrainingCours>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hourse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceForOrganizations)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceForIndividuals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostOfOneHourForOrganizations)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostOfOneHourForIndividuals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelOfDifficulty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequiredPreliminaryPreparation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MandatoryPreliminaryPreparation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTraningCenter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdObject)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceForOrganizations)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceForIndividuals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostOfOneHourForOrganizations)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostOfOneHourForIndividuals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelOfDifficulty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequiredPreliminaryPreparation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MandatoryPreliminaryPreparation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTraningCenter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdObject)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
