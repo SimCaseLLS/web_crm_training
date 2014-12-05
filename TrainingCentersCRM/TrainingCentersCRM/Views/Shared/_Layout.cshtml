@@ -6,9 +6,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body>
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,6 +25,26 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><select id="CentersListCombo" onchange="window.location.href = this.value"></select></li>
+                    <script type="text/javascript">
+                        $.ajax({
+                            url: '/ulstu/TrainingCenter/Centers',
+                            success: function (data) {
+                                data.map(function (item) {
+                                    arr = location.pathname.split('/');
+                                    if (item.Url == arr[1]) {
+                                        $('#CentersListCombo').append('<option value="/' + item.Url + '" selected="selected">' + item.Organization + '</option>');
+                                    }
+                                    else {
+                                        $('#CentersListCombo').append('<option value="/' + item.Url + '">' + item.Organization + '</option>');
+                                    }
+                                });
+                            },
+                            error: function (data) {
+                                alert('Error loading centers info');
+                            }
+                        });
+                    </script>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
