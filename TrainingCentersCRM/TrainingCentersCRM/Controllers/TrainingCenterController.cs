@@ -10,9 +10,14 @@ using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
-    public class TrainingCenterController : Controller
+    public class TrainingCenterController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+        public JsonResult Centers() {
+            var tcs = db.TrainingCenters;
+            return Json(tcs.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: /TrainingCenter/
         public ActionResult Index()
@@ -27,6 +32,7 @@ namespace TrainingCentersCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             TrainingCenter trainingcenter = db.TrainingCenters.Find(id);
             if (trainingcenter == null)
             {

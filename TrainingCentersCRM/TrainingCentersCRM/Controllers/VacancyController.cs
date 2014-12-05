@@ -6,10 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Models;
 
-namespace TrainingCentersCRM.Models
+namespace TrainingCentersCRM.Controllers
 {
-    public class VacancyController : Controller
+    public class VacancyController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 

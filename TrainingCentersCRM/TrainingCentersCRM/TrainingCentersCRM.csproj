@@ -166,6 +166,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CertificationProviderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
     <Compile Include="Controllers\ScheduleTtrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingCenterController.cs" />
     <Compile Include="Controllers\TrainingCoursController.cs" />
@@ -174,15 +175,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411100833103_InitialCreate.cs" />
-    <Compile Include="Migrations\201411100833103_InitialCreate.Designer.cs">
+    <Compile Include="Infrastructure\TCHelper.cs" />
+    <Compile Include="Infrastructure\Migrations\201411100833103_InitialCreate.cs" />
+    <Compile Include="Infrastructure\Migrations\201411100833103_InitialCreate.Designer.cs">
       <DependentUpon>201411100833103_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411101227519_Email.cs" />
-    <Compile Include="Migrations\201411101227519_Email.Designer.cs">
+    <Compile Include="Infrastructure\Migrations\201411101227519_Email.cs" />
+    <Compile Include="Infrastructure\Migrations\201411101227519_Email.Designer.cs">
       <DependentUpon>201411101227519_Email.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Infrastructure\Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>TrainingCentersModel.tt</DependentUpon>
@@ -349,6 +351,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\Error404.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -424,13 +427,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411100833103_InitialCreate.resx">
+    <EmbeddedResource Include="Infrastructure\Migrations\201411100833103_InitialCreate.resx">
       <DependentUpon>201411100833103_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411101227519_Email.resx">
+    <EmbeddedResource Include="Infrastructure\Migrations\201411101227519_Email.resx">
       <DependentUpon>201411101227519_Email.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
