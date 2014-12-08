@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.Qualification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+<div id="qualificationBlock" style="float: left">
+    <div id="qualificationButtons" style="display: none">
+        <div style="display: inline">
+            <button id="editQualification" title="Изменить" style="display: inline" >Изменить</button>
+        </div>
+        <div style="display: inline">
+            <button id="deleteQualification" title="Удалить" style="display: inline" >Удалить</button>
+        </div>
+        <div style="display: inline">
+            <button id="createQualification" title="Создать" style="display: inline">Создать</button>
+        </div>
+    </div>
+    <div id="qualificationData"></div>
+</div>
+<script src="~/Scripts/QualificationPageSelect.js"></script>
+<script src="~/Scripts/createTree.js"></script>
