@@ -15,20 +15,20 @@ namespace TrainingCentersCRM.Models
 using System;
     using System.Collections.Generic;
     
-public partial class CourseModule
+public partial class AspNetUserClaims
 {
 
     public int Id { get; set; }
 
-    public Nullable<int> IdTrainingCourse { get; set; }
+    public string ClaimType { get; set; }
 
-    public Nullable<int> IdTrainingModule { get; set; }
+    public string ClaimValue { get; set; }
+
+    public string User_Id { get; set; }
 
 
 
-    public virtual TrainingCours TrainingCours { get; set; }
-
-    public virtual TrainingModule TrainingModule { get; set; }
+    public virtual AspNetUser AspNetUsers { get; set; }
 
 }
 

@@ -1,0 +1,66 @@
+﻿@model TrainingCentersCRM.Models.Menu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Menu</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ord_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ord_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parent_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parent_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTrainingCenter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTrainingCenter)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -15,20 +15,22 @@ namespace TrainingCentersCRM.Models
 using System;
     using System.Collections.Generic;
     
-public partial class CourseModule
+public partial class Menu
 {
 
     public int Id { get; set; }
 
-    public Nullable<int> IdTrainingCourse { get; set; }
+    public string Title { get; set; }
 
-    public Nullable<int> IdTrainingModule { get; set; }
+    public string Description { get; set; }
 
+    public string Link { get; set; }
 
+    public string IdTrainingCenter { get; set; }
 
-    public virtual TrainingCours TrainingCours { get; set; }
+    public int Parent_Id { get; set; }
 
-    public virtual TrainingModule TrainingModule { get; set; }
+    public int Ord_Id { get; set; }
 
 }
 

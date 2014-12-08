@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="69d9e8aa044d46ed8d373249f1dd9756" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="69d9e8aa044d46ed8d373249f1dd9756" Name="Diagram1" ZoomLevel="93" DisplayType="true">
         <EntityTypeShape EntityType="TrainingCentersDBModel.CertificationProvider" Width="1.5" PointX="1.5" PointY="24.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TrainingCentersDBModel.Certification" Width="1.5" PointX="3.75" PointY="24.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TrainingCentersDBModel.CertificationTaking" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
@@ -54,6 +54,35 @@
         <AssociationConnector Association="TrainingCentersDBModel.FK_ScheduleTtrainingCourses_TrainingCenters" />
         <AssociationConnector Association="TrainingCentersDBModel.FK_ScheduleTtrainingCourses_TrainingCourses" />
         <EntityTypeShape EntityType="TrainingCentersDBModel.AspNetUser" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.C__MigrationHistory" Width="1.5" PointX="7.6162380015553151" PointY="0.84366545120424841" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_Applications" Width="1.5" PointX="1.8503597703996857" PointY="18.466246837035868" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_Membership" Width="1.5" PointX="10.392879779633544" PointY="17.811930232593756" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_Paths" Width="1.5" PointX="7.0065102628462537" PointY="4.9359907381869812" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="7.648030437365188" PointY="5.4605100925362251" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="5.3702832969698511" PointY="15.123032055386823" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_Profile" Width="1.5" PointX="2.2353850799777475" PointY="0.565746084119075" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_Roles" Width="1.5" PointX="2.7354873431546087" PointY="25.444279250430075" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_SchemaVersions" Width="1.5" PointX="11.441577611231049" PointY="6.2636295735201006" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_Users" Width="1.5" PointX="7.3784837142464159" PointY="22.680803890657053" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.aspnet_WebEvent_Events" Width="1.5" PointX="0.95293613008825862" PointY="12.202556019743232" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.AspNetRoles" Width="1.5" PointX="0.0747946389367779" PointY="14.596403262855674" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.AspNetUserClaims" Width="1.5" PointX="4.3263717500150074" PointY="30.755553006546364" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.AspNetUserLogins" Width="1.5" PointX="6.649903270718597" PointY="12.921151226815372" />
+        <EntityTypeShape EntityType="TrainingCentersDBModel.Menu" Width="1.5" PointX="1.4061878907523062" PointY="23.308828588253274" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Me__Appli__45BE5BA9" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Pa__Appli__7EF6D905" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Ro__Appli__681373AD" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Us__Appli__31B762FC" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Me__UserI__46B27FE2" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Pe__PathI__0697FACD" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Pe__PathI__0C50D423" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Pe__UserI__0D44F85C" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK__aspnet_Pr__UserI__5CA1C101" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="TrainingCentersDBModel.FK_QualificationCertification_Qualifications1" />
+        <AssociationConnector Association="TrainingCentersDBModel.aspnet_UsersInRoles" />
+        <AssociationConnector Association="TrainingCentersDBModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

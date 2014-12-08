@@ -15,20 +15,14 @@ namespace TrainingCentersCRM.Models
 using System;
     using System.Collections.Generic;
     
-public partial class CourseModule
+public partial class aspnet_SchemaVersions
 {
 
-    public int Id { get; set; }
+    public string Feature { get; set; }
 
-    public Nullable<int> IdTrainingCourse { get; set; }
+    public string CompatibleSchemaVersion { get; set; }
 
-    public Nullable<int> IdTrainingModule { get; set; }
-
-
-
-    public virtual TrainingCours TrainingCours { get; set; }
-
-    public virtual TrainingModule TrainingModule { get; set; }
+    public bool IsCurrentVersion { get; set; }
 
 }
 

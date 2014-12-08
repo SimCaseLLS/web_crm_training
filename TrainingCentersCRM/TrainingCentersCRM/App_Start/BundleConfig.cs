@@ -29,6 +29,7 @@ namespace TrainingCentersCRM
                 "~/Content/themes/default/style.css"));
             bundles.Add(new ScriptBundle("~/bundles/jstree").Include(
                         "~/Scripts/jstree.js"));
+
         }
     }
 }

@@ -15,20 +15,24 @@ namespace TrainingCentersCRM.Models
 using System;
     using System.Collections.Generic;
     
-public partial class CourseModule
+public partial class aspnet_PersonalizationPerUser
 {
 
-    public int Id { get; set; }
+    public System.Guid Id { get; set; }
 
-    public Nullable<int> IdTrainingCourse { get; set; }
+    public Nullable<System.Guid> PathId { get; set; }
 
-    public Nullable<int> IdTrainingModule { get; set; }
+    public Nullable<System.Guid> UserId { get; set; }
+
+    public byte[] PageSettings { get; set; }
+
+    public System.DateTime LastUpdatedDate { get; set; }
 
 
 
-    public virtual TrainingCours TrainingCours { get; set; }
+    public virtual aspnet_Paths aspnet_Paths { get; set; }
 
-    public virtual TrainingModule TrainingModule { get; set; }
+    public virtual aspnet_Users aspnet_Users { get; set; }
 
 }
 

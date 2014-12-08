@@ -15,20 +15,24 @@ namespace TrainingCentersCRM.Models
 using System;
     using System.Collections.Generic;
     
-public partial class CourseModule
+public partial class AspNetRoles
 {
 
-    public int Id { get; set; }
+    public AspNetRoles()
+    {
 
-    public Nullable<int> IdTrainingCourse { get; set; }
+        this.AspNetUsers = new HashSet<AspNetUser>();
 
-    public Nullable<int> IdTrainingModule { get; set; }
+    }
+
+
+    public string Id { get; set; }
+
+    public string Name { get; set; }
 
 
 
-    public virtual TrainingCours TrainingCours { get; set; }
-
-    public virtual TrainingModule TrainingModule { get; set; }
+    public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
 
 }
 

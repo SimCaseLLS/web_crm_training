@@ -15,20 +15,16 @@ namespace TrainingCentersCRM.Models
 using System;
     using System.Collections.Generic;
     
-public partial class CourseModule
+public partial class C__MigrationHistory
 {
 
-    public int Id { get; set; }
+    public string MigrationId { get; set; }
 
-    public Nullable<int> IdTrainingCourse { get; set; }
+    public string ContextKey { get; set; }
 
-    public Nullable<int> IdTrainingModule { get; set; }
+    public byte[] Model { get; set; }
 
-
-
-    public virtual TrainingCours TrainingCours { get; set; }
-
-    public virtual TrainingModule TrainingModule { get; set; }
+    public string ProductVersion { get; set; }
 
 }
 
