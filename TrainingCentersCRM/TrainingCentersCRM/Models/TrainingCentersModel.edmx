@@ -5,7 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="TrainingCentersDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-<<<<<<< HEAD
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,8 +16,6 @@
           <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-=======
->>>>>>> #wcrm-10 complete task
         <EntityType Name="CertificationProviders">
           <Key>
             <PropertyRef Name="Id" />
@@ -110,10 +107,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="Description" Type="nvarchar" MaxLength="1023" />
           <Property Name="Type" Type="int" />
-<<<<<<< HEAD
-=======
           <Property Name="ParentId" Type="int" Nullable="false" />
->>>>>>> #wcrm-10 complete task
         </EntityType>
         <EntityType Name="QualificationTrainingCours">
           <Key>
@@ -139,7 +133,6 @@
           <Property Name="IdTrainingCourse" Type="int" />
           <Property Name="IdTrainingCourseRelated" Type="int" />
         </EntityType>
-<<<<<<< HEAD
         <EntityType Name="ScheduleTtrainingCourses">
           <Key>
             <PropertyRef Name="Id" />
@@ -152,8 +145,6 @@
           <Property Name="IdTrainingCenter" Type="int" />
           <Property Name="IdTrainingCourse" Type="int" />
         </EntityType>
-=======
->>>>>>> #wcrm-10 complete task
         <EntityType Name="Students">
           <Key>
             <PropertyRef Name="Id" />
@@ -209,10 +200,7 @@
           <Property Name="Organization" Type="nvarchar" MaxLength="255" />
           <Property Name="Description" Type="nvarchar" MaxLength="1023" />
           <Property Name="Logo" Type="image" />
-<<<<<<< HEAD
           <Property Name="Url" Type="nvarchar" MaxLength="255" Nullable="false" />
-=======
->>>>>>> #wcrm-10 complete task
         </EntityType>
         <EntityType Name="TrainingCenterTeachers">
           <Key>
@@ -484,7 +472,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
         <Association Name="FK_ScheduleTtrainingCourses_TrainingCenters">
           <End Role="TrainingCenters" Type="Self.TrainingCenters" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -513,8 +500,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-=======
->>>>>>> #wcrm-10 complete task
         <Association Name="FK_TrainingCenterCourses_TrainingCenters">
           <End Role="TrainingCenters" Type="Self.TrainingCenters" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -600,10 +585,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TrainingCentersDBModelStoreContainer">
-<<<<<<< HEAD
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-=======
->>>>>>> #wcrm-10 complete task
           <EntitySet Name="CertificationProviders" EntityType="Self.CertificationProviders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Certifications" EntityType="Self.Certifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CertificationTakings" EntityType="Self.CertificationTakings" Schema="dbo" store:Type="Tables" />
@@ -617,10 +599,7 @@
           <EntitySet Name="QualificationTrainingCours" EntityType="Self.QualificationTrainingCours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QualificationVacancy" EntityType="Self.QualificationVacancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RelatedCourses" EntityType="Self.RelatedCourses" Schema="dbo" store:Type="Tables" />
-<<<<<<< HEAD
           <EntitySet Name="ScheduleTtrainingCourses" EntityType="Self.ScheduleTtrainingCourses" Schema="dbo" store:Type="Tables" />
-=======
->>>>>>> #wcrm-10 complete task
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
@@ -692,7 +671,6 @@
             <End Role="TrainingCourses" EntitySet="TrainingCourses" />
             <End Role="RelatedCourses" EntitySet="RelatedCourses" />
           </AssociationSet>
-<<<<<<< HEAD
           <AssociationSet Name="FK_ScheduleTtrainingCourses_TrainingCenters" Association="Self.FK_ScheduleTtrainingCourses_TrainingCenters">
             <End Role="TrainingCenters" EntitySet="TrainingCenters" />
             <End Role="ScheduleTtrainingCourses" EntitySet="ScheduleTtrainingCourses" />
@@ -701,8 +679,6 @@
             <End Role="TrainingCourses" EntitySet="TrainingCourses" />
             <End Role="ScheduleTtrainingCourses" EntitySet="ScheduleTtrainingCourses" />
           </AssociationSet>
-=======
->>>>>>> #wcrm-10 complete task
           <AssociationSet Name="FK_TrainingCenterCourses_TrainingCenters" Association="Self.FK_TrainingCenterCourses_TrainingCenters">
             <End Role="TrainingCenters" EntitySet="TrainingCenters" />
             <End Role="TrainingCenterCourses" EntitySet="TrainingCenterCourses" />
@@ -838,10 +814,7 @@
           <NavigationProperty Name="QualificationCertifications" Relationship="Self.FK_QualificationCertification_Qualifications" FromRole="Qualifications" ToRole="QualificationCertification" />
           <NavigationProperty Name="QualificationTrainingCours" Relationship="Self.FK_QualificationTrainingCours_Qualifications" FromRole="Qualifications" ToRole="QualificationTrainingCours" />
           <NavigationProperty Name="QualificationVacancies" Relationship="Self.FK_QualificationVacancy_Qualifications" FromRole="Qualifications" ToRole="QualificationVacancy" />
-<<<<<<< HEAD
-=======
           <Property Name="ParentId" Type="Int32" Nullable="false" />
->>>>>>> #wcrm-10 complete task
         </EntityType>
         <EntityType Name="QualificationTrainingCour">
           <Key>
@@ -934,11 +907,8 @@
           <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="TrainingCenterCourses" Relationship="Self.FK_TrainingCenterCourses_TrainingCenters" FromRole="TrainingCenters" ToRole="TrainingCenterCourses" />
           <NavigationProperty Name="TrainingCenterTeachers" Relationship="Self.FK_TrainingCenterTeachers_TrainingCenters" FromRole="TrainingCenters" ToRole="TrainingCenterTeachers" />
-<<<<<<< HEAD
           <NavigationProperty Name="ScheduleTtrainingCourses" Relationship="TrainingCentersDBModel.FK_ScheduleTtrainingCourses_TrainingCenters" FromRole="TrainingCenter" ToRole="ScheduleTtrainingCours" />
           <Property Name="Url" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-=======
->>>>>>> #wcrm-10 complete task
         </EntityType>
         <EntityType Name="TrainingCenterTeacher">
           <Key>
@@ -974,10 +944,7 @@
           <NavigationProperty Name="RelatedCourses1" Relationship="Self.FK_RelatedCourses_TrainingCourses1" FromRole="TrainingCourses" ToRole="RelatedCourses" />
           <NavigationProperty Name="TrainingCenterCourses" Relationship="Self.FK_TrainingCenterCourses_TrainingCourses" FromRole="TrainingCourses" ToRole="TrainingCenterCourses" />
           <NavigationProperty Name="TrainingCourseTeachers" Relationship="Self.FK_TrainingCourseTeachers_TrainingCourses" FromRole="TrainingCourses" ToRole="TrainingCourseTeachers" />
-<<<<<<< HEAD
           <NavigationProperty Name="ScheduleTtrainingCourses" Relationship="TrainingCentersDBModel.FK_ScheduleTtrainingCourses_TrainingCourses" FromRole="TrainingCours" ToRole="ScheduleTtrainingCours" />
-=======
->>>>>>> #wcrm-10 complete task
         </EntityType>
         <EntityType Name="TrainingCourseTeacher">
           <Key>
@@ -1422,7 +1389,6 @@
             <End Role="TrainingCourses" EntitySet="TrainingCourses" />
             <End Role="TrainingCourseTeachers" EntitySet="TrainingCourseTeachers" />
           </AssociationSet>
-<<<<<<< HEAD
           <EntitySet Name="ScheduleTtrainingCourses" EntityType="TrainingCentersDBModel.ScheduleTtrainingCours" />
           <AssociationSet Name="FK_ScheduleTtrainingCourses_TrainingCenters" Association="TrainingCentersDBModel.FK_ScheduleTtrainingCourses_TrainingCenters">
             <End Role="TrainingCenter" EntitySet="TrainingCenters" />
@@ -1487,9 +1453,6 @@
           <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-=======
-        </EntityContainer>
->>>>>>> #wcrm-10 complete task
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1591,10 +1554,7 @@
           <EntitySetMapping Name="Qualifications">
             <EntityTypeMapping TypeName="TrainingCentersDBModel.Qualification">
               <MappingFragment StoreEntitySet="Qualifications">
-<<<<<<< HEAD
-=======
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
->>>>>>> #wcrm-10 complete task
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1680,10 +1640,7 @@
           <EntitySetMapping Name="TrainingCenters">
             <EntityTypeMapping TypeName="TrainingCentersDBModel.TrainingCenter">
               <MappingFragment StoreEntitySet="TrainingCenters">
-<<<<<<< HEAD
                 <ScalarProperty Name="Url" ColumnName="Url" />
-=======
->>>>>>> #wcrm-10 complete task
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Addres" ColumnName="Addres" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -1766,7 +1723,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-<<<<<<< HEAD
           <EntitySetMapping Name="ScheduleTtrainingCourses">
             <EntityTypeMapping TypeName="TrainingCentersDBModel.ScheduleTtrainingCours">
               <MappingFragment StoreEntitySet="ScheduleTtrainingCourses">
@@ -1792,8 +1748,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-=======
->>>>>>> #wcrm-10 complete task
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

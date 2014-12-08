@@ -33,7 +33,5 @@ namespace TrainingCentersCRM.Models
         public virtual ICollection<TrainingCenterCours> TrainingCenterCourses { get; set; }
         public virtual ICollection<TrainingCenterTeacher> TrainingCenterTeachers { get; set; }
         public virtual ICollection<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
-        public virtual ICollection<TrainingCenterCours> TrainingCenterCourses { get; set; }
-        public virtual ICollection<TrainingCenterTeacher> TrainingCenterTeachers { get; set; }
     }
 }
