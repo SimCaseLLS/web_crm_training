@@ -11,7 +11,6 @@ namespace TrainingCentersCRM.Controllers
     public class HomeController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
-        
 
         public ActionResult Index()
         {

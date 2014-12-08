@@ -25,6 +25,10 @@ namespace TrainingCentersCRM.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public Nullable<int> Type { get; set; }
+<<<<<<< HEAD
+=======
+        public int ParentId { get; set; }
+>>>>>>> #wcrm-10 complete task
     
         public virtual ICollection<QualificationCertification> QualificationCertifications { get; set; }
         public virtual ICollection<QualificationTrainingCour> QualificationTrainingCours { get; set; }
