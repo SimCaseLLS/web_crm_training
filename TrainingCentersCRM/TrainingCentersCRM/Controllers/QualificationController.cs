@@ -12,7 +12,7 @@ using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
-    public class QualificationController : Controller
+    public class QualificationController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
