@@ -12,6 +12,7 @@ namespace TrainingCentersCRM.Controllers
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
+
         public ActionResult Index()
         {
             return View();
