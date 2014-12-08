@@ -164,8 +164,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CertificationController.cs" />
     <Compile Include="Controllers\CertificationProviderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
     <Compile Include="Controllers\ScheduleTtrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingCenterController.cs" />
@@ -340,6 +342,22 @@
       <LastGenOutput>TrainingCentersModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ButtonClickHandlers.js" />
+    <Content Include="Scripts\createTree.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
+    <Content Include="Content\themes\default-dark\32px.png" />
+    <Content Include="Content\themes\default-dark\40px.png" />
+    <Content Include="Content\themes\default-dark\style.css" />
+    <Content Include="Content\themes\default-dark\style.min.css" />
+    <Content Include="Content\themes\default-dark\throbber.gif" />
+    <Content Include="Content\themes\default\32px.png" />
+    <Content Include="Content\themes\default\40px.png" />
+    <Content Include="Content\themes\default\style.css" />
+    <Content Include="Content\themes\default\style.min.css" />
+    <Content Include="Content\themes\default\throbber.gif" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -352,6 +370,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Content\Error404.htm" />
+    <Content Include="Scripts\QualificationPageSelect.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -414,6 +433,16 @@
     <Content Include="Views\TrainingCenter\Details.cshtml" />
     <Content Include="Views\TrainingCenter\Edit.cshtml" />
     <Content Include="Views\TrainingCenter\Index.cshtml" />
+    <Content Include="Views\Certification\Create.cshtml" />
+    <Content Include="Views\Certification\Delete.cshtml" />
+    <Content Include="Views\Certification\Details.cshtml" />
+    <Content Include="Views\Certification\Edit.cshtml" />
+    <Content Include="Views\Certification\Index.cshtml" />
+    <Content Include="Views\Qualification\Create.cshtml" />
+    <Content Include="Views\Qualification\Delete.cshtml" />
+    <Content Include="Views\Qualification\Details.cshtml" />
+    <Content Include="Views\Qualification\Edit.cshtml" />
+    <Content Include="Views\Qualification\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

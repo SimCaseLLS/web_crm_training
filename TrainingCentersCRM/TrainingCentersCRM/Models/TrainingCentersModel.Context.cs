@@ -49,7 +49,10 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<TrainingGroup> TrainingGroups { get; set; }
         public virtual DbSet<TrainingModule> TrainingModules { get; set; }
         public virtual DbSet<Vacancy> Vacancies { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+=======
+>>>>>>> #wcrm-10 complete task
     }
 }

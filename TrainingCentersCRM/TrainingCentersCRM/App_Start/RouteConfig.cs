@@ -17,6 +17,8 @@ namespace TrainingCentersCRM
                 name: "Default",
                 url: "{tc}/{controller}/{action}/{id}",
                 defaults: new { tc = "ulstu", controller = "Home", action = "Index", id = UrlParameter.Optional }
+                //url: "{controller}/{action}/{id}",
+                //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
