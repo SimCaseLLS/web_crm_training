@@ -1,8 +1,9 @@
 web_crm_training
 ================
 
-Web CRM for training centers
+¬Õ»Ã¿Õ»≈!!1 ÕÛÊÌÓ ÔÓÔ‡‚ËÚ¸ Ò‚ˇÁË Û ÏÓ‰ÂÎË Menu
 
+Web CRM for training centers
 
 ===ÃË„‡ˆËË
 
@@ -33,3 +34,15 @@ Web CRM for training centers
 http://msdn.microsoft.com/ru-ru/data/jj591621
 http://msdn.microsoft.com/ru-ru/data/jj554735
 http://habrahabr.ru/post/121265/
+
+
+=====
+
+
+
+–ü–µ—Ä–µ–π—Ç–∏ –≤ Visual Studio:
+Debug -> Exception
+–£–±—Ä–∞—Ç—å –≥–∞–ª–æ—á–∫—É –Ω–∞ –ø—Ä–æ—Ç–∏–≤ Common Language Runtime Exception
+
+–ï—Å–ª–∏ –±—É–¥—É—Ç –æ—à–∏–±–∫–∏ –ø–æ log4net, —Ç—É—Ç –∏–Ω—Å—Ç—Ä—É–∫—Ü–∏—è –∫–∞–∫ –µ–≥–æ —Å—Ç–∞–≤–∏—Ç—å.
+https://www.nuget.org/packages/log4net

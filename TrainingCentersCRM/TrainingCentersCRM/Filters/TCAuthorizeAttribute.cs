@@ -21,7 +21,8 @@ namespace TrainingCentersCRM.Filters
             if (httpContext.User.Identity.IsAuthenticated == false) return false;
             try
             {
-                var current_tc_name = TCHelper.GetCurrentTCName();
+                
+                var current_tc_name = HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString();
                 var roles = Roles.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach( var role in roles )
                 {

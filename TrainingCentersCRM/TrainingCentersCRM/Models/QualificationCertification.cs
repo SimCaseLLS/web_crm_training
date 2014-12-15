@@ -1,6 +1,7 @@
 namespace TrainingCentersCRM.Models
 {
-    using System;
+
+using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -18,5 +19,6 @@ namespace TrainingCentersCRM.Models
         public virtual Certification Certification { get; set; }
 
         public virtual Qualification Qualification { get; set; }
+        public virtual Qualification Qualifications { get; set; }
     }
 }

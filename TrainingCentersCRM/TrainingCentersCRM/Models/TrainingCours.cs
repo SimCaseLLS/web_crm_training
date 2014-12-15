@@ -1,6 +1,7 @@
 namespace TrainingCentersCRM.Models
 {
-    using System;
+
+using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -91,4 +92,5 @@ namespace TrainingCentersCRM.Models
 
         public virtual ICollection<TrainingCourseTeacher> TrainingCourseTeachers { get; set; }
     }
+
 }

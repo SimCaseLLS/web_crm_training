@@ -25,7 +25,11 @@ namespace TrainingCentersCRM
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                "~/Content/themes/default/style.css"));
+            bundles.Add(new ScriptBundle("~/bundles/jstree").Include(
+                        "~/Scripts/jstree.js"));
+
         }
     }
 }

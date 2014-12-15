@@ -1,6 +1,7 @@
 namespace TrainingCentersCRM.Models
 {
-    using System;
+
+using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -29,10 +30,12 @@ namespace TrainingCentersCRM.Models
         [Display(Name = "“ËÔ")]
         public Nullable<int> Type { get; set; }
 
+        public Nullable<int> ParentId { get; set; }
         public virtual ICollection<QualificationCertification> QualificationCertifications { get; set; }
 
         public virtual ICollection<QualificationTrainingCour> QualificationTrainingCours { get; set; }
 
         public virtual ICollection<QualificationVacancy> QualificationVacancies { get; set; }
     }
+
 }

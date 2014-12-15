@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.Menu>
+
+@{
+    ViewBag.Title = "Edit menu";
+}
+
+<h2>Edit menu</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p> 
+@*@Html.DropDownListFor(model => model.IdTrainingCenter, new SelectList(Model, Model.Distinct(q => q.IdTrainingCenter)))*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ord_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parent_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTrainingCenter)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Link)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ord_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTrainingCenter)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

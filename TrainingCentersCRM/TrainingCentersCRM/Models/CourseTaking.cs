@@ -1,6 +1,7 @@
 namespace TrainingCentersCRM.Models
 {
-    using System;
+
+using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -45,5 +46,7 @@ namespace TrainingCentersCRM.Models
         public string IdObecjt { get; set; }
 
         public virtual ICollection<Listener> Listeners { get; set; }
-    }
+
+}
+
 }

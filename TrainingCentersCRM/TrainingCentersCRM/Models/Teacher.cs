@@ -1,6 +1,7 @@
 namespace TrainingCentersCRM.Models
 {
-    using System;
+
+using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -40,6 +41,7 @@ namespace TrainingCentersCRM.Models
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
+
         [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
         [Display(Name = "Дополнительная информация")]
         public string Description { get; set; }
@@ -48,4 +50,5 @@ namespace TrainingCentersCRM.Models
 
         public virtual ICollection<TrainingCourseTeacher> TrainingCourseTeachers { get; set; }
     }
+
 }

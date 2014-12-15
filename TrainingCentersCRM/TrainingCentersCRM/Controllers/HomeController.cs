@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Models;
+using TrainingCentersCRM.Infrastructure;
 
 namespace TrainingCentersCRM.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : RoutingTrainingCenterController
     {
+        private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+
+
         public ActionResult Index()
         {
             return View();

@@ -1,0 +1,72 @@
+﻿@model TrainingCentersCRM.Models.Menu
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Menu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ord_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ord_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parent_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parent_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTrainingCenter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTrainingCenter)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

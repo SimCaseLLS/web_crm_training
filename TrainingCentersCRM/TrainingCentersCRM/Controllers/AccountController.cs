@@ -13,7 +13,7 @@ using TrainingCentersCRM.Models;
 namespace TrainingCentersCRM.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : RoutingTrainingCenterController
     {
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
