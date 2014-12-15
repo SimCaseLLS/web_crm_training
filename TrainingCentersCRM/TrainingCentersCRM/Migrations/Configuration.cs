@@ -5,15 +5,14 @@ namespace TrainingCentersCRM.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TrainingCentersCRM.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TrainingCentersCRM.Models.TrainingCentersDBEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "TrainingCentersCRM.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(TrainingCentersCRM.Models.ApplicationDbContext context)
+        protected override void Seed(TrainingCentersCRM.Models.TrainingCentersDBEntities context)
         {
             //  This method will be called after migrating to the latest version.
 
