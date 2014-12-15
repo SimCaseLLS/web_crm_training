@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>.\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -176,186 +176,46 @@
     <Compile Include="Controllers\TrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingModuleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\TCAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\TCHelper.cs" />
-    <Compile Include="Infrastructure\Migrations\201411100833103_InitialCreate.cs" />
-    <Compile Include="Infrastructure\Migrations\201411100833103_InitialCreate.Designer.cs">
-      <DependentUpon>201411100833103_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201412150712039_Initial.cs" />
+    <Compile Include="Migrations\201412150712039_Initial.Designer.cs">
+      <DependentUpon>201412150712039_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Migrations\201411101227519_Email.cs" />
-    <Compile Include="Infrastructure\Migrations\201411101227519_Email.Designer.cs">
-      <DependentUpon>201411101227519_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Infrastructure\Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Applications.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Membership.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Paths.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_PersonalizationAllUsers.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_PersonalizationPerUser.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Profile.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Roles.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_SchemaVersions.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_Users.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aspnet_WebEvent_Events.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Certification.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CertificationProvider.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CertificationTaking.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CourseModule.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CourseTaking.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HoldCours.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\Certification.cs" />
+    <Compile Include="Models\CertificationProvider.cs" />
+    <Compile Include="Models\CertificationTaking.cs" />
+    <Compile Include="Models\CourseModule.cs" />
+    <Compile Include="Models\CourseTaking.cs" />
+    <Compile Include="Models\HoldCours.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
-    <Compile Include="Models\Lesson.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Listener.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Menu.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Partial\Certification.cs" />
-    <Compile Include="Models\Partial\CertificationMetadata.cs" />
-    <Compile Include="Models\Partial\CertificationProvider.cs" />
-    <Compile Include="Models\Partial\CertificationProviderMetadata.cs" />
-    <Compile Include="Models\Partial\CertificationTaking.cs" />
-    <Compile Include="Models\Partial\CertificationTakingMetadata.cs" />
-    <Compile Include="Models\Partial\CourseTaking.cs" />
-    <Compile Include="Models\Partial\CourseTakingMetadata.cs" />
-    <Compile Include="Models\Partial\Lesson.cs" />
-    <Compile Include="Models\Partial\LessonMetadata.cs" />
-    <Compile Include="Models\Partial\Qualification.cs" />
-    <Compile Include="Models\Partial\QualificationMetadata.cs" />
-    <Compile Include="Models\Partial\Student.cs" />
-    <Compile Include="Models\Partial\StudentMetadata.cs" />
-    <Compile Include="Models\Partial\Teacher.cs" />
-    <Compile Include="Models\Partial\TeacherMetadata.cs" />
-    <Compile Include="Models\Partial\TrainingCenter.cs" />
-    <Compile Include="Models\Partial\TrainingCenterMetadata.cs" />
-    <Compile Include="Models\Partial\TrainingCours.cs" />
-    <Compile Include="Models\Partial\TrainingCoursMetadata.cs" />
-    <Compile Include="Models\Partial\TrainingGroup.cs" />
-    <Compile Include="Models\Partial\TrainingGroupMetadata.cs" />
-    <Compile Include="Models\Partial\TrainingModule.cs" />
-    <Compile Include="Models\Partial\TrainingModuleMetadata.cs" />
-    <Compile Include="Models\Partial\Vacancy.cs" />
-    <Compile Include="Models\Partial\VacancyMetadata.cs" />
-    <Compile Include="Models\Qualification.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QualificationCertification.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QualificationTrainingCour.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QualificationVacancy.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RelatedCours.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ScheduleTtrainingCours.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Student.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Teacher.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCenter.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCenterCours.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCentersModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TrainingCentersModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCentersModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCentersModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TrainingCentersModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCenterTeacher.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCours.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingCourseTeacher.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingGroup.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TrainingModule.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Vacancy.cs">
-      <DependentUpon>TrainingCentersModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Lesson.cs" />
+    <Compile Include="Models\Listener.cs" />
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Qualification.cs" />
+    <Compile Include="Models\QualificationCertification.cs" />
+    <Compile Include="Models\QualificationTrainingCour.cs" />
+    <Compile Include="Models\QualificationVacancy.cs" />
+    <Compile Include="Models\RelatedCours.cs" />
+    <Compile Include="Models\ScheduleTtrainingCours.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\TrainingCenter.cs" />
+    <Compile Include="Models\TrainingCenterCours.cs" />
+    <Compile Include="Models\TrainingCentersDBEntities.cs" />
+    <Compile Include="Models\TrainingCenterTeacher.cs" />
+    <Compile Include="Models\TrainingCours.cs" />
+    <Compile Include="Models\TrainingCourseTeacher.cs" />
+    <Compile Include="Models\TrainingGroup.cs" />
+    <Compile Include="Models\TrainingModule.cs" />
+    <Compile Include="Models\Vacancy.cs" />
     <Compile Include="MyHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -374,23 +234,6 @@
     <Content Include="log4net.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TrainingCentersModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TrainingCentersModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TrainingCentersModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TrainingCentersModel.edmx</DependentUpon>
-      <LastGenOutput>TrainingCentersModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\TrainingCentersModel.edmx.diagram">
-      <DependentUpon>TrainingCentersModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\TrainingCentersModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TrainingCentersModel.edmx</DependentUpon>
-      <LastGenOutput>TrainingCentersModel.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ButtonClickHandlers.js" />
     <Content Include="Scripts\createTree.js" />
@@ -516,11 +359,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Infrastructure\Migrations\201411100833103_InitialCreate.resx">
-      <DependentUpon>201411100833103_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Infrastructure\Migrations\201411101227519_Email.resx">
-      <DependentUpon>201411101227519_Email.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412150712039_Initial.resx">
+      <DependentUpon>201412150712039_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
