@@ -180,10 +180,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
+    <Compile Include="Infrastructure\HeadHunterHelper.cs" />
     <Compile Include="Infrastructure\TCHelper.cs" />
     <Compile Include="Migrations\201412150712039_Initial.cs" />
     <Compile Include="Migrations\201412150712039_Initial.Designer.cs">
       <DependentUpon>201412150712039_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412170950188_AddSome.cs" />
+    <Compile Include="Migrations\201412170950188_AddSome.Designer.cs">
+      <DependentUpon>201412170950188_AddSome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.cs" />
+    <Compile Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.Designer.cs">
+      <DependentUpon>201412182219439_AddHeadHunterFieldsTOQualification.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -199,6 +209,7 @@
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\Listener.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\ViewModels\HHSpecialization.cs" />
     <Compile Include="Models\Qualification.cs" />
     <Compile Include="Models\QualificationCertification.cs" />
     <Compile Include="Models\QualificationTrainingCour.cs" />
@@ -237,6 +248,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ButtonClickHandlers.js" />
     <Content Include="Scripts\createTree.js" />
+    <Content Include="Scripts\HeadHunterSelects.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jstree.js" />
@@ -361,6 +373,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201412150712039_Initial.resx">
       <DependentUpon>201412150712039_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412170950188_AddSome.resx">
+      <DependentUpon>201412170950188_AddSome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.resx">
+      <DependentUpon>201412182219439_AddHeadHunterFieldsTOQualification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
