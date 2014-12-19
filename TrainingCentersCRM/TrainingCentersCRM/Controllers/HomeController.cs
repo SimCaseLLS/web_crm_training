@@ -5,10 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingCentersCRM.Models;
 using TrainingCentersCRM.Infrastructure;
+using System.Net;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace TrainingCentersCRM.Controllers
 {
-    public class HomeController : RoutingTrainingCenterController
+    public class HomeController : Controller
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 

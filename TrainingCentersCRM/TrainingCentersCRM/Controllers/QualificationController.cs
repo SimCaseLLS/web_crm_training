@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Services;
 using System.Web.Services;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -15,7 +16,7 @@ namespace TrainingCentersCRM.Controllers
     public class QualificationController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
-
+        private List<ExtendedSelectListItem> areasList = HeadHunterHelper.GetHHSelectList();
         // GET: /Qualification/
         public ActionResult Index()
         {
@@ -63,6 +64,7 @@ namespace TrainingCentersCRM.Controllers
             {
                 return HttpNotFound();
             }
+
             return PartialView(qualification);
         }
 
@@ -70,6 +72,7 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult Create(int id)
         {
             ViewData["ParentId"] = id;
+            ViewBag.AreasSelectList = areasList;
             return PartialView();
         }
 
@@ -78,7 +81,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId")] Qualification qualification)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +89,6 @@ namespace TrainingCentersCRM.Controllers
                 db.SaveChanges();
                 return PartialView("Details", qualification);
             }
-
             return PartialView(qualification);
         }
 
@@ -102,6 +104,7 @@ namespace TrainingCentersCRM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AreasSelectList = areasList;
             return PartialView(qualification);
         }
 
@@ -110,7 +113,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId")] Qualification qualification)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
             {

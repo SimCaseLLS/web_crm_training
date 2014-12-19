@@ -1,13 +1,13 @@
 ﻿selectedId = 0;
 
 createQualification = function () {
-    $.ajax('Qualification/Create/' + selectedId).success(function (data) {
+    $.ajax('/Qualification/Create/' + selectedId).success(function (data) {
         $('#qualificationData').empty();
         $('#qualificationData').append(data);
     });
 }
 deleteQualification = function () {
-    $.ajax('Qualification/Delete/' + selectedId).success(function (data) {
+    $.ajax('/Qualification/Delete/' + selectedId).success(function (data) {
         $('#qualificationData').empty();
         $('#qualificationData').append(data);
     });
@@ -16,7 +16,7 @@ deleteQualification = function () {
     //$('#qualificationTree').jstree('remove', element.id);
 }
 editQualification = function () {
-    $.ajax('Qualification/Edit/' + selectedId).success(function (data) {
+    $.ajax('/Qualification/Edit/' + selectedId).success(function (data) {
         $('#qualificationData').empty();
         $('#qualificationData').append(data);
     });
@@ -36,8 +36,8 @@ $(function () {
                     {
                     'url': function (node) {
                         return node.id === '#' ?
-                          'Qualification/ChildNodes/0' :
-                          'Qualification/ChildNodes/';
+                          '/Qualification/ChildNodes/0' :
+                          '/Qualification/ChildNodes/';
                     },
                     'data': function (n) {
                         return {

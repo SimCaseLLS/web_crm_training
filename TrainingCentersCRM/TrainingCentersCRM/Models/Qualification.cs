@@ -30,6 +30,18 @@ using System;
         [Display(Name = "Тип")]
         public Nullable<int> Type { get; set; }
 
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Display(Name = "HeadHunter Id")]
+        public string HeadHunterId { get; set; }
+
+        [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
+        [Display(Name = "Квалификация на HeadHunter'e")]
+        public string HeadHunterName { get; set; }
+
+        [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
+        [Display(Name = "Ключевые слова")]
+        public string HeadHunterKeys { get; set; }
+
         public Nullable<int> ParentId { get; set; }
         public virtual ICollection<QualificationCertification> QualificationCertifications { get; set; }
 
