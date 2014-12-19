@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.Designer.cs">
       <DependentUpon>201412182219439_AddHeadHunterFieldsTOQualification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.cs" />
+    <Compile Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.Designer.cs">
+      <DependentUpon>201412190836452_AddHeadHunterKeysToQualification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -379,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.resx">
       <DependentUpon>201412182219439_AddHeadHunterFieldsTOQualification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.resx">
+      <DependentUpon>201412190836452_AddHeadHunterKeysToQualification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

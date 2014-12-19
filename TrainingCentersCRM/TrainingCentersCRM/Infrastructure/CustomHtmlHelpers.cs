@@ -17,6 +17,21 @@ namespace TrainingCentersCRM.Infrastructure
 
     public static class CustomHtmlHelpers
     {
+
+        public static MvcHtmlString HeadHunterWidget(this HtmlHelper htmlHelper, string keys, string specializationId/*, object htmlAttributes = null*/)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var inner = String.Format("<script class='hh-script' src='https://api.hh.ru/widgets/vacancies/search?count=6&links_color=1560B2&border_color=1560B2&text={0}&show_region=false&specialization={1}'></script>", HttpUtility.UrlEncode(keys), specializationId);
+
+
+            sb.Append(inner);
+
+
+            return MvcHtmlString.Create(sb.ToString());
+        }
+
+
         public static MvcHtmlString DropDownListWithOptions(this HtmlHelper htmlHelper, string name, IEnumerable<ExtendedSelectListItem> selectList, object htmlAttributes = null)
         {
             var select = new TagBuilder("select");

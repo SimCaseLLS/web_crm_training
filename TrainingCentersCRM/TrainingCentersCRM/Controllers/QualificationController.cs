@@ -81,7 +81,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName")] Qualification qualification)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName")] Qualification qualification)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
             {

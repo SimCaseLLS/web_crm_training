@@ -54,6 +54,10 @@
                 <label for="HeadHunterId"> Квалификация: </label>
                 @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control" })
                 @Html.HiddenFor(model => model.HeadHunterName)
+                <br>
+                @Html.LabelFor(model => model.HeadHunterKeys)
+                @Html.TextBoxFor(model => model.HeadHunterKeys, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HeadHunterKeys)
             </div>
         </div>
 
