@@ -18,16 +18,6 @@ namespace TrainingCentersCRM.Controllers
 
         public ActionResult Index()
         {
-            var areas = HeadHunterHelper.GetHHList();
-            var areas_list = areas.Select(a => new ExtendedSelectListItem
-            {
-                Selected = false,
-                Value = a.Id,
-                Text = a.Name,
-                HtmlAttributes = new { data_specializations = String.Join("", a.Specializations.Select(
-                    s => String.Format("<option value = '{0}'> {1} </option>", s.Id, s.Name))) }
-            }).ToList();
-            ViewBag.Areas = areas_list;
             return View();
         }
 

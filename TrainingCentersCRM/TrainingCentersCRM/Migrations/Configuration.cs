@@ -4,6 +4,7 @@ namespace TrainingCentersCRM.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using TrainingCentersCRM.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TrainingCentersCRM.Models.TrainingCentersDBEntities>
     {
@@ -14,6 +15,11 @@ namespace TrainingCentersCRM.Migrations
 
         protected override void Seed(TrainingCentersCRM.Models.TrainingCentersDBEntities context)
         {
+            TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+            db.TrainingCenters.AddOrUpdate(
+                p => p.Url,
+                new TrainingCenter { Url = "good" }
+            );
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

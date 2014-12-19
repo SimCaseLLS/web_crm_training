@@ -1,7 +1,11 @@
 ﻿@model TrainingCentersCRM.Models.Qualification
+@using TrainingCentersCRM.Infrastructure
+
 
 @{
     ViewBag.Title = "Edit";
+    var sep = new char[] { '.' };
+    var HHAreaId = Model.HeadHunterId != null ? Model.HeadHunterId.Split(sep)[0] : null;
 }
 
 <h2>Edit</h2>
@@ -42,6 +46,18 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.HeadHunterName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <label for="HeadHunterAreas"> Область деятельности: </label>
+                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control" })
+                <br>
+                <label for="HeadHunterId"> Квалификация: </label>
+                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control" })
+                @Html.HiddenFor(model => model.HeadHunterName)
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -49,6 +65,11 @@
     </div>
 }
 
+<!-- NOTE не будет рабобтать, если будет не аякс -->
+<script type="text/javascript">
+    setupSpecializationsSelect();
+    setSpecializationsSelect("@HHAreaId", "@Model.HeadHunterId");
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -10,12 +10,6 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 
-@Html.DropDownListWithOptions("areas", (List<ExtendedSelectListItem>)ViewBag.Areas, new { @class = "form-control" })
-@Html.DropDownListWithOptions("specialization", new List<ExtendedSelectListItem>(), new { @class = "form-control" })
-
-@section scripts{
-    <script src="@Url.Content("~/Scripts/HeadHunterSelects.js")" type="text/javascript"></script>
-}
 
 <div class="row">
     <div class="col-md-4">

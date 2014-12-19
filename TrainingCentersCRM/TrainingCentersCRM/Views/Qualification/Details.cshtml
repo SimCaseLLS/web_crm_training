@@ -34,6 +34,16 @@
             @Html.DisplayFor(model => model.Type)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.HeadHunterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeadHunterName)
+            <br>
+            <a href="http://hh.ru/search/vacancy?text=&salary=&currency_code=RUR&specialization=@Model.HeadHunterId"> Вакансии </a>
+        </dd>
+
     </dl>
 </div>
 

@@ -22,16 +22,23 @@ namespace TrainingCentersCRM.Infrastructure
             var specs = JsonConvert.DeserializeObject<List<HHProffessionalArea>>(response);
             // var i = specs.Where(t => t.Name == "Информационные технологии, интернет, телеком").First();
             return specs;
-            /*foreach (var spec in specs)
+        }
+
+        public static List<ExtendedSelectListItem> GetHHSelectList()
+        {
+            var areas = HeadHunterHelper.GetHHList();
+            var areas_list = areas.Select(a => new ExtendedSelectListItem
             {
-                areas.Add
-            }
-            new SelectList(new List<SelectListItem>
-            {
-                new SelectListItem { Selected = false, Text = string.Empty, Value = "-1"},
-                new SelectListItem { Selected = false, Text = "Homeowner", Value = ((int)UserType.Homeowner).ToString()},
-                new SelectListItem { Selected = false, Text = "Contractor", Value = ((int)UserType.Contractor).ToString()},
-            });*/
+                Selected = false,
+                Value = a.Id,
+                Text = a.Name,
+                HtmlAttributes = new
+                {
+                    data_specializations = String.Join("", a.Specializations.Select(
+                        s => String.Format("<option value = '{0}'> {1} </option>", s.Id, s.Name)))
+                }
+            }).ToList();
+            return areas_list;
         }
     }
 }
