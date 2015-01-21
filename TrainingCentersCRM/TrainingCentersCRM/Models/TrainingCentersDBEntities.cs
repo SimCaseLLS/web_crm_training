@@ -29,6 +29,7 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<TrainingCenterCours> TrainingCenterCourses { get; set; }
         public virtual DbSet<TrainingCenter> TrainingCenters { get; set; }
         public virtual DbSet<TrainingCenterTeacher> TrainingCenterTeachers { get; set; }
