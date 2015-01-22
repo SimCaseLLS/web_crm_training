@@ -208,6 +208,11 @@ namespace TrainingCentersCRM.Models
                 .WithOptional(e => e.Vacancy)
                 .HasForeignKey(e => e.IdVacancy)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<AspNetUser>().HasKey(e => e.UserId);
+                //.HasRequired(a => a.User)
+                //.WithMany()
+                //.HasForeignKey(u => u.UserId).WillCascadeOnDelete(false);;
         }
     }
 }

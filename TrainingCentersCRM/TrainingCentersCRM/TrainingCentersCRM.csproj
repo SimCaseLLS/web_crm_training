@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201501210907432_AddInheritanceFromUser.Designer.cs">
       <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.cs" />
+    <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.Designer.cs">
+      <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -394,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501210907432_AddInheritanceFromUser.resx">
       <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.resx">
+      <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
