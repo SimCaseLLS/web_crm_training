@@ -18,7 +18,10 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult Index()
         {
             var schedulettrainingcourses = db.ScheduleTtrainingCourses.Include(s => s.TrainingCenter).Include(s => s.TrainingCours);
-            return View(schedulettrainingcourses.ToList());
+            var tcUrl = RouteData.Values["tc"];
+            var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
+            var shedule = schedulettrainingcourses.Where(a => a.IdTrainingCenter == tc.Id);
+            return View(shedule.ToList());
         }
 
         // GET: /ScheduleTtrainingCours/Details/5
