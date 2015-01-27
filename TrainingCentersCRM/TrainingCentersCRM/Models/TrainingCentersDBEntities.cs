@@ -29,6 +29,7 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<TrainingCenterCours> TrainingCenterCourses { get; set; }
         public virtual DbSet<TrainingCenter> TrainingCenters { get; set; }
         public virtual DbSet<TrainingCenterTeacher> TrainingCenterTeachers { get; set; }
@@ -207,6 +208,11 @@ namespace TrainingCentersCRM.Models
                 .WithOptional(e => e.Vacancy)
                 .HasForeignKey(e => e.IdVacancy)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<AspNetUser>().HasKey(e => e.UserId);
+                //.HasRequired(a => a.User)
+                //.WithMany()
+                //.HasForeignKey(u => u.UserId).WillCascadeOnDelete(false);;
         }
     }
 }
