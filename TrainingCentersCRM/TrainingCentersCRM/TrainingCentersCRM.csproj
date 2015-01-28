@@ -215,6 +215,7 @@
     <Compile Include="Models\CertificationTaking.cs" />
     <Compile Include="Models\CourseModule.cs" />
     <Compile Include="Models\CourseTaking.cs" />
+    <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\HoldCours.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
