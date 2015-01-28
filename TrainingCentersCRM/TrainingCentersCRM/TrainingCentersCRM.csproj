@@ -178,11 +178,9 @@
     <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
     <Compile Include="Controllers\ScheduleTtrainingCoursController.cs" />
-    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TrainingCenterController.cs" />
     <Compile Include="Controllers\TrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingModuleController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\TCAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -377,11 +375,6 @@
     <Content Include="Views\Qualification\Details.cshtml" />
     <Content Include="Views\Qualification\Edit.cshtml" />
     <Content Include="Views\Qualification\Index.cshtml" />
-    <Content Include="Views\Teachers\Create.cshtml" />
-    <Content Include="Views\Teachers\Delete.cshtml" />
-    <Content Include="Views\Teachers\Details.cshtml" />
-    <Content Include="Views\Teachers\Edit.cshtml" />
-    <Content Include="Views\Teachers\Index.cshtml" />
     <Content Include="Views\Feedback\Create.cshtml" />
     <Content Include="Views\Feedback\Delete.cshtml" />
     <Content Include="Views\Feedback\Details.cshtml" />
