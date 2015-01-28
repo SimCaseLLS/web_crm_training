@@ -20,7 +20,8 @@ namespace TrainingCentersCRM.Models
 
         [Display(Name = "Сообщение")]      
         public string Message { get; set; }
-      
+
+        [Display(Name = "Дата")]   
         public DateTime Date { get; set; }
     }
 }
