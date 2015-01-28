@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<TrainingCentersCRM.Models.Menu>
 
 @{
-    ViewBag.Title = "Edit menu";
+    ViewBag.Title = "Index";
 }
 
-<h2>Edit menu</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p> 
-@*@Html.DropDownListFor(model => model.IdTrainingCenter, new SelectList(Model, Model.Distinct(q => q.IdTrainingCenter)))*@
+</p>
 <table class="table">
     <tr>
         <th>
@@ -22,13 +21,13 @@
             @Html.DisplayNameFor(model => model.Link)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ord_Id)
+            @Html.DisplayNameFor(model => model.IdTrainingCenter)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Parent_Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdTrainingCenter)
+            @Html.DisplayNameFor(model => model.Ord_Id)
         </th>
         <th></th>
     </tr>
@@ -45,13 +44,13 @@
             @Html.DisplayFor(modelItem => item.Link)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ord_Id)
+            @Html.DisplayFor(modelItem => item.IdTrainingCenter)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Parent_Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdTrainingCenter)
+            @Html.DisplayFor(modelItem => item.Ord_Id)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

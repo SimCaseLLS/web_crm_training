@@ -18,12 +18,13 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult Index()
         {
             var tcUrl = RouteData.Values["tc"];
-            return View(db.Menu.ToList());
+            if(tcUrl == "empty")
+            return View(db.Menu.Where(a => a.IdTrainingCenter == "empty"));
+            else
+                return View(db.Menu.Where(a => (a.IdTrainingCenter == "empty") || (a.IdTrainingCenter == tcUrl)));
+
         }
-        //public ActionResult Index()
-        //{
-        //    return View(db.Menu.ToList());
-        //}
+
         // GET: /Menu/Details/5
         public ActionResult Details(int? id)
         {
@@ -42,7 +43,6 @@ namespace TrainingCentersCRM.Controllers
         // GET: /Menu/Create
         public ActionResult Create()
         {
-            ViewBag.IdTC = RouteData.Values["tc"];
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Titel,Description,Link,Ord_Id,Parent_Id,IdTrainingCenter")] Menu menu)
+        public ActionResult Create([Bind(Include="Id,Title,Description,Link,IdTrainingCenter,Parent_Id,Ord_Id")] Menu menu)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Titel,Description,Link,Ord_Id,Parent_Id,IdTrainingCenter")] Menu menu)
+        public ActionResult Edit([Bind(Include="Id,Title,Description,Link,IdTrainingCenter,Parent_Id,Ord_Id")] Menu menu)
         {
             if (ModelState.IsValid)
             {
