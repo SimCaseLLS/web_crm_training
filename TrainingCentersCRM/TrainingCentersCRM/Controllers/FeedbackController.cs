@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotDetect.Web.UI.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -46,6 +47,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Incorrect CAPTCHA code!")]
         public ActionResult Create([Bind(Include="Id,Name,Email,Message")] Feedback feedback)
         {
             if (ModelState.IsValid)

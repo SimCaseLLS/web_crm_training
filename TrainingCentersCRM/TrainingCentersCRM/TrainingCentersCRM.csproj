@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect">
+      <HintPath>..\packages\Captcha.3.0.16.0\lib\net45\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.UI.Mvc">
+      <HintPath>..\packages\Captcha.3.0.16.0\lib\net45\BotDetect.Web.UI.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -211,6 +217,10 @@
     <Compile Include="Migrations\201501281706059_AddFeedback.cs" />
     <Compile Include="Migrations\201501281706059_AddFeedback.Designer.cs">
       <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501281802565_ChangedFeedback.cs" />
+    <Compile Include="Migrations\201501281802565_ChangedFeedback.Designer.cs">
+      <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -415,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501281706059_AddFeedback.resx">
       <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281802565_ChangedFeedback.resx">
+      <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
