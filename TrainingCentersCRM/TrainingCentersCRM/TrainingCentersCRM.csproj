@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect">
+      <HintPath>..\packages\Captcha.3.0.16.0\lib\net45\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.UI.Mvc">
+      <HintPath>..\packages\Captcha.3.0.16.0\lib\net45\BotDetect.Web.UI.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -166,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CertificationController.cs" />
     <Compile Include="Controllers\CertificationProviderController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -207,6 +214,14 @@
     <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.Designer.cs">
       <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501281706059_AddFeedback.cs" />
+    <Compile Include="Migrations\201501281706059_AddFeedback.Designer.cs">
+      <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501281802565_ChangedFeedback.cs" />
+    <Compile Include="Migrations\201501281802565_ChangedFeedback.Designer.cs">
+      <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -215,6 +230,7 @@
     <Compile Include="Models\CertificationTaking.cs" />
     <Compile Include="Models\CourseModule.cs" />
     <Compile Include="Models\CourseTaking.cs" />
+    <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\HoldCours.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
@@ -371,6 +387,11 @@
     <Content Include="Views\Teachers\Details.cshtml" />
     <Content Include="Views\Teachers\Edit.cshtml" />
     <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Feedback\Create.cshtml" />
+    <Content Include="Views\Feedback\Delete.cshtml" />
+    <Content Include="Views\Feedback\Details.cshtml" />
+    <Content Include="Views\Feedback\Edit.cshtml" />
+    <Content Include="Views\Feedback\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -401,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.resx">
       <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281706059_AddFeedback.resx">
+      <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281802565_ChangedFeedback.resx">
+      <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

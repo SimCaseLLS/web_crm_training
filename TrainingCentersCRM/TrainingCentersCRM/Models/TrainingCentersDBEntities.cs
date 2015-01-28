@@ -39,6 +39,7 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<TrainingModule> TrainingModules { get; set; }
         public virtual DbSet<Vacancy> Vacancies { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
+        public virtual DbSet<Feedback> Feedback { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
