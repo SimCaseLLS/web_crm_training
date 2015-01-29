@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201501281802565_ChangedFeedback.Designer.cs">
       <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501282229324_fix.cs" />
+    <Compile Include="Migrations\201501282229324_fix.Designer.cs">
+      <DependentUpon>201501282229324_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -421,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501281802565_ChangedFeedback.resx">
       <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501282229324_fix.resx">
+      <DependentUpon>201501282229324_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
