@@ -13,6 +13,8 @@ namespace TrainingCentersCRM.Controllers
 {
     public class UserMan
     {
+        public int Id { get; set; }
+
         [Required]
         [Display(Name = "Логин")]
         public string UserName { get; set; }
@@ -79,11 +81,39 @@ namespace TrainingCentersCRM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AspNetUser aspnetuser = db.AspNetUsers.Find(id);
-            if (aspnetuser == null)
+
+
+            UserMan user = new UserMan();
+            user.UserName = aspnetuser.UserName;
+
+            Student student = db.Students.SingleOrDefault(a => a.Id == aspnetuser.UserId);
+            Teacher teacher = db.Teachers.SingleOrDefault(a => a.Id == aspnetuser.UserId);
+            if (student != null)
+            {
+                user.DateOfBirth = "" + student.DateOfBirth;
+                user.Description = student.Description;
+                user.Email = student.Email;
+                user.FirstName = student.FirstName;
+                user.LastName = student.LastName;
+                user.Patronymic = student.Patronymic;
+                user.PassportData = student.PassportData;
+                user.Id = student.Id;
+            }
+            else if (teacher != null)
+            {
+                user.Description = teacher.Description;
+                user.Email = teacher.Email;
+                user.FirstName = teacher.FirstName;
+                user.LastName = teacher.LastName;
+                user.Patronymic = teacher.Patronymic;
+                user.PassportData = teacher.Phone;
+                user.Id = teacher.Id;
+            }
+            else
             {
                 return HttpNotFound();
             }
-            return View(aspnetuser);
+            return View(user);
         }
 
         // GET: /User/Create
@@ -160,12 +190,38 @@ namespace TrainingCentersCRM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AspNetUser aspnetuser = db.AspNetUsers.Find(id);
-            if (aspnetuser == null)
+            UserMan user = new UserMan();
+            user.UserName = aspnetuser.UserName;
+
+            Student student = db.Students.SingleOrDefault(a => a.Id == aspnetuser.UserId);
+            Teacher teacher = db.Teachers.SingleOrDefault(a => a.Id == aspnetuser.UserId);
+            user.Password = "";
+            if (student != null)
+            {
+                user.DateOfBirth = "" + student.DateOfBirth;
+                user.Description = student.Description;
+                user.Email = student.Email;
+                user.FirstName = student.FirstName;
+                user.LastName = student.LastName;
+                user.Patronymic = student.Patronymic;
+                user.PassportData = student.PassportData;
+                user.Id = student.Id;
+            }
+            else if (teacher != null)
+            {
+                user.Description = teacher.Description;
+                user.Email = teacher.Email;
+                user.FirstName = teacher.FirstName;
+                user.LastName = teacher.LastName;
+                user.Patronymic = teacher.Patronymic;
+                user.PassportData = teacher.Phone;
+                user.Id = teacher.Id;
+            }
+            else
             {
                 return HttpNotFound();
             }
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "LastName", aspnetuser.UserId);
-            return View(aspnetuser);
+            return View(user);
         }
 
         // POST: /User/Edit/5
@@ -173,30 +229,55 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserMan user)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserMan user)
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(userteacher).State = EntityState.Modified;
-                var anu = new AspNetUser();
+                var anu = new RegisterViewModel();
                 anu.UserName = user.UserName;
-                anu.PasswordHash = user.Password;
+                anu.Password = user.Password;
+                anu.ConfirmPassword = user.Password;
 
-                var teacher = new Teacher();
-                teacher.Description = user.Description;
-                teacher.Email = user.Email;
-                teacher.FirstName = user.FirstName;
-                teacher.LastName = user.LastName;
-                teacher.Patronymic = user.Patronymic;
-                teacher.Phone = user.Phone;
+                if (user.TypeUser == "teacher")
+                {
+                    var teacher = new Teacher();
+                    teacher.Description = user.Description;
+                    teacher.Email = user.Email;
+                    teacher.FirstName = user.FirstName;
+                    teacher.LastName = user.LastName;
+                    teacher.Patronymic = user.Patronymic;
 
-                db.Teachers.Add(teacher);
+                    teacher.Phone = user.Phone;
 
+                    db.Teachers.Add(teacher);
+                    db.SaveChanges();
 
+                    var teach = db.Teachers.SingleOrDefault(a => a.Email == user.Email);
+                    anu.UserId = teach.Id;
+                    db.Entry(teacher).State = EntityState.Modified;
+                }
+                if (user.TypeUser == "student")
+                {
+                    var student = new Student();
+                    student.Description = user.Description;
+                    student.Email = user.Email;
+                    student.FirstName = user.FirstName;
+                    student.LastName = user.LastName;
+                    student.Patronymic = user.Patronymic;
+
+                    student.DateOfBirth = Int32.Parse(user.DateOfBirth);
+                    student.PassportData = user.PassportData;
+
+                    db.Students.Add(student);
+                    db.SaveChanges();
+
+                    var stud = db.Students.SingleOrDefault(a => a.Email == user.Email);
+                    anu.UserId = stud.Id;
+                    db.Entry(student).State = EntityState.Modified;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "LastName", userteacher.AspNetUser.UserId);
             return View(user);
         }
 
