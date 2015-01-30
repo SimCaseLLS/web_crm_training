@@ -181,6 +181,7 @@
     <Compile Include="Controllers\TrainingCenterController.cs" />
     <Compile Include="Controllers\TrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingModuleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\TCAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
