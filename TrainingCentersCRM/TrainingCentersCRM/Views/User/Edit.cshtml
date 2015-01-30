@@ -1,4 +1,4 @@
-﻿@model TrainingCentersCRM.Controllers.UserMan
+﻿@model TrainingCentersCRM.Controllers.UserManEditing
 
 @{
     ViewBag.Title = "Edit";
@@ -18,10 +18,34 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Id)
+                @Html.ValidationMessageFor(model => model.Id)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UserName)
                 @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TypeUser, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TypeUser)
+                @Html.ValidationMessageFor(model => model.TypeUser)
             </div>
         </div>
 
@@ -96,6 +120,21 @@
         </div>
     </div>
 }
+
+<script>
+    document.getElementById("UserName").readOnly = true;
+    document.getElementById("Password").readOnly = true;
+    document.getElementById("TypeUser").readOnly = true;
+
+    if (document.getElementById('TypeUser').value == 'teacher') {
+        document.getElementById('DateOfBirthDiv').style.display = 'none';
+        document.getElementById('PassportDataDiv').style.display = 'none';
+    }
+    if (document.getElementById('TypeUser').value == 'student') {
+        document.getElementById('PhoneDiv').style.display = 'none';
+    }
+</script>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

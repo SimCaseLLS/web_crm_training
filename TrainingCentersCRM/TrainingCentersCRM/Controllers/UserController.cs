@@ -11,6 +11,56 @@ using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
+    public class UserManEditing
+    {
+        public int Id{ get; set; }
+
+        [Display(Name = "Логин")]
+        public string UserName { get; set; }
+
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Пароль")]
+        public string Password { get; set; }
+
+        [Display(Name = "Тип")]
+        public string TypeUser { get; set; }
+
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
+
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Display(Name = "Имя")]
+        public string FirstName { get; set; }
+
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Display(Name = "Отчество")]
+        public string Patronymic { get; set; }
+
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]
+        [Display(Name = "E-mail")]
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        public string Email { get; set; }
+
+        [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
+        [Display(Name = "Дополнительная информация")]
+        public string Description { get; set; }
+
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Display(Name = "Телефон")]
+        public string Phone { get; set; }
+
+        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
+        [Display(Name = "Дата рождения")]
+        public string DateOfBirth { get; set; }
+
+        [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Display(Name = "Паспортные данные")]
+        public string PassportData { get; set; }
+    }
+
+
     public class UserMan
     {
         public int Id { get; set; }
@@ -119,7 +169,6 @@ namespace TrainingCentersCRM.Controllers
         // GET: /User/Create
         public ActionResult Create()
         {
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "LastName");
             return View();
         }
 
@@ -177,8 +226,6 @@ namespace TrainingCentersCRM.Controllers
                 q.Register(anu);
                 return RedirectToAction("Index");
             }
-
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "LastName", user.AspNetUser.UserId);
             return View(user);
         }
 
@@ -190,12 +237,11 @@ namespace TrainingCentersCRM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AspNetUser aspnetuser = db.AspNetUsers.Find(id);
-            UserMan user = new UserMan();
+            UserManEditing user = new UserManEditing();
             user.UserName = aspnetuser.UserName;
 
             Student student = db.Students.SingleOrDefault(a => a.Id == aspnetuser.UserId);
             Teacher teacher = db.Teachers.SingleOrDefault(a => a.Id == aspnetuser.UserId);
-            user.Password = "";
             if (student != null)
             {
                 user.DateOfBirth = "" + student.DateOfBirth;
@@ -206,6 +252,7 @@ namespace TrainingCentersCRM.Controllers
                 user.Patronymic = student.Patronymic;
                 user.PassportData = student.PassportData;
                 user.Id = student.Id;
+                user.TypeUser = "student";
             }
             else if (teacher != null)
             {
@@ -216,6 +263,7 @@ namespace TrainingCentersCRM.Controllers
                 user.Patronymic = teacher.Patronymic;
                 user.PassportData = teacher.Phone;
                 user.Id = teacher.Id;
+                user.TypeUser = "teacher";
             }
             else
             {
@@ -229,53 +277,37 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserMan user)
+        public ActionResult Edit([Bind(Include = "UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserManEditing user)
         {
             if (ModelState.IsValid)
             {
-                var anu = new RegisterViewModel();
-                anu.UserName = user.UserName;
-                anu.Password = user.Password;
-                anu.ConfirmPassword = user.Password;
+                var aspNetUser = db.AspNetUsers.SingleOrDefault(a => a.UserName == user.UserName);
 
                 if (user.TypeUser == "teacher")
                 {
-                    var teacher = new Teacher();
+                    var teacher = db.Teachers.SingleOrDefault(a => a.Id == aspNetUser.UserId);
                     teacher.Description = user.Description;
                     teacher.Email = user.Email;
                     teacher.FirstName = user.FirstName;
                     teacher.LastName = user.LastName;
                     teacher.Patronymic = user.Patronymic;
-
                     teacher.Phone = user.Phone;
-
-                    db.Teachers.Add(teacher);
-                    db.SaveChanges();
-
-                    var teach = db.Teachers.SingleOrDefault(a => a.Email == user.Email);
-                    anu.UserId = teach.Id;
                     db.Entry(teacher).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
                 if (user.TypeUser == "student")
                 {
-                    var student = new Student();
+                    var student = db.Students.SingleOrDefault(a => a.Id == aspNetUser.UserId);
                     student.Description = user.Description;
                     student.Email = user.Email;
                     student.FirstName = user.FirstName;
                     student.LastName = user.LastName;
                     student.Patronymic = user.Patronymic;
-
                     student.DateOfBirth = Int32.Parse(user.DateOfBirth);
-                    student.PassportData = user.PassportData;
-
-                    db.Students.Add(student);
-                    db.SaveChanges();
-
-                    var stud = db.Students.SingleOrDefault(a => a.Email == user.Email);
-                    anu.UserId = stud.Id;
+                    student.PassportData = user.PassportData;;
                     db.Entry(student).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
