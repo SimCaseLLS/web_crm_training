@@ -240,6 +240,7 @@
     <Compile Include="Models\Listener.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\ViewModels\HHSpecialization.cs" />
     <Compile Include="Models\Qualification.cs" />
     <Compile Include="Models\QualificationCertification.cs" />
