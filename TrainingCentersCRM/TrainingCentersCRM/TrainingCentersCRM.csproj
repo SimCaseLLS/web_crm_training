@@ -178,7 +178,6 @@
     <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
     <Compile Include="Controllers\ScheduleTtrainingCoursController.cs" />
-    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TrainingCenterController.cs" />
     <Compile Include="Controllers\TrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingModuleController.cs" />
@@ -222,6 +221,10 @@
     <Compile Include="Migrations\201501281802565_ChangedFeedback.Designer.cs">
       <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501282229324_fix.cs" />
+    <Compile Include="Migrations\201501282229324_fix.Designer.cs">
+      <DependentUpon>201501282229324_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUser.cs" />
@@ -238,6 +241,7 @@
     <Compile Include="Models\Listener.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\ViewModels\HHSpecialization.cs" />
     <Compile Include="Models\Qualification.cs" />
     <Compile Include="Models\QualificationCertification.cs" />
@@ -357,11 +361,6 @@
     <Content Include="Views\ScheduleTtrainingCours\Details.cshtml" />
     <Content Include="Views\ScheduleTtrainingCours\Edit.cshtml" />
     <Content Include="Views\ScheduleTtrainingCours\Index.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\TrainingCenter\Create.cshtml" />
     <Content Include="Views\TrainingCenter\Delete.cshtml" />
     <Content Include="Views\TrainingCenter\Details.cshtml" />
@@ -377,11 +376,6 @@
     <Content Include="Views\Qualification\Details.cshtml" />
     <Content Include="Views\Qualification\Edit.cshtml" />
     <Content Include="Views\Qualification\Index.cshtml" />
-    <Content Include="Views\Teachers\Create.cshtml" />
-    <Content Include="Views\Teachers\Delete.cshtml" />
-    <Content Include="Views\Teachers\Details.cshtml" />
-    <Content Include="Views\Teachers\Edit.cshtml" />
-    <Content Include="Views\Teachers\Index.cshtml" />
     <Content Include="Views\Feedback\Create.cshtml" />
     <Content Include="Views\Feedback\Delete.cshtml" />
     <Content Include="Views\Feedback\Details.cshtml" />
@@ -392,6 +386,11 @@
     <Content Include="Views\Menu\Details.cshtml" />
     <Content Include="Views\Menu\Edit.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -428,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501281802565_ChangedFeedback.resx">
       <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501282229324_fix.resx">
+      <DependentUpon>201501282229324_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

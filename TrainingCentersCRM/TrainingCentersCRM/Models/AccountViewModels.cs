@@ -46,7 +46,7 @@ namespace TrainingCentersCRM.Models
     public class RegisterViewModel
     {
         [Required]
-        public string Email { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [Display(Name = "User name")]

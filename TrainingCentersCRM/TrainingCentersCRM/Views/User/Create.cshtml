@@ -1,4 +1,4 @@
-﻿@model TrainingCentersCRM.Models.AspNetUser
+﻿@model TrainingCentersCRM.Models.UserMan
 
 @{
     ViewBag.Title = "Create";
@@ -7,22 +7,14 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AspNetUser</h4>
         <hr />
         @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id)
-                @Html.ValidationMessageFor(model => model.Id)
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
@@ -33,26 +25,43 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PasswordHash, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PasswordHash)
-                @Html.ValidationMessageFor(model => model.PasswordHash)
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SecurityStamp, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TypeUser, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SecurityStamp)
-                @Html.ValidationMessageFor(model => model.SecurityStamp)
+                Студент @Html.RadioButtonFor(model => model.TypeUser, "student", new { @onclick = "Student()" })
+                Преподаватель @Html.RadioButtonFor(model => model.TypeUser, "teacher", new { @onclick = "Teacher()" })
+                @Html.ValidationMessageFor(model => model.TypeUser)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Discriminator, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Discriminator)
-                @Html.ValidationMessageFor(model => model.Discriminator)
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Patronymic, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Patronymic)
+                @Html.ValidationMessageFor(model => model.Patronymic)
             </div>
         </div>
 
@@ -63,6 +72,55 @@
                 @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group" id = "DateOfBirthDiv">
+            @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateOfBirth)
+                @Html.ValidationMessageFor(model => model.DateOfBirth)
+            </div>
+        </div>
+
+        <div class="form-group" id = "PassportDataDiv">
+            @Html.LabelFor(model => model.PassportData, new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PassportData)
+                @Html.ValidationMessageFor(model => model.PassportData)
+            </div>
+        </div>
+
+        <div class="form-group" id = "PhoneDiv">
+            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phone)
+                @Html.ValidationMessageFor(model => model.Phone)
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('DateOfBirthDiv').style.display = 'none';
+            document.getElementById('PassportDataDiv').style.display = 'none';
+            document.getElementById('PhoneDiv').style.display = 'none';
+
+            function Student() {
+                document.getElementById('DateOfBirthDiv').style.display = '';
+                document.getElementById('PassportDataDiv').style.display = '';
+                document.getElementById('PhoneDiv').style.display = 'none';
+            }
+            function Teacher() {
+                document.getElementById('DateOfBirthDiv').style.display = 'none';
+                document.getElementById('PassportDataDiv').style.display = 'none';
+                document.getElementById('PhoneDiv').style.display = '';
+            }
+            </script>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
