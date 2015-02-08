@@ -19,13 +19,13 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /User/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspnetuser = db.AspNetUsers.Find(id);
+            AspNetUser aspnetuser = db.AspNetUsers.SingleOrDefault(a => a.Id == id);
 
 
             UserMan user = new UserMan();
