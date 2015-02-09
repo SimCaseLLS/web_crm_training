@@ -172,8 +172,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CertificationController.cs" />
     <Compile Include="Controllers\CertificationProviderController.cs" />
+    <Compile Include="Controllers\CourseTakingController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
@@ -391,6 +393,16 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Lesson\Create.cshtml" />
+    <Content Include="Views\Lesson\Delete.cshtml" />
+    <Content Include="Views\Lesson\Details.cshtml" />
+    <Content Include="Views\Lesson\Edit.cshtml" />
+    <Content Include="Views\Lesson\Index.cshtml" />
+    <Content Include="Views\CourseTaking\Create.cshtml" />
+    <Content Include="Views\CourseTaking\Delete.cshtml" />
+    <Content Include="Views\CourseTaking\Details.cshtml" />
+    <Content Include="Views\CourseTaking\Edit.cshtml" />
+    <Content Include="Views\CourseTaking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

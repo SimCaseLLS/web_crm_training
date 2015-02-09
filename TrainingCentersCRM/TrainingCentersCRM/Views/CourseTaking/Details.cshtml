@@ -1,0 +1,74 @@
+﻿@model TrainingCentersCRM.Models.CourseTaking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CourseTaking</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdStudent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdStudent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTrainingCourse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTrainingCourse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Debt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Debt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdObecjt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdObecjt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
