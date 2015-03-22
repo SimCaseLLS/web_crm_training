@@ -49,9 +49,13 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -177,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MoodleController.cs" />
     <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
     <Compile Include="Controllers\ScheduleTtrainingCoursController.cs" />
@@ -242,6 +247,12 @@
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\Listener.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Moodle\Key.cs" />
+    <Compile Include="Models\Moodle\MoodleCategory.cs" />
+    <Compile Include="Models\Moodle\MoodleCourse.cs" />
+    <Compile Include="Models\Moodle\MoodleRequestManager.cs" />
+    <Compile Include="Models\Moodle\MoodleRestResponse.cs" />
+    <Compile Include="Models\Moodle\SingleResult.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\ViewModels\HHSpecialization.cs" />
@@ -403,6 +414,8 @@
     <Content Include="Views\CourseTaking\Details.cshtml" />
     <Content Include="Views\CourseTaking\Edit.cshtml" />
     <Content Include="Views\CourseTaking\Index.cshtml" />
+    <Content Include="Views\Moodle\Index.cshtml" />
+    <Content Include="Views\Moodle\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
