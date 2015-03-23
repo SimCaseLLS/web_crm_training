@@ -4,7 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<script>
+    $.getJSON("https://api.hh.ru/vacancies?specialization=1&salary=30000&only_with_salary=true").done(function (msg) {
+        var items = msg.items;
+        for (var i = 0; i < items.length; i++) {
+            $.getJSON("https://api.hh.ru/vacancies/" + items[i].id).done(function (item) {
+                var content = "";
+                var tmpl = $("#template");
+                tmpl.find("h5.title").text(item.name)
+                tmpl.find(".description").html(item.description)
+                tmpl.find(".salary").text(item.salary.from)
+                tmpl.find(".city").text(item.area.name)
+                tmpl.find(".company").text(item.employer.name)
+                content += tmpl.html();
+                $("#jobs").append(content);
+            });
+        }
+    })
+</script>
+<div id="jobs"></div>
+	</article>
+<div id="template" style="display: none;">
+    <div class="col s6 job">
+        <h5 class="title"> My job </h5>
+        <div><span class="ligth-text"> Компания: </span> <span class="company">Dsf</span> </div>
+        <div class="salary-wrap"><span class="ligth-text"> Заработная плата: </span> от <span class="salary">1000000</span> </div>
+        <div><span class="ligth-text"> Город: </span> <span class="city">Ekmdzf</span> </div>
+        <p class="ligth-text">Описание:</p>
+        <div class="description">sdfsdfsdfvvgrvvd</div>
+        <a href="#"> смотреть дальше </a>
+    </div>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")

@@ -1,0 +1,49 @@
+.logo {
+  background-color: #fff; }
+  .logo img {
+    width: 100px;
+    margin-left: 40px; }
+
+header {
+  height: 180px;
+  color: #fff;
+  background-color: #5799CE; }
+  header .header-title {
+    width: 50%; }
+  header .center_name {
+    margin: 20px 60px; }
+  header .input-field {
+    margin-top: 20px; }
+    header .input-field #search {
+      border: 1px solid #fff;
+      height: 2.1rem;
+      padding: 10px;
+      box-sizing: border-box; }
+    header .input-field label {
+      color: #fff;
+      top: 3px;
+      left: 0.95rem;
+      font-size: 1.4rem; }
+  header .input-field input[type=text]:focus + label {
+    opacity: 0; }
+  header .nav-mobile .active {
+    background-color: rgba(0, 0, 0, 0.8); }
+  header .row {
+    margin-bottom: 0px; }
+header .menu-item-right {
+    float: right;
+}
+header nav ul.left {
+    float: none !important;
+    padding: 0 1.5rem;
+}
+header .center-name {
+    float: left;
+}
+header .center-name {
+    padding: 0px 15px;
+    font-weight: bold;
+}
+header .center-name:hover {
+      background-color: transparent;
+}

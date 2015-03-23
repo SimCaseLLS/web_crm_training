@@ -1,0 +1,19 @@
+.ligth-text {
+    color: #01579b;
+}
+
+.salary-wrap {
+    font-size: 18px;
+}
+
+.job {
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.description {
+    height: 115px;
+    overflow: hidden;
+}

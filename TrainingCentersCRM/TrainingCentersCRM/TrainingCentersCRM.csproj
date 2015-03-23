@@ -45,6 +45,14 @@
     <Reference Include="BotDetect.Web.UI.Mvc">
       <HintPath>..\packages\Captcha.3.0.16.0\lib\net45\BotDetect.Web.UI.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -118,12 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -271,15 +273,29 @@
     <Content Include="App_Data\TrainingCentersDB_log.ldf">
       <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\courses.css" />
+    <Content Include="Content\footer.css" />
+    <Content Include="Content\header.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\materialize.css" />
+    <Content Include="Content\module.css" />
+    <Content Include="Content\vacancies.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\Material-Design-Icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\P1010871.jpg" />
+    <Content Include="img\tempus.jpg" />
     <Content Include="log4net.config.xml" />
     <Content Include="log4net.dll" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\Roboto-Bold.ttf" />
+    <Content Include="fonts\Roboto-Light.ttf" />
+    <Content Include="fonts\Roboto-Medium.ttf" />
+    <Content Include="fonts\Roboto-Regular.ttf" />
+    <Content Include="fonts\Roboto-Thin.ttf" />
+    <Content Include="fonts\Material-Design-Icons.eot" />
+    <Content Include="fonts\Material-Design-Icons.ttf" />
+    <Content Include="fonts\Material-Design-Icons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ButtonClickHandlers.js" />
     <Content Include="Scripts\createTree.js" />
@@ -305,6 +321,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -403,6 +420,7 @@
     <Content Include="Views\CourseTaking\Details.cshtml" />
     <Content Include="Views\CourseTaking\Edit.cshtml" />
     <Content Include="Views\CourseTaking\Index.cshtml" />
+    <Content Include="Views\Shared\TrainingCenterLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

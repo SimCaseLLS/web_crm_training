@@ -18,21 +18,29 @@ namespace TrainingCentersCRM.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
+                return View();
+            else
+                return View("Index", "TrainingCenterLayout");
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
+                return View();
+            else
+                return View("About", "TrainingCenterLayout");
         }
 
         public ActionResult Contact()
         {
+
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
+                return View();
+            else
+                return View("Contact", "TrainingCenterLayout");
         }
     }
 }

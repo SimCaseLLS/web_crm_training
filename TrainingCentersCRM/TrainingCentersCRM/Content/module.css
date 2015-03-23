@@ -1,0 +1,39 @@
+.row .notes {
+  background-color: #01579b;
+  color: #fff;
+  padding: 20px 20px;
+  font-size: 2rem; }
+
+.row .notes-grey {
+  font-size: 1rem;
+  background-color: #ddd;
+  text-align: center;
+  color: #1d1d1d; }
+
+.row .text {
+  padding-right: 90px; }
+
+h4 {
+  margin: 20px 0px; }
+
+.row .pay-label {
+  background-color: #01579b;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  margin: 0;
+  padding: 20px; }
+
+.row .pay-col {
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  border-color: #fff;
+  padding: 20px;
+  box-sizing: border-box; }
+
+.pay .row {
+  margin: 0px; }
+
+.teachers img {
+  width: 100%;
+  height: 200px; }
