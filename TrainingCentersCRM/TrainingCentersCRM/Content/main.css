@@ -10,8 +10,6 @@ html {
 .container {
   width: 90%;
   margin-top: 30px; }
-  .container a {
-    text-decoration: underline; }
 input[type="checkbox"]:after, .checkbox input[type="checkbox"]:after, .checkbox-inline input[type="checkbox"]:after {
   content: "";
   display: block;
@@ -91,4 +89,10 @@ input[type="checkbox"]:checked:after, .checkbox input[type="checkbox"]:checked:a
 input[type="checkbox"]:checked:after, .checkbox input[type="checkbox"]:checked:after, .checkbox-inline input[type="checkbox"]:checked:after {
   background-color: #2196f3;
   border-color: #2196f3;
+}
+.btn-small {
+  box-shadow: none;
+  width: 45px;
+  padding: 0px;
+  height: 34px;
 }

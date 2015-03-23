@@ -39,3 +39,6 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+.form-horizontal {
+    margin-left: 20px;
+}

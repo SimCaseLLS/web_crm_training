@@ -4,35 +4,20 @@
     ViewBag.Title = "Index";
 }
 <div class="my-container">
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var rows = "";
-            var titles = ["QA тестирование", "Основы разработки", "Алгоритмы",
-                          "Схемотехника", "ОБЖ", "Физика", "Квантовая механика",
-                          "Я познаю мир"];
-            for (var i = 0; i < 6; i++) {
-                var row = '<div class="row">';
-                for (var j = 0; j < 4; j++) {
-                    $("#article-template h5.title").text(titles[(i * 4) + j]);
-                    row += $("#article-template").html();
-                }
-                row += '</div>';
-                rows += row;
-            }
-            $("#articles").html(rows);
-            $(".random-image").each(function (k, v) { var a = $(v).attr("src"); $(v).attr("src", a + "?" + Math.random()) })
-        });
-    </script>
     <h2>Список курсов УлГТУ</h2>
-    <div id="articles"> </div>
-
-    <div style="display:none" id="article-template">
-        <div class="col s3">
-            <img src="https://placeimg.com/260/260/tech" class="random-image" alt="" />
-            <h5 class="title"> QA тестирование </h5>
-            <p> Интересно, познавательно и увлекательно </p>
-            <br>
-        </div>
+    <div id="articles" class="row">
+        @foreach (var item in Model) {
+            <div id="article-template">
+                <div class="col s3">
+                    <a class="waves-effect waves-light btn btn-small"><i class="mdi-content-create center"></i></a>
+                    <a class="waves-effect waves-light btn btn-small"><i class="mdi-content-clear center"></i></a>
+                    <img src="https://placeimg.com/260/260/tech" class="random-image" alt="" />
+                    <h5 class="title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
+                    <br>
+                </div>
+            </div>
+        }
     </div>
 </div>
 <p>

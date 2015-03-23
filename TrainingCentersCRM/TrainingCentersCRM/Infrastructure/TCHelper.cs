@@ -21,7 +21,6 @@ namespace TrainingCentersCRM.Infrastructure
 //@HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString() + 
         [HandleError]
         public static IQueryable<TrainingCenter> getTc(string tcUrl, TrainingCentersDBEntities db) {
-
             var tc = db.TrainingCenters.Where(a => a.Url == tcUrl); 
             if(tc.Count() == 0) {
                 throw new HttpException(404, "NotFound");

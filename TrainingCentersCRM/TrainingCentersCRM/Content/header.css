@@ -7,7 +7,11 @@
 header {
   height: 180px;
   color: #fff;
-  background-color: #5799CE; }
+  background-color: #167FAF;
+}
+    header nav {
+      height: 66px;
+      background-color: rgba(0,0,0,0.25); }
   header .header-title {
     width: 50%; }
   header .center_name {
