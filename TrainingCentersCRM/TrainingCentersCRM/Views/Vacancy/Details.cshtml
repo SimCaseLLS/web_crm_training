@@ -46,6 +46,22 @@
             @Html.DisplayNameFor(model => model.Link)
         </dt>
 
+        <dd></dd>
+
+        <dt>
+            @Html.Label("Требуемые квалификации")
+        </dt>
+
+        <dd>
+            @if (Model.Qualifications != null)
+            {
+                foreach (var qualification in Model.Qualifications)
+                {
+                    @Html.Raw(qualification.Title + " ")
+                }
+            }
+
+        </dd>
         <dd>
             @Html.DisplayFor(model => model.Link)
         </dd>

@@ -24,7 +24,6 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<QualificationCertification> QualificationCertifications { get; set; }
         public virtual DbSet<Qualification> Qualifications { get; set; }
         public virtual DbSet<QualificationTrainingCour> QualificationTrainingCours { get; set; }
-        public virtual DbSet<QualificationVacancy> QualificationVacancies { get; set; }
         public virtual DbSet<RelatedCours> RelatedCourses { get; set; }
         public virtual DbSet<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
         public virtual DbSet<Student> Students { get; set; }
@@ -85,10 +84,7 @@ namespace TrainingCentersCRM.Models
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Qualification>()
-                .HasMany(e => e.QualificationVacancies)
-                .WithOptional(e => e.Qualification)
-                .HasForeignKey(e => e.IdQualification)
-                .WillCascadeOnDelete();
+                .HasMany(e => e.Vacancies);
 
             modelBuilder.Entity<Teacher>()
                 .HasMany(e => e.TrainingCenterTeachers)
@@ -205,10 +201,7 @@ namespace TrainingCentersCRM.Models
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Vacancy>()
-                .HasMany(e => e.QualificationVacancies)
-                .WithOptional(e => e.Vacancy)
-                .HasForeignKey(e => e.IdVacancy)
-                .WillCascadeOnDelete();
+                .HasMany(e => e.Qualifications);
 
             modelBuilder.Entity<AspNetUser>().HasKey(e => e.UserId);
                 //.HasRequired(a => a.User)
