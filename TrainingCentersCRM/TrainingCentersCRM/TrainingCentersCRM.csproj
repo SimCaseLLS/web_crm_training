@@ -308,6 +308,7 @@
     <Content Include="fonts\Material-Design-Icons.ttf" />
     <Content Include="fonts\Material-Design-Icons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\ButtonClickHandlers.js" />
     <Content Include="Scripts\createTree.js" />
     <Content Include="Scripts\HeadHunterSelects.js" />

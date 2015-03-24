@@ -14,15 +14,20 @@ namespace TrainingCentersCRM.Infrastructure
             return HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString();
         }
 
-        public static IQueryable<TrainingCenter> GetCurrentTc(TrainingCentersDBEntities db)
+        public static TrainingCenter GetCurrentTc(TrainingCentersDBEntities db)
         {
+            return getTc(GetCurrentTCName(), db);
+        }
+        public static TrainingCenter GetCurrentTc()
+        {
+            TrainingCentersDBEntities db = new TrainingCentersDBEntities();
             return getTc(GetCurrentTCName(), db);
         }
 //@HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString() + 
         [HandleError]
-        public static IQueryable<TrainingCenter> getTc(string tcUrl, TrainingCentersDBEntities db) {
-            var tc = db.TrainingCenters.Where(a => a.Url == tcUrl); 
-            if(tc.Count() == 0) {
+        public static TrainingCenter getTc(string tcUrl, TrainingCentersDBEntities db) {
+            TrainingCenter tc = db.TrainingCenters.Where(a => a.Url == tcUrl).ToList().First();
+            if(tc == null) {
                 throw new HttpException(404, "NotFound");
             }
             return tc;

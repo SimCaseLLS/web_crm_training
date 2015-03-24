@@ -21,6 +21,7 @@ namespace TrainingCentersCRM.Controllers
             if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
                 return View();
             else
+                ViewBag.TrainingCenter = TCHelper.GetCurrentTc(db);
                 return View("Index", "TrainingCenterLayout");
         }
 

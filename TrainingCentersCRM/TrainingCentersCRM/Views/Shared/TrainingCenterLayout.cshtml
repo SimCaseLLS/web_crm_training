@@ -11,7 +11,7 @@
     <header>
         <div class="row">
             <div class="col logo s2">
-                <a href=""><img src="/img/tempus.jpg" class="responsive-img" alt=""></a>
+                <a href="/"><img src="/img/tempus.jpg" class="responsive-img" alt=""></a>
             </div>
             <div class="col s6">
                 <h5>Совместный европейский проект</h5>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <ul id="nav-mobile" class="left side-nav">
                         <li class="center-name"></li>
-                        <li>@Html.ActionLink("Об учебном центре", "Index", "TrainingCenter")</li>
+                        <li>@Html.ActionLink("Об учебном центре", "Index", "Home")</li>
                         <li>@Html.ActionLink("Курсы", "Index", "TrainingCours")</li>
                         <li>@Html.ActionLink("Преподователи", "Index", "")</li>
                         <li><a href="">Новости </a></li>
@@ -53,7 +53,7 @@
             $(".dropdown-button").dropdown({ hover: false });
         });
         $.ajax({
-            url: '/ulstu/TrainingCenter/Centers',
+            url: '/empty/TrainingCenter/Centers',
             success: function (data) {
                 var current_url= location.pathname.split('/')[1];
                 data.map(function (item) {
@@ -86,7 +86,7 @@
                     <li><a class="white-text" href="#!">Новости</a></li>
                     <li><a class="white-text" href="#!">Статистика</a></li>
                     <li><a class="white-text" href="#!">Сертификация</a></li>
-                    <ul>
+                </ul>
             </div>
         </div>
         <div class="footer-copyright">

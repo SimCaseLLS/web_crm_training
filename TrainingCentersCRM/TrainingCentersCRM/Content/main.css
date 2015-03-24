@@ -96,3 +96,22 @@ input[type="checkbox"]:checked:after, .checkbox input[type="checkbox"]:checked:a
   padding: 0px;
   height: 34px;
 }
+.btn-small i, .btn i, .btn-big i {
+    color: #fff;
+}
+.btn, .btn-big {
+  box-shadow: none;
+  text-transform: none;
+}
+#article-template a {
+    color:inherit;
+}
+a.btn.center {
+    display: block;
+    max-width: 15%;
+    margin: 10px auto;
+    text-align:center;
+}
+.hide {
+    display: none;
+}

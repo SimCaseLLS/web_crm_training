@@ -6,12 +6,12 @@
     @Html.AntiForgeryToken()
 
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details" + "/" + User.Identity.GetUserId(), "User", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Здравствуй, " + User.Identity.GetUserName() + "!", "Details" + "/" + User.Identity.GetUserId(), "User", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     }
 }
 else
 {
-    <li class="menu-item-right">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <li class="menu-item-right">@Html.ActionLink("Войти", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }
