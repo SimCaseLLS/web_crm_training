@@ -15,7 +15,7 @@
     <AssemblyName>TrainingCentersCRM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -279,6 +279,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TrainingCentersDB.mdf" />
+    <Content Include="App_Data\TrainingCentersDBnewnew.mdf" />
+    <Content Include="App_Data\TrainingCentersDBnewnew_log.ldf">
+      <DependentUpon>TrainingCentersDBnewnew.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\TrainingCentersDB_log.ldf">
       <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
     </Content>
@@ -476,7 +480,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1037</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1037/</IISUrl>
+          <IISUrl>http://localhost/ict/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
