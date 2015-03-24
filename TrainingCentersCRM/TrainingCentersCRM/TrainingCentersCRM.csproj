@@ -283,15 +283,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\TrainingCentersDB.mdf" />
-    <Content Include="App_Data\TrainingCentersDBnewnew.mdf" />
-    <Content Include="App_Data\TrainingCentersDBnewnew_log.ldf">
-      <DependentUpon>TrainingCentersDBnewnew.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\TrainingCentersDB_log.ldf">
       <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
-    <Content Include="App_Data\TrainingCentersDBnewnew.mdf" />
-    <Content Include="App_Data\TrainingCentersDBnewnew_log.ldf">
-      <DependentUpon>TrainingCentersDBnewnew.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
