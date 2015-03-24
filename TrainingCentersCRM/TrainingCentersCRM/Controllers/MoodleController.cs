@@ -13,9 +13,9 @@ using TrainingCentersCRM.Models.Moodle;
 
 namespace TrainingCentersCRM.Controllers
 {
-    public class MoodleController : Controller
+    public class MoodleController : RoutingTrainingCenterController
     {
-            
+
         // GET: Moodle
         /// <summary>
         /// Генерация списка курсов для учебного центра из Moodle
@@ -28,16 +28,20 @@ namespace TrainingCentersCRM.Controllers
             // core_course_get_categories
             var res = MoodleRequestManager.InvokeMethod("core_course_get_categories", HttpContext);
             SingleResult root;
+            if (trainingCenter != null)
+                key = trainingCenter.Url;
             if (key == null)
-                root = new SingleResult() 
-                { 
+            {
+                root = new SingleResult()
+                {
                     KeyValues = new Key[] 
                     {
                         new Key() { Name = "name", Value="Все курсы"},
                         new Key() { Name = "id", Value = "0"},
                         new Key() { Name = "shortname", Value = "Все курсы"}
-                    } 
+                    }
                 };
+            }
             else
                 root = res.MultiValue.Where(a => a["idnumber"] == key).Single();
             MoodleCategory cat = new MoodleCategory(root, res.MultiValue, HttpContext);

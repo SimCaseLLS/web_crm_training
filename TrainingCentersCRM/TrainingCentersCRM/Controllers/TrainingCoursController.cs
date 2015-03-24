@@ -17,6 +17,7 @@ namespace TrainingCentersCRM.Controllers
         // GET: /TrainingCours/
         public ActionResult Index()
         {
+            ViewBag.Key = this.trainingCenter.Url;
             return View(db.TrainingCourses.ToList());
         }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Портал сети центров обучения в области ИКТ</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
 </head>
@@ -15,10 +15,10 @@
                 <a href="/"><img src="/img/tempus.jpg" class="responsive-img" alt=""></a>
             </div>
             <div class="col s6">
-                <h5>Совместный европейский проект</h5>
+                <h5>Портал сети центров обучения в области ИКТ</h5>
                 <p>
-                    Основанный на европейской рамке квалфикаций
-                    профессиональное ИКТ-образование для РФ и Казахстана
+                    Учебные курсы, основанные на европейской рамке квалификаций<br />
+                    Профессиональное ИКТ-образование для РФ и Казахстана
                 </p>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <ul id="nav-mobile" class="left side-nav">
                     <li>@Html.ActionLink("О проекте", "Index", "Home")</li>
                     <li><a href="">Новости</a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Учебные университеты<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Учебные центры<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
                     <li><a href="">Статистика</a></li>
                     <li>@Html.ActionLink("Сертификация", "Index", "Certification")</li>
                     <li>@Html.ActionLink("Отзывы", "Index", "Feedback")</li>
@@ -50,7 +50,7 @@
             $(".dropdown-button").dropdown({ hover: false });
         });
         $.ajax({
-            url: '/ulstu/TrainingCenter/Centers',
+            url: '/empty/TrainingCenter/Centers',
             success: function (data) {
                 data.map(function (item) {
                     arr = location.pathname.split('/');
@@ -70,9 +70,9 @@
             <div class="col offset-l1 l4 s12">
                 <h5 class="white-text">Контакты</h5>
                 <p class="white-text text-lighten-4">
-                    email: sdfjlskdfjs@mail.com <br>
-                    тел: +7 (927) 817 34 42 <br>
-                    site www.somesite.com
+                    email: contact@simcase.ru<br>
+                    тел: +7 (905) 348 3966<br>
+                    site http://pictet.simcase.ru
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
@@ -86,7 +86,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2015 Copyright Text
+                © 2015 PICTET TEMPUS
             </div>
         </div>
     </footer>

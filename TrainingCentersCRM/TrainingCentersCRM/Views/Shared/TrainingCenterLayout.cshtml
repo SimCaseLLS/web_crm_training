@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Портал сети центров дополнительного образования в области ИКТ</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
 </head>
@@ -55,7 +55,7 @@
         $.ajax({
             url: '/empty/TrainingCenter/Centers',
             success: function (data) {
-                var current_url= location.pathname.split('/')[1];
+                var current_url = location.pathname.split('/')[1];
                 data.map(function (item) {
                     if (current_url === item.Url) {
                         $(".center-name").text(item.Organization);
@@ -75,9 +75,9 @@
             <div class="col offset-l1 l4 s12">
                 <h5 class="white-text">Контакты</h5>
                 <p class="white-text text-lighten-4">
-                    email: sdfjlskdfjs@mail.com <br>
+                    email: contact@simcase.ru <br>
                     тел: +7 (927) 817 34 42 <br>
-                    site www.somesite.com
+                    site http://pictet.simcase.ru
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
@@ -91,7 +91,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2015 Copyright Text
+                © 2015 PICTET Tempus
             </div>
         </div>
     </footer>

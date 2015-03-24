@@ -3,12 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
-    <h2>Список курсов УлГТУ</h2>
+@if (Model.Count() > 0)
+{
+    <h2>Список курсов</h2>
     <div class="row">
         <a class="  waves-effect waves-light btn right" href="@Url.Action("Create", "TrainingCours")"><i class="mdi-content-add-box left"></i>Создать новый курс</a>
     </div>
     <div id="articles" class="row">
-        @foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
             <div id="article-template">
                 <div class="col s3">
                     <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Edit", "TrainingCours", new { id = item.Id })"><i class="mdi-content-create center"></i></a>
@@ -23,104 +26,108 @@
             </div>
         }
     </div>
-<a class="waves-effect waves-light btn center more-info-btn" href="">Подробнее</a>
-<script>
-    $(".more-info-btn").click(function (event) {
-        event.preventDefault();
-        if ($(".more-info.hide").length) {
-            $(".more-info.hide").removeClass("hide");
-            $(this).text("Спрятать");
-        } else {
-            $(this).text("Подробнее");
-            $(".more-info").addClass("hide");
-        }
-    });
-</script>
-<table class="table more-info hide">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hourse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceForOrganizations)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceForIndividuals)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CostOfOneHourForOrganizations)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CostOfOneHourForIndividuals)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LevelOfDifficulty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequiredPreliminaryPreparation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MandatoryPreliminaryPreparation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdTraningCenter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdObject)
-        </th>
-        <th></th>
-    </tr>
+    <a class="waves-effect waves-light btn center more-info-btn" href="">Подробнее</a>
+    <script>
+        $(".more-info-btn").click(function (event) {
+            event.preventDefault();
+            if ($(".more-info.hide").length) {
+                $(".more-info.hide").removeClass("hide");
+                $(this).text("Спрятать");
+            } else {
+                $(this).text("Подробнее");
+                $(".more-info").addClass("hide");
+            }
+        });
+    </script>
+    <table class="table more-info hide">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceForOrganizations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceForIndividuals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostOfOneHourForOrganizations)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostOfOneHourForIndividuals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LevelOfDifficulty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequiredPreliminaryPreparation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MandatoryPreliminaryPreparation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTraningCenter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdObject)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShortDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hourse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceForOrganizations)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceForIndividuals)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CostOfOneHourForOrganizations)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CostOfOneHourForIndividuals)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LevelOfDifficulty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequiredPreliminaryPreparation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MandatoryPreliminaryPreparation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdTraningCenter)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdObject)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id })  
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShortDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceForOrganizations)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceForIndividuals)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostOfOneHourForOrganizations)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostOfOneHourForIndividuals)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LevelOfDifficulty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequiredPreliminaryPreparation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MandatoryPreliminaryPreparation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTraningCenter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdObject)
+                </td>
+                <td>
+                    @Html.ActionLink("Правка", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.Id })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
 }
 
-</table>
+@Html.Action("Index", "Moodle", new {key = ViewBag.Key})

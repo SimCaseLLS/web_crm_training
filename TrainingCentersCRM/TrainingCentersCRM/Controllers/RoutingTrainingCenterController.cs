@@ -10,10 +10,10 @@ namespace TrainingCentersCRM.Controllers
     public class RoutingTrainingCenterController : Controller
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
-        public TrainingCenter treningCenter;
+        public TrainingCenter trainingCenter;
         protected override void OnActionExecuting(ActionExecutingContext ctx)
         {
-            treningCenter = TCHelper.getTc(RouteData.Values["tc"].ToString(), db);
+            trainingCenter = TCHelper.getTc(RouteData.Values["tc"].ToString(), db);
         }
     }
 }

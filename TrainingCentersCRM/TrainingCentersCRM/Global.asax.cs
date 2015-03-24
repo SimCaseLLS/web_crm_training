@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM
 {
@@ -16,10 +17,13 @@ namespace TrainingCentersCRM
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<TrainingCentersDBEntities>());
         }
 
         void Application_Error(object sender, EventArgs e)
         {
+            var error = Server.GetLastError();
+            Logger.Error("Error", error);
             //We clear the response
             Response.Clear();
 
@@ -33,7 +37,6 @@ namespace TrainingCentersCRM
                 //We don`t have an AJAX request, redirect to an error page
                 Response.Redirect("/Error404.htm");
             }
-
             //We clear the error
             Server.ClearError();
         }

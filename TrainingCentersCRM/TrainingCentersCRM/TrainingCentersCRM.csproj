@@ -288,6 +288,8 @@
     <Content Include="App_Data\TrainingCentersDB_log.ldf">
       <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\courses.css" />
     <Content Include="Content\footer.css" />
     <Content Include="Content\header.css" />
@@ -302,7 +304,6 @@
     <Content Include="img\P1010871.jpg" />
     <Content Include="img\tempus.jpg" />
     <Content Include="log4net.config.xml" />
-    <Content Include="log4net.dll" />
     <Content Include="fonts\Roboto-Bold.ttf" />
     <Content Include="fonts\Roboto-Light.ttf" />
     <Content Include="fonts\Roboto-Medium.ttf" />
@@ -464,6 +465,7 @@
     <EmbeddedResource Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.resx">
       <DependentUpon>201412190836452_AddHeadHunterKeysToQualification.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501210839567_AddInheritanceFromUserToStudentAndTeacher.resx" />
     <EmbeddedResource Include="Migrations\201501210907432_AddInheritanceFromUser.resx">
       <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -502,7 +504,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1037</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/ict/</IISUrl>
+          <IISUrl>http://pictet.simcase.ru/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://pictet.simcase.ru/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

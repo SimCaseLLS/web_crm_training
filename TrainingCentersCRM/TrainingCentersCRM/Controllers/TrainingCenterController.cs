@@ -15,7 +15,7 @@ namespace TrainingCentersCRM.Controllers
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
         public JsonResult Centers() {
-            var tcs = db.TrainingCenters;
+            var tcs = db.TrainingCenters.Where(a => a.Url != "empty");
             return Json(tcs.ToList(), JsonRequestBehavior.AllowGet);
         }
 
