@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrainingCentersCRM.Models;
+using TrainingCentersCRM.Infrastructure;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -18,11 +19,13 @@ namespace TrainingCentersCRM.Controllers
             return Json(tcs.ToList(), JsonRequestBehavior.AllowGet);
         }
 
-
         // GET: /TrainingCenter/
         public ActionResult Index()
         {
-            return View(db.TrainingCenters.ToList());
+            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
+                return View(db.TrainingCenters.ToList());
+            else
+                return View("Index", "TrainingCenterLayout", db.TrainingCenters.ToList());
         }
 
         // GET: /TrainingCenter/Details/5

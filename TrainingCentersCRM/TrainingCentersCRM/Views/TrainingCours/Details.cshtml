@@ -3,112 +3,84 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>TrainingCours</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hourse)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hourse)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PriceForOrganizations)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PriceForOrganizations)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PriceForIndividuals)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PriceForIndividuals)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CostOfOneHourForOrganizations)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CostOfOneHourForOrganizations)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CostOfOneHourForIndividuals)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CostOfOneHourForIndividuals)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LevelOfDifficulty)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LevelOfDifficulty)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RequiredPreliminaryPreparation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RequiredPreliminaryPreparation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MandatoryPreliminaryPreparation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdTraningCenter)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdTraningCenter)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdObject)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdObject)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<link rel="stylesheet" href="/Content/module.css">
+<article class="container">
+    <a href="@Url.Action("Index", "TrainingCours")">Вернуться к выбору курса</a> <br /><br />
+    <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })">Редактировать учебный курс</a>
+    <div class="row">
+        <h1 class="col s10">@Html.DisplayFor(model => model.Title)</h1>
+        <div class="col s2 notes">@Html.DisplayFor(model => model.Hourse) часов</div>
+    </div>
+    <article class="row">
+        <p class="text col s9">
+           @Html.DisplayFor(model => model.ShortDescription)
+        </p>
+        <div class="col s3 notes notes-grey">
+            Рекомендуемые уровень знаний:
+            @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br />
+            Обязательный уровень знаний: <br />
+            @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br />
+            Сложность: @Html.DisplayFor(model => model.LevelOfDifficulty) /10
+        </div>
+        <p class="col s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>
+        <p class="col s12"> <a href="">Компетенции</a> на развитие которых нацелен этот курс.</p>
+    </article>
+    <article class="pay row">
+        <h4 class="col s12">Стоимоть курса</h4>
+        <div class="col s12 row">
+            <div class="pay-label col s4">для физических лиц</div>
+            <div class="pay-label col s4">для организаций</div>
+        </div>
+        <div class="col s12 row">
+            <div class="pay-col col s2">@Html.DisplayFor(model => model.PriceForIndividuals) рублей  <br>за полный курс</div>
+            <div class="pay-col col s2">@Html.DisplayFor(model => model.CostOfOneHourForIndividuals) <br> за час курса</div>
+            <div class="pay-col col s2">@Html.DisplayFor(model => model.PriceForOrganizations) рублей <br> за полный курс</div>
+            <div class="pay-col col s2">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
+        </div>
+    </article>
+    <article class="teachers row">
+        <h4 class="col s12">Преподователи</h4>
+        <div class="col s3">
+            <img src="http://watchdogwire.com/northwest/files/2013/11/Male-Teacher-in-Classroom.jpg" alt="">
+            <h5>Павлов Генадий Петрович</h5>
+            <p>Курс представляет собой интегрированный мультимедийный продукт, обладающий дружественным интерфейсом, объединяющий видеолекции, анимацию</p>
+        </div>
+        <div class="col s3">
+            <img src="http://www.topeducationdegrees.com/wp-content/uploads/2013/06/alternative-teaching-certification.jpg" alt="">
+            <h5>Бондоренко Аркадий Васильевич </h5>
+            <p>Национальным фондом подготовки кадров (НФПК) по поручению Министерства образования и науки России в рамках проекта «Информатизация системы образования»</p>
+        </div>
+    </article>
+    <article class="row">
+        <h4>Учебная программа</h4>
+        <div class="col s10 offset-s1">
+            <h5><a href="">Введение</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p><br>
+            <h5><a href="">Инструменты</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p><br>
+            <h5><a href="">Разработка</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p><br>
+        </div>
+    </article>
+    <article class="teachers row">
+        <h4 class="col s12">Рекомендуемые курсы</h4>
+        <div class="col s3">
+            <img src="http://ww2.hdnux.com/photos/23/53/04/5157149/3/628x471.jpg" alt="">
+            <h5>QA тестирование</h5>
+            <p>область деятельности, в которой компьютеры используются в качестве инструмента, как для синтеза (создания) изображений, так и для обработки визуальной информации, полученной из реального мира.</p>
+            <a href="">подробнее</a>
+        </div>
+        <div class="col s3">
+            <img src="http://www.cs.technion.ac.il/~irit/images/teapot.jpg" alt="">
+            <h5>Компьютерная графика</h5>
+            <p>процесс или результат формирования требуемых свойств и характеристик продукции по мере её создания, а также — поддержание этих характеристик при хранении, транспортировании и эксплуатации продукции</p>
+            <a href="">подробнее</a>
+        </div>
+        <div class="col s3">
+            <img src="http://cs.njit.edu/images/programming-400x267.jpg" alt="">
+            <h5>3d моделирование</h5>
+            <p>Менеджмент качества в этом же стандарте представлен как «скоординированная деятельность по руководству и управлению организацией применительно к качеству».</p>
+            <a href="">подробнее</a>
+        </div>
+    </article>
+</article>

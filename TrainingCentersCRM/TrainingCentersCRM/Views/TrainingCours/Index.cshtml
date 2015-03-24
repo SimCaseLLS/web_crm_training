@@ -3,13 +3,40 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+    <h2>Список курсов УлГТУ</h2>
+    <div class="row">
+        <a class="  waves-effect waves-light btn right" href="@Url.Action("Create", "TrainingCours")"><i class="mdi-content-add-box left"></i>Создать новый курс</a>
+    </div>
+    <div id="articles" class="row">
+        @foreach (var item in Model) {
+            <div id="article-template">
+                <div class="col s3">
+                    <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Edit", "TrainingCours", new { id = item.Id })"><i class="mdi-content-create center"></i></a>
+                    <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Delete", "TrainingCours", new { id = item.Id })"><i class="mdi-content-clear center"></i></a>
+                    <a href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
+                        <img src="https://placeimg.com/300/300/tech" class="responsive-img" alt="" />
+                        <h5 class="title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    </a>
+                    <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
+                    <br>
+                </div>
+            </div>
+        }
+    </div>
+<a class="waves-effect waves-light btn center more-info-btn" href="">Подробнее</a>
+<script>
+    $(".more-info-btn").click(function (event) {
+        event.preventDefault();
+        if ($(".more-info.hide").length) {
+            $(".more-info.hide").removeClass("hide");
+            $(this).text("Спрятать");
+        } else {
+            $(this).text("Подробнее");
+            $(".more-info").addClass("hide");
+        }
+    });
+</script>
+<table class="table more-info hide">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -89,8 +116,8 @@
             @Html.DisplayFor(modelItem => item.IdObject)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })  
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

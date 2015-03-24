@@ -16,7 +16,7 @@ namespace TrainingCentersCRM
             // BotDetect requests must not be routed
             routes.IgnoreRoute("{*botdetect}",
               new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
-            routes.MapRoute(name: "MoodleRoute", url: "{controller}/{action}/{id}", defaults: new {controller="Moodle", action="Index", id = UrlParameter.Optional });
+            //routes.MapRoute(name: "MoodleRoute", url: "{controller}/{action}/{id}", defaults: new {controller="Moodle", action="Index", id = UrlParameter.Optional });
 
             routes.MapRoute(
                 name: "Default",

@@ -1,10 +1,4 @@
-﻿
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-.MoodleCourse {
+﻿.MoodleCourse {
     padding-left: 20px;
 }
 
@@ -44,4 +38,7 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+.form-horizontal {
+    margin-left: 20px;
 }

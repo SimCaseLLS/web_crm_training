@@ -10,7 +10,7 @@ namespace TrainingCentersCRM.Controllers
     public class RoutingTrainingCenterController : Controller
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
-        public IQueryable<TrainingCenter> treningCenter;
+        public TrainingCenter treningCenter;
         protected override void OnActionExecuting(ActionExecutingContext ctx)
         {
             treningCenter = TCHelper.getTc(RouteData.Values["tc"].ToString(), db);

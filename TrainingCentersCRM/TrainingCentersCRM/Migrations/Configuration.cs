@@ -18,7 +18,8 @@ namespace TrainingCentersCRM.Migrations
             TrainingCentersDBEntities db = new TrainingCentersDBEntities();
             db.TrainingCenters.AddOrUpdate(
                 p => p.Url,
-                new TrainingCenter { Url = "good" }
+                new TrainingCenter { Url = "ulstu" },
+                new TrainingCenter { Url = "empty" }
             );
             //  This method will be called after migrating to the latest version.
 

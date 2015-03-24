@@ -9,7 +9,6 @@
 </head>
 <body>
     <header>
-        
         <div class="row">
             <div class="col logo s2">
                 <a href="/"><img src="/img/tempus.jpg" class="responsive-img" alt=""></a>
@@ -22,8 +21,7 @@
                 </p>
             </div>
         </div>
-        <nav class="row">
-            <ul id="dropdown1" class="dropdown-content"></ul>
+        <div class="row">
             <ul id="dropdown2" class="dropdown-content" style="height:auto !important">
                 <li><a href="">Клиенты</a></li>
                 <li><a href="">Справочные материалы</a></li>
@@ -32,17 +30,22 @@
                 <li><a href="#">Документы</a></li>
                 <li><a href="#">Конфигурация сайта</a></li>
             </ul>
-                <ul id="nav-mobile" class="left side-nav">
-                    <li>@Html.ActionLink("О проекте", "Index", "Home")</li>
-                    <li><a href="">Новости</a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Учебные университеты<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-                    <li><a href="">Статистика</a></li>
-                    <li>@Html.ActionLink("Сертификация", "Index", "Certification")</li>
-                    <li>@Html.ActionLink("Отзывы", "Index", "Feedback")</li>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Административная панель<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
-                    @Html.Partial("_LoginPartial")
-                </ul>
-        </nav>
+            <nav>
+                <div class="row">
+                    <ul id="nav-mobile" class="left side-nav">
+                        <li class="center-name"></li>
+                        <li>@Html.ActionLink("Об учебном центре", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Курсы", "Index", "TrainingCours")</li>
+                        <li>@Html.ActionLink("Преподователи", "Index", "")</li>
+                        <li><a href="">Новости </a></li>
+                        <li>@Html.ActionLink("Квалификации", "Index", "Qualification")</li>
+                        <li>@Html.ActionLink("Вакансии", "Index", "Vacancy")</li>
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Административная панель<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
     <script type="text/javascript">
         //for choose training center
@@ -50,11 +53,13 @@
             $(".dropdown-button").dropdown({ hover: false });
         });
         $.ajax({
-            url: '/ulstu/TrainingCenter/Centers',
+            url: '/empty/TrainingCenter/Centers',
             success: function (data) {
+                var current_url= location.pathname.split('/')[1];
                 data.map(function (item) {
-                    arr = location.pathname.split('/');
-                    $('#dropdown1').append('<li><a href="/' + item.Url + '">' + item.Organization + '</a></li>');
+                    if (current_url === item.Url) {
+                        $(".center-name").text(item.Organization);
+                    }
                 });
             },
             error: function (data) {
@@ -81,7 +86,7 @@
                     <li><a class="white-text" href="#!">Новости</a></li>
                     <li><a class="white-text" href="#!">Статистика</a></li>
                     <li><a class="white-text" href="#!">Сертификация</a></li>
-                    <ul>
+                </ul>
             </div>
         </div>
         <div class="footer-copyright">
@@ -90,7 +95,6 @@
             </div>
         </div>
     </footer>
-
     @Scripts.Render("~/bundles/materialize")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jstree")
