@@ -13,7 +13,6 @@ using System;
         {
             QualificationCertifications = new HashSet<QualificationCertification>();
             QualificationTrainingCours = new HashSet<QualificationTrainingCour>();
-            QualificationVacancies = new HashSet<QualificationVacancy>();
         }
 
         public int Id { get; set; }
@@ -47,7 +46,7 @@ using System;
 
         public virtual ICollection<QualificationTrainingCour> QualificationTrainingCours { get; set; }
 
-        public virtual ICollection<QualificationVacancy> QualificationVacancies { get; set; }
+        public virtual ICollection<Vacancy> Vacancies { get; set; }
     }
 
 }

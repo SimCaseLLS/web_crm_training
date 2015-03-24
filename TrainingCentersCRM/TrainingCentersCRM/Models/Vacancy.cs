@@ -11,7 +11,6 @@ using System;
     {
         public Vacancy()
         {
-            QualificationVacancies = new HashSet<QualificationVacancy>();
         }
 
         public int Id { get; set; }
@@ -37,7 +36,7 @@ using System;
         [Display(Name = "—сылка на сайт с резмещеной вакансией")]
         public string Link { get; set; }
 
-        public virtual ICollection<QualificationVacancy> QualificationVacancies { get; set; }
+        public virtual ICollection<Qualification> Qualifications { get; set; }
     }
 
 }

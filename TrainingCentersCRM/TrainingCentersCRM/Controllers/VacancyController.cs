@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrainingCentersCRM.Models;
+using TrainingCentersCRM.Models.ViewModels;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -27,7 +28,7 @@ namespace TrainingCentersCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vacancy vacancy = db.Vacancies.Find(id);
+            Vacancy vacancy = db.Vacancies.Where(c => c.Id == id).Include(c => c.Qualifications).Single();
             if (vacancy == null)
             {
                 return HttpNotFound();
@@ -38,6 +39,9 @@ namespace TrainingCentersCRM.Controllers
         // GET: /Vacancy/Create
         public ActionResult Create()
         {
+            var vacancy = new Vacancy();
+            vacancy.Qualifications = new List<Qualification>();
+            PopulateRelatedTagData(vacancy);
             return View();
         }
 
@@ -46,16 +50,42 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Description,Organization,Wages,Additionally,Link")] Vacancy vacancy)
+        public ActionResult Create([Bind(Include = "Id,Description,Organization,Wages,Additionally,Link")] Vacancy vacancy, string[] selectedQualifications)
         {
+            if (selectedQualifications != null)
+            {
+                vacancy.Qualifications = new List<Qualification>();
+                foreach (var qualification in selectedQualifications)
+                {
+                    var qualificationToAdd = db.Qualifications.Find(int.Parse(qualification));
+                    vacancy.Qualifications.Add(qualificationToAdd);
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Vacancies.Add(vacancy);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            PopulateRelatedTagData(vacancy);
             return View(vacancy);
+        }
+
+        private void PopulateRelatedTagData(Vacancy vacancy)
+        {
+            var allQualifications = db.Qualifications;
+            var instructionTags = new HashSet<int>(vacancy.Qualifications.Select(c => c.Id));
+            var viewModel = new List<RelatedQualifications>();
+            foreach (var qualification in allQualifications)
+            {
+                viewModel.Add(new RelatedQualifications
+                {
+                    QualificationID = qualification.Id,
+                    Title = qualification.Title,
+                    Assigned = instructionTags.Contains(qualification.Id)
+                });
+            }
+            ViewBag.Qualifications = viewModel;
         }
 
         // GET: /Vacancy/Edit/5
@@ -70,6 +100,7 @@ namespace TrainingCentersCRM.Controllers
             {
                 return HttpNotFound();
             }
+            PopulateRelatedTagData(vacancy);
             return View(vacancy);
         }
 
@@ -78,15 +109,47 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Description,Organization,Wages,Additionally,Link")] Vacancy vacancy)
+        public ActionResult Edit([Bind(Include = "Id,Description,Organization,Wages,Additionally,Link")] Vacancy vacancy, string[] selectedQualifications)
         {
+            var vacancyToupdate = db.Vacancies.Where(i => i.Id == vacancy.Id).Include(i => i.Qualifications).Single();
             if (ModelState.IsValid)
             {
-                db.Entry(vacancy).State = EntityState.Modified;
+                UpdateInstructionTags(selectedQualifications, vacancyToupdate);
+                db.Entry(vacancyToupdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(vacancy);
+            return View(vacancyToupdate);
+        }
+
+        private void UpdateInstructionTags(string[] selectedQualifications, Vacancy vacancyToUpdate)
+        {
+            if (selectedQualifications == null)
+            {
+                vacancyToUpdate.Qualifications = new List<Qualification>();
+                return;
+            }
+
+            var selectedQualificationsHS = new HashSet<string>(selectedQualifications);
+            var VacancyQualifications = new HashSet<int>
+                (vacancyToUpdate.Qualifications.Select(c => c.Id));
+            foreach (var qualification in db.Qualifications)
+            {
+                if (selectedQualificationsHS.Contains(qualification.Id.ToString()))
+                {
+                    if (!VacancyQualifications.Contains(qualification.Id))
+                    {
+                        vacancyToUpdate.Qualifications.Add(qualification);
+                    }
+                }
+                else
+                {
+                    if (VacancyQualifications.Contains(qualification.Id))
+                    {
+                        vacancyToUpdate.Qualifications.Remove(qualification);
+                    }
+                }
+            }
         }
 
         // GET: /Vacancy/Delete/5
