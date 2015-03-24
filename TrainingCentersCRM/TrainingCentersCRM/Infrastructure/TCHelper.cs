@@ -26,11 +26,19 @@ namespace TrainingCentersCRM.Infrastructure
 //@HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString() + 
         [HandleError]
         public static TrainingCenter getTc(string tcUrl, TrainingCentersDBEntities db) {
-            TrainingCenter tc = db.TrainingCenters.Where(a => a.Url == tcUrl).ToList().First();
-            if(tc == null) {
+            try
+            {
+                TrainingCenter tc = db.TrainingCenters.Where(a => a.Url == tcUrl).ToList().First();
+                if (tc == null)
+                {
+                    throw new HttpException(404, "NotFound");
+                }
+                return tc;
+            }
+            catch (Exception ex)
+            {
                 throw new HttpException(404, "NotFound");
             }
-            return tc;
         } 
     }
 }
