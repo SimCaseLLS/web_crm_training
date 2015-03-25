@@ -32,7 +32,7 @@
                 <li><a href="#">Документы</a></li>
                 <li><a href="#">Конфигурация сайта</a></li>
             </ul>
-                <ul id="nav-mobile" class="left side-nav">
+                @*<ul id="nav-mobile" class="left side-nav">
                     <li>@Html.ActionLink("О проекте", "Index", "Home")</li>
                     <li><a href="">Новости</a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Учебные центры<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
@@ -41,25 +41,14 @@
                     <li>@Html.ActionLink("Отзывы", "Index", "Feedback")</li>
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Административная панель<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
                     @Html.Partial("_LoginPartial")
-                </ul>
+                </ul>*@
+           @MyHelpers.Menu()
         </nav>
     </header>
     <script type="text/javascript">
         //for choose training center
         $(document).ready(function () {
             $(".dropdown-button").dropdown({ hover: false });
-        });
-        $.ajax({
-            url: '/empty/TrainingCenter/Centers',
-            success: function (data) {
-                data.map(function (item) {
-                    arr = location.pathname.split('/');
-                    $('#dropdown1').append('<li><a href="/' + item.Url + '">' + item.Organization + '</a></li>');
-                });
-            },
-            error: function (data) {
-                alert('Error loading centers info');
-            }
         });
     </script>
     <div class="container" id="main-container">

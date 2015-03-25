@@ -19,30 +19,22 @@ namespace TrainingCentersCRM.Controllers
 
         public ActionResult Index()
         {
-            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
+            //db.TrainingCenters.Add(new TrainingCenter { Url = "empty" });
+            //db.SaveChanges();
+            ViewBag.TrainingCenter = TCHelper.GetCurrentTc();
                 return View();
-            else
-                ViewBag.TrainingCenter = TCHelper.GetCurrentTc(db);
-            return View("Index", "TrainingCenterLayout");
         }
 
         public ActionResult About()
         {
-            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
                 return View();
-            else
-                return View("About", "TrainingCenterLayout");
         }
 
         public ActionResult Contact()
         {
 
             ViewBag.Message = "Your contact page.";
-
-            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
                 return View();
-            else
-                return View("Contact", "TrainingCenterLayout");
         }
 
         [HttpPost]

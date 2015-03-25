@@ -21,7 +21,7 @@ namespace TrainingCentersCRM.Controllers
             if(tcUrl == "empty")
             return View(db.Menu.Where(a => a.IdTrainingCenter == "empty"));
             else
-                return View(db.Menu.Where(a => (a.IdTrainingCenter == "empty") || (a.IdTrainingCenter == tcUrl)));
+                return View(db.Menu.Where(a => (a.IdTrainingCenter == "other") || (a.IdTrainingCenter == tcUrl)));
 
         }
 
