@@ -39,6 +39,7 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<Vacancy> Vacancies { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Feedback> Feedback { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -202,8 +203,10 @@ namespace TrainingCentersCRM.Models
 
             modelBuilder.Entity<Vacancy>()
                 .HasMany(e => e.Qualifications);
+            modelBuilder.Entity<Article>();
 
-            modelBuilder.Entity<AspNetUser>().HasKey(e => e.UserId);
+            modelBuilder.Entity<AspNetUser>()
+                .HasKey(e => e.UserId);
                 //.HasRequired(a => a.User)
                 //.WithMany()
                 //.HasForeignKey(u => u.UserId).WillCascadeOnDelete(false);;

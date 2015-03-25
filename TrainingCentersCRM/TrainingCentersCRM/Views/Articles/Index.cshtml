@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.Type == 1)
+{
+    <h2>Новости</h2>
+}
+else
+{
+    <h2>Статьи</h2>
+}
+
+<p>
+    @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type })
+</p>
+
+@foreach (var item in Model)
+{
+    <h4>
+        @Html.DisplayFor(modelItem => item.Title)
+    </h4>
+    <label>Опубликовано: @(Html.DisplayFor(modelItem => item.PublishDate))</label>
+    <p>@(Html.Raw(HttpUtility.HtmlDecode(item.Annotation)))</p>
+    <div>
+        @(Html.ActionLink("Подробнее", "Details", new { id = item.Id }))
+        &nbsp;
+        @(Html.ActionLink("Править", "Edit", new { id = item.Id }))
+        &nbsp;
+        @(Html.ActionLink("Удалить", "Delete", new { id = item.Id }))
+    </div>
+    <br />
+    <hr />
+}
