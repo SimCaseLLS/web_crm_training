@@ -11,7 +11,9 @@ namespace TrainingCentersCRM.Infrastructure
     {
         public static string GetCurrentTCName()
         {
-            return HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString();
+            var name = HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString();
+            if (name == "") name = "empty";
+            return name;
         }
 
         public static TrainingCenter GetCurrentTc(TrainingCentersDBEntities db)
