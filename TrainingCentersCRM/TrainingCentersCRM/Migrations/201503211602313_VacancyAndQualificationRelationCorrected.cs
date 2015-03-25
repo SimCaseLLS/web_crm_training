@@ -54,7 +54,7 @@ namespace TrainingCentersCRM.Migrations
             DropIndex("dbo.QualificationVacancies", new[] { "Vacancy_Id" });
             DropIndex("dbo.QualificationVacancies", new[] { "Qualification_Id" });
             DropPrimaryKey("dbo.QualificationVacancies");
-            AddPrimaryKey("dbo.QualificationVacancy", "Id");
+            //AddPrimaryKey("dbo.QualificationVacancy", "Id");
             DropColumn("dbo.QualificationVacancies", "Vacancy_Id");
             DropColumn("dbo.QualificationVacancies", "Qualification_Id");
             DropTable("dbo.QualificationVacancies");
