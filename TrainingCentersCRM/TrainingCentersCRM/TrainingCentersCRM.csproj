@@ -219,6 +219,7 @@
     <Compile Include="Migrations\201501210907432_AddInheritanceFromUser.Designer.cs">
       <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.cs" />
     <Compile Include="Migrations\201501281706059_AddFeedback.cs" />
     <Compile Include="Migrations\201501281706059_AddFeedback.Designer.cs">
       <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
@@ -234,10 +235,6 @@
     <Compile Include="Migrations\201503211602313_VacancyAndQualificationRelationCorrected.cs" />
     <Compile Include="Migrations\201503211602313_VacancyAndQualificationRelationCorrected.Designer.cs">
       <DependentUpon>201503211602313_VacancyAndQualificationRelationCorrected.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503250759247_AddArticleAndAspNetUsers.cs" />
-    <Compile Include="Migrations\201503250759247_AddArticleAndAspNetUsers.Designer.cs">
-      <DependentUpon>201503250759247_AddArticleAndAspNetUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201503250823359_AddArticleWithDb.cs" />
     <Compile Include="Migrations\201503250823359_AddArticleWithDb.Designer.cs">
@@ -813,9 +810,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503211602313_VacancyAndQualificationRelationCorrected.resx">
       <DependentUpon>201503211602313_VacancyAndQualificationRelationCorrected.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503250759247_AddArticleAndAspNetUsers.resx">
-      <DependentUpon>201503250759247_AddArticleAndAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503250823359_AddArticleWithDb.resx">
       <DependentUpon>201503250823359_AddArticleWithDb.cs</DependentUpon>

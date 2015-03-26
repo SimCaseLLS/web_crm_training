@@ -3,12 +3,12 @@
 
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Изменение квалификации";
     var sep = new char[] { '.' };
     var HHAreaId = Model.HeadHunterId != null ? Model.HeadHunterId.Split(sep)[0] : null;
 }
 
-<h2>Edit</h2>
+<h2>Изменение квалификации</h2>
 
 
 @using (Ajax.BeginForm("Edit", new AjaxOptions { UpdateTargetId = "qualificationData", OnSuccess = "refreshTree" })) 
@@ -16,7 +16,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Qualification</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
