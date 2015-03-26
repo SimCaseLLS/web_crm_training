@@ -33,6 +33,8 @@ using TrainingCentersCRM.Models;
                     new Qualification { Title = "Экономика", Description = "Квалификации, связанные с экономикой", ParentId = 0, Id = 2 },
                     new Qualification { Title = "Инженерия", Description = "Квалификации, связанные с инженерией", ParentId = 0, Id = 3 }
                 );
+
+            db.SaveChanges();
             var progId = db.Qualifications.Where(q => q.Title == "Программирование").First().Id;
             var econId = db.Qualifications.Where(q => q.Title == "Экономика").First().Id;
             var engId = db.Qualifications.Where(q => q.Title == "Инженерия").First().Id;

@@ -220,6 +220,9 @@
       <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.cs" />
+    <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.Designer.cs">
+      <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201501281706059_AddFeedback.cs" />
     <Compile Include="Migrations\201501281706059_AddFeedback.Designer.cs">
       <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
@@ -798,6 +801,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501210907432_AddInheritanceFromUser.resx">
       <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.resx">
+      <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501281706059_AddFeedback.resx">
       <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
