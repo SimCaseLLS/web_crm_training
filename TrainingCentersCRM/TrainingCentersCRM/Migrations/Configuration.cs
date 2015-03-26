@@ -24,7 +24,8 @@ using TrainingCentersCRM.Models;
             db.Menu.AddOrUpdate(
                 p => new { p.Title, p.IdTrainingCenter},
                     new Menu { Title = "Курсы", Link = "/TrainingCours/Index", Parent_Id = 0, IdTrainingCenter = "other", Ord_Id = 1 },
-                    new Menu { Title = "О проекте", Link = "/Home/About", Parent_Id = 0, IdTrainingCenter = "empty", Ord_Id = 1 }
+                    new Menu { Title = "О проекте", Link = "/empty/Home/About", Parent_Id = 0, IdTrainingCenter = "other", NotBindInTrainingCenter = true, Ord_Id = 1 },
+                    new Menu { Title = "Главная - О проекте", Link = "/Home/About", Parent_Id = 0, IdTrainingCenter = "empty",  Ord_Id = 1 }
                 );
             // Квалификации
             db.Qualifications.AddOrUpdate(

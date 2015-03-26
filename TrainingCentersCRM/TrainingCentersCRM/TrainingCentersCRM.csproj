@@ -247,6 +247,10 @@
     <Compile Include="Migrations\201503252139380_AddRelationArticleToTC.Designer.cs">
       <DependentUpon>201503252139380_AddRelationArticleToTC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503261200049_add_not_bind_in_tc.cs" />
+    <Compile Include="Migrations\201503261200049_add_not_bind_in_tc.Designer.cs">
+      <DependentUpon>201503261200049_add_not_bind_in_tc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -822,6 +826,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503252139380_AddRelationArticleToTC.resx">
       <DependentUpon>201503252139380_AddRelationArticleToTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503261200049_add_not_bind_in_tc.resx">
+      <DependentUpon>201503261200049_add_not_bind_in_tc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

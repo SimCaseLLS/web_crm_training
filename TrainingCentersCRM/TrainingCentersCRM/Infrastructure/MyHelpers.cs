@@ -36,7 +36,7 @@ namespace TrainingCentersCRM
             }
 
             IQueryable<TrainingCentersCRM.Models.Menu> SaM;
-            if (IdTrainingCenter == "empty")
+            if (IdTrainingCenter.Equals("empty"))
             {
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter);
                 if (Parent_ID == 0)
@@ -65,7 +65,14 @@ namespace TrainingCentersCRM
                 }
                 else
                 {
-                    a.MergeAttribute("href", "/" + IdTrainingCenter + samp.Link);
+                    if (samp.NotBindInTrainingCenter)
+                    {
+                        a.MergeAttribute("href", samp.Link);
+                    }
+                    else
+                    {
+                        a.MergeAttribute("href", "/" + IdTrainingCenter + samp.Link);
+                    }
                 }
                 li.InnerHtml = a.ToString()+str_temp;
                 str_temp = li.ToString();
