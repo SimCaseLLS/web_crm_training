@@ -26,6 +26,27 @@ using TrainingCentersCRM.Models;
                     new Menu { Title = "Курсы", Link = "/TrainingCours/Index", Parent_Id = 0, IdTrainingCenter = "other", Ord_Id = 1 },
                     new Menu { Title = "О проекте", Link = "/Home/About", Parent_Id = 0, IdTrainingCenter = "empty", Ord_Id = 1 }
                 );
+            // Квалификации
+            db.Qualifications.AddOrUpdate(
+                p => p.Title,
+                    new Qualification { Title = "Программирование", Description = "Квалификации, связанные с программированием", ParentId = 0, Id = 1 },
+                    new Qualification { Title = "Экономика", Description = "Квалификации, связанные с экономикой", ParentId = 0, Id = 2 },
+                    new Qualification { Title = "Инженерия", Description = "Квалификации, связанные с инженерией", ParentId = 0, Id = 3 }
+                );
+            var progId = db.Qualifications.Where(q => q.Title == "Программирование").First().Id;
+            var econId = db.Qualifications.Where(q => q.Title == "Экономика").First().Id;
+            var engId = db.Qualifications.Where(q => q.Title == "Инженерия").First().Id;
+            db.Qualifications.AddOrUpdate(
+                p => p.Title,
+                    new Qualification { Title = "Java программист", Description = "Инженер на языке Java", HeadHunterId = "1.221", HeadHunterKeys = "Java", HeadHunterName = "Программирование, Разработка", ParentId = progId },
+                    new Qualification { Title = "C# программист", Description = "Инженер на языке C#", HeadHunterId = "1.221", HeadHunterKeys = "C#", HeadHunterName = "Программирование, Разработка", ParentId = progId },
+                    new Qualification { Title = "DBA", Description = "Архитектор баз данных", HeadHunterId = "1.221", HeadHunterKeys = "DBA,Базы данных", HeadHunterName = "Программирование, Разработка", ParentId = progId },
+                    
+                    new Qualification { Title = "Экономист", Description = "Может в экономику", HeadHunterId = "2.425", HeadHunterKeys = "", HeadHunterName = "Экономист", ParentId = econId },
+
+                    new Qualification { Title = "Инженер-Схемотехник", Description = "Может в схемотехнику", HeadHunterId = "18.57", HeadHunterKeys = "Схемотехника", HeadHunterName = "Главный инженер", ParentId = engId }
+                );
+
             db.SaveChanges();
             //  This method will be called after migrating to the latest version.
 
