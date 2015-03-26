@@ -3,6 +3,7 @@ namespace TrainingCentersCRM.Models
 
 using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
 public partial class Menu
 {
@@ -15,6 +16,9 @@ public partial class Menu
 
     public string Link { get; set; }
 
+    [Display(Name = "¬нешн€€ ссылка")]
+    public bool NotBindInTrainingCenter { get; set; }
+    
     public string IdTrainingCenter { get; set; }
 
     public int Parent_Id { get; set; }

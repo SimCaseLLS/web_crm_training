@@ -14,14 +14,21 @@ namespace TrainingCentersCRM.Infrastructure
     {
         public static List<HHProffessionalArea> GetHHList() {
             WebClient webClient = new WebClient();
-            webClient.Headers.Add("User-Agent", "MyApp/1.2 (haudvd@gmail.com)");
+            webClient.Headers.Add("User-Agent", "MyApp/1.3 (haudvd@gmail.com)");
             webClient.Encoding = Encoding.UTF8;
 
-            string response = webClient.DownloadString("https://api.hh.ru/specializations/");
+            try
+            {
+                string response = webClient.DownloadString("https://api.hh.ru/specializations/");
 
-            var specs = JsonConvert.DeserializeObject<List<HHProffessionalArea>>(response);
-            // var i = specs.Where(t => t.Name == "Информационные технологии, интернет, телеком").First();
-            return specs;
+                var specs = JsonConvert.DeserializeObject<List<HHProffessionalArea>>(response);
+                // var i = specs.Where(t => t.Name == "Информационные технологии, интернет, телеком").First();
+                return specs;
+            }
+            catch (Exception e)
+            {
+                return new List<HHProffessionalArea>();
+            }
         }
 
         public static List<ExtendedSelectListItem> GetHHSelectList()

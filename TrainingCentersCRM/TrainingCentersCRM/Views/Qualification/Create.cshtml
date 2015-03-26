@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Qualification</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -41,14 +40,14 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group card-panel">
             @Html.LabelFor(model => model.HeadHunterName, new { @class = "control-label col-md-3" })
             <div class="col-md-9">
                 <label for="HeadHunterAreas"> Область деятельности: </label>
-                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control" })
+                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control browser-default" })
                 <br>
                 <label for="HeadHunterId"> Квалификация: </label>
-                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control" })
+                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control browser-default" })
                 @Html.ValidationMessageFor(model => model.HeadHunterName)
                 @Html.ValidationMessageFor(model => model.HeadHunterId)
                 @Html.HiddenFor(model => model.HeadHunterName)

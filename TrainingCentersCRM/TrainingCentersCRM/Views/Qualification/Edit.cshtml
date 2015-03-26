@@ -3,12 +3,12 @@
 
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Изменение квалификации";
     var sep = new char[] { '.' };
     var HHAreaId = Model.HeadHunterId != null ? Model.HeadHunterId.Split(sep)[0] : null;
 }
 
-<h2>Edit</h2>
+<h2>Изменение квалификации</h2>
 
 
 @using (Ajax.BeginForm("Edit", new AjaxOptions { UpdateTargetId = "qualificationData", OnSuccess = "refreshTree" })) 
@@ -16,7 +16,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Qualification</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
@@ -45,14 +44,14 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group card-panel">
             @Html.LabelFor(model => model.HeadHunterName, new { @class = "control-label col-md-3" })
             <div class="col-md-9">
                 <label for="HeadHunterAreas"> Область деятельности: </label>
-                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control" })
+                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control browser-default" })
                 <br>
                 <label for="HeadHunterId"> Квалификация: </label>
-                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control" })
+                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control browser-default" })
                 @Html.HiddenFor(model => model.HeadHunterName)
                 <br>
                 @Html.LabelFor(model => model.HeadHunterKeys)

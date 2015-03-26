@@ -12,10 +12,10 @@ namespace TrainingCentersCRM
         public static MvcHtmlString Menu()
         {
             var IdTrainingCenter = TCHelper.GetCurrentTCName();
-            // TrainingCentersCRM.Models.ApplicationDbContext db = new Models.ApplicationDbContext();
+           // TrainingCentersCRM.Models.ApplicationDbContext db = new Models.ApplicationDbContext();
             TrainingCentersCRM.Models.TrainingCentersDBEntities db1 = new Models.TrainingCentersDBEntities();
-
-            //Rec_menu(0, db1);
+           
+                //Rec_menu(0, db1);
             return new MvcHtmlString(Rec_menu(0, db1, IdTrainingCenter));
         }
 
@@ -66,10 +66,13 @@ namespace TrainingCentersCRM
                 }
                 else
                 {
-                    string href = "";
-                    if (samp.IdTrainingCenter.Equals("other"))
-                        href += IdTrainingCenter;
-                    a.MergeAttribute("href", GetSiteUrl() + href + samp.Link);
+                    if (samp.NotBindInTrainingCenter)
+                    {
+                        a.MergeAttribute("href", samp.Link);
+                    }
+                    else
+                    {
+                        a.MergeAttribute("href", "/" + IdTrainingCenter + samp.Link);
                 }
                 li.InnerHtml = a.ToString() + str_temp;
                 str_temp = li.ToString();
@@ -99,7 +102,7 @@ namespace TrainingCentersCRM
         {
             var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty"));
             var html = "<li><a class='dropdown-button' href='#!' data-activates='TrainingCentersDropdown'>Учебные центры<i class='mdi-navigation-arrow-drop-down right'></i></a></li>";
-
+                    
             TagBuilder ul = new TagBuilder("ul");
             ul.MergeAttribute("id", "TrainingCentersDropdown");
             ul.MergeAttribute("class", "dropdown-content");

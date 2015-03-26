@@ -10,17 +10,18 @@
 <div id="qualificationBlock" style="float: left">
     <div id="qualificationButtons" style="display: none">
         <div style="display: inline">
-            <button id="editQualification" title="Изменить" style="display: inline" >Изменить</button>
+            <button id="editQualification" class="waves-effect waves-light orange btn" title="Изменить">Изменить</button>
         </div>
         <div style="display: inline">
-            <button id="deleteQualification" title="Удалить" style="display: inline" >Удалить</button>
+            <button id="deleteQualification" class="waves-effect waves-light red btn" title="Удалить">Удалить</button>
         </div>
         <div style="display: inline">
-            <button id="createQualification" title="Создать" style="display: inline">Создать</button>
+            <button id="createQualification" class="waves-effect waves-light btn" title="Создать">Создать</button>
         </div>
     </div>
     <div id="qualificationData"></div>
 </div>
+<div style="clear: both;"></div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
