@@ -188,6 +188,7 @@
     <Compile Include="Controllers\QualificationController.cs" />
     <Compile Include="Controllers\RoutingTrainingCenterController.cs" />
     <Compile Include="Controllers\ScheduleTtrainingCoursController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TrainingCenterController.cs" />
     <Compile Include="Controllers\TrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingModuleController.cs" />
@@ -782,6 +783,11 @@
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Home\ImageBrowser.cshtml" />
+    <Content Include="Views\Teacher\Create.cshtml" />
+    <Content Include="Views\Teacher\Delete.cshtml" />
+    <Content Include="Views\Teacher\Details.cshtml" />
+    <Content Include="Views\Teacher\Edit.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
