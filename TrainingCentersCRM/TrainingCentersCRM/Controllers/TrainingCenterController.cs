@@ -22,10 +22,11 @@ namespace TrainingCentersCRM.Controllers
         // GET: /TrainingCenter/
         public ActionResult Index()
         {
-            if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
-                return View(db.TrainingCenters.ToList());
-            else
-                return View("Index", "TrainingCenterLayout", db.TrainingCenters.ToList());
+            return View(db.TrainingCenters.ToList());
+            //if (TCHelper.GetCurrentTCName() == "" || TCHelper.GetCurrentTCName() == "empty")
+            //    return View(db.TrainingCenters.ToList());
+            //else
+            //    return View("Index", "TrainingCenterLayout", db.TrainingCenters.ToList());
         }
 
         // GET: /TrainingCenter/Details/5
@@ -87,7 +88,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter)
+        public ActionResult Edit([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter)
         {
             if (ModelState.IsValid)
             {

@@ -7,7 +7,7 @@
         $("#editQualification").hide();
         $("#deleteQualification").hide();
     } else {
-        $.ajax('Qualification/Details/' + id).success(function (data) {
+        $.ajax('/empty/Qualification/Details/' + id).success(function (data) {
             $('#qualificationData').empty();
             $('#qualificationData').append(data);
         });

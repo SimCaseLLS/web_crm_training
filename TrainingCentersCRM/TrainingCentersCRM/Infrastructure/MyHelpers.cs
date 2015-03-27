@@ -12,10 +12,10 @@ namespace TrainingCentersCRM
         public static MvcHtmlString Menu()
         {
             var IdTrainingCenter = TCHelper.GetCurrentTCName();
-           // TrainingCentersCRM.Models.ApplicationDbContext db = new Models.ApplicationDbContext();
+            // TrainingCentersCRM.Models.ApplicationDbContext db = new Models.ApplicationDbContext();
             TrainingCentersCRM.Models.TrainingCentersDBEntities db1 = new Models.TrainingCentersDBEntities();
-           
-                //Rec_menu(0, db1);
+
+            //Rec_menu(0, db1);
             return new MvcHtmlString(Rec_menu(0, db1, IdTrainingCenter));
         }
 
@@ -45,7 +45,7 @@ namespace TrainingCentersCRM
                 }
             }
             else
-                SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other").OrderBy(a => a.Ord_Id);
+                SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other" || p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
 
             var first_sam = SaM.Where(p => p.Parent_Id == Parent_ID).OrderBy(a => a.Ord_Id);
             foreach (var samp in first_sam)
@@ -64,24 +64,22 @@ namespace TrainingCentersCRM
                     str_temp = Rec_menu(samp.Id, db, IdTrainingCenter, newDropdownId);
                     a.InnerHtml += "<i class=\"mdi-navigation-arrow-drop-down right\"></i>";
                 }
+                if (samp.NotBindInTrainingCenter)
+                {
+                    a.MergeAttribute("href", samp.Link);
+                }
                 else
                 {
-                    if (samp.NotBindInTrainingCenter)
-                    {
-                        a.MergeAttribute("href", samp.Link);
-                    }
-                    else
-                    {
-                        a.MergeAttribute("href", "/" + IdTrainingCenter + samp.Link);
+                    a.MergeAttribute("href", "/" + IdTrainingCenter + samp.Link);
                 }
                 li.InnerHtml = a.ToString() + str_temp;
                 str_temp = li.ToString();
                 str += str_temp;
             }
             ul.InnerHtml += str;
-
             return ul.ToString();
         }
+
 
         public static string GetSiteUrl()
         {
@@ -102,7 +100,7 @@ namespace TrainingCentersCRM
         {
             var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty"));
             var html = "<li><a class='dropdown-button' href='#!' data-activates='TrainingCentersDropdown'>Учебные центры<i class='mdi-navigation-arrow-drop-down right'></i></a></li>";
-                    
+
             TagBuilder ul = new TagBuilder("ul");
             ul.MergeAttribute("id", "TrainingCentersDropdown");
             ul.MergeAttribute("class", "dropdown-content");

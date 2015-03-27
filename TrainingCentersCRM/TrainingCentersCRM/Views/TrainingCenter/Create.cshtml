@@ -1,10 +1,10 @@
 ﻿@model TrainingCentersCRM.Models.TrainingCenter
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создание учебного центра";
 }
 
-<h2>Create</h2>
+<h2>Создание учебного центра</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TrainingCenter</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -71,17 +70,24 @@
                 @Html.ValidationMessageFor(model => model.Url)
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.HHCityId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HHCityId)
+                @Html.ValidationMessageFor(model => model.HHCityId)
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Создать" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к списку", "Index")
 </div>
 
 @section Scripts {

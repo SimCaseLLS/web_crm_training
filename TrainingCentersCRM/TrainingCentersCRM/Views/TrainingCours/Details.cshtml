@@ -1,7 +1,7 @@
 ﻿@model TrainingCentersCRM.Models.TrainingCours
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Учебный курс " + @Model.Title;
 }
 <link rel="stylesheet" href="/Content/module.css">
 <article class="container">
@@ -16,7 +16,7 @@
            @Html.DisplayFor(model => model.ShortDescription)
         </p>
         <div class="col s3 notes notes-grey">
-            Рекомендуемые уровень знаний:
+            Рекомендуемый уровень знаний:
             @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br />
             Обязательный уровень знаний: <br />
             @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br />
@@ -26,7 +26,7 @@
         <p class="col s12"> <a href="">Компетенции</a> на развитие которых нацелен этот курс.</p>
     </article>
     <article class="pay row">
-        <h4 class="col s12">Стоимоть курса</h4>
+        <h4 class="col s12">Стоимость курса</h4>
         <div class="col s12 row">
             <div class="pay-label col s4">для физических лиц</div>
             <div class="pay-label col s4">для организаций</div>

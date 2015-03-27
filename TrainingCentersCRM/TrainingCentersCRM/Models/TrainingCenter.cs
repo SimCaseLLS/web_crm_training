@@ -42,6 +42,9 @@ using System;
         [Column(TypeName = "image")]
         public byte[] Logo { get; set; }
 
+        [Display(Name="Идентифкатор города на HeadHunter")]
+        public string HHCityId { get; set; }
+
         [Required]
         [StringLength(255)]
         public string Url { get; set; }

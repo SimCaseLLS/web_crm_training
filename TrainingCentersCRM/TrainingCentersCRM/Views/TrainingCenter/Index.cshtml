@@ -1,13 +1,17 @@
 ﻿@model IEnumerable<TrainingCentersCRM.Models.TrainingCenter>
 
 @{
-    ViewBag.Title = "учебныe центры";
+    ViewBag.Title = "Учебныe центры";
 }
+@Html.ActionLink("Добавить", "Create")
 
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Addres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HHCityId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Phone)
@@ -36,6 +40,9 @@
             @Html.DisplayFor(modelItem => item.Addres)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.HHCityId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
@@ -54,9 +61,9 @@
             @Html.DisplayFor(modelItem => item.Url)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Править", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

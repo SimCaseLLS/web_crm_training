@@ -51,6 +51,7 @@ namespace TrainingCentersCRM.Controllers
         {
             if (ModelState.IsValid)
             {
+                trainingcours.IdTraningCenter = trainingCenter.Id;
                 db.TrainingCourses.Add(trainingcours);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -251,6 +251,10 @@
     <Compile Include="Migrations\201503261200049_add_not_bind_in_tc.Designer.cs">
       <DependentUpon>201503261200049_add_not_bind_in_tc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503270910106_HHCityId_TrainingCenter.cs" />
+    <Compile Include="Migrations\201503270910106_HHCityId_TrainingCenter.Designer.cs">
+      <DependentUpon>201503270910106_HHCityId_TrainingCenter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -829,6 +833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503261200049_add_not_bind_in_tc.resx">
       <DependentUpon>201503261200049_add_not_bind_in_tc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503270910106_HHCityId_TrainingCenter.resx">
+      <DependentUpon>201503270910106_HHCityId_TrainingCenter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

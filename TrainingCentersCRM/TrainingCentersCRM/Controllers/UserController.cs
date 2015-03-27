@@ -14,8 +14,14 @@ namespace TrainingCentersCRM.Controllers
         // GET: /User/
         public ActionResult Index()
         {
-            var aspnetusers = db.AspNetUsers.Include(a => a.User);
+            IQueryable<AspNetUser> aspnetusers;
+                 aspnetusers = db.AspNetUsers.Include(a => a.User);
             return View(aspnetusers.ToList());
+        }
+
+        public ActionResult Teachers()
+        {
+            return View();
         }
 
         // GET: /User/Details/5

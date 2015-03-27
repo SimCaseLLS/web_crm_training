@@ -5,9 +5,9 @@
                 'data':
                     {
                         'url': function (node) {
-                            var pathname = location.pathname
-                            var pathnameArray = pathname.split("/")
-                            var trainingCenterName = pathnameArray[1]
+                            var pathname = location.pathname;
+                            var pathnameArray = pathname.split("/");
+                            var trainingCenterName = pathnameArray[1];
                             return node.id === '#' ?
                               '/' + trainingCenterName + '/Qualification/ChildNodes/0' :
                               '/' + trainingCenterName + '/Qualification/ChildNodes/';
