@@ -8,6 +8,10 @@
     padding-right: 15px;
 }
 
+.dropdown-content {
+    height: auto !important; 
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
