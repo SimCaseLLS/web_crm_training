@@ -10,14 +10,18 @@ using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
-    public class TeacherController : RoutingTrainingCenterController
+    public class TeachersController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: /Teacher/
         public ActionResult Index()
         {
-            return View(db.Teachers.ToList());
+            var teacher = db.Teachers.ToList();
+            var tcUrl = RouteData.Values["tc"];
+            var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
+            var trainingCenterTeachers = db.TrainingCenterTeachers.Where(a => a.IdTrainingCenter == tc.Id).Select(b => b.Teacher);
+            return View(trainingCenterTeachers);
         }
 
         // GET: /Teacher/Details/5
