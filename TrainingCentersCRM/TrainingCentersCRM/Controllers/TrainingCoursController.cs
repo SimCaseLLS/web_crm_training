@@ -24,6 +24,10 @@ namespace TrainingCentersCRM.Controllers
         // GET: /TrainingCours/Details/5
         public ActionResult Details(int? id)
         {
+            var tcUrl = RouteData.Values["tc"];
+            var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
+            var trainingCourseTeacher = db.TrainingCourseTeachers.Where(a => a.IdTrainingCourse == id).Select(b => b.Teacher);
+            ViewBag.trainingCourseTeacher = trainingCourseTeacher;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

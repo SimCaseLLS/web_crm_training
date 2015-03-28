@@ -13,7 +13,7 @@
     </div>
     <article class="row">
         <p class="text col s9">
-           @Html.DisplayFor(model => model.ShortDescription)
+            @Html.DisplayFor(model => model.ShortDescription)
         </p>
         <div class="col s3 notes notes-grey">
             Рекомендуемый уровень знаний:
@@ -38,18 +38,24 @@
             <div class="pay-col col s2">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
         </div>
     </article>
+
+    @helper TeacherList(IEnumerable<TrainingCentersCRM.Models.Teacher> teacher)
+{
+    <div class="col s9">
+        @foreach (TrainingCentersCRM.Models.Teacher t in teacher)
+        {
+            <div class="col s4 m4">
+                <img src="http://watchdogwire.com/northwest/files/2013/11/Male-Teacher-in-Classroom.jpg" alt="">
+                <li>@t.LastName @t.FirstName @t.Patronymic</li>
+                <p>@t.Description</p>
+            </div>
+        }
+    </div>
+}
+
     <article class="teachers row">
         <h4 class="col s12">Преподователи</h4>
-        <div class="col s3">
-            <img src="http://watchdogwire.com/northwest/files/2013/11/Male-Teacher-in-Classroom.jpg" alt="">
-            <h5>Павлов Генадий Петрович</h5>
-            <p>Курс представляет собой интегрированный мультимедийный продукт, обладающий дружественным интерфейсом, объединяющий видеолекции, анимацию</p>
-        </div>
-        <div class="col s3">
-            <img src="http://www.topeducationdegrees.com/wp-content/uploads/2013/06/alternative-teaching-certification.jpg" alt="">
-            <h5>Бондоренко Аркадий Васильевич </h5>
-            <p>Национальным фондом подготовки кадров (НФПК) по поручению Министерства образования и науки России в рамках проекта «Информатизация системы образования»</p>
-        </div>
+        @TeacherList(ViewBag.trainingCourseTeacher)
     </article>
     <article class="row">
         <h4>Учебная программа</h4>
