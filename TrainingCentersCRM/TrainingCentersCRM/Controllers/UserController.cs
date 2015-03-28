@@ -82,6 +82,9 @@ namespace TrainingCentersCRM.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tcUrl = RouteData.Values["tc"];
+                var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
+
                 var anu = new RegisterViewModel();
                 anu.UserName = user.UserName;
                 anu.Password = user.Password;
@@ -103,6 +106,10 @@ namespace TrainingCentersCRM.Controllers
 
                     var teach = db.Teachers.SingleOrDefault(a => a.Email == user.Email);
                     anu.UserId = teach.Id;
+
+                    TrainingCenterTeacher trainingCenterTeacher = new TrainingCenterTeacher() { IdTeacher = teach.Id, IdTrainingCenter = tc.Id };
+                    db.TrainingCenterTeachers.Add(trainingCenterTeacher);
+                    db.SaveChanges();
                 }
                 if (user.TypeUser == "student")
                 {
