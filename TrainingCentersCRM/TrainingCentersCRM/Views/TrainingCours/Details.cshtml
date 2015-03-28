@@ -45,7 +45,8 @@
         @foreach (TrainingCentersCRM.Models.Teacher t in teacher)
         {
             <div class="col s4 m4">
-                <img src="http://watchdogwire.com/northwest/files/2013/11/Male-Teacher-in-Classroom.jpg" alt="">
+                @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(t.Image) + "\" />")
                 <li>@t.LastName @t.FirstName @t.Patronymic</li>
                 <p>@t.Description</p>
             </div>
