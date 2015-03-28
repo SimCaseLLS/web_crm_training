@@ -52,9 +52,16 @@ namespace TrainingCentersCRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Email,Description,Phone")] Teacher teacher)
         {
+            var tcUrl = RouteData.Values["tc"];
+            var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(teacher);
+                db.SaveChanges();
+                var teach = db.Teachers.SingleOrDefault(a => a.Email == teacher.Email);
+                TrainingCenterTeacher trainingCenterTeacher = new TrainingCenterTeacher() { IdTeacher = teach.Id, IdTrainingCenter = tc.Id };
+                db.TrainingCenterTeachers.Add(trainingCenterTeacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
