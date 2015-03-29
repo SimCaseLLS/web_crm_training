@@ -14,7 +14,7 @@
     </div>
     <article class="pay teachers row">
         <p class="text col s9">
-            @Html.DisplayFor(model => model.ShortDescription)
+           @Html.DisplayFor(model => model.ShortDescription)
         </p>
         <div class="col s3 notes notes-grey">
             Рекомендуемый уровень знаний:
@@ -121,19 +121,26 @@
             <div class="pay-col col s3">@Html.DisplayFor(model => model.PriceForOrganizations) рублей <br> за полный курс</div>
             <div class="pay-col col s3">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
         </div>
-    @*</article>
-    <article class="teachers row">*@
-        <h4 class="col s9">Преподаватели</h4>
-        <div class="col s4 m4">
-            <img src="http://watchdogwire.com/northwest/files/2013/11/Male-Teacher-in-Classroom.jpg" alt="">
-            <h5>Павлов Генадий Петрович</h5>
-            <p>Курс представляет собой интегрированный мультимедийный продукт, обладающий дружественным интерфейсом, объединяющий видеолекции, анимацию</p>
-        </div>
-        <div class="col s4 m4">
-            <img src="http://www.topeducationdegrees.com/wp-content/uploads/2013/06/alternative-teaching-certification.jpg" alt="">
-            <h5>Бондоренко Аркадий Васильевич </h5>
-            <p>Национальным фондом подготовки кадров (НФПК) по поручению Министерства образования и науки России в рамках проекта «Информатизация системы образования»</p>
-        </div>
+    </article>
+
+    @helper TeacherList(IEnumerable<TrainingCentersCRM.Models.Teacher> teacher)
+{
+    <div class="col s9">
+        @foreach (TrainingCentersCRM.Models.Teacher t in teacher)
+        {
+            <div class="col s4 m4">
+                @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(t.Image) + "\" />")
+                <li>@t.LastName @t.FirstName @t.Patronymic</li>
+                <p>@t.Description</p>
+            </div>
+        }
+    </div>
+}
+
+    <article class="teachers row">
+        <h4 class="col s12">Преподователи</h4>
+        @TeacherList(ViewBag.trainingCourseTeacher)
     </article>
     <article class="row">
         <h4>
@@ -197,7 +204,7 @@
         @foreach (var item in Model.RelatedCourses)
         {
             <div class="col s4 m4">
-                <img src="http://ww2.hdnux.com/photos/23/53/04/5157149/3/628x471.jpg" alt="">
+            <img src="http://ww2.hdnux.com/photos/23/53/04/5157149/3/628x471.jpg" alt="">
                 <h5>@item.TrainingCours1.Title</h5>
                 <p>
                     @if (item.TrainingCours1.ShortDescription.Length > 300)
@@ -211,7 +218,7 @@
                     }
                 </p>
                 <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.TrainingCours.Id">Подробнее</a>
-            </div>
+        </div>
         }
     </article>
 </article>

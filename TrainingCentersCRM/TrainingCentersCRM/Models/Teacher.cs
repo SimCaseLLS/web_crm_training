@@ -19,6 +19,8 @@ namespace TrainingCentersCRM.Models
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
+        public byte[] Image { get; set; }
+
         public virtual ICollection<TrainingCenterTeacher> TrainingCenterTeachers { get; set; }
 
         public virtual ICollection<TrainingCourseTeacher> TrainingCourseTeachers { get; set; }

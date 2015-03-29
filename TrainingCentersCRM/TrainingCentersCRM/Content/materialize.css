@@ -6060,12 +6060,9 @@ textarea.materialize-textarea {
 ***************/
 /* Remove default Radio Buttons */
 [type="radio"]:not(:checked), [type="radio"]:checked {
-  position: absolute;
   left: -9999px; }
 
 [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
-  position: relative;
-  padding-left: 35px;
   cursor: pointer;
   display: inline-block;
   height: 25px;
@@ -6086,10 +6083,9 @@ textarea.materialize-textarea {
   /* IE10+ */ }
 
 [type="radio"] + label:before, [type="radio"] + label:after {
-  content: '';
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 0px;Default1
   margin: 4px;
   width: 16px;
   height: 16px;
