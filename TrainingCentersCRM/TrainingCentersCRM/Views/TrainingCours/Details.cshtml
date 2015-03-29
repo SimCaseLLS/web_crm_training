@@ -1,19 +1,20 @@
 ﻿@model TrainingCentersCRM.Models.TrainingCours
+@using TrainingCentersCRM.Infrastructure;
 
 @{
     ViewBag.Title = "Учебный курс " + @Model.Title;
 }
 <link rel="stylesheet" href="/Content/module.css">
 <article class="container">
-    <a href="@Url.Action("Index", "TrainingCours")">Вернуться к выбору курса</a> <br /><br />
+    @*<a href="@Url.Action("Index", "TrainingCours")">Вернуться к выбору курса</a> <br /><br />*@
     <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })">Редактировать учебный курс</a>
     <div class="row">
-        <h1 class="col s10">@Html.DisplayFor(model => model.Title)</h1>
-        <div class="col s2 notes">@Html.DisplayFor(model => model.Hourse) часов</div>
+        <h2 class="col s9">@Html.DisplayFor(model => model.Title)</h2>
+        <div class="col s3 notes center">@Html.DisplayFor(model => model.Hourse) часов</div>
     </div>
-    <article class="row">
+    <article class="pay teachers row">
         <p class="text col s9">
-           @Html.DisplayFor(model => model.ShortDescription)
+            @Html.DisplayFor(model => model.ShortDescription)
         </p>
         <div class="col s3 notes notes-grey">
             Рекомендуемый уровень знаний:
@@ -22,65 +23,195 @@
             @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br />
             Сложность: @Html.DisplayFor(model => model.LevelOfDifficulty) /10
         </div>
-        <p class="col s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>
-        <p class="col s12"> <a href="">Компетенции</a> на развитие которых нацелен этот курс.</p>
-    </article>
-    <article class="pay row">
-        <h4 class="col s12">Стоимость курса</h4>
-        <div class="col s12 row">
-            <div class="pay-label col s4">для физических лиц</div>
-            <div class="pay-label col s4">для организаций</div>
+        <div class="col s3 right">
+            <br /><br />
+            @{
+                string hhkeys = "";
+                List<string> ids = new List<string>();
+                foreach (var key in Model.QualificationTrainingCours)
+                {
+                    hhkeys += key.Qualification.HeadHunterKeys + ",";
+                    if (key.Qualification != null && key.Qualification.HeadHunterId != null)
+                    {
+                        ids.Add(key.Qualification.HeadHunterId.ToString());
+                    }
+                }
+            }
+            @Html.HeadHunterWidget(hhkeys, ids.ToArray(), TCHelper.GetCurrentTc().HHCityId)
         </div>
-        <div class="col s12 row">
-            <div class="pay-col col s2">@Html.DisplayFor(model => model.PriceForIndividuals) рублей  <br>за полный курс</div>
-            <div class="pay-col col s2">@Html.DisplayFor(model => model.CostOfOneHourForIndividuals) <br> за час курса</div>
-            <div class="pay-col col s2">@Html.DisplayFor(model => model.PriceForOrganizations) рублей <br> за полный курс</div>
-            <div class="pay-col col s2">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
+        @*        <p class="text s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>*@
+        <p class="text s9"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Компетенции</a>, на развитие которых нацелен этот курс:</p>
+
+        <div class="text s9" id="qualificationTCFormDiv">
+            <form id="qualificationTCForm" name="qualificationTCForm" action="/empty/TRainingCourc/SetQualifications" method="post">
+                @Html.HiddenFor(model => model.Id)
+                @{
+                    int cnt = 0;
+                    List<TrainingCentersCRM.Models.ViewModels.RelatedQualifications> qualifications = ViewBag.Qualifications;
+                    if (qualifications != null)
+                    {
+                        foreach (var qualification in qualifications)
+                        {
+                            <div style="display: none">
+                                <input type="checkbox"
+                                       name="selectedQualifications"
+                                       value="@qualification.QualificationID"
+                                       @(Html.Raw(qualification.Assigned ? "checked=\"checked\"" : "")) />
+                                @qualification.Title
+                            </div>
+                        }
+                    }
+                }
+
+
+                <div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+                <br />
+                <button id="submitQualifTC" name="submitQualifTC" class="waves-effect waves-light btn">Сохранить</button>
+
+                @section Scripts {
+                    <script src="~/Scripts/vacancyTree.js"></script>
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+            </form>
         </div>
-    </article>
-    <article class="teachers row">
-        <h4 class="col s12">Преподователи</h4>
-        <div class="col s3">
+
+        <div class="text col s5" id="qualificationList"></div>
+        <script type="text/javascript">
+            $("#submitQualifTC").click(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: '/empty/TrainingCours/SetQualifications',
+                    type: 'post',
+                    data: $( "#qualificationTCForm" ).serialize(),
+                    success: function(data){
+                        $("#qualificationTCFormDiv").toggle();
+                        reloadQualificationsTC();
+                    }
+                });
+            });
+            clickQualifLink = function() {
+                $("#qualificationTCFormDiv").toggle();
+                return 0;
+            }
+            reloadQualificationsTC = function () {
+                $.ajax({
+                    url: '/empty/TrainingCours/Qualifications/' + @Model.Id,
+                    success: function (data) {
+                        var res = "| ";
+                        $.map(data, function (item) {
+                            res += item + " | ";
+                        });
+                        $("#qualificationList").html(res);
+                        $("#qualificationTCFormDiv").hide();
+                    }
+                });
+            }
+            reloadQualificationsTC();
+        </script>
+    @*</article>
+    <article class="pay row">*@
+        <h4 class="text col s9">Стоимость курса</h4>
+        <div class="text col s9 row">
+            <div class="pay-label col s6">для физических лиц</div>
+            <div class="pay-label col s6">для организаций</div>
+        </div>
+        <div class="text col s9 row">
+            <div class="pay-col col s3">@Html.DisplayFor(model => model.PriceForIndividuals) рублей  <br>за полный курс</div>
+            <div class="pay-col col s3">@Html.DisplayFor(model => model.CostOfOneHourForIndividuals) <br> за час курса</div>
+            <div class="pay-col col s3">@Html.DisplayFor(model => model.PriceForOrganizations) рублей <br> за полный курс</div>
+            <div class="pay-col col s3">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
+        </div>
+    @*</article>
+    <article class="teachers row">*@
+        <h4 class="col s9">Преподаватели</h4>
+        <div class="col s4 m4">
             <img src="http://watchdogwire.com/northwest/files/2013/11/Male-Teacher-in-Classroom.jpg" alt="">
             <h5>Павлов Генадий Петрович</h5>
             <p>Курс представляет собой интегрированный мультимедийный продукт, обладающий дружественным интерфейсом, объединяющий видеолекции, анимацию</p>
         </div>
-        <div class="col s3">
+        <div class="col s4 m4">
             <img src="http://www.topeducationdegrees.com/wp-content/uploads/2013/06/alternative-teaching-certification.jpg" alt="">
             <h5>Бондоренко Аркадий Васильевич </h5>
             <p>Национальным фондом подготовки кадров (НФПК) по поручению Министерства образования и науки России в рамках проекта «Информатизация системы образования»</p>
         </div>
     </article>
     <article class="row">
-        <h4>Учебная программа</h4>
+        <h4>
+            Учебная программа
+            <a class="waves-effect waves-light" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="tiny mdi-content-add-box center"></i></a>
+
+        </h4>
         <div class="col s10 offset-s1">
-            <h5><a href="">Введение</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p><br>
-            <h5><a href="">Инструменты</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p><br>
-            <h5><a href="">Разработка</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p><br>
+            @foreach (var module in Model.CourseModules)
+            { 
+                <h5><a href="">@module.TrainingModule.Title</a>
+                    <a class="waves-effect waves-light" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-create center"></i></a>
+                    <a class="waves-effect waves-light" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-clear center"></i></a>
+                </h5>
+                <p>@module.TrainingModule.ShortDescription</p><br>
+            }
         </div>
     </article>
     <article class="teachers row">
-        <h4 class="col s12">Рекомендуемые курсы</h4>
-        <div class="col s3">
-            <img src="http://ww2.hdnux.com/photos/23/53/04/5157149/3/628x471.jpg" alt="">
-            <h5>QA тестирование</h5>
-            <p>область деятельности, в которой компьютеры используются в качестве инструмента, как для синтеза (создания) изображений, так и для обработки визуальной информации, полученной из реального мира.</p>
-            <a href="">подробнее</a>
+        <h4 class="col s12">Рекомендуемые курсы
+            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+        </h4>
+        <div id="dropDownRelated" style="display: none">
         </div>
-        <div class="col s3">
-            <img src="http://www.cs.technion.ac.il/~irit/images/teapot.jpg" alt="">
-            <h5>Компьютерная графика</h5>
-            <p>процесс или результат формирования требуемых свойств и характеристик продукции по мере её создания, а также — поддержание этих характеристик при хранении, транспортировании и эксплуатации продукции</p>
-            <a href="">подробнее</a>
-        </div>
-        <div class="col s3">
-            <img src="http://cs.njit.edu/images/programming-400x267.jpg" alt="">
-            <h5>3d моделирование</h5>
-            <p>Менеджмент качества в этом же стандарте представлен как «скоординированная деятельность по руководству и управлению организацией применительно к качеству».</p>
-            <a href="">подробнее</a>
-        </div>
+        <script type="text/javascript">
+            showRelated = function() {
+                $.ajax({
+                    url: '/empty/TrainingCours/GetAll/@Model.Id',
+                    type: 'get',
+                    success: function (data) {
+                        var res = "<form method='post' name='formRelated' id='formRelated'>";
+                        $.map(data, function(c){
+                            if (c.Checked)
+                                res += "<input type='checkbox' checked='checked' name='checkedRelated' id='checkedRelated' value='" + c.Id + "' /><label>" + c.Title + "</label><br />";
+                            else
+                                res += "<input type='checkbox' name='checkedRelated' id='checkedRelated' value='" + c.Id + "' /><label>" + c.Title + "</label><br />";
+                        });
+                        res += "<button id='chooseRelButton' class'button waves-effect waves-light btn'>Добавить</button>";
+                        res += "</form>";
+                        $("#dropDownRelated").html(res);
+                        $("#dropDownRelated").toggle();
+                        $("#chooseRelButton").click(function(event){
+                            event.preventDefault();
+                            chooseRelated();
+                        });
+                    }
+                });
+                return false;
+            }
+            chooseRelated = function(id) {
+                $.ajax({
+                    url: '/empty/TrainingCours/AddRelated/@Model.Id',
+                    type: 'post',
+                    data: $("#formRelated").serialize(),
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }
+        </script>
+        @foreach (var item in Model.RelatedCourses)
+        {
+            <div class="col s4 m4">
+                <img src="http://ww2.hdnux.com/photos/23/53/04/5157149/3/628x471.jpg" alt="">
+                <h5>@item.TrainingCours1.Title</h5>
+                <p>
+                    @if (item.TrainingCours1.ShortDescription.Length > 300)
+                    {
+                        @Html.Raw(item.TrainingCours1.ShortDescription.Substring(0, 300))
+                        <text>...</text>
+                    }
+                    else
+                    {
+                        @Html.Raw(item.TrainingCours1.ShortDescription)
+                    }
+                </p>
+                <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.TrainingCours.Id">Подробнее</a>
+            </div>
+        }
     </article>
 </article>

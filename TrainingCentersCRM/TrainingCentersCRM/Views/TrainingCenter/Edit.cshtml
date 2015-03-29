@@ -5,6 +5,8 @@
 }
 
 <h2>Редактирование учебного центра</h2>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
 
 
 @using (Html.BeginForm())
@@ -51,7 +53,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
+                @Html.TextAreaFor(model => model.Description)
                 @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
@@ -95,3 +97,10 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript">
+    $(function () {
+        CKEDITOR.config.filebrowserUploadUrl = '/empty/Home/UploadFromEditor';
+        CKEDITOR.config.filebrowserBrowseUrl = '/empty/Home/ImageBrowser';
+        $('#Description').ckeditor();
+    });
+</script>

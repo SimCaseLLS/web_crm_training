@@ -38,7 +38,7 @@
                 });
             });
         }).bind('ready.jstree', function (e, data) {
-            $.when($("#qualificationTree").jstree("open_all")).done(function(a1){
+            $.when($("#qualificationTree").jstree("open_all")).done(function (a1) {
                 var interval_id = setInterval(function () {
                     if ($("#qualificationTree").find(".jstree-loading").length == 0) {
                         clearInterval(interval_id)
@@ -55,6 +55,6 @@
                         });
                     }
                 }, 50);
-        });
+            });
         });
 });

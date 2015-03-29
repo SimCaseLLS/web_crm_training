@@ -33,7 +33,7 @@
             @Html.DisplayFor(model => model.HeadHunterName)
             
             <div class="headhunter">
-                @Html.HeadHunterWidget(@Model.HeadHunterKeys, @Model.HeadHunterId)
+                @Html.HeadHunterWidget(Model.HeadHunterKeys, Model.HeadHunterId, TCHelper.GetCurrentTc().HHCityId)
                 <style>
                     div.headhunter > div, div.headhunter > div:hover {
                         max-width: 300px !important;/* стили для блока */

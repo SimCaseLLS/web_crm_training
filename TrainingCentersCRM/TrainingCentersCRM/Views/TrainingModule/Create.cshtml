@@ -1,10 +1,11 @@
 ﻿@model TrainingCentersCRM.Models.TrainingModule
+@using TrainingCentersCRM.Infrastructure;
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создание учебного модуля";
 }
 
-<h2>Create</h2>
+<h2>Создание учебного модуля</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +13,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TrainingModule</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -56,17 +56,13 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdTrainingCenter, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdTrainingCenter)
-                @Html.ValidationMessageFor(model => model.IdTrainingCenter)
-            </div>
-        </div>
+        <input type="hidden" name="IdTrainingCenter" value="@TCHelper.GetCurrentTc().Id" id="IdTrainingCenter" />
+        <input type="hidden" name="IdTrainingCourse" value="@ViewBag.TrainingCenterId" id="IdTrainingCourse" />
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Создать" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -36,8 +36,9 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingModule/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewBag.TrainingCenterId = id;
             return View();
         }
 
@@ -46,13 +47,15 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,ShortDescription,Numbers,Hours,Topics,IdTrainingCenter")] TrainingModule trainingmodule)
+        public ActionResult Create([Bind(Include="Id,Title,ShortDescription,Numbers,Hours,Topics,IdTrainingCenter,IdTrainingCourse")] TrainingModule trainingmodule, int IdTrainingCourse)
         {
             if (ModelState.IsValid)
             {
                 db.TrainingModules.Add(trainingmodule);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                db.CourseModules.Add(new CourseModule { IdTrainingCourse = IdTrainingCourse, IdTrainingModule = trainingmodule.Id });
+                db.SaveChanges();
+                return RedirectToAction("Details", "TrainingCours", new { id = IdTrainingCourse });
             }
 
             return View(trainingmodule);
@@ -84,7 +87,8 @@ namespace TrainingCentersCRM.Controllers
             {
                 db.Entry(trainingmodule).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                int? tcId = db.CourseModules.Where(a => a.IdTrainingModule == trainingmodule.Id).First().IdTrainingCourse;
+                return RedirectToAction("Details", "TrainingCours", new { id = tcId });
             }
             return View(trainingmodule);
         }
@@ -110,9 +114,12 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TrainingModule trainingmodule = db.TrainingModules.Find(id);
+            int? courseId = trainingmodule.CourseModules.First().IdTrainingCourse;
+            if (trainingmodule.CourseModules.Count() > 0)
+                db.CourseModules.RemoveRange(trainingmodule.CourseModules);
             db.TrainingModules.Remove(trainingmodule);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "TrainingCours", new { id = courseId });
         }
 
         protected override void Dispose(bool disposing)

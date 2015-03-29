@@ -18,13 +18,18 @@ namespace TrainingCentersCRM.Infrastructure
     public static class CustomHtmlHelpers
     {
 
-        public static MvcHtmlString HeadHunterWidget(this HtmlHelper htmlHelper, string keys, string specializationId/*, object htmlAttributes = null*/)
+        public static MvcHtmlString HeadHunterWidget(this HtmlHelper htmlHelper, string keys, string[] specs, string region/*, object htmlAttributes = null*/)
         {
             StringBuilder sb = new StringBuilder();
-
-            var inner = String.Format("<script class='hh-script' src='https://api.hh.ru/widgets/vacancies/search?count=6&links_color=1560B2&border_color=1560B2&text={0}&show_region=false&specialization={1}'></script>", HttpUtility.UrlEncode(keys), specializationId);
-
-
+            string regionText = "";
+            if (!string.IsNullOrEmpty(region))
+                regionText = string.Format("&area={0}", region);
+            string specialization = "";
+            foreach (string spec in specs)
+            {
+                specialization += "&specialization=" + spec;
+            }
+            var inner = String.Format("<script class='hh-script' src='https://api.hh.ru/widgets/vacancies/search?count=6&links_color=1560B2&border_color=1560B2&text={0}&show_region=true{2}{1}'></script>", HttpUtility.UrlEncode(keys), specialization, regionText);
             sb.Append(inner);
 
 

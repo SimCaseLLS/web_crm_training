@@ -38,7 +38,7 @@ namespace TrainingCentersCRM
                 Response.Redirect("/Error404.htm");
             }
             //We clear the error
-            Server.ClearError();
+            //Server.ClearError();
         }
 
         //This method checks if we have an AJAX request or not

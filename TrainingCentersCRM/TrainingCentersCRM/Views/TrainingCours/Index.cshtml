@@ -13,14 +13,29 @@
         @foreach (var item in Model)
         {
             <div id="article-template">
-                <div class="col s3">
+                <div class="col s4">
                     <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Edit", "TrainingCours", new { id = item.Id })"><i class="mdi-content-create center"></i></a>
                     <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Delete", "TrainingCours", new { id = item.Id })"><i class="mdi-content-clear center"></i></a>
-                    <a href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
-                        <img src="https://placeimg.com/300/300/tech" class="responsive-img" alt="" />
-                        <h5 class="title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                    </a>
-                    <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
+                    <div class="card">
+                        <div class="card-image">
+                            <a href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
+                                <img src="https://placeimg.com/300/300/tech" class="responsive-img" alt="" />
+                                <span class="card-title">@Html.DisplayFor(modelItem => item.Title)</span>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            @if (item.ShortDescription.Length > 300)
+                            {
+                                @Html.Raw(item.ShortDescription.Substring(0, 300))
+                                <text>...</text>
+                            }
+                            else
+                            {
+                                @Html.Raw(item.ShortDescription)
+                            }
+
+                        </div>
+                    </div>
                     <br>
                 </div>
             </div>
@@ -72,8 +87,8 @@
                 @Html.DisplayNameFor(model => model.MandatoryPreliminaryPreparation)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.IdObject)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.IdObject)
+                </th>*@
             <th></th>
         </tr>
 
@@ -111,8 +126,8 @@
                     @Html.DisplayFor(modelItem => item.MandatoryPreliminaryPreparation)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.IdObject)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.IdObject)
+                    </td>*@
                 <td>
                     @Html.ActionLink("Правка", "Edit", new { id = item.Id })
                     @Html.ActionLink("Подробнее", "Details", new { id = item.Id })
@@ -124,4 +139,4 @@
     </table>
 }
 
-@Html.Action("Index", "Moodle", new {key = ViewBag.Key})
+@Html.Action("Index", "Moodle", new { key = ViewBag.Key })

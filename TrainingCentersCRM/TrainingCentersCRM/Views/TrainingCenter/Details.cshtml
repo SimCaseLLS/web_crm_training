@@ -1,15 +1,18 @@
 ﻿@model TrainingCentersCRM.Models.TrainingCenter
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Organization;
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>TrainingCenter</h4>
+    <h4>@Model.Organization</h4>
 	<hr />
     <dl class="dl-horizontal">
+
+        <dd>
+            @Html.Raw(Model.Description)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Addres)
         </dt>
@@ -40,14 +43,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Organization)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt>

@@ -28,7 +28,7 @@ using System;
         [Display(Name = "Название")]
         public string Title { get; set; }
 
-        [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
+        [StringLength(2048, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
         [Display(Name = "Краткое описание")]
         public string ShortDescription { get; set; }
 
@@ -36,22 +36,22 @@ using System;
         [Display(Name = "Количество часов")]
         public Nullable<int> Hourse { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
+        [RegularExpression(@"^[\d,]+(\.\d{1,5})?$", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Стоимость для организаций")]
         [Column(TypeName = "money")]
         public Nullable<decimal> PriceForOrganizations { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
+        [RegularExpression(@"^[\d,]+(\.\d{1,5})?$", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Стоимость для физических лиц")]
         [Column(TypeName = "money")]
         public Nullable<decimal> PriceForIndividuals { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
+        [RegularExpression(@"^[\d,]+(\.\d{1,5})?$", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Стоимость часа для организаций")]
         [Column(TypeName = "money")]
         public Nullable<decimal> CostOfOneHourForOrganizations { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
+        [RegularExpression(@"^[\d,]+(\.\d{1,5})?$", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Стоимость часа для физических лиц")]
         [Column(TypeName = "money")]
         public Nullable<decimal> CostOfOneHourForIndividuals { get; set; }
@@ -60,12 +60,10 @@ using System;
         [Display(Name = "Сложность")]
         public Nullable<int> LevelOfDifficulty { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Требуемая предварительная подготовка")]
         [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
         public string RequiredPreliminaryPreparation { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Обязательная предварительная подготовка")]
         [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
         public string MandatoryPreliminaryPreparation { get; set; }

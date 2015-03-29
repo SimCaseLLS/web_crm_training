@@ -15,7 +15,7 @@
     <AssemblyName>TrainingCentersCRM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -254,6 +254,10 @@
     <Compile Include="Migrations\201503270910106_HHCityId_TrainingCenter.cs" />
     <Compile Include="Migrations\201503270910106_HHCityId_TrainingCenter.Designer.cs">
       <DependentUpon>201503270910106_HHCityId_TrainingCenter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503272201343_Something.cs" />
+    <Compile Include="Migrations\201503272201343_Something.Designer.cs">
+      <DependentUpon>201503272201343_Something.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -837,6 +841,9 @@
     <EmbeddedResource Include="Migrations\201503270910106_HHCityId_TrainingCenter.resx">
       <DependentUpon>201503270910106_HHCityId_TrainingCenter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503272201343_Something.resx">
+      <DependentUpon>201503272201343_Something.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\uploads\" />
@@ -859,7 +866,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1037</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1037/</IISUrl>
+          <IISUrl>http://pictet.simcase.ru/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

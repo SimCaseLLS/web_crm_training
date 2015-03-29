@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrainingCentersCRM.Models;
+using TrainingCentersCRM.Models.ViewModels;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -21,14 +22,43 @@ namespace TrainingCentersCRM.Controllers
             return View(db.TrainingCourses.ToList());
         }
 
+        public JsonResult GetAll(int? id)
+        {
+            return Json(db.TrainingCourses.Select(a => new
+            {
+                Id = a.Id,
+                Title = a.Title,
+                Checked = db.RelatedCourses.Where(b => b.IdTrainingCourse == id && b.IdTrainingCourseRelated == a.Id).Count() > 0 ? true : false
+            }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public string AddRelated(int? id, string[] checkedRelated)
+        {
+            db.RelatedCourses.RemoveRange(db.RelatedCourses.Where(a => a.IdTrainingCourse == id));
+            if (checkedRelated != null)
+                foreach (var s in checkedRelated)
+                {
+                    int si = Convert.ToInt32(s);
+                    if (db.RelatedCourses.Where(a => a.IdTrainingCourse == si && a.IdTrainingCourseRelated == id).Count() > 0)
+                        return "ok";
+                    db.RelatedCourses.Add(new RelatedCours { IdTrainingCourse = id, IdTrainingCourseRelated = si });
+                }
+            db.SaveChanges();
+            return "ok";
+        }
+
         // GET: /TrainingCours/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TrainingCours trainingcours = db.TrainingCourses.Find(id);
+            trainingcours.QualificationTrainingCours = new List<QualificationTrainingCour>();
+            PopulateRelatedTagData(trainingcours);
             if (trainingcours == null)
             {
                 return HttpNotFound();
@@ -47,7 +77,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
+        public ActionResult Create([Bind(Include = "Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +110,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
+        public ActionResult Edit([Bind(Include = "Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)
             {
@@ -116,6 +146,45 @@ namespace TrainingCentersCRM.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public JsonResult Qualifications(int? id)
+        {
+            var res = db.QualificationTrainingCours.Include(a => a.Qualification).Where(a => a.IdTrainingCours == id).Select(b => b.Qualification.Title);
+            return Json(res.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public string SetQualifications(int Id, string[] selectedQualifications)
+        {
+            db.QualificationTrainingCours.RemoveRange(db.QualificationTrainingCours.Where(a => a.IdTrainingCours == Id));
+            db.SaveChanges();
+            foreach (var s in selectedQualifications)
+            {
+                QualificationTrainingCour c = new QualificationTrainingCour { IdQualification = Convert.ToInt32(s), IdTrainingCours = Id };
+                db.QualificationTrainingCours.Add(c);
+            }
+            db.SaveChanges();
+            return "ok";
+        }
+
+        private void PopulateRelatedTagData(TrainingCours course)
+        {
+            var allQualifications = db.Qualifications;
+            var instructionTags = course.QualificationTrainingCours.Where(a => a.IdTrainingCours == course.Id).Select(c => c.IdQualification).ToList();
+            var viewModel = new List<RelatedQualifications>();
+            foreach (var qualification in allQualifications)
+            {
+                viewModel.Add(new RelatedQualifications
+                {
+                    QualificationID = qualification.Id,
+                    Title = qualification.Title,
+                    Assigned = instructionTags.Contains(qualification.Id)
+                });
+            }
+            ViewBag.Qualifications = viewModel;
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -67,7 +67,7 @@ namespace TrainingCentersCRM.Controllers
             article.TrainingCenterId = this.trainingCenter.Id;
             db.Articles.Add(article);
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = article.Type });
+            return RedirectToAction("Index", new { id = (int)article.Type });
         }
 
         // GET: Articles/Edit/5

@@ -2,6 +2,10 @@ html {
     font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
 
+article {
+    text-align: justify;
+}
+
 .dropdown-content {
     margin-top: 60px;
 }
@@ -147,4 +151,8 @@ a.btn.center {
 
 .hide {
     display: none;
+}
+.qualifications-list-tc{
+    padding-left: 30px;
+    list-style-type: disc;
 }

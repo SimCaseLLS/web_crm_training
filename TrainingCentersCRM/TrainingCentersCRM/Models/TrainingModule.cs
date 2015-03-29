@@ -32,11 +32,9 @@ using System;
         [Display(Name = "Количество академических часов")]
         public int? Hours { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Список тем")]
         public int? Topics { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
         [Display(Name = "Учебный центр")]
         public int? IdTrainingCenter { get; set; }
 
