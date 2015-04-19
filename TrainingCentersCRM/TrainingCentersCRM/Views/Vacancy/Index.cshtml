@@ -11,7 +11,7 @@
     if (tcHHId == '' || tcHHId == 'empty')
         url = "https://api.hh.ru/vacancies?specialization=1&salary=30000&only_with_salary=true";
     else
-        url = "https://api.hh.ru/vacancies?specialization=1&salary=30000&only_with_salary=true&area="+ tcHHId;
+        url = "https://api.hh.ru/vacancies?specialization=1&salary=30000&only_with_salary=true&area=" + tcHHId;
     $.getJSON(url).done(function (msg) {
         var items = msg.items;
         for (var i = 0; i < items.length; i++) {
@@ -31,50 +31,38 @@
     })
 </script>
 <p>
-    @Html.ActionLink("Создать вакансию", "Create")
+    @Html.ActionLink("Добавить вакансию", "Create", null, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
 </p>
 @if (Model.Count() > 0)
 {
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Organization)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Wages)
-            </th>
-            <th></th>
-        </tr>
+    <text>
+        <h3>Вакансии учебного центра</h3>
+    </text>
+    foreach (var item in Model)
+    {
+        <div class="card-panel">
+            <h5>
+                @Html.DisplayFor(modelItem => item.Description)
+            </h5>
+            <p>
+                @Html.DisplayFor(modelItem => item.Organization)
+            </p>
+            <p>
+                Заработная плата: @Html.DisplayFor(modelItem => item.Wages)
+            </p>
+            <p>
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+            </p>
+        </div>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Organization)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Wages)
-                </td>
-                <td>
-                    @Html.ActionLink("Подробнее", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Править", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>
 }
 <h3>Вакансии HeadHunter</h3>
 <div id="jobs"></div>
 <div id="template" style="display: none;">
-    <div class="col s6 job">
+    <div class=" card-panel col s6 job">
         <h5 class="title"> My job </h5>
         <div><span class="ligth-text"> Компания: </span> <span class="company">Dsf</span> </div>
         <div class="salary-wrap"><span class="ligth-text"> Заработная плата: </span> от <span class="salary">1000000</span> </div>

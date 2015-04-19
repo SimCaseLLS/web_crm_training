@@ -11,20 +11,22 @@
     {
         foreach (var c in Model.Courses)
         {
-            <h4>@c.Name</h4>
-            <h5>@c.ShortName</h5>
-            <p>
-                @if (c.Description.Length > 500)
-                {
-                    @c.Description.Substring(0, 500)
-                    <span>...</span>
-                }
-                else
-                {
-                    @c.Description
-                }
-            </p>
-            <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]course/view.php?id=2" target="_blank" title="Перейти на портал дистанционного образования">Подробнее...</a>
+            <div class="card-panel">
+                <h4>@c.Name</h4>
+                <h5>@c.ShortName</h5>
+                <p>
+                    @if (c.Description.Length > 500)
+                    {
+                        @c.Description.Substring(0, 500)
+                        <span>...</span>
+                    }
+                    else
+                    {
+                        @c.Description
+                    }
+                </p>
+                <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]course/view.php?id=2" target="_blank" title="Перейти на портал дистанционного образования">Подробнее...</a>
+            </div>
         }
     }
 

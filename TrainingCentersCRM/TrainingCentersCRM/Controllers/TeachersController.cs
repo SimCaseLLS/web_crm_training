@@ -51,13 +51,22 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Email,Description,Phone")] Teacher teacher)
+        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Email,Description,Phone")] Teacher teacher, HttpPostedFileBase uploadImage)
         {
             var tcUrl = RouteData.Values["tc"];
             var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
 
             if (ModelState.IsValid)
             {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                // установка массива байтов
+                teacher.Image = imageData;
+
                 db.Users.Add(teacher);
                 db.SaveChanges();
                 var teach = db.Teachers.SingleOrDefault(a => a.Email == teacher.Email);
@@ -68,6 +77,12 @@ namespace TrainingCentersCRM.Controllers
             }
 
             return View(teacher);
+        }
+
+        public ActionResult Image(int id)
+        {
+            byte[] imageData = db.Teachers.SingleOrDefault(a => a.Id == id).Image;
+            return File(imageData, "image/jpeg");
         }
 
         // GET: /Teacher/Edit/5
@@ -92,16 +107,19 @@ namespace TrainingCentersCRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Email,Description,Phone")] Teacher teacher, HttpPostedFileBase uploadImage)
         {
-            if (ModelState.IsValid && uploadImage != null)
+            if (ModelState.IsValid)
             {
-                byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                if (uploadImage != null)
                 {
-                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    }
+                    // установка массива байтов
+                    teacher.Image = imageData;
                 }
-                // установка массива байтов
-                teacher.Image = imageData;
 
                 db.Entry(teacher).State = EntityState.Modified;
                 db.SaveChanges();

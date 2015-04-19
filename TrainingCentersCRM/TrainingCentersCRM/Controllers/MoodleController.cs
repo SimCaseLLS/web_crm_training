@@ -49,6 +49,16 @@ namespace TrainingCentersCRM.Controllers
             return View(cat);
         }
 
+        public ActionResult CourseTeachers(int courseid)
+        {
+            return View();
+        }
+
+        public ActionResult CenterTeachers(int centerid)
+        { 
+            return View();
+        }
+
         public ActionResult Category(MoodleCategory cat)
         {
             ViewBag.MoodleAddress = ConfigurationManager.AppSettings["MoodleBaseAddress"];

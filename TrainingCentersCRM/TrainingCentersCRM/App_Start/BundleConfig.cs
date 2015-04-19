@@ -20,10 +20,10 @@ namespace TrainingCentersCRM
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Scripts/materialize.js"));
+                      "~/Content/js/materialize.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/materialize.css",
+                      "~/Content/css/materialize.css",
                       "~/Content/header.css",
                       "~/Content/footer.css",
                       "~/Content/main.css",

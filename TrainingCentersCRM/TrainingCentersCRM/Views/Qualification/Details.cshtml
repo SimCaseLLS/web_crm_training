@@ -33,7 +33,21 @@
             @Html.DisplayFor(model => model.HeadHunterName)
             
             <div class="headhunter">
-                @Html.HeadHunterWidget(Model.HeadHunterKeys, Model.HeadHunterId, TCHelper.GetCurrentTc().HHCityId)
+                @{
+                    string hhkeys = "";
+                    List<string> ids = new List<string>();
+                    foreach (var key in Model.QualificationTrainingCours)
+                    {
+                        hhkeys += key.Qualification.HeadHunterKeys + ",";
+                        if (key.Qualification != null && key.Qualification.HeadHunterId != null)
+                        {
+                            ids.Add(key.Qualification.HeadHunterId.ToString());
+                        }
+                    }
+                }
+
+
+                @Html.HeadHunterWidget(Model.HeadHunterKeys,ids.ToArray(), TCHelper.GetCurrentTc().HHCityId)
                 <style>
                     div.headhunter > div, div.headhunter > div:hover {
                         max-width: 300px !important;/* стили для блока */

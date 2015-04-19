@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Учебныe центры";
 }
-@Html.ActionLink("Добавить", "Create")
+@Html.ActionLink("Добавить", "Create", null, new { @class = "waves-effect waves-light btn right" })
 
-<table class="table">
+<table class="table striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Addres)
@@ -21,9 +21,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Organization)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Logo)
@@ -52,18 +49,15 @@
             @Html.DisplayFor(modelItem => item.Organization)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Logo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Url)
         </td>
         <td>
-            @Html.ActionLink("Править", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Подробнее", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
         </td>
     </tr>
 }

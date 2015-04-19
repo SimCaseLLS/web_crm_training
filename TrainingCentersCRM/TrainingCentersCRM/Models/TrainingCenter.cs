@@ -34,7 +34,6 @@ using System;
         [Display(Name = "Организация")]
         public string Organization { get; set; }
 
-        [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
         [Display(Name = "Общее описание центра")]
         public string Description { get; set; }
 

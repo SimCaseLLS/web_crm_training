@@ -1,0 +1,27 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.Advertize>
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('.slider').slider({ full_width: true });
+        });
+</script>
+
+<div class="row">
+    <div class="slider">
+        <ul class="slides">
+        @foreach (var item in Model) {
+
+            <li>
+                <img src="/empty/Advertizes/Image/@item.Id" /> <!-- random image -->
+                <div class="caption center-align">
+                    <h3>@item.Name</h3>
+                    <h5 class="light grey-text text-lighten-3">@Html.Raw(item.Description)</h5>
+                </div>
+            </li>
+        }
+        </ul>
+    </div>
+</div>
+

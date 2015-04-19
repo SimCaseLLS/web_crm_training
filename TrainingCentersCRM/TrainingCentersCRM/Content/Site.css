@@ -10,6 +10,7 @@
 
 .dropdown-content {
     height: auto !important; 
+    z-index: 1000;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -46,3 +47,4 @@ input[type="checkbox"].input-validation-error {
 .form-horizontal {
     margin-left: 20px;
 }
+

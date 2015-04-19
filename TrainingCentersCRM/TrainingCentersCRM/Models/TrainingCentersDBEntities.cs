@@ -40,6 +40,7 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Feedback> Feedback { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Advertize> Advs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -204,6 +205,8 @@ namespace TrainingCentersCRM.Models
             modelBuilder.Entity<Vacancy>()
                 .HasMany(e => e.Qualifications);
             modelBuilder.Entity<Article>();
+            
+            modelBuilder.Entity<Advertize>().HasKey(e => e.Id);
 
             modelBuilder.Entity<AspNetUser>()
                 .HasKey(e => e.UserId);

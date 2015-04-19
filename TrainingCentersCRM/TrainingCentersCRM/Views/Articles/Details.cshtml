@@ -5,6 +5,9 @@
 }
 
 <h2>@Model.Title</h2>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id },  new { @class = "waves-effect waves-light btn right" })
+</p>
 
 <div>
     <label>Опубликовано: @Model.PublishDate</label>
@@ -15,6 +18,3 @@
         @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
     </p>
 </div>
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id })
-</p>

@@ -6,14 +6,14 @@ namespace TrainingCentersCRM.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class AddForeignKeyToAspNetUser : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
+    public sealed partial class imagetype_and_enabled_adv : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddForeignKeyToAspNetUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(imagetype_and_enabled_adv));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501211144383_AddForeignKeyToAspNetUser"; }
+            get { return "201504181407243_imagetype_and_enabled_adv"; }
         }
         
         string IMigrationMetadata.Source

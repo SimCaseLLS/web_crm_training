@@ -21,7 +21,7 @@ namespace TrainingCentersCRM
             routes.MapRoute(
                 name: "Default",
                 url: "{tc}/{controller}/{action}/{id}",
-                defaults: new { tc = "empty", controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { tc = "empty", controller = "Home", action = "About", id = UrlParameter.Optional }
                 //url: "{controller}/{action}/{id}",
                 //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 

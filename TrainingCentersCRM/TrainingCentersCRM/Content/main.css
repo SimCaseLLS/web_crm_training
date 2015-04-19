@@ -6,6 +6,14 @@ article {
     text-align: justify;
 }
 
+    article h2 {
+        text-align: left;
+    }
+
+    .teachers h5 {
+        text-align: left;
+    }
+
 .dropdown-content {
     margin-top: 60px;
 }
@@ -152,7 +160,10 @@ a.btn.center {
 .hide {
     display: none;
 }
-.qualifications-list-tc{
+
+.qualifications-list-tc {
     padding-left: 30px;
     list-style-type: disc;
 }
+
+.dropdown-button { overflow: visible;}

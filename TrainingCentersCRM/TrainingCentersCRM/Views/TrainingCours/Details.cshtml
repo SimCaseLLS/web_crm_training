@@ -6,7 +6,6 @@
 }
 <link rel="stylesheet" href="/Content/module.css">
 <article class="container">
-    @*<a href="@Url.Action("Index", "TrainingCours")">Вернуться к выбору курса</a> <br /><br />*@
     <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })">Редактировать учебный курс</a>
     <div class="row">
         <h2 class="col s9">@Html.DisplayFor(model => model.Title)</h2>
@@ -14,7 +13,7 @@
     </div>
     <article class="pay teachers row">
         <p class="text col s9">
-           @Html.DisplayFor(model => model.ShortDescription)
+            @Html.DisplayFor(model => model.ShortDescription)
         </p>
         <div class="col s3 notes notes-grey">
             Рекомендуемый уровень знаний:
@@ -108,8 +107,8 @@
             }
             reloadQualificationsTC();
         </script>
-    @*</article>
-    <article class="pay row">*@
+        @*</article>
+            <article class="pay row">*@
         <h4 class="text col s9">Стоимость курса</h4>
         <div class="text col s9 row">
             <div class="pay-label col s6">для физических лиц</div>
@@ -125,13 +124,16 @@
 
     @helper TeacherList(IEnumerable<TrainingCentersCRM.Models.Teacher> teacher)
 {
-    <div class="col s9">
+    <div class="col s12">
         @foreach (TrainingCentersCRM.Models.Teacher t in teacher)
         {
-            <div class="col s4 m4">
-                @Html.Raw("<img style='width:80px; height:60px;' src=\"data:image/jpeg;base64,"
+            <div class="col s4">
+                @if (t.Image != null)
+                {
+                    @Html.Raw("<img src=\"data:image/jpeg;base64,"
                                 + Convert.ToBase64String(t.Image) + "\" />")
-                <li>@t.LastName @t.FirstName @t.Patronymic</li>
+                }
+                <h5>@t.LastName @t.FirstName @t.Patronymic</h5>
                 <p>@t.Description</p>
             </div>
         }
@@ -139,7 +141,11 @@
 }
 
     <article class="teachers row">
-        <h4 class="col s12">Преподователи</h4>
+        <h4>
+            Преподаватели
+            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelatedTeachers(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+        </h4>
+        <div id="dropDownRelatedTeachers" style="display: none"></div>
         @TeacherList(ViewBag.trainingCourseTeacher)
     </article>
     <article class="row">
@@ -149,18 +155,22 @@
 
         </h4>
         <div class="col s10 offset-s1">
-            @foreach (var module in Model.CourseModules)
-            { 
-                <h5><a href="">@module.TrainingModule.Title</a>
-                    <a class="waves-effect waves-light" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-create center"></i></a>
-                    <a class="waves-effect waves-light" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-clear center"></i></a>
-                </h5>
-                <p>@module.TrainingModule.ShortDescription</p><br>
+            @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
+            {
+                <div>
+                    <h5>
+                        <a href="">@module.TrainingModule.Title</a>
+                        <a class="waves-effect waves-light" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-create center"></i></a>
+                        <a class="waves-effect waves-light" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-clear center"></i></a>
+                    </h5>
+                    <p>@module.TrainingModule.ShortDescription</p>
+                </div>
             }
         </div>
     </article>
     <article class="teachers row">
-        <h4 class="col s12">Рекомендуемые курсы
+        <h4 class="col s12">
+            Рекомендуемые курсы
             <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
         </h4>
         <div id="dropDownRelated" style="display: none">
@@ -172,13 +182,17 @@
                     type: 'get',
                     success: function (data) {
                         var res = "<form method='post' name='formRelated' id='formRelated'>";
+                        var courseId = 0;
                         $.map(data, function(c){
+                            courseId++;
+                            res += "<p>";
                             if (c.Checked)
-                                res += "<input type='checkbox' checked='checked' name='checkedRelated' id='checkedRelated' value='" + c.Id + "' /><label>" + c.Title + "</label><br />";
+                                res += "<input type='checkbox'  class='filled-in' checked='checked' name='checkedRelated' id='checkedRelated" + courseId + "' value='" + c.Id + "' /><label for='checkedRelated" + courseId + "' class='control-label'>" + c.Title + "</label>";
                             else
-                                res += "<input type='checkbox' name='checkedRelated' id='checkedRelated' value='" + c.Id + "' /><label>" + c.Title + "</label><br />";
+                                res += "<input type='checkbox' class='filled-in' name='checkedRelated' id='checkedRelated" + courseId + "' value='" + c.Id + "' /><label for='checkedRelated" + courseId + "' class='control-label'>" + c.Title + "</label>";
+                            res += "</p>";
                         });
-                        res += "<button id='chooseRelButton' class'button waves-effect waves-light btn'>Добавить</button>";
+                        res += "<button id='chooseRelButton' class='btn waves-effect waves-light'>Добавить</button><br /><hr />";
                         res += "</form>";
                         $("#dropDownRelated").html(res);
                         $("#dropDownRelated").toggle();
@@ -200,11 +214,52 @@
                     }
                 });
             }
+            showRelatedTeachers = function() {
+                $.ajax({
+                    url: '/empty/TrainingCours/GetAllTeachers/@Model.Id',
+                    type: 'get',
+                    success: function (data) {
+                        var res = "<form method='post' name='formRelatedTeachers' id='formRelatedTeachers'>";
+                        var teacherId = 0;
+                        $.map(data, function(c){
+                            teacherId++;
+                            res += "<p>";
+                            if (c.Checked)
+                                res += "<input type='checkbox' checked='checked' name='checkedRelatedTeacher' id='checkedRelatedTeacher" + teacherId + "' class='filled-in'  value='" + c.Id + "' /><label for='checkedRelatedTeacher" + teacherId + "' class='control-label'>" + c.Title + "</label>";
+                            else
+                                res += "<input type='checkbox' name='checkedRelatedTeacher' id='checkedRelatedTeacher" + teacherId + "' class='filled-in' value='" + c.Id + "' /><label for='checkedRelatedTeacher" + teacherId + "' class='control-label'>" + c.Title + "</label>";
+                            res += "</p>";
+                        });
+                        res += "<button id='chooseRelTeacherButton' class='btn waves-effect waves-light'>Сохранить</button><br /><hr />";
+                        res += "</form>";
+                        $("#dropDownRelatedTeachers").html(res);
+                        $("#dropDownRelatedTeachers").toggle();
+                        $("#chooseRelTeacherButton").click(function(event){
+                            event.preventDefault();
+                            chooseRelatedTeacher();
+                        });
+                    }
+                });
+                return false;
+            }
+            chooseRelatedTeacher = function(id) {
+                $.ajax({
+                    url: '/empty/TrainingCours/AddRelatedTeacher/@Model.Id',
+                    type: 'post',
+                    data: $("#formRelatedTeachers").serialize(),
+                    success: function(data) {
+                        location.reload();
+                    }
+                });
+            }
         </script>
+        @{
+            int j = 1;
+        }
         @foreach (var item in Model.RelatedCourses)
         {
             <div class="col s4 m4">
-            <img src="http://ww2.hdnux.com/photos/23/53/04/5157149/3/628x471.jpg" alt="">
+                <img src="https://placeimg.com/628/471/tech/@(j++)" alt="">
                 <h5>@item.TrainingCours1.Title</h5>
                 <p>
                     @if (item.TrainingCours1.ShortDescription.Length > 300)
@@ -218,7 +273,7 @@
                     }
                 </p>
                 <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.TrainingCours.Id">Подробнее</a>
-        </div>
+            </div>
         }
     </article>
 </article>

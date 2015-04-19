@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<TrainingCentersCRM.Models.Menu>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Редактирование пунктов меню";
 }
 <link rel="stylesheet" href="/Content/module.css">
 
 <h2>Редактор меню</h2>
 
-<p>
-    @Html.ActionLink("Создать пункт меню", "Create")
-</p>
-<table class="table">
+<div>
+    @Html.ActionLink("Создать пункт меню", "Create", null, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+</div>
+<br />
+<table class="table striped">
     <tr>
         <th>
 
@@ -68,9 +69,9 @@
             @Html.DisplayFor(modelItem => item.Ord_Id)
         </td>
         <td>
-            @Html.ActionLink("Править", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Подробнее", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" }) 
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" }) 
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
         </td>
     </tr>
 }

@@ -18,8 +18,13 @@ namespace TrainingCentersCRM.Controllers
         // GET: /TrainingCours/
         public ActionResult Index()
         {
+            TrainingCours[] res;
+            if (trainingCenter.Url == "empty")
+                res = db.TrainingCourses.ToArray();
+            else
+                res = db.TrainingCourses.Where(a => a.TrainingCenterCourses.Where(b => b.IdTrainingCenter == trainingCenter.Id).Select(c => c.IdTrainingCourse).Contains(a.Id)).ToArray();
             ViewBag.Key = this.trainingCenter.Url;
-            return View(db.TrainingCourses.ToList());
+            return View(res);
         }
 
         public JsonResult GetAll(int? id)
@@ -31,6 +36,18 @@ namespace TrainingCentersCRM.Controllers
                 Checked = db.RelatedCourses.Where(b => b.IdTrainingCourse == id && b.IdTrainingCourseRelated == a.Id).Count() > 0 ? true : false
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
+        public JsonResult GetAllTeachers(int? id)
+        {
+            var teachers = db.Teachers.OrderBy(o => o.LastName).ToList();
+            var res = teachers.Select(a => new
+            {
+                Id = a.Id,
+                Title = a.LastName + " " + a.FirstName + " " + a.Patronymic,
+                Checked = db.TrainingCourseTeachers.Where(b => b.IdTrainingCourse == id && b.IdTeacher == a.Id).Count() > 0 ? true : false
+            });
+            return Json(res, JsonRequestBehavior.AllowGet);
+            
+        }
 
         [HttpPost]
         public string AddRelated(int? id, string[] checkedRelated)
@@ -40,9 +57,22 @@ namespace TrainingCentersCRM.Controllers
                 foreach (var s in checkedRelated)
                 {
                     int si = Convert.ToInt32(s);
-                    if (db.RelatedCourses.Where(a => a.IdTrainingCourse == si && a.IdTrainingCourseRelated == id).Count() > 0)
-                        return "ok";
+                    //if (db.RelatedCourses.Where(a => a.IdTrainingCourse == si && a.IdTrainingCourseRelated == id).Count() > 0)
+                    //    continue;
                     db.RelatedCourses.Add(new RelatedCours { IdTrainingCourse = id, IdTrainingCourseRelated = si });
+                }
+            db.SaveChanges();
+            return "ok";
+        }
+        [HttpPost]
+        public string AddRelatedTeacher(int? id, string[] checkedRelatedTeacher)
+        {
+            db.TrainingCourseTeachers.RemoveRange(db.TrainingCourseTeachers.Where(a => a.IdTrainingCourse == id));
+            if (checkedRelatedTeacher != null)
+                foreach (var s in checkedRelatedTeacher)
+                {
+                    int si = Convert.ToInt32(s);
+                    db.TrainingCourseTeachers.Add(new TrainingCourseTeacher { IdTrainingCourse = id, IdTeacher = si });
                 }
             db.SaveChanges();
             return "ok";
@@ -86,6 +116,8 @@ namespace TrainingCentersCRM.Controllers
             {
                 trainingcours.IdTraningCenter = trainingCenter.Id;
                 db.TrainingCourses.Add(trainingcours);
+                db.SaveChanges();
+                db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCenter = trainingCenter.Id, IdTrainingCourse = trainingcours.Id});
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

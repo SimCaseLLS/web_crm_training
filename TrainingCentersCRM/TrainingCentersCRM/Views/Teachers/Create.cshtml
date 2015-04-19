@@ -4,15 +4,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Создание данных о преподавателе</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Teachers", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Teacher</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -63,10 +62,15 @@
                 @Html.ValidationMessageFor(model => model.Phone)
             </div>
         </div>
+        <div class="editor-label">Файл изображения</div>
+        <div class="editor-field">
+            <input type="file" name="uploadImage" />
+        </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Добавить" class="btn btn-default" />
             </div>
         </div>
     </div>

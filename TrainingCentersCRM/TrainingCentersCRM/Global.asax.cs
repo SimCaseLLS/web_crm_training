@@ -35,7 +35,7 @@ namespace TrainingCentersCRM
             else
             {
                 //We don`t have an AJAX request, redirect to an error page
-                Response.Redirect("/Error404.htm");
+                //Response.Redirect("/Error404.htm");
             }
             //We clear the error
             //Server.ClearError();

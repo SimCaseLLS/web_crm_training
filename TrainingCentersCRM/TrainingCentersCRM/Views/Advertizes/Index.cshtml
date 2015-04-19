@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.Advertize>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+    @Html.ActionLink("Добавить", "Create", null, new { @class = "waves-effect waves-light btn right" })
+</p>
+<table class="table striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @(item.Enabled ? "Да" : "Нет")
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+        </td>
+    </tr>
+}
+
+</table>
