@@ -77,7 +77,14 @@ namespace TrainingCentersCRM.Controllers
             db.SaveChanges();
             return "ok";
         }
-
+        
+        [HttpPost]
+        public string AddTime([Bind(Include = "IdTrainingCourse,IdTrainingCenter,Description,DateStart,DateEnd")]ScheduleTtrainingCours stc)
+        {
+            db.ScheduleTtrainingCourses.Add(stc);
+            db.SaveChanges();
+            return "ok";
+        }
         // GET: /TrainingCours/Details/5
         public ActionResult Details(int? id)
         {
@@ -92,6 +99,7 @@ namespace TrainingCentersCRM.Controllers
             TrainingCours trainingcours = db.TrainingCourses.Find(id);
             trainingcours.QualificationTrainingCours = new List<QualificationTrainingCour>();
             PopulateRelatedTagData(trainingcours);
+            ViewBag.Dates = db.ScheduleTtrainingCourses.Where(a => a.IdTrainingCourse == id && a.DateEnd > DateTime.Now).Include(b => b.TrainingCenter);
             if (trainingcours == null)
             {
                 return HttpNotFound();
@@ -110,6 +118,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)
@@ -145,6 +154,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)

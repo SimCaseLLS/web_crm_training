@@ -6,7 +6,6 @@
 
 <h4>Создать новый учебный курс</h4>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -25,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ShortDescription, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShortDescription)
+                @Html.TextAreaFor(model => model.ShortDescription)
                 @Html.ValidationMessageFor(model => model.ShortDescription)
             </div>
         </div>

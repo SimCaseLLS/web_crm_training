@@ -1,10 +1,33 @@
 ﻿@model TrainingCentersCRM.Models.TrainingCours
 @using TrainingCentersCRM.Infrastructure;
+@using TrainingCentersCRM.Models;
 
 @{
     ViewBag.Title = "Учебный курс " + @Model.Title;
 }
+
 <link rel="stylesheet" href="/Content/module.css">
+<script type="text/javascript">
+    var courseId = '@Model.Id';
+    $(document).ready(function () {
+        reloadQualificationsTC(courseId);
+        $("#submitQualifTC").click(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/empty/TrainingCours/SetQualifications',
+                type: 'post',
+                data: $("#qualificationTCForm").serialize(),
+                success: function (data) {
+                    $("#qualificationTCFormDiv").toggle();
+                    reloadQualificationsTC(courseId);
+                }
+            });
+        });
+    });
+</script>
+
+@Scripts.Render("~/bundles/coursedetails")
+
 <article class="container">
     <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })">Редактировать учебный курс</a>
     <div class="row">
@@ -13,14 +36,48 @@
     </div>
     <article class="pay teachers row">
         <p class="text col s9">
-            @Html.DisplayFor(model => model.ShortDescription)
+            @Html.Raw(Model.ShortDescription)
         </p>
-        <div class="col s3 notes notes-grey">
-            Рекомендуемый уровень знаний:
-            @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br />
-            Обязательный уровень знаний: <br />
-            @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br />
-            Сложность: @Html.DisplayFor(model => model.LevelOfDifficulty) /10
+        <div class="col s3 notes notes-grey left-align">
+            <div class="left-align">
+                <b>Ближайшие даты занятий</b>
+                <a class="waves-effect waves-light" href="#" title="Добавить" onclick="javascript: showAddCourseTime(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+                @foreach (ScheduleTtrainingCours date in ViewBag.Dates)
+                {
+                    <br />
+                    @date.TrainingCenter.Organization
+                    <text>:</text>
+                    @(((DateTime)date.DateStart).ToString("dd.MM.yyyy"))
+                    <text>-</text>
+                    @(((DateTime)date.DateEnd).ToString("dd.MM.yyyy"))
+                    <a href="/empty/ScheduleTtrainingCours/Edit/@date.Id" title="Редактировать" class="mdi-image-edit"></a>
+                    <a href="/empty/ScheduleTtrainingCours/Delete/@date.Id" title="Удалить" class="mdi-content-remove-circle"></a>
+                    @*@Html.ActionLink(" ", "Edit", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+                    @Html.ActionLink(" ", "Delete", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })*@
+
+                }
+                <div id="addCourseTimeContainer" style="display: none">
+                    <form method="post" id="AddTimeForm" action="/empty/TrainingCours/AddTime/">
+                        <label>Описание</label>
+                        <textarea name="Description" id="Description"></textarea>
+                        <label>Начало</label>
+                        <input type="date" class="datepicker" name="DateStart" id="DateStart" />
+                        <label>Окончание</label>
+                        <input type="date" class="datepicker" name="DateEnd" id="DateEnd" />
+                        <input type="hidden" name="IdTrainingCourse" id="IdTrainingCourse" value="@Model.Id" />
+                        <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@(TCHelper.GetCurrentTc().Id)" />
+                        <button name="AddCourseDateButton" id="AddCourseDateButton" class="btn">Добавить</button>
+                    </form>
+                </div>
+            </div>
+            <br />
+            <div class="left-align">
+                <b class="center">Рекомендуемый уровень знаний:</b><br />
+                @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br />
+                <b>Обязательный уровень знаний:</b> <br />
+                @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br />
+                <b>Сложность:</b> @Html.DisplayFor(model => model.LevelOfDifficulty) /10
+            </div>
         </div>
         <div class="col s3 right">
             <br /><br />
@@ -75,38 +132,6 @@
         </div>
 
         <div class="text col s5" id="qualificationList"></div>
-        <script type="text/javascript">
-            $("#submitQualifTC").click(function(event) {
-                event.preventDefault();
-                $.ajax({
-                    url: '/empty/TrainingCours/SetQualifications',
-                    type: 'post',
-                    data: $( "#qualificationTCForm" ).serialize(),
-                    success: function(data){
-                        $("#qualificationTCFormDiv").toggle();
-                        reloadQualificationsTC();
-                    }
-                });
-            });
-            clickQualifLink = function() {
-                $("#qualificationTCFormDiv").toggle();
-                return 0;
-            }
-            reloadQualificationsTC = function () {
-                $.ajax({
-                    url: '/empty/TrainingCours/Qualifications/' + @Model.Id,
-                    success: function (data) {
-                        var res = "| ";
-                        $.map(data, function (item) {
-                            res += item + " | ";
-                        });
-                        $("#qualificationList").html(res);
-                        $("#qualificationTCFormDiv").hide();
-                    }
-                });
-            }
-            reloadQualificationsTC();
-        </script>
         @*</article>
             <article class="pay row">*@
         <h4 class="text col s9">Стоимость курса</h4>
@@ -130,11 +155,10 @@
             <div class="col s4">
                 @if (t.Image != null)
                 {
-                    @Html.Raw("<img src=\"data:image/jpeg;base64,"
-                                + Convert.ToBase64String(t.Image) + "\" />")
+                    @Html.Raw("<img src='/empty/Teachers/Image/" + t.Id + "'/>")
                 }
-                <h5>@t.LastName @t.FirstName @t.Patronymic</h5>
-                <p>@t.Description</p>
+                <span class="card-title small grey-text text-darken-4">@t.LastName @t.FirstName @t.Patronymic. </span>
+                <span class="small">@t.Description</span>
             </div>
         }
     </div>
@@ -143,7 +167,7 @@
     <article class="teachers row">
         <h4>
             Преподаватели
-            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelatedTeachers(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
         </h4>
         <div id="dropDownRelatedTeachers" style="display: none"></div>
         @TeacherList(ViewBag.trainingCourseTeacher)
@@ -171,88 +195,10 @@
     <article class="teachers row">
         <h4 class="col s12">
             Рекомендуемые курсы
-            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
         </h4>
         <div id="dropDownRelated" style="display: none">
         </div>
-        <script type="text/javascript">
-            showRelated = function() {
-                $.ajax({
-                    url: '/empty/TrainingCours/GetAll/@Model.Id',
-                    type: 'get',
-                    success: function (data) {
-                        var res = "<form method='post' name='formRelated' id='formRelated'>";
-                        var courseId = 0;
-                        $.map(data, function(c){
-                            courseId++;
-                            res += "<p>";
-                            if (c.Checked)
-                                res += "<input type='checkbox'  class='filled-in' checked='checked' name='checkedRelated' id='checkedRelated" + courseId + "' value='" + c.Id + "' /><label for='checkedRelated" + courseId + "' class='control-label'>" + c.Title + "</label>";
-                            else
-                                res += "<input type='checkbox' class='filled-in' name='checkedRelated' id='checkedRelated" + courseId + "' value='" + c.Id + "' /><label for='checkedRelated" + courseId + "' class='control-label'>" + c.Title + "</label>";
-                            res += "</p>";
-                        });
-                        res += "<button id='chooseRelButton' class='btn waves-effect waves-light'>Добавить</button><br /><hr />";
-                        res += "</form>";
-                        $("#dropDownRelated").html(res);
-                        $("#dropDownRelated").toggle();
-                        $("#chooseRelButton").click(function(event){
-                            event.preventDefault();
-                            chooseRelated();
-                        });
-                    }
-                });
-                return false;
-            }
-            chooseRelated = function(id) {
-                $.ajax({
-                    url: '/empty/TrainingCours/AddRelated/@Model.Id',
-                    type: 'post',
-                    data: $("#formRelated").serialize(),
-                    success: function(data) {
-                        location.reload();
-                    }
-                });
-            }
-            showRelatedTeachers = function() {
-                $.ajax({
-                    url: '/empty/TrainingCours/GetAllTeachers/@Model.Id',
-                    type: 'get',
-                    success: function (data) {
-                        var res = "<form method='post' name='formRelatedTeachers' id='formRelatedTeachers'>";
-                        var teacherId = 0;
-                        $.map(data, function(c){
-                            teacherId++;
-                            res += "<p>";
-                            if (c.Checked)
-                                res += "<input type='checkbox' checked='checked' name='checkedRelatedTeacher' id='checkedRelatedTeacher" + teacherId + "' class='filled-in'  value='" + c.Id + "' /><label for='checkedRelatedTeacher" + teacherId + "' class='control-label'>" + c.Title + "</label>";
-                            else
-                                res += "<input type='checkbox' name='checkedRelatedTeacher' id='checkedRelatedTeacher" + teacherId + "' class='filled-in' value='" + c.Id + "' /><label for='checkedRelatedTeacher" + teacherId + "' class='control-label'>" + c.Title + "</label>";
-                            res += "</p>";
-                        });
-                        res += "<button id='chooseRelTeacherButton' class='btn waves-effect waves-light'>Сохранить</button><br /><hr />";
-                        res += "</form>";
-                        $("#dropDownRelatedTeachers").html(res);
-                        $("#dropDownRelatedTeachers").toggle();
-                        $("#chooseRelTeacherButton").click(function(event){
-                            event.preventDefault();
-                            chooseRelatedTeacher();
-                        });
-                    }
-                });
-                return false;
-            }
-            chooseRelatedTeacher = function(id) {
-                $.ajax({
-                    url: '/empty/TrainingCours/AddRelatedTeacher/@Model.Id',
-                    type: 'post',
-                    data: $("#formRelatedTeachers").serialize(),
-                    success: function(data) {
-                        location.reload();
-                    }
-                });
-            }
-        </script>
         @{
             int j = 1;
         }

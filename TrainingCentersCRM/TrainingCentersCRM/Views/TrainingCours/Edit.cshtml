@@ -6,11 +6,10 @@
 
 <h2>Редактирование учебного курса</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
@@ -27,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ShortDescription, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShortDescription)
+                @Html.TextAreaFor(model => model.ShortDescription)
                 @Html.ValidationMessageFor(model => model.ShortDescription)
             </div>
         </div>
@@ -98,12 +97,12 @@
         @Html.HiddenFor(model => model.IdTraningCenter)
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.IdObject, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdObject)
-                @Html.ValidationMessageFor(model => model.IdObject)
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.IdObject, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IdObject)
+                    @Html.ValidationMessageFor(model => model.IdObject)
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

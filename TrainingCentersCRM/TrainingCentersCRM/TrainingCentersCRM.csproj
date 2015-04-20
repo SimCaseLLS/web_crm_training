@@ -694,6 +694,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ButtonClickHandlers.js" />
     <Content Include="Scripts\ckeditor\styles.js" />
+    <Content Include="Scripts\CourseDetails.js" />
     <Content Include="Scripts\createTree.js" />
     <Content Include="Scripts\HeadHunterSelects.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

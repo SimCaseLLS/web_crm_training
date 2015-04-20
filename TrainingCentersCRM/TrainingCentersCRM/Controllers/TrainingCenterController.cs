@@ -29,6 +29,40 @@ namespace TrainingCentersCRM.Controllers
             //    return View("Index", "TrainingCenterLayout", db.TrainingCenters.ToList());
         }
 
+        [HttpPost]
+        public string AddRelatedCourse(int? id, string[] checkedRelatedCourse)
+        {
+            if (id == null)
+                return "error";
+            if (checkedRelatedCourse != null)
+            {
+                db.TrainingCenterCourses.RemoveRange(db.TrainingCenterCourses.Where(a => a.IdTrainingCenter == id));
+                foreach (var s in checkedRelatedCourse)
+                {
+                    int si = Convert.ToInt32(s);
+                    db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCourse = si, IdTrainingCenter = id });
+                }
+                db.SaveChanges();
+            }
+            return "ok";
+        }
+
+        public JsonResult GetAllLinkedCourses(int? id)
+        {
+            var teachers = db.TrainingCourses.ToList();
+            var res = teachers.Select(a => new
+            {
+                Id = a.Id,
+                Title = a.Title,
+                Checked = db.TrainingCenterCourses.Where(b => b.IdTrainingCourse == a.Id && b.IdTrainingCenter == id).Count() > 0 ? true : false
+            });
+            return Json(res, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+
         // GET: /TrainingCenter/Details/5
         public ActionResult Details(int? id)
         {

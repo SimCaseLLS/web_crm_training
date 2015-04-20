@@ -79,6 +79,7 @@ namespace TrainingCentersCRM.Controllers
             return View(teacher);
         }
 
+        [OutputCache(Duration=3000, VaryByParam="id")]
         public ActionResult Image(int id)
         {
             byte[] imageData = db.Teachers.SingleOrDefault(a => a.Id == id).Image;

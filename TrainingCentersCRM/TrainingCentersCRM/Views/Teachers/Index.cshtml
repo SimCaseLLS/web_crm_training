@@ -7,27 +7,32 @@
 
 <h2>Преподаватели учебного центра</h2>
 
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
-<article class="container">
-    <article class="teachers row">
-        <div class="col s12">
-            @foreach (TrainingCentersCRM.Models.Teacher t in Model)
-            {
-                <div class="col s4">
-                    @if (t.Image != null)
-                    {
-                        @Html.Raw("<img src=\"data:image/jpeg;base64,"
-                                + Convert.ToBase64String(t.Image) + "\" />")
-                    }
-                    <h5>@t.LastName @t.FirstName @t.Patronymic</h5>
-                    <p>@t.Description</p>
-                    @Html.ActionLink("Править", "Edit", new { id = t.Id }) |
-                    @Html.ActionLink("Подробнее", "Details", new { id = t.Id }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = t.Id })
+<div class="content">
+    <div class="row">
+        @Html.ActionLink("Добавить", "Create", null, new { @class = "waves-effect waves-light btn right" })
+    </div>
+    <div class="row">
+        @foreach (TrainingCentersCRM.Models.Teacher t in Model)
+        {
+            <div class="col s12 m6 l6">
+                <div class="card large">
+                    <div class="card-image">
+                        @if (t.Image != null)
+                        {
+                            @Html.Raw("<img src='/empty/Teachers/Image/" + t.Id + "'/>")
+                        }
+                        <span class="card-title">@t.LastName @t.FirstName @t.Patronymic</span>
+                    </div>
+                    <div class="card-content">
+                        @t.Description
+                    </div>
+                    <div class="card-action">
+                        @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+                        @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
+                        @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+                    </div>
                 </div>
-            }
-        </div>
-    </article>
-</article>
+            </div>
+        }
+    </div>
+</div>
