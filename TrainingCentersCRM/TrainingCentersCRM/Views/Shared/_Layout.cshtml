@@ -8,66 +8,24 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <header style="z-index:10000">
-
-        <div class="row">
-            <div class="col logo s2">
-                <a href="/"><img src="/img/tempus.jpg" class="responsive-img" alt=""></a>
-            </div>
-            <div class="col s6">
-                <h5>Портал сети центров обучения в области ИКТ</h5>
-                <p>
-                    Учебные курсы, основанные на европейской рамке квалификаций<br />
-                    Профессиональное ИКТ-образование для РФ и Казахстана
-                </p>
-            </div>
-        </div>
-        <nav>
-            <div class="nav-wrapper">
+    <div class="wrap-body">
+        <header class="clear-fix">
+            <div class="logo"><a href="">Tempus <br />Pictet</a></div>
+            <nav class="clear-fix">
                 @MyHelpers.Menu()
                 @Html.Partial("_LoginPartial")
-
-            </div>
-        </nav>
-    </header>
-    <script type="text/javascript">
-        //for choose training center
-        $(document).ready(function () {
-            $(".dropdown-button").dropdown({ hover: false });
-
-        });
-    </script>
-    <div class="container" id="main-container">
-        @RenderBody()
+            </nav>
+        </header>
+        <div>
+            @RenderBody()
+        </div>
     </div>
-    <footer class="page-footer">
-        <div class="row">
-            <div class="col offset-l1 l4 s12">
-                <h5 class="white-text">Контакты</h5>
-                <p class="white-text text-lighten-4">
-                    email: contact@simcase.ru<br>
-                    тел: +7 (905) 348 3966<br>
-                    site http://pictet.simcase.ru
-                </p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <ul>
-                    <li><a class="white-text" href="#!">О проекте</a></li>
-                    <li><a class="white-text" href="#!">Новости</a></li>
-                    <li><a class="white-text" href="#!">Статистика</a></li>
-                    <li><a class="white-text" href="#!">Сертификация</a></li>
-                    <ul>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © 2015 PICTET TEMPUS
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
 
-    @Scripts.Render("~/bundles/materialize")
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/foundation")
+    <script type="text/javascript">
+        $(document).foundation();
+    </script>
     @Scripts.Render("~/bundles/jstree")
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>

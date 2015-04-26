@@ -2,16 +2,35 @@
     ViewBag.Title = "About";
 }
 
-
-<div class="row">
-    <div class="col s12">
-        @Html.Action("Slider", "Advertizes", null)
-    </div>
+@Html.Action("Slider", "Advertizes", null)
+<section class="landing-plus clear-fix">
+    <div class="plus-item book">Избранные материалы для обучения</div>
+    <div class="plus-item people">Квавлифицированные специалисты</div>
+    <div class="plus-item modern">Современный подход к образованию</div>
+</section>
+<div class="clear-fix">
+    <article class="about-us">
+        <h2>О проекте</h2>
+        <p>
+            Совместный европейский проект EQF-based professional ICT training for Russia and Kazakhstan <br />
+            Сроки проекта:  1 декабря 2013 года – 30 ноября 2016 года. <br /> <br />
+            Координатор: университетский колледж Гента (Бельгия)<br />  <br />
+            В рамках проекта планируется стажировка российских и казахских студентов, прошедших обучение в учебных центрах компьютерного образования, в европейских ИКТ-компаниях
+        </p>
+    </article>
+    <aside class="landing-feature">
+        <section class="feature-item"><span class="number">20</span><span class="content">преподавателей</span></section>
+        <section class="feature-item"><span class="number">15</span><span class="content">учебных заведений</span></section>
+        <section class="feature-item"><span class="number">205</span><span class="content">качественных курсов</span></section>
+    </aside>
 </div>
 
+@Html.Action("Index", "Articles", new { id = 1, partial = true })
+
+<!--
 <div class="row">
     <div class="col s8">
-        @Html.Action("Index", "Articles", new { id = 1, partial = true })
+        
     </div>
     <div class="col s4">
         <h3 class="center">Учебные центры</h3>
@@ -22,4 +41,4 @@
         @Html.Action("ShortList", "TrainingCours")
     </div>
 </div>
-
+-->

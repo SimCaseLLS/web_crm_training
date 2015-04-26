@@ -1,11 +1,8 @@
-footer.page-footer {
-  margin-top: 60px;
-  background-color: #167FAF; }
-  footer.page-footer a {
-    border-bottom: 1px solid #fff; }
-
-footer.page-footer .footer-copyright {
-  text-align: center;
-  background-color: rgba(0,0,0,0.25); }
-  footer.page-footer .footer-copyright .container {
-    margin-top: 0px;  }
+footer {
+  position: relative;
+  top: -200px;
+  height: 200px; 
+}
+footer {
+    background-color: #232c3b;
+}

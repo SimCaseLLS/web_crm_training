@@ -12,25 +12,35 @@ else
 {
     <h3 class="center">Статьи</h3>
 }
-
-<article>
     <p>
-        @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type }, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+        @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type }, new { @class = "" })
     </p>
-
-    @foreach (var item in Model)
-    {
-        <div class="card-panel">
-            <h4>
-                @Html.DisplayFor(modelItem => item.Title)
-            </h4>
-            <label>Опубликовано: @(Html.DisplayFor(modelItem => item.PublishDate))</label>
-            <p>@(Html.Raw(item.Annotation))</p>
-            <div>
-                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
-                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
-            </div>
-        </div>
-    }
-</article>
+<div class="clear-fix news">
+    <ul class="small-block-grid-4">
+        @{int i = 1;}
+        @foreach (var item in Model)
+        {
+            <li class="news-block">
+                <span class="date">@(Html.DisplayFor(modelItem => item.PublishDate))</span>
+                <img src="https://placeimg.com/300/300/tech/@(i++)" runat="server" />
+                <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
+                <p>@(Html.Raw(item.Annotation))</p>
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button", @title = "Редактировать" })
+                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button", @title = "Подробнее" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button", @title = "Удалить" })
+            </li>
+            @*<div class="card-panel">
+                    <h4>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </h4>
+                    <label>Опубликовано: </label>
+                    <p>@(Html.Raw(item.Annotation))</p>
+                    <div>
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+                        @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+                    </div>
+                </div>*@
+        }
+    </ul>
+</div>

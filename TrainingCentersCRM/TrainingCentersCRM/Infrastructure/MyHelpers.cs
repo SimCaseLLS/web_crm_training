@@ -27,12 +27,14 @@ namespace TrainingCentersCRM
             {
                 // если этот пункт меню - dropdown
                 ul.MergeAttribute("id", curDropdownId);
-                ul.MergeAttribute("class", "dropdown-content");
+                ul.MergeAttribute("class", "f-dropdown");
+                ul.MergeAttribute("data-dropdown-content", "");
+                ul.MergeAttribute("aria-hidden", "true");
             }
             else
             {
                 // если этот пункт меню - не dropdown
-                ul.MergeAttribute("class", "left hide-on-med-and-down");
+                ul.MergeAttribute("class", "clear-fix");
             }
 
             IQueryable<TrainingCentersCRM.Models.Menu> SaM;
@@ -45,13 +47,7 @@ namespace TrainingCentersCRM
                 }
             }
             else
-            {
-                if (Parent_ID == 0)
-                {
-                    ul.InnerHtml += "<li><a href='/" + IdTrainingCenter + "/Home/Index'>" + db.TrainingCenters.SingleOrDefault(a => a.Url == IdTrainingCenter).Organization + "</a></li>";
-                }
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other" || p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
-            }
 
             var first_sam = SaM.Where(p => p.Parent_Id == Parent_ID).OrderBy(a => a.Ord_Id);
             foreach (var samp in first_sam)
@@ -105,11 +101,13 @@ namespace TrainingCentersCRM
         static string TcDropdown(Models.TrainingCentersDBEntities db)
         {
             var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty"));
-            var html = "<li><a class='dropdown-button' href='#!' data-activates='TrainingCentersDropdown' data-constrainwidth='false'>Учебные центры<i class='mdi-navigation-arrow-drop-down right'></i></a></li>";
-
+            var html = "<li><a href='#!' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Учебные центры<i class='fa fa-caret-down'></i></a></li>";
             TagBuilder ul = new TagBuilder("ul");
+            // data-dropdown-content aria-hidden="true" tabindex="-1">
             ul.MergeAttribute("id", "TrainingCentersDropdown");
-            ul.MergeAttribute("class", "dropdown-content");
+            ul.MergeAttribute("class", "f-dropdown");
+            ul.MergeAttribute("data-dropdown-content", "");
+            ul.MergeAttribute("data-options", "is_hover:true; hover_timeout:5000");
             foreach (var tc in tcs)
             {
                 ul.InnerHtml += "<li><a href='/" + tc.Url + "'>" + tc.Organization + "</a></li>";
