@@ -27,6 +27,11 @@ namespace TrainingCentersCRM.Controllers
             return View(res);
         }
 
+        public ActionResult ShortList()
+        {
+            return View(db.TrainingCourses);
+        }
+
         public JsonResult GetAll(int? id)
         {
             return Json(db.TrainingCourses.Select(a => new

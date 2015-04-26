@@ -16,7 +16,7 @@ namespace TrainingCentersCRM.Controllers
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: Articles
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, bool? partial)
         {
             IQueryable<Article> result = db.Articles;
             if (TCHelper.GetCurrentTCName() != "" && TCHelper.GetCurrentTCName() != "empty")
@@ -29,6 +29,8 @@ namespace TrainingCentersCRM.Controllers
                 ViewBag.Type = id;
                 result = result.Where(a => a.Type == (Article.ArticleType)id);
             }
+            if (partial != null && partial == true)
+                return PartialView(result);
             return View(result);
         }
 

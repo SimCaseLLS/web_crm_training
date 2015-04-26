@@ -167,3 +167,8 @@ a.btn.center {
 }
 
 .dropdown-button { overflow: visible;}
+
+article img {
+    float: left;
+    margin: 10px;
+}

@@ -53,7 +53,7 @@
                     <a href="/empty/ScheduleTtrainingCours/Edit/@date.Id" title="Редактировать" class="mdi-image-edit"></a>
                     <a href="/empty/ScheduleTtrainingCours/Delete/@date.Id" title="Удалить" class="mdi-content-remove-circle"></a>
                     @*@Html.ActionLink(" ", "Edit", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-                    @Html.ActionLink(" ", "Delete", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })*@
+                        @Html.ActionLink(" ", "Delete", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })*@
 
                 }
                 <div id="addCourseTimeContainer" style="display: none">
@@ -145,81 +145,82 @@
             <div class="pay-col col s3">@Html.DisplayFor(model => model.PriceForOrganizations) рублей <br> за полный курс</div>
             <div class="pay-col col s3">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
         </div>
-    </article>
-
-    @helper TeacherList(IEnumerable<TrainingCentersCRM.Models.Teacher> teacher)
-{
-    <div class="col s12">
-        @foreach (TrainingCentersCRM.Models.Teacher t in teacher)
-        {
-            <div class="col s4">
-                @if (t.Image != null)
-                {
-                    @Html.Raw("<img src='/empty/Teachers/Image/" + t.Id + "'/>")
-                }
-                <span class="card-title small grey-text text-darken-4">@t.LastName @t.FirstName @t.Patronymic. </span>
-                <span class="small">@t.Description</span>
-            </div>
-        }
-    </div>
-}
-
-    <article class="teachers row">
-        <h4>
-            Преподаватели
-            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
-        </h4>
-        <div id="dropDownRelatedTeachers" style="display: none"></div>
-        @TeacherList(ViewBag.trainingCourseTeacher)
-    </article>
-    <article class="row">
-        <h4>
-            Учебная программа
-            <a class="waves-effect waves-light" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="tiny mdi-content-add-box center"></i></a>
-
-        </h4>
-        <div class="col s10 offset-s1">
-            @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
+        <div class="col s9">
+            <h4>
+                Преподаватели
+                <a class="waves-effect waves-light" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+            </h4>
+            <div id="dropDownRelatedTeachers" style="display: none"></div>
+        </div>
+        <div class="col s9">
+            @foreach (TrainingCentersCRM.Models.Teacher t in ViewBag.trainingCourseTeacher)
             {
-                <div>
-                    <h5>
-                        <a href="">@module.TrainingModule.Title</a>
-                        <a class="waves-effect waves-light" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-create center"></i></a>
-                        <a class="waves-effect waves-light" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-clear center"></i></a>
-                    </h5>
-                    <p>@module.TrainingModule.ShortDescription</p>
+                <div class="col s4">
+                    <div class="card-image">
+                        @if (t.Image != null)
+                        {
+                            <img src='/empty/Teachers/Image/@t.Id' />
+                        }
+                        <span class="card-title">@t.LastName @t.FirstName @t.Patronymic. </span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            @t.Description
+                        </p>
+                    </div>
                 </div>
             }
         </div>
-    </article>
-    <article class="teachers row">
-        <h4 class="col s12">
-            Рекомендуемые курсы
-            <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
-        </h4>
-        <div id="dropDownRelated" style="display: none">
-        </div>
-        @{
-            int j = 1;
-        }
-        @foreach (var item in Model.RelatedCourses)
-        {
-            <div class="col s4 m4">
-                <img src="https://placeimg.com/628/471/tech/@(j++)" alt="">
-                <h5>@item.TrainingCours1.Title</h5>
-                <p>
-                    @if (item.TrainingCours1.ShortDescription.Length > 300)
-                    {
-                        @Html.Raw(item.TrainingCours1.ShortDescription.Substring(0, 300))
-                        <text>...</text>
-                    }
-                    else
-                    {
-                        @Html.Raw(item.TrainingCours1.ShortDescription)
-                    }
-                </p>
-                <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.TrainingCours.Id">Подробнее</a>
+
+        <div class="col s9">
+            <h4>
+                Учебная программа
+                <a class="waves-effect waves-light" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="tiny mdi-content-add-box center"></i></a>
+
+            </h4>
+            <div class="col s8 offset-s1">
+                @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
+                {
+                    <div>
+                        <h5>
+                            <a href="">@module.TrainingModule.Title</a>
+                            <a class="waves-effect waves-light" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-create center"></i></a>
+                            <a class="waves-effect waves-light" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-clear center"></i></a>
+                        </h5>
+                        <p>@module.TrainingModule.ShortDescription</p>
+                    </div>
+                }
             </div>
-        }
+        </div>
+        <div class="col s12">
+            <h4>
+                Рекомендуемые курсы
+                <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
+            </h4>
+            <div id="dropDownRelated" style="display: none">
+            </div>
+            @{
+                int j = 1;
+            }
+            @foreach (var item in Model.RelatedCourses)
+            {
+                <div class="col s4 m4">
+                    <img src="https://placeimg.com/628/471/tech/@(j++)" alt="">
+                    <h5>@item.TrainingCours1.Title</h5>
+                    <p>
+                        @if (item.TrainingCours1.ShortDescription.Length > 300)
+                        {
+                            @Html.Raw(item.TrainingCours1.ShortDescription.Substring(0, 300))
+                            <text>...</text>
+                        }
+                        else
+                        {
+                            @Html.Raw(item.TrainingCours1.ShortDescription)
+                        }
+                    </p>
+                    <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.TrainingCours.Id">Подробнее</a>
+                </div>
+            }
+        </div>
     </article>
 </article>

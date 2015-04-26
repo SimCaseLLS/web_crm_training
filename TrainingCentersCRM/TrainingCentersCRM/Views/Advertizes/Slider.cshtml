@@ -3,15 +3,15 @@
     Layout = null;
 }
 <script type="text/javascript">
-        $(document).ready(function () {
-            $('.slider').slider({ full_width: true });
-        });
+    $(document).ready(function () {
+        $('.slider').slider({ full_width: true });
+    });
 </script>
 
-<div class="row">
-    <div class="slider">
-        <ul class="slides">
-        @foreach (var item in Model) {
+<div class="slider">
+    <ul class="slides">
+        @foreach (var item in Model)
+        {
 
             <li>
                 <img src="/empty/Advertizes/Image/@item.Id" /> <!-- random image -->
@@ -21,7 +21,5 @@
                 </div>
             </li>
         }
-        </ul>
-    </div>
+    </ul>
 </div>
-

@@ -3,6 +3,23 @@
 }
 
 
-<div class="container">
-    @Html.Action("Slider", "Advertizes", null)
+<div class="row">
+    <div class="col s12">
+        @Html.Action("Slider", "Advertizes", null)
+    </div>
 </div>
+
+<div class="row">
+    <div class="col s8">
+        @Html.Action("Index", "Articles", new { id = 1, partial = true })
+    </div>
+    <div class="col s4">
+        <h3 class="center">Учебные центры</h3>
+        @Html.Action("ShortList", "TrainingCenter")
+    </div>
+    <div class="col s4">
+        <h3 class="center">Курсы</h3>
+        @Html.Action("ShortList", "TrainingCours")
+    </div>
+</div>
+

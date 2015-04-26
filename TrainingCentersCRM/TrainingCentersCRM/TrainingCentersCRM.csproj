@@ -273,6 +273,10 @@
     <Compile Include="Migrations\201504181407243_imagetype_and_enabled_adv.Designer.cs">
       <DependentUpon>201504181407243_imagetype_and_enabled_adv.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504201910409_ArticleAnnotationLength.cs" />
+    <Compile Include="Migrations\201504201910409_ArticleAnnotationLength.Designer.cs">
+      <DependentUpon>201504201910409_ArticleAnnotationLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
@@ -836,6 +840,8 @@
     <Content Include="Views\Advertizes\Edit.cshtml" />
     <Content Include="Views\Advertizes\Index.cshtml" />
     <Content Include="Views\Advertizes\Slider.cshtml" />
+    <Content Include="Views\TrainingCenter\ShortList.cshtml" />
+    <Content Include="Views\TrainingCours\ShortList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -902,6 +908,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504181407243_imagetype_and_enabled_adv.resx">
       <DependentUpon>201504181407243_imagetype_and_enabled_adv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504201910409_ArticleAnnotationLength.resx">
+      <DependentUpon>201504201910409_ArticleAnnotationLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.TrainingCenter>
+@{
+    Layout = null;
+}
+<ul class="collapsible collapsible-accordion">
+    @foreach (var item in Model)
+    {
+        <text>
+            <li>
+                <div class="collapsible-header">
+                    <i class="mdi-maps-place"></i>
+                    @Html.DisplayFor(modelItem => item.Organization)
+                </div>
+                <div class="collapsible-body justyfy" style="margin: 5px">
+                    @Html.DisplayFor(modelItem => item.Addres)
+                    @Html.DisplayFor(modelItem => item.Phone)
+                    @Html.DisplayFor(modelItem => item.Email)
+                    @Html.Raw(item.Description)
+                    @Html.DisplayFor(modelItem => item.Logo)
+                    @Html.DisplayFor(modelItem => item.HHCityId)
+                    @Html.DisplayFor(modelItem => item.Url)
+                </div>
+            <li>
+        </text>
+    }
+</ul>

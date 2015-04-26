@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.TrainingCours>
+
+@{
+    Layout = null;
+}
+
+<ul class="collapsible collapsible-accordion">
+    @foreach (var item in Model)
+    {
+        <text>
+            <li>
+                <div class="collapsible-header">
+                    <i class="mdi-image-filter-drama"></i>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </div>
+                <div class="collapsible-body justyfy" style="margin: 5px">
+                    @Html.DisplayFor(modelItem => item.ShortDescription)
+                </div>
+            <li>
+
+        </text>
+    }
+</ul>

@@ -19,6 +19,11 @@ namespace TrainingCentersCRM.Controllers
             return Json(tcs.ToList(), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ShortList()
+        {
+            return View(db.TrainingCenters.Where(a => a.Url != "empty"));
+        }
+
         // GET: /TrainingCenter/
         public ActionResult Index()
         {

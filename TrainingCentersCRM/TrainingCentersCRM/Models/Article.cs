@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace TrainingCentersCRM.Models
         public int Id { get; set; }
         public string Title { get; set; }
         [AllowHtml]
+        [StringLength(1000, ErrorMessage = "Аннотация должна быть не более 1000 символов")]
         public string Annotation { get; set; }
         [AllowHtml]
         public string Text { get; set; }

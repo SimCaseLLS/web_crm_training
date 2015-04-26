@@ -6,29 +6,31 @@
 
 @if (ViewBag.Type == 1)
 {
-    <h2>Новости</h2>
+    <h3 class="center">Новости</h3>
 }
 else
 {
-    <h2>Статьи</h2>
+    <h3 class="center">Статьи</h3>
 }
 
-<p>
-    @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type }, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
-</p>
+<article>
+    <p>
+        @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type }, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+    </p>
 
-@foreach (var item in Model)
-{
-    <div class="card-panel">
-        <h4>
-            @Html.DisplayFor(modelItem => item.Title)
-        </h4>
-        <label>Опубликовано: @(Html.DisplayFor(modelItem => item.PublishDate))</label>
-        <p>@(Html.Raw(HttpUtility.HtmlDecode(item.Annotation)))</p>
-        <div>
-            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
-            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+    @foreach (var item in Model)
+    {
+        <div class="card-panel">
+            <h4>
+                @Html.DisplayFor(modelItem => item.Title)
+            </h4>
+            <label>Опубликовано: @(Html.DisplayFor(modelItem => item.PublishDate))</label>
+            <p>@(Html.Raw(item.Annotation))</p>
+            <div>
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
+                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+            </div>
         </div>
-    </div>
-}
+    }
+</article>
