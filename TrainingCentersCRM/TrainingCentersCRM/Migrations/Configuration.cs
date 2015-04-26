@@ -16,6 +16,7 @@ using TrainingCentersCRM.Models;
 
         protected override void Seed(TrainingCentersCRM.Models.TrainingCentersDBEntities db)
         {
+<<<<<<< Updated upstream
             //db.TrainingCenters.AddOrUpdate(
             //    p => p.Url,
             //    new TrainingCenter { Url = "ulstu", Organization = "УлГТУ" },
@@ -28,6 +29,20 @@ using TrainingCentersCRM.Models;
             //        new Menu { Title = "Главная - О проекте", Link = "/Home/About", Parent_Id = 0, IdTrainingCenter = "empty",  Ord_Id = 1 }
             //    );
             //// Квалификации
+=======
+            db.TrainingCenters.AddOrUpdate(
+                p => p.Url,
+                new TrainingCenter { Url = "ulstu", Organization = "УлГТУ" },
+                new TrainingCenter { Url = "empty" }
+            );
+            db.Menu.AddOrUpdate(
+                p => new { p.Title, p.IdTrainingCenter},
+                    new Menu { Title = "Курсы", Link = "/TrainingCours/Index", Parent_Id = 0, IdTrainingCenter = "other", Ord_Id = 1 },
+                    new Menu { Title = "О проекте", Link = "/empty/Home/About", Parent_Id = 0, IdTrainingCenter = "other", NotBindInTrainingCenter = true, Ord_Id = 1 },
+                    new Menu { Title = "Главная - О проекте", Link = "/Home/About", Parent_Id = 0, IdTrainingCenter = "empty",  Ord_Id = 1 }
+                );
+            // Квалификации
+>>>>>>> Stashed changes
             db.Qualifications.AddOrUpdate(
                 p => p.Title,
                     new Qualification { Title = "Программирование", Description = "Квалификации, связанные с программированием", ParentId = 0, Id = 1 },
@@ -44,9 +59,15 @@ using TrainingCentersCRM.Models;
                     new Qualification { Title = "Java программист", Description = "Инженер на языке Java", HeadHunterId = "1.221", HeadHunterKeys = "Java", HeadHunterName = "Программирование, Разработка", ParentId = progId },
                     new Qualification { Title = "C# программист", Description = "Инженер на языке C#", HeadHunterId = "1.221", HeadHunterKeys = "C#", HeadHunterName = "Программирование, Разработка", ParentId = progId },
                     new Qualification { Title = "DBA", Description = "Архитектор баз данных", HeadHunterId = "1.221", HeadHunterKeys = "DBA,Базы данных", HeadHunterName = "Программирование, Разработка", ParentId = progId },
+<<<<<<< Updated upstream
 
                     new Qualification { Title = "Экономист", Description = "Может в экономику", HeadHunterId = "2.425", HeadHunterKeys = "", HeadHunterName = "Экономист", ParentId = econId },
 
+=======
+                  
+                    new Qualification { Title = "Экономист", Description = "Может в экономику", HeadHunterId = "2.425", HeadHunterKeys = "", HeadHunterName = "Экономист", ParentId = econId },
+
+>>>>>>> Stashed changes
                     new Qualification { Title = "Инженер-Схемотехник", Description = "Может в схемотехнику", HeadHunterId = "18.57", HeadHunterKeys = "Схемотехника", HeadHunterName = "Главный инженер", ParentId = engId }
                 );
 
