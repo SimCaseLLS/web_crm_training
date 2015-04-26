@@ -15,7 +15,8 @@ else
 
 <article>
     <p>
-        @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type }, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+        @Html.ActionLink("Добавить новость", "Create", new { type = 1 }, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+        @Html.ActionLink("Добавить статью", "Create", new { type = 2 }, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
     </p>
 
     @foreach (var item in Model)

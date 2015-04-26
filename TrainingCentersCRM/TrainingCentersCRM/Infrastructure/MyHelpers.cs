@@ -38,7 +38,7 @@ namespace TrainingCentersCRM
             IQueryable<TrainingCentersCRM.Models.Menu> SaM;
             if (IdTrainingCenter == "empty" || IdTrainingCenter == null)
             {
-                SaM = db.Menu.Where(p => p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
+                SaM = db.Menu.Where(p => p.IdTrainingCenter == "empty" || p.IdTrainingCenter == "other").OrderBy(a => a.Ord_Id);
                 if (Parent_ID == 0)
                 {
                     ul.InnerHtml += TcDropdown(db);
@@ -56,6 +56,9 @@ namespace TrainingCentersCRM
             var first_sam = SaM.Where(p => p.Parent_Id == Parent_ID).OrderBy(a => a.Ord_Id);
             foreach (var samp in first_sam)
             {
+                if (((IdTrainingCenter == null || IdTrainingCenter == "empty") && samp.IdTrainingCenter == "other" && samp.NotBindInTrainingCenter) ||
+                     (IdTrainingCenter != null && IdTrainingCenter != "empty" && samp.IdTrainingCenter == "empty" && !samp.NotBindInTrainingCenter))
+                    continue;
                 string str_temp = "";
                 TagBuilder li = new TagBuilder("li");
                 TagBuilder a = new TagBuilder("a");
@@ -70,7 +73,7 @@ namespace TrainingCentersCRM
                     str_temp = Rec_menu(samp.Id, db, IdTrainingCenter, newDropdownId);
                     a.InnerHtml += "<i class=\"mdi-navigation-arrow-drop-down right\"></i>";
                 }
-                if (samp.NotBindInTrainingCenter)
+                if (samp.NotBindInTrainingCenter && samp.IdTrainingCenter == "empty")
                 {
                     a.MergeAttribute("href", samp.Link);
                 }
@@ -112,7 +115,7 @@ namespace TrainingCentersCRM
             ul.MergeAttribute("class", "dropdown-content");
             foreach (var tc in tcs)
             {
-                ul.InnerHtml += "<li><a href='/" + tc.Url + "'>" + tc.Organization + "</a></li>";
+                ul.InnerHtml += "<li><a href='/" + tc.Url + "/Home/Index'>" + tc.Organization + "</a></li>";
             }
             html += ul.ToString();
             return html;
