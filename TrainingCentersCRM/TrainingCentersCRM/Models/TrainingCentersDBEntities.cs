@@ -118,6 +118,12 @@ namespace TrainingCentersCRM.Models
                 .HasForeignKey(e => e.IdTrainingCenter)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<TrainingCenter>()
+                .HasMany(e => e.Feedback)
+                .WithRequired(e => e.TrainingCenter)
+                .HasForeignKey(e => e.IdTrainingCenter)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<TrainingCours>()
                 .Property(e => e.PriceForOrganizations)
                 .HasPrecision(19, 4);
@@ -207,6 +213,7 @@ namespace TrainingCentersCRM.Models
             modelBuilder.Entity<Article>();
             
             modelBuilder.Entity<Advertize>().HasKey(e => e.Id);
+
 
             modelBuilder.Entity<AspNetUser>()
                 .HasKey(e => e.UserId);

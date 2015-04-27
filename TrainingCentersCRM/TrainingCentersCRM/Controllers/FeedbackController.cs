@@ -21,6 +21,15 @@ namespace TrainingCentersCRM.Controllers
             return View(db.Feedback.ToList());
         }
 
+        public ActionResult UserIndex()
+        {
+            if (trainingCenter == null || trainingCenter.Url == "empty")
+                ViewBag.Feedback = db.Feedback;
+            else
+                ViewBag.Feedback = db.Feedback.Where(a => a.IdTrainingCenter == this.trainingCenter.Id);
+            return View();
+        }
+
         // GET: /Feedback/Details/5
         public ActionResult Details(int? id)
         {
@@ -47,15 +56,15 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Incorrect CAPTCHA code!")]
-        public ActionResult Create([Bind(Include="Id,Name,Email,Message")] Feedback feedback)
+        [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Неправильный код с картинки!")]
+        public ActionResult Create([Bind(Include="Id,Name,Email,Message,IdTrainingCenter")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {
                 feedback.Date = DateTime.Now;
                 db.Feedback.Add(feedback);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UserIndex");
             }
 
             return View(feedback);

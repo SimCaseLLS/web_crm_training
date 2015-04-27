@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201504201910409_ArticleAnnotationLength.Designer.cs">
       <DependentUpon>201504201910409_ArticleAnnotationLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504270635524_feedbackTC.cs" />
+    <Compile Include="Migrations\201504270635524_feedbackTC.Designer.cs">
+      <DependentUpon>201504270635524_feedbackTC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
@@ -842,6 +846,8 @@
     <Content Include="Views\Advertizes\Slider.cshtml" />
     <Content Include="Views\TrainingCenter\ShortList.cshtml" />
     <Content Include="Views\TrainingCours\ShortList.cshtml" />
+    <Content Include="Views\TrainingCours\Calendar.cshtml" />
+    <Content Include="Views\Feedback\UserIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -911,6 +917,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504201910409_ArticleAnnotationLength.resx">
       <DependentUpon>201504201910409_ArticleAnnotationLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504270635524_feedbackTC.resx">
+      <DependentUpon>201504270635524_feedbackTC.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

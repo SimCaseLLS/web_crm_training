@@ -41,6 +41,17 @@ namespace TrainingCentersCRM.Controllers
                 Checked = db.RelatedCourses.Where(b => b.IdTrainingCourse == id && b.IdTrainingCourseRelated == a.Id).Count() > 0 ? true : false
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Calendar()
+        {
+            if (trainingCenter == null || trainingCenter.Url == "empty")
+                return View(db.ScheduleTtrainingCourses.Where(a => a.DateEnd >= DateTime.Today.Date));
+            else
+            {
+                var res = db.ScheduleTtrainingCourses.Where(a => a.IdTrainingCenter == this.trainingCenter.Id && a.DateEnd >= DateTime.Today.Date);
+                return View(res);
+            }
+        }
         public JsonResult GetAllTeachers(int? id)
         {
             var teachers = db.Teachers.OrderBy(o => o.LastName).ToList();

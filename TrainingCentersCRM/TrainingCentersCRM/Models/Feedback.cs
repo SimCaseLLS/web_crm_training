@@ -26,5 +26,9 @@ namespace TrainingCentersCRM.Models
 
         [Display(Name = "Дата")]   
         public DateTime Date { get; set; }
+
+        [Display(Name="Учебный центр")]
+        public TrainingCenter TrainingCenter { get; set; }
+        public int IdTrainingCenter { get; set; }
     }
 }

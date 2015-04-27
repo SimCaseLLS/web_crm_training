@@ -53,6 +53,8 @@ using System;
         public virtual ICollection<TrainingCenterCours> TrainingCenterCourses { get; set; }
 
         public virtual ICollection<TrainingCenterTeacher> TrainingCenterTeachers { get; set; }
+
+        public virtual ICollection<Feedback> Feedback { get; set; }
     }
 
 }
