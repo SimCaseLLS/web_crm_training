@@ -34,11 +34,14 @@ namespace TrainingCentersCRM.Controllers
 
         public JsonResult GetAll(int? id)
         {
-            return Json(db.TrainingCourses.Select(a => new
+            var relBuf = db.TrainingCenterCourses.Where(a => a.IdTrainingCenter == trainingCenter.Id && a.IdTrainingCourse == id);
+            var related = from a in db.RelatedCourses from b in relBuf where a.IdTrainingCourseRelated == b.Id select a.TrainingCours.TrainingCours;
+            var allowed = from a in db.TrainingCourses from b in db.TrainingCenterCourses where b.IdTrainingCenter == trainingCenter.Id && a.Id == b.IdTrainingCourse select a;
+            return Json(allowed.Select(a => new
             {
                 Id = a.Id,
                 Title = a.Title,
-                Checked = db.RelatedCourses.Where(b => b.IdTrainingCourse == id && b.IdTrainingCourseRelated == a.Id).Count() > 0 ? true : false
+                Checked = related.Where(b => b.Id == a.Id).Count() > 0
             }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
@@ -54,12 +57,12 @@ namespace TrainingCentersCRM.Controllers
         }
         public JsonResult GetAllTeachers(int? id)
         {
-            var teachers = db.Teachers.OrderBy(o => o.LastName).ToList();
+            var teachers = from a in db.TrainingCenterTeachers from b in db.Teachers where a.IdTrainingCenter == trainingCenter.Id && a.IdTeacher == b.Id select b;
             var res = teachers.Select(a => new
             {
                 Id = a.Id,
                 Title = a.LastName + " " + a.FirstName + " " + a.Patronymic,
-                Checked = db.TrainingCourseTeachers.Where(b => b.IdTrainingCourse == id && b.IdTeacher == a.Id).Count() > 0 ? true : false
+                Checked = db.TrainingCourseTeachers.Where(b => b.IdTrainingCourse == id && b.IdTeacher == a.Id && b.TrainingCours.IdTrainingCenter == trainingCenter.Id).Count() > 0 ? true : false
             });
             return Json(res, JsonRequestBehavior.AllowGet);
             
@@ -68,27 +71,48 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         public string AddRelated(int? id, string[] checkedRelated)
         {
-            db.RelatedCourses.RemoveRange(db.RelatedCourses.Where(a => a.IdTrainingCourse == id));
+            var related = from a in db.TrainingCenterCourses where a.IdTrainingCenter == trainingCenter.Id && a.IdTrainingCourse == id select a;
+            db.RelatedCourses.RemoveRange(from a in db.RelatedCourses from b in related where a.IdTrainingCourseRelated == b.Id select a);
+            var relCourse = db.TrainingCenterCourses.FirstOrDefault(e => e.IdTrainingCourse == id && e.IdTrainingCenter == trainingCenter.Id);
             if (checkedRelated != null)
                 foreach (var s in checkedRelated)
                 {
                     int si = Convert.ToInt32(s);
-                    //if (db.RelatedCourses.Where(a => a.IdTrainingCourse == si && a.IdTrainingCourseRelated == id).Count() > 0)
-                    //    continue;
-                    db.RelatedCourses.Add(new RelatedCours { IdTrainingCourse = id, IdTrainingCourseRelated = si });
+                    var trCourse = db.TrainingCenterCourses.FirstOrDefault(e => e.IdTrainingCourse == si && e.IdTrainingCenter == trainingCenter.Id);
+                    db.RelatedCourses.Add(new RelatedCourse 
+                    { 
+                        TrainingCours = trCourse,
+                        IdTrainingCourseRelated = relCourse.Id 
+                    });
                 }
             db.SaveChanges();
             return "ok";
         }
+
         [HttpPost]
         public string AddRelatedTeacher(int? id, string[] checkedRelatedTeacher)
         {
-            db.TrainingCourseTeachers.RemoveRange(db.TrainingCourseTeachers.Where(a => a.IdTrainingCourse == id));
+            var tcCourses = from a in db.TrainingCenterCourses where a.IdTrainingCourse == id && a.IdTrainingCenter == trainingCenter.Id select a;
+            var teachers = from a in db.TrainingCourseTeachers from b in tcCourses where a.IdTrainingCourse == b.IdTrainingCourse select a;
+            IEnumerable<TrainingCourseTeacher> toDelete = (from a in db.TrainingCourses 
+                        from b in db.TrainingCourseTeachers 
+                        from c in db.TrainingCenterCourses 
+                        where b.IdTrainingCourse == a.Id 
+                        && c.IdTrainingCourse == a.Id 
+                        && c.IdTrainingCenter == trainingCenter.Id 
+                        select b).AsEnumerable();
+            //    db.TrainingCourseTeachers.Where(a => a.TrainingCours.TrainingCours.Id == id && a.TrainingCours.IdTrainingCenter == trainingCenter.Id);
+            db.TrainingCourseTeachers.RemoveRange(teachers);
+            db.SaveChanges();
             if (checkedRelatedTeacher != null)
                 foreach (var s in checkedRelatedTeacher)
                 {
                     int si = Convert.ToInt32(s);
-                    db.TrainingCourseTeachers.Add(new TrainingCourseTeacher { IdTrainingCourse = id, IdTeacher = si });
+                    db.TrainingCourseTeachers.Add(new TrainingCourseTeacher 
+                    { 
+                        IdTrainingCourse = db.TrainingCenterCourses.Single(a => a.IdTrainingCenter == trainingCenter.Id && a.IdTrainingCourse == id).Id, 
+                        IdTeacher = si 
+                    });
                 }
             db.SaveChanges();
             return "ok";
@@ -106,7 +130,10 @@ namespace TrainingCentersCRM.Controllers
         {
             var tcUrl = RouteData.Values["tc"];
             var tc = db.TrainingCenters.SingleOrDefault(a => a.Url == tcUrl);
-            var trainingCourseTeacher = db.TrainingCourseTeachers.Where(a => a.IdTrainingCourse == id).Select(b => b.Teacher);
+
+            var buf = from a in db.TrainingCenterCourses where a.IdTrainingCourse == id && a.IdTrainingCenter == trainingCenter.Id select a;
+
+            var trainingCourseTeacher = from a in db.TrainingCourseTeachers from b in buf where a.IdTrainingCourse == b.Id select a.Teacher;
             ViewBag.trainingCourseTeacher = trainingCourseTeacher;
             if (id == null)
             {
@@ -114,6 +141,8 @@ namespace TrainingCentersCRM.Controllers
             }
             TrainingCours trainingcours = db.TrainingCourses.Find(id);
             trainingcours.QualificationTrainingCours = new List<QualificationTrainingCour>();
+            var related = db.TrainingCenterCourses.Where(a => a.IdTrainingCenter == trainingCenter.Id && a.IdTrainingCourse == id);
+            ViewBag.RelatedCourses = from a in db.RelatedCourses from b in related where a.IdTrainingCourseRelated == b.Id select a.TrainingCours.TrainingCours;
             PopulateRelatedTagData(trainingcours);
             ViewBag.Dates = db.ScheduleTtrainingCourses.Where(a => a.IdTrainingCourse == id && a.DateEnd > DateTime.Now).Include(b => b.TrainingCenter);
             if (trainingcours == null)
@@ -135,11 +164,10 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
+        public ActionResult Create([Bind(Include = "Id,Title,ShortDescription,Hourse,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)
             {
-                trainingcours.IdTraningCenter = trainingCenter.Id;
                 db.TrainingCourses.Add(trainingcours);
                 db.SaveChanges();
                 db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCenter = trainingCenter.Id, IdTrainingCourse = trainingcours.Id});

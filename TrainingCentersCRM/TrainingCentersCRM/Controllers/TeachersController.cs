@@ -110,6 +110,7 @@ namespace TrainingCentersCRM.Controllers
         {
             if (ModelState.IsValid)
             {
+                var old =  db.Teachers.Single(a => a.Id == teacher.Id);
                 if (uploadImage != null)
                 {
                     byte[] imageData = null;
@@ -119,10 +120,15 @@ namespace TrainingCentersCRM.Controllers
                         imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
                     }
                     // установка массива байтов
-                    teacher.Image = imageData;
+                    old.Image = imageData;
                 }
-
-                db.Entry(teacher).State = EntityState.Modified;
+                old.Description = teacher.Description;
+                old.Email = teacher.Email;
+                old.FirstName = teacher.FirstName;
+                old.LastName = teacher.LastName;
+                old.Patronymic = teacher.Patronymic;
+                old.Phone = teacher.Phone;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -24,7 +24,7 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<QualificationCertification> QualificationCertifications { get; set; }
         public virtual DbSet<Qualification> Qualifications { get; set; }
         public virtual DbSet<QualificationTrainingCour> QualificationTrainingCours { get; set; }
-        public virtual DbSet<RelatedCours> RelatedCourses { get; set; }
+        public virtual DbSet<RelatedCourse> RelatedCourses { get; set; }
         public virtual DbSet<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
@@ -99,7 +99,6 @@ namespace TrainingCentersCRM.Models
                 .WithOptional(e => e.Teacher)
                 .HasForeignKey(e => e.IdTeacher)
                 .WillCascadeOnDelete();
-
             modelBuilder.Entity<TrainingCenter>()
                 .HasMany(e => e.ScheduleTtrainingCourses)
                 .WithOptional(e => e.TrainingCenter)
@@ -146,6 +145,18 @@ namespace TrainingCentersCRM.Models
                 .HasForeignKey(e => e.IdTrainingCourse)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<TrainingCenterCours>()
+                .HasMany(e => e.RelatedCourses)
+                .WithOptional(e => e.RelatedTrainingCourse)
+                .HasForeignKey(e => e.IdTrainingCourseRelated)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<TrainingCenterCours>()
+                .HasMany(e => e.RelatedCourses)
+                .WithOptional(e => e.RelatedTrainingCourse)
+                .HasForeignKey(e => e.IdTrainingCourseRelated)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<TrainingCours>()
                 .HasMany(e => e.HoldCourses)
                 .WithOptional(e => e.TrainingCours)
@@ -159,17 +170,6 @@ namespace TrainingCentersCRM.Models
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<TrainingCours>()
-                .HasMany(e => e.RelatedCourses)
-                .WithOptional(e => e.TrainingCours)
-                .HasForeignKey(e => e.IdTrainingCourse)
-                .WillCascadeOnDelete();
-
-            modelBuilder.Entity<TrainingCours>()
-                .HasMany(e => e.RelatedCourses1)
-                .WithOptional(e => e.TrainingCours1)
-                .HasForeignKey(e => e.IdTrainingCourseRelated);
-
-            modelBuilder.Entity<TrainingCours>()
                 .HasMany(e => e.ScheduleTtrainingCourses)
                 .WithOptional(e => e.TrainingCours)
                 .HasForeignKey(e => e.IdTrainingCourse)
@@ -177,12 +177,6 @@ namespace TrainingCentersCRM.Models
 
             modelBuilder.Entity<TrainingCours>()
                 .HasMany(e => e.TrainingCenterCourses)
-                .WithOptional(e => e.TrainingCours)
-                .HasForeignKey(e => e.IdTrainingCourse)
-                .WillCascadeOnDelete();
-
-            modelBuilder.Entity<TrainingCours>()
-                .HasMany(e => e.TrainingCourseTeachers)
                 .WithOptional(e => e.TrainingCours)
                 .HasForeignKey(e => e.IdTrainingCourse)
                 .WillCascadeOnDelete();

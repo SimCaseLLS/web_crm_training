@@ -22,7 +22,7 @@ public partial class Menu
     [Display(Name = "Внешняя ссылка")]
     public bool NotBindInTrainingCenter { get; set; }
 
-    [Display(Name = "URL учебного центра")]
+    [Display(Name = "URL")]
     public string IdTrainingCenter { get; set; }
 
     [Display(Name = "Родительский Id")]

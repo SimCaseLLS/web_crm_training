@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NotBindInTrainingCenter)
+            @(item.NotBindInTrainingCenter ? "Да" : "Нет")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)

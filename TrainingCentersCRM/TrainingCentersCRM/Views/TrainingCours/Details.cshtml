@@ -202,25 +202,32 @@
             @{
                 int j = 1;
             }
-            @foreach (var item in Model.RelatedCourses)
+            @foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
             {
+                if (item == null) 
+                { 
+                    continue; 
+                }
                 <div class="col s4 m4">
                     <img src="https://placeimg.com/628/471/tech/@(j++)" alt="">
-                    <h5>@item.TrainingCours1.Title</h5>
+                    <h5>@item.Title</h5>
                     <p>
-                        @if (item.TrainingCours1.ShortDescription.Length > 300)
+                        @if (item.ShortDescription.Length > 300)
                         {
-                            @Html.Raw(item.TrainingCours1.ShortDescription.Substring(0, 300))
+                            @Html.Raw(item.ShortDescription.Substring(0, 300))
                             <text>...</text>
                         }
                         else
                         {
-                            @Html.Raw(item.TrainingCours1.ShortDescription)
+                            @Html.Raw(item.ShortDescription)
                         }
                     </p>
-                    <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.TrainingCours.Id">Подробнее</a>
+                    <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">Подробнее</a>
                 </div>
             }
         </div>
     </article>
 </article>
+<script type="text/javascript">
+    var curTCUrl = "@(TCHelper.GetCurrentTc().Url)";
+</script>

@@ -201,85 +201,9 @@
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\HeadHunterHelper.cs" />
     <Compile Include="Infrastructure\TCHelper.cs" />
-    <Compile Include="Migrations\201412150712039_Initial.cs" />
-    <Compile Include="Migrations\201412150712039_Initial.Designer.cs">
-      <DependentUpon>201412150712039_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201412170950188_AddSome.cs" />
-    <Compile Include="Migrations\201412170950188_AddSome.Designer.cs">
-      <DependentUpon>201412170950188_AddSome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.cs" />
-    <Compile Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.Designer.cs">
-      <DependentUpon>201412182219439_AddHeadHunterFieldsTOQualification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.cs" />
-    <Compile Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.Designer.cs">
-      <DependentUpon>201412190836452_AddHeadHunterKeysToQualification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501210907432_AddInheritanceFromUser.cs" />
-    <Compile Include="Migrations\201501210907432_AddInheritanceFromUser.Designer.cs">
-      <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.cs" />
-    <Compile Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.Designer.cs">
-      <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501281706059_AddFeedback.cs" />
-    <Compile Include="Migrations\201501281706059_AddFeedback.Designer.cs">
-      <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501281802565_ChangedFeedback.cs" />
-    <Compile Include="Migrations\201501281802565_ChangedFeedback.Designer.cs">
-      <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501282229324_fix.cs" />
-    <Compile Include="Migrations\201501282229324_fix.Designer.cs">
-      <DependentUpon>201501282229324_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503211602313_VacancyAndQualificationRelationCorrected.cs" />
-    <Compile Include="Migrations\201503211602313_VacancyAndQualificationRelationCorrected.Designer.cs">
-      <DependentUpon>201503211602313_VacancyAndQualificationRelationCorrected.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503250823359_AddArticleWithDb.cs" />
-    <Compile Include="Migrations\201503250823359_AddArticleWithDb.Designer.cs">
-      <DependentUpon>201503250823359_AddArticleWithDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503252139380_AddRelationArticleToTC.cs" />
-    <Compile Include="Migrations\201503252139380_AddRelationArticleToTC.Designer.cs">
-      <DependentUpon>201503252139380_AddRelationArticleToTC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503261200049_add_not_bind_in_tc.cs" />
-    <Compile Include="Migrations\201503261200049_add_not_bind_in_tc.Designer.cs">
-      <DependentUpon>201503261200049_add_not_bind_in_tc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503270910106_HHCityId_TrainingCenter.cs" />
-    <Compile Include="Migrations\201503270910106_HHCityId_TrainingCenter.Designer.cs">
-      <DependentUpon>201503270910106_HHCityId_TrainingCenter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503272201343_Something.cs" />
-    <Compile Include="Migrations\201503272201343_Something.Designer.cs">
-      <DependentUpon>201503272201343_Something.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503281123338_AddImageInTeacher.cs" />
-    <Compile Include="Migrations\201503281123338_AddImageInTeacher.Designer.cs">
-      <DependentUpon>201503281123338_AddImageInTeacher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504181339568_Adv.cs" />
-    <Compile Include="Migrations\201504181339568_Adv.Designer.cs">
-      <DependentUpon>201504181339568_Adv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504181407243_imagetype_and_enabled_adv.cs" />
-    <Compile Include="Migrations\201504181407243_imagetype_and_enabled_adv.Designer.cs">
-      <DependentUpon>201504181407243_imagetype_and_enabled_adv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201910409_ArticleAnnotationLength.cs" />
-    <Compile Include="Migrations\201504201910409_ArticleAnnotationLength.Designer.cs">
-      <DependentUpon>201504201910409_ArticleAnnotationLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504270635524_feedbackTC.cs" />
-    <Compile Include="Migrations\201504270635524_feedbackTC.Designer.cs">
-      <DependentUpon>201504270635524_feedbackTC.cs</DependentUpon>
+    <Compile Include="Migrations\201505040703382_Init.cs" />
+    <Compile Include="Migrations\201505040703382_Init.Designer.cs">
+      <DependentUpon>201505040703382_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -304,13 +228,15 @@
     <Compile Include="Models\Moodle\MoodleRequestManager.cs" />
     <Compile Include="Models\Moodle\MoodleRestResponse.cs" />
     <Compile Include="Models\Moodle\SingleResult.cs" />
+    <Compile Include="Models\RelatedCourse.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\ViewModels\HHSpecialization.cs" />
     <Compile Include="Models\Qualification.cs" />
     <Compile Include="Models\QualificationCertification.cs" />
     <Compile Include="Models\QualificationTrainingCour.cs" />
-    <Compile Include="Models\RelatedCours.cs" />
     <Compile Include="Models\ScheduleTtrainingCours.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -329,10 +255,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TrainingCentersDB.mdf" />
-    <Content Include="App_Data\TrainingCentersDB_log.ldf">
-      <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\courses.css" />
@@ -861,69 +783,13 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412150712039_Initial.resx">
-      <DependentUpon>201412150712039_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412170950188_AddSome.resx">
-      <DependentUpon>201412170950188_AddSome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412182219439_AddHeadHunterFieldsTOQualification.resx">
-      <DependentUpon>201412182219439_AddHeadHunterFieldsTOQualification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412190836452_AddHeadHunterKeysToQualification.resx">
-      <DependentUpon>201412190836452_AddHeadHunterKeysToQualification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501210907432_AddInheritanceFromUser.resx">
-      <DependentUpon>201501210907432_AddInheritanceFromUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501220935019_AddForeignKeyToAspNetUser.resx">
-      <DependentUpon>201501220935019_AddForeignKeyToAspNetUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501281706059_AddFeedback.resx">
-      <DependentUpon>201501281706059_AddFeedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501281802565_ChangedFeedback.resx">
-      <DependentUpon>201501281802565_ChangedFeedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501282229324_fix.resx">
-      <DependentUpon>201501282229324_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503211602313_VacancyAndQualificationRelationCorrected.resx">
-      <DependentUpon>201503211602313_VacancyAndQualificationRelationCorrected.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503250823359_AddArticleWithDb.resx">
-      <DependentUpon>201503250823359_AddArticleWithDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503252139380_AddRelationArticleToTC.resx">
-      <DependentUpon>201503252139380_AddRelationArticleToTC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503261200049_add_not_bind_in_tc.resx">
-      <DependentUpon>201503261200049_add_not_bind_in_tc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503270910106_HHCityId_TrainingCenter.resx">
-      <DependentUpon>201503270910106_HHCityId_TrainingCenter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503272201343_Something.resx">
-      <DependentUpon>201503272201343_Something.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503281123338_AddImageInTeacher.resx">
-      <DependentUpon>201503281123338_AddImageInTeacher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504181339568_Adv.resx">
-      <DependentUpon>201504181339568_Adv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504181407243_imagetype_and_enabled_adv.resx">
-      <DependentUpon>201504181407243_imagetype_and_enabled_adv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201910409_ArticleAnnotationLength.resx">
-      <DependentUpon>201504201910409_ArticleAnnotationLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504270635524_feedbackTC.resx">
-      <DependentUpon>201504270635524_feedbackTC.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\uploads\" />
+    <EmbeddedResource Include="Migrations\201505040703382_Init.resx">
+      <DependentUpon>201505040703382_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

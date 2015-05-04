@@ -24,13 +24,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NotBindInTrainingCenter, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NotBindInTrainingCenter)
-                @Html.ValidationMessageFor(model => model.NotBindInTrainingCenter)
-            </div>
-        </div>
+        <p>
+            <input type="checkbox" name="NotBindInTrainingCenter" id="NotBindInTrainingCenter" class="filled-in" checked="@Model.NotBindInTrainingCenter" />
+            @Html.LabelFor(model => model.NotBindInTrainingCenter, htmlAttributes: new { @class = "control-label col-md-2", @for = "NotBindInTrainingCenter" })
+            @Html.ValidationMessageFor(model => model.NotBindInTrainingCenter)
+        </p>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
@@ -74,7 +72,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Добавить" class="btn btn-default" />
             </div>
         </div>
     </div>

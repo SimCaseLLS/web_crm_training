@@ -15,11 +15,8 @@ using System;
             CourseModules = new HashSet<CourseModule>();
             HoldCourses = new HashSet<HoldCours>();
             QualificationTrainingCours = new HashSet<QualificationTrainingCour>();
-            RelatedCourses = new HashSet<RelatedCours>();
-            RelatedCourses1 = new HashSet<RelatedCours>();
             ScheduleTtrainingCourses = new HashSet<ScheduleTtrainingCours>();
             TrainingCenterCourses = new HashSet<TrainingCenterCours>();
-            TrainingCourseTeachers = new HashSet<TrainingCourseTeacher>();
         }
 
         public int Id { get; set; }
@@ -68,10 +65,6 @@ using System;
         [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
         public string MandatoryPreliminaryPreparation { get; set; }
 
-        [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
-        [Display(Name = "Учебный центр")]
-        public Nullable<int> IdTraningCenter { get; set; }
-
         public int? IdObject { get; set; }
 
         public virtual ICollection<CourseModule> CourseModules { get; set; }
@@ -80,15 +73,12 @@ using System;
 
         public virtual ICollection<QualificationTrainingCour> QualificationTrainingCours { get; set; }
 
-        public virtual ICollection<RelatedCours> RelatedCourses { get; set; }
-
-        public virtual ICollection<RelatedCours> RelatedCourses1 { get; set; }
+        //public virtual ICollection<RelatedCourse> RelatedCourses { get; set; }
+        //public virtual ICollection<RelatedCourse> RelatedCourses1 { get; set; }
 
         public virtual ICollection<ScheduleTtrainingCours> ScheduleTtrainingCourses { get; set; }
 
         public virtual ICollection<TrainingCenterCours> TrainingCenterCourses { get; set; }
-
-        public virtual ICollection<TrainingCourseTeacher> TrainingCourseTeachers { get; set; }
     }
 
 }

@@ -1,7 +1,7 @@
 ﻿
 showRelated = function (courseId) {
     $.ajax({
-        url: '/empty/TrainingCours/GetAll/' + courseId,
+        url: '/' + curTCUrl + '/TrainingCours/GetAll/' + courseId,
         type: 'get',
         success: function (data) {
             var res = "<form method='post' name='formRelated' id='formRelated'>";
@@ -10,7 +10,7 @@ showRelated = function (courseId) {
                 courseIdc++;
                 res += "<p>";
                 if (c.Checked)
-                    res += "<input type='checkbox'  class='filled-in' checked='checked' name='checkedRelated' id='checkedRelated" + courseId + "' value='" + c.Id + "' /><label for='checkedRelated" + courseIdc + "' class='control-label'>" + c.Title + "</label>";
+                    res += "<input type='checkbox'  class='filled-in' checked='checked' name='checkedRelated' id='checkedRelated" + courseIdc + "' value='" + c.Id + "' /><label for='checkedRelated" + courseIdc + "' class='control-label'>" + c.Title + "</label>";
                 else
                     res += "<input type='checkbox' class='filled-in' name='checkedRelated' id='checkedRelated" + courseIdc + "' value='" + c.Id + "' /><label for='checkedRelated" + courseIdc + "' class='control-label'>" + c.Title + "</label>";
                 res += "</p>";
@@ -30,7 +30,7 @@ showRelated = function (courseId) {
 
 chooseRelated = function (courseId) {
     $.ajax({
-        url: '/empty/TrainingCours/AddRelated/' + courseId,
+        url: '/' + curTCUrl + '/TrainingCours/AddRelated/' + courseId,
         type: 'post',
         data: $("#formRelated").serialize(),
         success: function(data) {
@@ -41,7 +41,7 @@ chooseRelated = function (courseId) {
 
 showRelatedTeachers = function (courseId) {
     $.ajax({
-        url: '/empty/TrainingCours/GetAllTeachers/' + courseId,
+        url: '/' + curTCUrl + '/TrainingCours/GetAllTeachers/' + courseId,
         type: 'get',
         success: function (data) {
             var res = "<form method='post' name='formRelatedTeachers' id='formRelatedTeachers'>";
@@ -69,7 +69,7 @@ showRelatedTeachers = function (courseId) {
 }
 chooseRelatedTeacher = function (courseId) {
     $.ajax({
-        url: '/empty/TrainingCours/AddRelatedTeacher/' + courseId,
+        url: '/' + curTCUrl + '/TrainingCours/AddRelatedTeacher/' + courseId,
         type: 'post',
         data: $("#formRelatedTeachers").serialize(),
         success: function(data) {

@@ -17,6 +17,6 @@ using System;
 
         public virtual Teacher Teacher { get; set; }
 
-        public virtual TrainingCours TrainingCours { get; set; }
+        public virtual TrainingCenterCours TrainingCours { get; set; }
     }
 }

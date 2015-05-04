@@ -18,10 +18,11 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult Index()
         {
             var tcUrl = RouteData.Values["tc"];
-            if(tcUrl.Equals("empty"))
-                return View(db.Menu.Where(a => a.IdTrainingCenter == "empty"));
-            else
-                return View(db.Menu.Where(a => (a.IdTrainingCenter == "other") || (a.IdTrainingCenter == tcUrl)));
+            return View(db.Menu);
+            //if(tcUrl.Equals("empty"))
+            //    return View(db.Menu.Where(a => a.IdTrainingCenter == "empty"));
+            //else
+            //    return View(db.Menu.Where(a => (a.IdTrainingCenter == "other") || (a.IdTrainingCenter == tcUrl)));
 
         }
 
@@ -51,10 +52,12 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,NotBindInTrainingCenter,Link,IdTrainingCenter,Parent_Id,Ord_Id")] Menu menu)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,Link,IdTrainingCenter,Parent_Id,Ord_Id")] Menu menu, string NotBindInTrainingCenter)
         {
             if (ModelState.IsValid)
             {
+                if (NotBindInTrainingCenter != null && NotBindInTrainingCenter.Equals("on"))
+                    menu.NotBindInTrainingCenter = true;
                 db.Menu.Add(menu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,10 +86,13 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Link,IdTrainingCenter,Parent_Id,Ord_Id")] Menu menu)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,Link,IdTrainingCenter,Parent_Id,Ord_Id")] Menu menu, string NotBindInTrainingCenter)
         {
             if (ModelState.IsValid)
             {
+                if (NotBindInTrainingCenter != null && NotBindInTrainingCenter.Equals("on"))
+                    menu.NotBindInTrainingCenter = true;
+
                 db.Entry(menu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

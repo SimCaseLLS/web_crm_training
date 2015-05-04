@@ -8,16 +8,18 @@ using System;
     using System.Data.Entity.Spatial;
 
     [Table("RelatedCourses")]
-    public partial class RelatedCours
+    public partial class RelatedCourse
     {
+        public RelatedCourse()
+        {
+        }
         public int Id { get; set; }
-
-        public int? IdTrainingCourse { get; set; }
 
         public int? IdTrainingCourseRelated { get; set; }
 
-        public virtual TrainingCours TrainingCours { get; set; }
+        public virtual TrainingCenterCours TrainingCours { get; set; }
 
-        public virtual TrainingCours TrainingCours1 { get; set; }
+        public virtual TrainingCenterCours RelatedTrainingCourse { get; set; }
+
     }
 }
