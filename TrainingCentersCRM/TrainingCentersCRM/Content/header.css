@@ -4,6 +4,7 @@ header {
     box-shadow: 1px 2px 9px 0.00px rgba(0, 0, 0, 0.05);
     position: relative;
     z-index: 5;
+    background-color: #fff;
 }
 .logo {
     font: 400 23.94px Arial;
@@ -27,7 +28,7 @@ header {
 }
 nav ul {
     float: left;
-    width: 84%;
+    width: 89%;
 }
 nav ul li {
     float: left;
@@ -49,10 +50,9 @@ nav a {
 .fa {
     padding-left: 8px;
 }
-.menu-item-right {
+#loginLink {
     float: right;
     margin-right: 2.7%;
-    list-style: none;
 }
 header nav a:hover, header nav a:focus {
     font-weight: 700;

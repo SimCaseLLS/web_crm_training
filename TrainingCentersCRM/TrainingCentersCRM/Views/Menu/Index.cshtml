@@ -3,77 +3,79 @@
 @{
     ViewBag.Title = "Редактирование пунктов меню";
 }
-<link rel="stylesheet" href="/Content/module.css">
+<div class="container">
+    <link rel="stylesheet" href="/Content/module.css">
 
-<h2>Редактор меню</h2>
+    <h2>Редактор меню</h2>
 
-<div>
-    @Html.ActionLink("Создать пункт меню", "Create", null, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+    <div>
+        @Html.ActionLink("Создать пункт меню", "Create", null, new { @class = "button" })
+    </div>
+    <br />
+    <table class="table striped">
+        <tr>
+            <th>
+
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotBindInTrainingCenter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Link)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTrainingCenter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parent_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ord_Id)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotBindInTrainingCenter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTrainingCenter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ord_Id)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" }) 
+                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" }) 
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+            </td>
+        </tr>
+    }
+
+    </table>
 </div>
-<br />
-<table class="table striped">
-    <tr>
-        <th>
-
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotBindInTrainingCenter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdTrainingCenter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Parent_Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ord_Id)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NotBindInTrainingCenter)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdTrainingCenter)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Parent_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ord_Id)
-        </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" }) 
-            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" }) 
-            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
-        </td>
-    </tr>
-}
-
-</table>

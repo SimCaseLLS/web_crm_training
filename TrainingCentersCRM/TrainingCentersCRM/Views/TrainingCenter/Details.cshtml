@@ -3,74 +3,75 @@
 @{
     ViewBag.Title = Model.Organization;
 }
+<div class="container">
+    <div>
+        <h4>@Model.Organization</h4>
+    	<hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>@Model.Organization</h4>
-	<hr />
-    <dl class="dl-horizontal">
+            <dd>
+                @Html.Raw(Model.Description)
+            </dd>
 
-        <dd>
-            @Html.Raw(Model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Addres)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Addres)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Addres)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Addres)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Organization)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Organization)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Logo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Logo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Url)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Url)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HHCityId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HHCityId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HHCityId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.HHCityId)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Редактирование", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Вернуться к списку", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

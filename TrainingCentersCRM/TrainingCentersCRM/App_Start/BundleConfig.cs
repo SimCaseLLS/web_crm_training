@@ -24,11 +24,14 @@ namespace TrainingCentersCRM
                       "~/Content/footer.css",
                       "~/Content/main.css",
                       "~/Content/site.css",
-                      "~/Content/font-awesome.min.css"));
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/foundation-datepicker.css"));
             bundles.Add(new ScriptBundle("~/bundles/jstree").Include(
                         "~/Scripts/jstree.js"));
             bundles.Add(new ScriptBundle("~/bundles/foundation").Include(
                       "~/Scripts/foundation.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/date-picker").Include(
+                      "~/Scripts/foundation-datepicker.js"));
             bundles.Add(new ScriptBundle("~/bundles/coursedetails").Include(
                         "~/Scripts/CourseDetails.js"));
 

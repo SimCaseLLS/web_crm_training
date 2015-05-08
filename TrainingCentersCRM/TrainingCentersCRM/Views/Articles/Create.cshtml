@@ -3,50 +3,49 @@
 @{
     ViewBag.Title = "Создание материала";
 }
+<div class="container">
+    <h2>Создание материала</h2>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-<h2>Создание материала</h2>
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            <label class="control-label col-md-2">Заголовок</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <label class="control-label col-md-2">Заголовок</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Аннотация</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Annotation)
+                    @Html.ValidationMessageFor(model => model.Annotation)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Текст</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Text)
+                    @Html.ValidationMessageFor(model => model.Text)
+                </div>
+            </div>
+            <input type="hidden" name="UserId" value="@User.Identity.Name" />
+            <input type="hidden" name="PublishDate" value="@DateTime.Now" />
+            <input type="hidden" name="Type" value="@ViewBag.Type" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 tools">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Аннотация</label>
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Annotation)
-                @Html.ValidationMessageFor(model => model.Annotation)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Текст</label>
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Text)
-                @Html.ValidationMessageFor(model => model.Text)
-            </div>
-        </div>
-        <input type="hidden" name="UserId" value="@User.Identity.Name" />
-        <input type="hidden" name="PublishDate" value="@DateTime.Now" />
-        <input type="hidden" name="Type" value="@ViewBag.Type" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+    }
+</div>
 <script type="text/javascript">
     $(function () {
         CKEDITOR.config.filebrowserUploadUrl = '/empty/Home/UploadFromEditor';

@@ -3,62 +3,62 @@
 @{
     ViewBag.Title = "Delete";
 }
+<div class="container">
+    <h2>Удалить</h2>
 
-<h2>Delete</h2>
+    <h3>Вы действительно хотите удалить эту вакансию?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Vacancy</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Organization)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Organization)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Wages)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Wages)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Wages)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Wages)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Additionally)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Additionally)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Additionally)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Additionally)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Link)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Link)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Link)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("вернуться к списку вакансий", "Index")
+            </div>
+        }
+    </div>
 </div>

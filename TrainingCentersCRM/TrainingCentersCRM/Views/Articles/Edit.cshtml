@@ -5,63 +5,62 @@
 }
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 <script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            @if (Model.Type == TrainingCentersCRM.Models.Article.ArticleType.Article)
+            {
+                <h2>Новость</h2>
+            }
+            else
+            {
+                <h2>Статья</h2>
+            }
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Type)
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.PublishDate)
+            @Html.HiddenFor(model => model.TrainingCenterId)
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @if (Model.Type == TrainingCentersCRM.Models.Article.ArticleType.Article)
-        {
-            <h2>Новость</h2>
-        }
-        else
-        {
-            <h2>Статья</h2>
-        }
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.Type)
-        @Html.HiddenFor(model => model.UserId)
-        @Html.HiddenFor(model => model.PublishDate)
-        @Html.HiddenFor(model => model.TrainingCenterId)
-
-        <div class="form-group">
-            <label>Заголовок</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
+            <div class="form-group">
+                <label>Заголовок</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label>Аннотация</label>
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Annotation)
-                @Html.ValidationMessageFor(model => model.Annotation)
+            <div class="form-group">
+                <label>Аннотация</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Annotation)
+                    @Html.ValidationMessageFor(model => model.Annotation)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label>Содержание</label>
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Text)
-                @Html.ValidationMessageFor(model => model.Text)
+            <div class="form-group">
+                <label>Содержание</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Text)
+                    @Html.ValidationMessageFor(model => model.Text)
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="form-group tools">
                 <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-    $(function () {
-        CKEDITOR.config.filebrowserUploadUrl = '/empty/Home/UploadFromEditor';
-        CKEDITOR.config.filebrowserBrowseUrl = '/empty/Home/ImageBrowser';
-        $('#Text').ckeditor();
-        $('#Annotation').ckeditor();
-    });
-    </script>
-}
+        <script type="text/javascript">
+        $(function () {
+            CKEDITOR.config.filebrowserUploadUrl = '/empty/Home/UploadFromEditor';
+            CKEDITOR.config.filebrowserBrowseUrl = '/empty/Home/ImageBrowser';
+            $('#Text').ckeditor();
+            $('#Annotation').ckeditor();
+        });
+        </script>
+    }
+</div>

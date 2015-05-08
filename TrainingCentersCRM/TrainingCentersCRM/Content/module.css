@@ -1,21 +1,27 @@
 .row .notes {
-  background-color: #01579b;
-  color: #fff;
-  padding: 20px 20px;
-  font-size: 2rem; }
-
-.row .notes-grey {
-  font-size: 1rem;
-  background-color: #ddd;
+  border: 2px solid #232c3b;
+  color: #232c3b;
+  padding: 10px 5px;
+  max-width: 12%;
+  font-size: 1.2rem;
   text-align: center;
-  color: #1d1d1d; }
+  margin-right: 14px;
+}
 
+.notes-grey {
+    background-color: #fafafa;
+    border-radius: 10px;
+    border: 1px solid #e2e2e2;
+    max-width: 300px;
+    text-align: left;
+    padding: 1rem;
+}
 .row .text {
   padding-right: 90px; }
 
-h4 {
-  margin: 20px 0px; }
-
+.course-info.row,.course-pay {
+  margin: 30px 0px;
+}
 .row .pay-label {
   background-color: #01579b;
   color: #fff;
@@ -30,10 +36,41 @@ h4 {
   border-color: #fff;
   padding: 20px;
   box-sizing: border-box; }
+.teachers-blocks .scale-wrap {
+  height: 280px;
+}
+.teachers-blocks li>div{
+  background-color: #fafafa;
+  border: 1px solid #e2e2e2;
+  transition: background 0.2s ease-in 0s, border 0.2s ease-in 0s;
+}
+.teachers-blocks li>div:hover{
+  background-color: #fdfdfd;
+  border-color: #d2d2d2;
+}
+.teacher-info {
+  padding: 1rem;
+  text-align: center;
+}
 
-.pay .row {
-  margin: 0px; }
-
-.teachers img {
-  width: 100%;
-  height: 200px; }
+.pricing-table {
+  border-radius: 10px 10px 0px 0px;
+}
+.course-pay .title {
+  color: #fedd28;
+  background-color: #232c3b;
+  font-size: 1.1rem;
+  font-family: 'fira_sansbold';
+  border-radius: 10px 10px 0px 0px;
+}
+.course-pay .price {
+  font-size: 1.5rem;
+  color: #232c3b;
+}
+.course-pay .description {
+  font-size: 1rem;
+  color: #282828;
+}
+.cta-button .button {
+  padding: 0.5rem 0.7rem;
+}

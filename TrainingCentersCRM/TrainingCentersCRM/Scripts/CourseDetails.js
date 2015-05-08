@@ -15,7 +15,7 @@ showRelated = function (courseId) {
                     res += "<input type='checkbox' class='filled-in' name='checkedRelated' id='checkedRelated" + courseIdc + "' value='" + c.Id + "' /><label for='checkedRelated" + courseIdc + "' class='control-label'>" + c.Title + "</label>";
                 res += "</p>";
             });
-            res += "<button id='chooseRelButton' class='btn waves-effect waves-light'>Добавить</button><br /><hr />";
+            res += "<button id='chooseRelButton' class='button'>Добавить</button><br /><hr />";
             res += "</form>";
             $("#dropDownRelated").html(res);
             $("#dropDownRelated").toggle();
@@ -55,7 +55,7 @@ showRelatedTeachers = function (courseId) {
                     res += "<input type='checkbox' name='checkedRelatedTeacher' id='checkedRelatedTeacher" + teacherId + "' class='filled-in' value='" + c.Id + "' /><label for='checkedRelatedTeacher" + teacherId + "' class='control-label'>" + c.Title + "</label>";
                 res += "</p>";
             });
-            res += "<button id='chooseRelTeacherButton' class='btn waves-effect waves-light'>Сохранить</button><br /><hr />";
+            res += "<button id='chooseRelTeacherButton' class='button waves-effect waves-light'>Сохранить</button><br /><hr />";
             res += "</form>";
             $("#dropDownRelatedTeachers").html(res);
             $("#dropDownRelatedTeachers").toggle();
@@ -99,17 +99,18 @@ reloadQualificationsTC = function (courseId) {
 
 showAddCourseTime = function (courseId) {
     $('#addCourseTimeContainer').toggle();
+    $('.button-center').hide();
     $.extend($.fn.pickadate.defaults, {
         monthsFull: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
         weekdaysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-        monthsShort: [ 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],
-        weekdaysFull: [ 'Воскресенье', 'Понельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота' ],
+        monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        weekdaysFull: ['Воскресенье', 'Понельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
         today: 'Сейчас',
         clear: 'Сброс',
         close: 'Закрыть',
         format: 'yyyy/mm/dd',
-        formatSubmit:'yyyy/mm/dd'
-    })
+        formatSubmit: 'yyyy/mm/dd'
+    });
     $('.datepicker').pickadate({
         selectMonths: true,
 

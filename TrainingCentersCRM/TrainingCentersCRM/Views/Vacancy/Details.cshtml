@@ -3,73 +3,74 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
+    <h2>Вакансии</h2>
 
-<h2>Вакансии</h2>
 
+    <div>
+        <h4>Vacancy</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-<div>
-    <h4>Vacancy</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Organization)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Organization)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Wages)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Wages)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Wages)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Wages)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Additionally)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Additionally)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Additionally)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Additionally)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Link)
-        </dt>
+            <dd></dd>
 
-        <dd></dd>
+            <dt>
+                @Html.Label("Требуемые квалификации")
+            </dt>
 
-        <dt>
-            @Html.Label("Требуемые квалификации")
-        </dt>
-
-        <dd>
-            @if (Model.Qualifications != null)
-            {
-                foreach (var qualification in Model.Qualifications)
+            <dd>
+                @if (Model.Qualifications != null)
                 {
-                    @Html.Raw(qualification.Title + " ")
+                    foreach (var qualification in Model.Qualifications)
+                    {
+                        @Html.Raw(qualification.Title + " ")
+                    }
                 }
-            }
 
-        </dd>
-        <dd>
-            @Html.DisplayFor(model => model.Link)
-        </dd>
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Link)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Вернуться к списку вакансий", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

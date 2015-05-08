@@ -332,6 +332,7 @@
     <Content Include="Content\courses.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\footer.css" />
+    <Content Include="Content\foundation-datepicker.css" />
     <Content Include="Content\foundation.css" />
     <Content Include="Content\header.css" />
     <Content Include="Content\main.css" />
@@ -341,6 +342,8 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\feature-icon-hover.svg" />
+    <Content Include="img\feature-icon.svg" />
     <Content Include="img\P1010871.jpg" />
     <Content Include="img\tempus.jpg" />
     <Content Include="log4net.config.xml" />
@@ -684,6 +687,7 @@
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\CourseDetails.js" />
     <Content Include="Scripts\createTree.js" />
+    <Content Include="Scripts\foundation-datepicker.js" />
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\HeadHunterSelects.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

@@ -4,12 +4,13 @@
 @{
     ViewBag.Title = "Курсы учебного центра";
 }
+<div class="container">
 <h2>Список курсов</h2>
-<div class="row right">
-    <div class="col s12">
-        <a class="waves-effect waves-light btn" href="@Url.Action("Create", "TrainingCours")"><i class="mdi-content-add-box left"></i>Создать новый курс</a>
+<div class="row">
+    <div class="column right small-6" >
+        <a class="button" href="@Url.Action("Create", "TrainingCours")"><i class="fa fa-plus-square"></i>Создать новый курс</a>
         &nbsp;
-        <a class="waves-effect waves-light btn" href="#" onclick="javascript: showRelatedCourses(); return false;">Добавить существующий</a>
+        <a class="button" href="#" onclick="javascript: showRelatedCourses(); return false;"><i class="fa fa-files-o"></i>Добавить существующий</a>
         <script type="text/javascript">
             showRelatedCourses = function () {
                 $.ajax({
@@ -27,7 +28,7 @@
                                 res += "<input type='checkbox' name='checkedRelatedCourse' id='checkedRelatedCourse" + courseId + "' class='filled-in' value='" + c.Id + "' /><label for='checkedRelatedCourse" + courseId + "' class='control-label'>" + c.Title + "</label>";
                             res += "</p>";
                         });
-                        res += "<button id='chooseRelCourseButton' class='btn waves-effect waves-light'>Сохранить</button><br /><hr />";
+                        res += "<button id='chooseRelCourseButton' class='button'><i class='fa fa-floppy-o'></i>Сохранить</button><br />";
                         res += "</form>";
                         $("#dropDownRelatedCourses").html(res);
                         $("#dropDownRelatedCourses").toggle();
@@ -54,17 +55,43 @@
     </div>
 </div>
 <div class="row">
-    <div class="col s12" id="dropDownRelatedCourses" style="display: none">
+    <div class="column small-12" id="dropDownRelatedCourses" style="display: none">
 
     </div>
 </div>
 @if (Model.Count() > 0)
 {
-    <div id="articles" class="row">
+    <ul id="articles" class="course small-block-grid-4" >
+
         @{int i = 1;}
         @foreach (var item in Model)
         {
-            <div id="article-template">
+            <li>
+                <a href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
+                    <div class="scale-wrap">
+                        <img src="https://placeimg.com/300/300/tech/@(i++)" class="responsive-img scale-img" alt="" />
+                    </div>
+                    <p class="title">@Html.DisplayFor(modelItem => item.Title)</p>
+
+                </a>
+                <div>
+                    @if (item.ShortDescription.Length > 80)
+                    {
+                        @Html.Raw(item.ShortDescription.Substring(0, 80))
+                        <text>...</text>
+                    }
+                    else
+                    {
+                        @Html.Raw(item.ShortDescription)
+                    }
+                    <div class="tools">
+                        <a class="button fa fa-pencil" href="@Url.Action("Edit", "TrainingCours", new { id = item.Id })"></a>
+                        <a class="button fa fa-trash-o" href="@Url.Action("Delete", "TrainingCours", new { id = item.Id })"></a>
+                    </div>
+                </div>
+
+            </li>
+            @*<div id="article-template">
                 <div class="col s4">
                     <div class="card medium">
                         <div class="card-image">
@@ -83,7 +110,6 @@
                             {
                                 @Html.Raw(item.ShortDescription)
                             }
-
                             <div class="card-action">
                                 <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Edit", "TrainingCours", new { id = item.Id })"><i class="mdi-content-create center"></i></a>
                                 <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Delete", "TrainingCours", new { id = item.Id })"><i class="mdi-content-clear center"></i></a>
@@ -92,9 +118,10 @@
                     </div>
                     <br>
                 </div>
-            </div>
+            </div>*@
         }
-    </div>
+    </ul>
 }
+</div>
 
 @Html.Action("Index", "Moodle", new { key = ViewBag.Key })

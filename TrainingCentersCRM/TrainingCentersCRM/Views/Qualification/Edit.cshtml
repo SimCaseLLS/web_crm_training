@@ -13,7 +13,7 @@
 @using (Ajax.BeginForm("Edit", new AjaxOptions { UpdateTargetId = "qualificationData", OnSuccess = "refreshTree" })) 
 {
     @Html.AntiForgeryToken()
-    
+<div class="container">    
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
@@ -65,6 +65,7 @@
             </div>
         </div>
     </div>
+</div>
 }
 
 <!-- NOTE не будет рабобтать, если будет не аякс -->

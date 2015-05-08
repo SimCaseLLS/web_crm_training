@@ -3,19 +3,21 @@
 @{
     ViewBag.Title = Model.Title;
 }
-<article>
-    <h2>@Model.Title</h2>
-    <p>
-        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "waves-effect waves-light btn right" })
-    </p>
+<div class="container row">
+    <article>
+        <h2>@Model.Title</h2>
+        <a>
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
+        </a>
 
-    <div>
-        <label>Опубликовано: @Model.PublishDate</label>
-        <p>
-            @(Html.Raw(HttpUtility.HtmlDecode(Model.Annotation)))
-        </p>
-        <p>
-            @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
-        </p>
-    </div>
-</article>
+        <div>
+            <label>Опубликовано: @Model.PublishDate</label>
+            <p>
+                @(Html.Raw(HttpUtility.HtmlDecode(Model.Annotation)))
+            </p>
+            <p>
+                @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
+            </p>
+        </div>
+    </article>
+</div>

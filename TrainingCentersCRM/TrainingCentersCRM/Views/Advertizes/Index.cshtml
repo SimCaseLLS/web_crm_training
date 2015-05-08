@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<div class="container row">
+<h2>Рекламный блок</h2>
 <p>
-    @Html.ActionLink("Добавить", "Create", null, new { @class = "waves-effect waves-light btn right" })
+    @Html.ActionLink("Добавить", "Create", null, new { @class = "button" })
 </p>
 <table class="table striped">
     <tr>
@@ -33,12 +34,13 @@
             <td>
                 @(item.Enabled ? "Да" : "Нет")
             </td>
-            <td>
-                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
-                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+            <td class="tools">
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil button", @title = "Редактировать" })
+                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "fa fa-chevron-circle-down button", @title = "Подробнее" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash-o button", @title = "Удалить" })
             </td>
         </tr>
     }
 
 </table>
+</div>

@@ -2,23 +2,23 @@
 @{
     Layout = null;
 }
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.slider').slider({ full_width: true });
-    });
-</script>
-
-<div class="slider">
-    <ul class="slides">
-        @foreach (var item in Model)
-        {
-            <li>
-                <img src="/empty/Advertizes/Image/@item.Id" /> <!-- random image -->
-                <div class="caption center-align">
+<ul class="orbit-content" data-orbit data-options="variable_height: true;slide_number: false; bullets: false;timer:false;">
+@foreach (var item in Model)
+    {
+    <li data-orbit-slide="headline-1">
+        <div>
+            <div class="slider-info show-for-large-up">
+                <div class="slider-text">
                     <h3>@item.Name</h3>
                     <h5 class="light grey-text text-lighten-3">@Html.Raw(item.Description)</h5>
                 </div>
-            </li>
-        }
-    </ul>
-</div>
+            </div>
+            <div class="slider-info-small hide-for-large-up">
+                    <h3>@item.Name</h3>
+                    <h5 class="light grey-text text-lighten-3">@Html.Raw(item.Description)</h5>
+            </div>
+            <img src="/empty/Advertizes/Image/1" />
+        </div>
+    </li>
+}
+</ul>

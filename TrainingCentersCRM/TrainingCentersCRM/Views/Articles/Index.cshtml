@@ -3,44 +3,42 @@
 @{
     ViewBag.Title = "Список материалов сайта";
 }
+<div class="container">
+    @if (ViewBag.Type == 1)
+    {
+        <h3 class="center">Новости</h3>
+        <a class="button" href="@Url.Action("Create", "Articles"," new { type = ViewBag.Type }")">
+            <i class="fa fa-plus"></i>Добавить новость
+        </a>
+    }
+    else
+    {
+        <h3 class="center">Статьи</h3>
+        <a class="button" href="@Url.Action("Create", "Articles"," new { type = ViewBag.Type }")">
+            <i class="fa fa-plus"></i>Добавить статью
+        </a>
+    }
+</div>
 
-@if (ViewBag.Type == 1)
-{
-    <h3 class="center">Новости</h3>
-}
-else
-{
-    <h3 class="center">Статьи</h3>
-}
-    <p>
-        @Html.ActionLink("Добавить", "Create", new { type = ViewBag.Type }, new { @class = "" })
-    </p>
-<div class="clear-fix news">
-    <ul class="small-block-grid-4">
+<div class="clear-fix container">
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         @{int i = 1;}
         @foreach (var item in Model)
         {
-            <li class="news-block">
-                <span class="date">@(Html.DisplayFor(modelItem => item.PublishDate))</span>
-                <img src="https://placeimg.com/300/300/tech/@(i++)" runat="server" />
-                <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
-                <p>@(Html.Raw(item.Annotation))</p>
-                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button", @title = "Редактировать" })
-                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button", @title = "Подробнее" })
-                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button", @title = "Удалить" })
-            </li>
-            @*<div class="card-panel">
-                    <h4>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </h4>
-                    <label>Опубликовано: </label>
-                    <p>@(Html.Raw(item.Annotation))</p>
-                    <div>
-                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-                        @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
-                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+            <li>
+                <div class="news-block">
+                    <div class="row tools">
+                        
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                        @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
                     </div>
-                </div>*@
+                    <span class="date">@(Html.DisplayFor(modelItem => item.PublishDate))</span>
+                    <img src="https://placeimg.com/300/300/tech/@(i++)" runat="server" />
+                    <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p>@(Html.Raw(item.Annotation))</p>
+                </div>
+            </li>
         }
     </ul>
 </div>

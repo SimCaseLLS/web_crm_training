@@ -4,35 +4,37 @@
     ViewBag.Title = "Преподаватели";
 }
 <link rel="stylesheet" href="/Content/module.css">
-
-<h2>Преподаватели учебного центра</h2>
-
-<div class="content">
+<div class="container">
+    <h2>Преподаватели учебного центра</h2>
     <div class="row">
-        @Html.ActionLink("Добавить", "Create", null, new { @class = "waves-effect waves-light btn right" })
+        @Html.ActionLink("Добавить", "Create", null, new { @class = "button" })
     </div>
-    <div class="row">
-        @foreach (TrainingCentersCRM.Models.Teacher t in Model)
-        {
-            <div class="col s12 m6 l6">
-                <div class="card large">
-                    <div class="card-image">
-                        @if (t.Image != null)
-                        {
-                            @Html.Raw("<img src='/empty/Teachers/Image/" + t.Id + "'/>")
-                        }
-                        <span class="card-title">@t.LastName @t.FirstName @t.Patronymic</span>
+    <section class="row teachers-blocks">
+        <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+            @foreach (TrainingCentersCRM.Models.Teacher t in Model)
+            {
+                <li>
+                    <div class="shadow">
+                        <div class="scale-wrap">
+                            @if (t.Image != null)
+                            {
+                                 @Html.Raw("<img class='scale-img' src='/empty/Teachers/Image/" + t.Id + "'/>")
+                            }
+                        </div>
+                        <div class="teacher-info">
+                            <p class="teacher-name"><b>@t.LastName @t.FirstName @t.Patronymic.</b></p>
+                            <p>
+                                @t.Description
+                            </p>
+                        </div>
+                        <div class="tools">
+                            @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                            @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
+                            @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                        </div>
                     </div>
-                    <div class="card-content">
-                        @t.Description
-                    </div>
-                    <div class="card-action">
-                        @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-                        @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "mdi-image-details", @title = "Подробнее" })
-                        @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
+                </li>
+            }
+        </ul>
+    </section>
 </div>
