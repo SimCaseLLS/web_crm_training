@@ -5,7 +5,6 @@
 @{
     ViewBag.Title = "Учебный курс " + @Model.Title;
 }
-
 <link rel="stylesheet" href="/Content/module.css">
 <script type="text/javascript">
     var courseId = '@Model.Id';
@@ -25,61 +24,65 @@
         });
     });
 </script>
-
 @Scripts.Render("~/bundles/coursedetails")
-
-<article class="container">
-    <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })">Редактировать учебный курс</a>
+<div class="container row">
+    <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать учебный курс</a>
     <div class="row">
-        <h2 class="col s9">@Html.DisplayFor(model => model.Title)</h2>
-        <div class="col s3 notes center">@Html.DisplayFor(model => model.Hourse) часов</div>
+        <h2 class="column small-10">@Html.DisplayFor(model => model.Title)</h2>
+        <div class="column small-2 notes right"><i class="fa fa-clock-o"></i>@Html.DisplayFor(model => model.Hourse) ч.</div>
     </div>
-    <article class="pay teachers row">
-        <p class="text col s9">
+    <section class="course-info row">
+        <p class="column small-8">
             @Html.Raw(Model.ShortDescription)
         </p>
-        <div class="col s3 notes notes-grey left-align">
-            <div class="left-align">
-                <b>Ближайшие даты занятий</b>
-                <a class="waves-effect waves-light" href="#" title="Добавить" onclick="javascript: showAddCourseTime(); return false;"><i class="tiny mdi-content-add-box center"></i></a>
-                @foreach (ScheduleTtrainingCours date in ViewBag.Dates)
-                {
-                    <br />
-                    @date.TrainingCenter.Organization
-                    <text>:</text>
-                    @(((DateTime)date.DateStart).ToString("dd.MM.yyyy"))
-                    <text>-</text>
-                    @(((DateTime)date.DateEnd).ToString("dd.MM.yyyy"))
-                    <a href="/empty/ScheduleTtrainingCours/Edit/@date.Id" title="Редактировать" class="mdi-image-edit"></a>
-                    <a href="/empty/ScheduleTtrainingCours/Delete/@date.Id" title="Удалить" class="mdi-content-remove-circle"></a>
-                    @*@Html.ActionLink(" ", "Edit", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" })
-                        @Html.ActionLink(" ", "Delete", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })*@
+        <aside class="column small-3 notes-grey left-align">
+            <h6>Ближайшие даты занятий</h6>
+            <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                <input class="span2" size="16" type="text" value="12-02-2012">
+                <span class="add-on"><i class="fa fa-th"></i></span>
+            </div>
+            <a class="button button-center" href="#" title="Добавить" onclick="javascript: showAddCourseTime(); return false;"><i class="fa fa-plus"></i> Добавить</a>
+            @foreach (ScheduleTtrainingCours date in ViewBag.Dates)
+            {
+                <input type="text" id="dpd1">
+                <input type="text" id="dpd2">
+                <br />
+                @date.TrainingCenter.Organization
+                <text>:</text>
+                @(((DateTime)date.DateStart).ToString("dd.MM.yyyy"))
+                <text>-</text>
+                @(((DateTime)date.DateEnd).ToString("dd.MM.yyyy"))
+                <a href="/empty/ScheduleTtrainingCours/Edit/@date.Id" title="Редактировать" class="button"><i class="fa fa-pencil"></i></a>
+                <a href="/empty/ScheduleTtrainingCours/Delete/@date.Id" title="Удалить" class="button"><i class="fa fa-trash-o"></i></a>
+                @*@Html.ActionLink(" ", "Edit", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                    @Html.ActionLink(" ", "Delete", "ScheduleTtrainingCours", new { id = date.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })*@
 
-                }
-                <div id="addCourseTimeContainer" style="display: none">
-                    <form method="post" id="AddTimeForm" action="/empty/TrainingCours/AddTime/">
-                        <label>Описание</label>
-                        <textarea name="Description" id="Description"></textarea>
-                        <label>Начало</label>
-                        <input type="date" class="datepicker" name="DateStart" id="DateStart" />
-                        <label>Окончание</label>
-                        <input type="date" class="datepicker" name="DateEnd" id="DateEnd" />
-                        <input type="hidden" name="IdTrainingCourse" id="IdTrainingCourse" value="@Model.Id" />
-                        <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@(TCHelper.GetCurrentTc().Id)" />
-                        <button name="AddCourseDateButton" id="AddCourseDateButton" class="btn">Добавить</button>
-                    </form>
-                </div>
+            }
+            <div id="addCourseTimeContainer" style="display: none">
+                <form method="post" id="AddTimeForm" action="/empty/TrainingCours/AddTime/">
+                    <label>Описание</label>
+                    <textarea name="Description" id="Description"></textarea>
+                    <label>Начало</label>
+                    <input type="date" class="datepicker" name="DateStart" id="DateStart" />
+                    <label>Окончание</label>
+                    <input type="date" class="datepicker" name="DateEnd" id="DateEnd" />
+                    <input type="hidden" name="IdTrainingCourse" id="IdTrainingCourse" value="@Model.Id" />
+                    <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@(TCHelper.GetCurrentTc().Id)" />
+                    <button name="AddCourseDateButton" id="AddCourseDateButton" class="button"><i class="fa fa-plus"></i> Добавить</button>
+                </form>
             </div>
             <br />
             <div class="left-align">
                 <b class="center">Рекомендуемый уровень знаний:</b><br />
-                @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br />
+                @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br /><br />
                 <b>Обязательный уровень знаний:</b> <br />
-                @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br />
+                @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br /><br />
                 <b>Сложность:</b> @Html.DisplayFor(model => model.LevelOfDifficulty) /10
             </div>
-        </div>
-        <div class="col s3 right">
+        </aside>
+    </section>
+    <section class="row">
+        <div class="column small-3 right">
             <br /><br />
             @{
                 string hhkeys = "";
@@ -95,10 +98,10 @@
             }
             @Html.HeadHunterWidget(hhkeys, ids.ToArray(), TCHelper.GetCurrentTc().HHCityId)
         </div>
-        @*        <p class="text s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>*@
-        <p class="text s9"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Компетенции</a>, на развитие которых нацелен этот курс:</p>
+        @* <p class="text s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>*@
+        <p class="column small-9"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Компетенции</a>, на развитие которых нацелен этот курс:</p>
+        <div class="column small-9" id="qualificationTCFormDiv">
 
-        <div class="text s9" id="qualificationTCFormDiv">
             <form id="qualificationTCForm" name="qualificationTCForm" action="/empty/TRainingCourc/SetQualifications" method="post">
                 @Html.HiddenFor(model => model.Id)
                 @{
@@ -118,11 +121,10 @@
                         }
                     }
                 }
-
-
-                <div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
-                <br />
-                <button id="submitQualifTC" name="submitQualifTC" class="waves-effect waves-light btn">Сохранить</button>
+                <div class="row">
+                    <div id="qualificationTree" style="width: 50%; margin-bottom:10px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+                </div>
+                <button id="submitQualifTC" name="submitQualifTC" class="button" style="">Сохранить</button>
 
                 @section Scripts {
                     <script src="~/Scripts/vacancyTree.js"></script>
@@ -130,93 +132,99 @@
                 }
             </form>
         </div>
-
-        <div class="text col s5" id="qualificationList"></div>
-        @*</article>
-            <article class="pay row">*@
-        <h4 class="text col s9">Стоимость курса</h4>
-        <div class="text col s9 row">
-            <div class="pay-label col s6">для физических лиц</div>
-            <div class="pay-label col s6">для организаций</div>
-        </div>
-        <div class="text col s9 row">
-            <div class="pay-col col s3">@Html.DisplayFor(model => model.PriceForIndividuals) рублей  <br>за полный курс</div>
-            <div class="pay-col col s3">@Html.DisplayFor(model => model.CostOfOneHourForIndividuals) <br> за час курса</div>
-            <div class="pay-col col s3">@Html.DisplayFor(model => model.PriceForOrganizations) рублей <br> за полный курс</div>
-            <div class="pay-col col s3">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) рублей <br> за час курса</div>
-        </div>
-        @if (TCHelper.GetCurrentTCName() != "empty")
-        {
-
-            <div class="col s9">
-                <h4>
-                    Преподаватели
-                    <a class="waves-effect waves-light" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
-                </h4>
-                <div id="dropDownRelatedTeachers" style="display: none"></div>
+        <div class="column small-9" id="qualificationList"></div>
+        <h4 class="column small-9 course-pay">Стоимость курса</h4>
+        <div class="column small-9 course-pay left">
+            <div class="column small-6">
+                <ul class="pricing-table shadow">
+                    <li class="title">Для физических лиц</li>
+                    <li class="price">@Html.DisplayFor(model => model.PriceForIndividuals) руб.</li>
+                    <li class="description">Полный курс</li>
+                    <li class="price">@Html.DisplayFor(model => model.CostOfOneHourForIndividuals) руб.</li>
+                    <li class="description">За час курса</li>
+                    <li class="cta-button"><a class="button" href="#">Купить</a></li>
+                </ul>
             </div>
-            <div class="col s9">
-                @foreach (TrainingCentersCRM.Models.Teacher t in ViewBag.trainingCourseTeacher)
-                {
-                    <div class="col s4">
-                        <div class="card-image">
+            <div class="column small-6">
+                <ul class="pricing-table shadow">
+                    <li class="title">Для организаций</li>
+                    <li class="price">@Html.DisplayFor(model => model.PriceForOrganizations) руб.</li>
+                    <li class="description">Полный курс</li>
+                    <li class="price">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) руб.</li>
+                    <li class="description">За час курса</li>
+                    <li class="cta-button"><a class="button" href="#">Купить</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="row teachers-blocks">
+        <h4>
+            Преподаватели
+        </h4>
+        <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Добавить</a>
+        <div id="dropDownRelatedTeachers" style="display: none"></div>
+        <ul class="small-block-grid-3">
+            @foreach (TrainingCentersCRM.Models.Teacher t in ViewBag.trainingCourseTeacher)
+            {
+                <li>
+                    <div class="shadow">
+                        <div class="scale-wrap">
                             @if (t.Image != null)
                             {
-                                <img src='/empty/Teachers/Image/@t.Id' />
+                                <img class="scale-img" src='/empty/Teachers/Image/@t.Id' />
                             }
-                            <span class="card-title">@t.LastName @t.FirstName @t.Patronymic. </span>
                         </div>
-                        <div class="card-content">
+                        <div class="teacher-info">
+                            <p class="teacher-name"><b>@t.LastName @t.FirstName @t.Patronymic.</b></p>
                             <p>
                                 @t.Description
                             </p>
                         </div>
                     </div>
-                }
-            </div>
-        }
-
-        <div class="col s9">
-            <h4>
-                Учебная программа
-                <a class="waves-effect waves-light" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="tiny mdi-content-add-box center"></i></a>
-
-            </h4>
-            <div class="col s8 offset-s1">
-                @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
-                {
-                    <div>
-                        <h5>
-                            <a href="">@module.TrainingModule.Title</a>
-                            <a class="waves-effect waves-light" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-create center"></i></a>
-                            <a class="waves-effect waves-light" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"><i class="tiny mdi-content-clear center"></i></a>
-                        </h5>
-                        <p>@module.TrainingModule.ShortDescription</p>
+                </li>
+            }
+        </ul>
+    </section>
+    <section class="container row">
+        <h4>
+            Учебная программа
+        </h4>
+        <a class="button" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="fa fa-plus"></i>Добавить</a>
+        <div class="column small-8 offset-s1">
+            @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
+            {
+                <div>
+                    <h5>
+                        <a href="">@module.TrainingModule.Title</a>
+                    </h5>
+                    <p>@module.TrainingModule.ShortDescription</p>
+                    <div class="tools">
+                        <a class="button fa fa-pencil" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"></a>
+                        <a class="button fa fa-trash" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"></a>
                     </div>
-                }
-            </div>
-        </div>
-        @if (TCHelper.GetCurrentTCName() != "empty")
-        {
-            <div class="col s12">
-                <h4>
-                    Рекомендуемые курсы
-                    <a class="waves-effect waves-light" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="tiny mdi-content-add-box center"></i></a>
-                </h4>
-                <div id="dropDownRelated" style="display: none">
                 </div>
+            }
+        </div>
+    </section>
+    <section class="container row">
+        <div class="col s12">
+            <h4>
+                Рекомендуемые курсы
+            </h4>
+            <a class="button" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="fa fa-plus"></i>Добавить</a>
+            <div id="dropDownRelated" style="display: none">
+            </div>
+            <ul id="articles" class="course small-block-grid-4">
                 @{
-            int j = 1;
+                    int j = 1;
                 }
                 @foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
                 {
-                    if (item == null)
-                    {
-                        continue;
-                    }
-                    <div class="col s4 m4">
-                        <img src="https://placeimg.com/628/471/tech/@(j++)" alt="">
-                        <h5>@item.Title</h5>
+                    <li>
+                        <div class="scale-wrap">
+                            <img src="https://placeimg.com/300/300/tech/@(j++)" class="responsive-img scale-img" alt="" />
+                        </div>
+                        <p class="title">@item.Title</p>
                         <p>
                             @if (item.ShortDescription.Length > 300)
                             {
@@ -229,12 +237,35 @@
                             }
                         </p>
                         <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">Подробнее</a>
-                    </div>
+                    </li>
                 }
-            </div>
-        }
-    </article>
-</article>
-<script type="text/javascript">
-    var curTCUrl = "@(TCHelper.GetCurrentTc().Url)";
+            </ul>
+        </div>
+    </section>
+</div>
+<script>
+    $(function () {
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        var checkin = $('#dpd1').fdatepicker({
+            onRender: function (date) {
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            if (ev.date.valueOf() > checkout.date.valueOf()) {
+                var newDate = new Date(ev.date)
+                newDate.setDate(newDate.getDate() + 1);
+                checkout.update(newDate);
+            }
+            checkin.hide();
+            $('#dpd2')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#dpd2').fdatepicker({
+            onRender: function (date) {
+                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
 </script>

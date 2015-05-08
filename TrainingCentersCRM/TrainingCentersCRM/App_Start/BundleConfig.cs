@@ -18,19 +18,20 @@ namespace TrainingCentersCRM
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Content/js/materialize.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/css/materialize.css",
+                      "~/Content/foundation.css",
                       "~/Content/header.css",
                       "~/Content/footer.css",
                       "~/Content/main.css",
                       "~/Content/site.css",
-                "~/Content/themes/default/style.css"));
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/foundation-datepicker.css"));
             bundles.Add(new ScriptBundle("~/bundles/jstree").Include(
                         "~/Scripts/jstree.js"));
+            bundles.Add(new ScriptBundle("~/bundles/foundation").Include(
+                      "~/Scripts/foundation.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/date-picker").Include(
+                      "~/Scripts/foundation-datepicker.js"));
             bundles.Add(new ScriptBundle("~/bundles/coursedetails").Include(
                         "~/Scripts/CourseDetails.js"));
 

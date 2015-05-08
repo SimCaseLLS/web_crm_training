@@ -3,21 +3,15 @@
 @{
     Layout = null;
 }
-
-<ul class="collapsible collapsible-accordion">
+<ul class="accordion" data-accordion>
+    @{int i = 1;}
     @foreach (var item in Model)
     {
-        <text>
-            <li>
-                <div class="collapsible-header">
-                    <i class="mdi-image-filter-drama"></i>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </div>
-                <div class="collapsible-body justyfy" style="margin: 5px">
-                    @Html.DisplayFor(modelItem => item.ShortDescription)
-                </div>
-            <li>
-
-        </text>
+        <li class="accordion-navigation">
+            <a href="#panelb@(i)"><i class="fa fa-book"></i>@Html.DisplayFor(modelItem => item.Title)</a>
+            <div id="panelb@(i++)" class="content">
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </div>
+        </li>
     }
 </ul>

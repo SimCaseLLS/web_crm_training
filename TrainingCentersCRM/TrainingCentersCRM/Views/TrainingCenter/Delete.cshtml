@@ -3,78 +3,78 @@
 @{
     ViewBag.Title = "Delete";
 }
+<div class="container">
+    <h2>Удалить</h2>
 
-<h2>Delete</h2>
+    <h3>Вы действительно хотите удалить этот учебный центр?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Addres)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TrainingCenter</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Addres)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Addres)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Addres)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Organization)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Organization)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Logo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Logo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Url)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Url)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("Вернуться к списку", "Index")
+            </div>
+        }
+    </div>
 </div>

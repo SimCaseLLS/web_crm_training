@@ -3,26 +3,26 @@
 @{
     ViewBag.Title = "Квалификации";
 }
-
-<h2>Квалификации</h2>
-
-<div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
-<div id="qualificationBlock" style="float: left">
-    <div id="qualificationButtons" style="display: none">
-        <div style="display: inline">
-            <button id="editQualification" class="waves-effect waves-light orange btn" title="Изменить">Изменить</button>
-        </div>
-        <div style="display: inline">
-            <button id="deleteQualification" class="waves-effect waves-light red btn" title="Удалить">Удалить</button>
-        </div>
-        <div style="display: inline">
-            <button id="createQualification" class="waves-effect waves-light btn" title="Создать">Создать</button>
-        </div>
+<div class="container row">
+    <h2>Квалификации</h2>
+    <div class="row">
+        <div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
     </div>
-    <div id="qualificationData"></div>
+    <div id="qualificationBlock" style="float: left">
+        <div id="qualificationButtons" class="tools" style="display: none">
+            <div style="display: inline">
+                <button id="editQualification" class="button" title="Изменить">Изменить</button>
+            </div>
+            <div style="display: inline">
+                <button id="deleteQualification" class="button" title="Удалить">Удалить</button>
+            </div>
+            <div style="display: inline">
+                <button id="createQualification" class="button" title="Создать">Создать</button>
+            </div>
+        </div>
+        <div id="qualificationData"></div>
+    </div>
 </div>
-<div style="clear: both;"></div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/QualificationPageSelect.js"></script>

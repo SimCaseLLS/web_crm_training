@@ -3,12 +3,13 @@
 @{
     ViewBag.Title = "Редактирование пунктов меню";
 }
+<div class="container">
 <link rel="stylesheet" href="/Content/module.css">
 
 <h2>Редактор меню</h2>
 
 <div>
-    @Html.ActionLink("Создать пункт меню", "Create", null, new { @class = "waves-effect waves-light btn right mdi-content-add-box" })
+        @Html.ActionLink("Создать пункт меню", "Create", null, new { @class = "button" })
 </div>
 <br />
 <table class="table striped">
@@ -77,3 +78,4 @@
 }
 
 </table>
+</div>

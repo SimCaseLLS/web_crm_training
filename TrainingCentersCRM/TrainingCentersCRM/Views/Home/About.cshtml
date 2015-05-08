@@ -2,24 +2,50 @@
     ViewBag.Title = "About";
 }
 
-
-<div class="row">
-    <div class="col s12">
-        @Html.Action("Slider", "Advertizes", null)
-    </div>
+@Html.Action("Slider", "Advertizes", null)
+<section class="landing-plus clear-fix">
+    <div class="plus-item it-member"> <h6>IT специалистам</h6> <p class="description">Совместный европейский проект EQF-based professional ICT training for Russia and Kazakhstan</p></div>
+    <div class="plus-item it-company"><h6>IT компаниям</h6><p class="description">Совместный европейский проект EQF-based professional ICT training for Russia and Kazakhstan</p></div>
+    <div class="plus-item it-center"><h6>Учебным заведениям</h6><p class="description">Совместный европейский проект EQF-based professional ICT training for Russia and Kazakhstan</p></div>
+</section>
+<div class="clear-fix">
+    <article class="about-us">
+        <h2>О проекте</h2>
+        <p>
+            Совместный европейский проект EQF-based professional ICT training for Russia and Kazakhstan <br />
+            Сроки проекта:  1 декабря 2013 года – 30 ноября 2016 года. <br /> <br />
+            Координатор: университетский колледж Гента (Бельгия)<br />  <br />
+            В рамках проекта планируется стажировка российских и казахских студентов, прошедших обучение в учебных центрах компьютерного образования, в европейских ИКТ-компаниях
+        </p>
+    </article>
+    <aside class="landing-feature">
+        <section class="feature-item"><span class="number">20</span><span class="content">преподавателей</span></section>
+        <section class="feature-item"><span class="number">15</span><span class="content">учебных заведений</span></section>
+        <section class="feature-item"><span class="number">205</span><span class="content">качественных курсов</span></section>
+    </aside>
 </div>
 
-<div class="row">
-    <div class="col s8">
-        @Html.Action("Index", "Articles", new { id = 1, partial = true })
-    </div>
-    <div class="col s4">
+@Html.Action("Index", "Articles", new { id = 1, partial = true })
+
+
+<div class="container row" >
+    <div class="column large-6 small-12">
         <h3 class="center">Учебные центры</h3>
         @Html.Action("ShortList", "TrainingCenter")
     </div>
-    <div class="col s4">
+    <div class="column large-6 small-12">
         <h3 class="center">Курсы</h3>
         @Html.Action("ShortList", "TrainingCours")
     </div>
 </div>
+<script>
+$( document ).ready(function() {
+    $('.orbit-content').show();
+    $(".accordion").on("click", "li", function (event) {
+        $("dd.active").find(".content").slideToggle("fast");
+        $(this).find(".content").slideToggle("fast");
+    });
+    $('.landing-plus').show();
 
+});
+</script>
