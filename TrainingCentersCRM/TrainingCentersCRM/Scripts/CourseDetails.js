@@ -129,4 +129,3 @@ showAddCourseTime = function (courseId) {
         });
     });
 }
-
