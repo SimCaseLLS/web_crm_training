@@ -52,12 +52,12 @@ input[type="checkbox"].input-validation-error {
     max-width: 250px;
 }
 
-h2 {
-    text-align: center;
-    width: 100%
-}
 
 .news-block p {
     font-size: 0.7em;
+    text-align: justify;
+}
+
+.course-info p {
     text-align: justify;
 }

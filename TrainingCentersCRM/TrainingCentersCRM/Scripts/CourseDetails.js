@@ -100,23 +100,6 @@ reloadQualificationsTC = function (courseId) {
 showAddCourseTime = function (courseId) {
     $('#addCourseTimeContainer').toggle();
     $('.button-center').hide();
-    $.extend($.fn.pickadate.defaults, {
-        monthsFull: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-        weekdaysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-        monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-        weekdaysFull: ['Воскресенье', 'Понельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-        today: 'Сейчас',
-        clear: 'Сброс',
-        close: 'Закрыть',
-        format: 'yyyy/mm/dd',
-        formatSubmit: 'yyyy/mm/dd'
-    });
-    $('.datepicker').pickadate({
-        selectMonths: true,
-
-        selectYears: 15,
-        formatSubmit:'yyyy/mm/dd'
-    });
     $('#AddCourseDateButton').click(function(event) {
         event.preventDefault();
         $.ajax({
