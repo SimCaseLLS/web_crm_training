@@ -5,20 +5,14 @@
 }
 <div class="container row">
     <h2>Квалификации</h2>
-    <div class="row">
+    <div class="small-5 columns">
         <div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
     </div>
-    <div id="qualificationBlock" style="float: left">
+    <div id="qualificationBlock" class="small-7 columns">
         <div id="qualificationButtons" class="tools" style="display: none">
-            <div style="display: inline">
-                <button id="editQualification" class="button" title="Изменить">Изменить</button>
-            </div>
-            <div style="display: inline">
-                <button id="deleteQualification" class="button" title="Удалить">Удалить</button>
-            </div>
-            <div style="display: inline">
-                <button id="createQualification" class="button" title="Создать">Создать</button>
-            </div>
+            <button id="editQualification" class="fa fa-pencil button" title="Изменить"></button>
+            <button id="deleteQualification" class="fa fa-trash-o button" title="Удалить"></button>
+            <button id="createQualification" class="fa fa-plus button" title="Создать"></button>
         </div>
         <div id="qualificationData"></div>
     </div>

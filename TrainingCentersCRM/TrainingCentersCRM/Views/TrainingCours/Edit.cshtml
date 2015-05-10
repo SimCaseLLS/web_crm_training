@@ -33,6 +33,13 @@
                 </div>
             </div>
             <div class="form-group">
+                @Html.LabelFor(model => model.MoodleId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MoodleId)
+                    @Html.ValidationMessageFor(model => model.MoodleId)
+                </div>
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.Hourse, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Hourse)
@@ -88,7 +95,6 @@
                     @Html.ValidationMessageFor(model => model.MandatoryPreliminaryPreparation)
                 </div>
             </div>
-            @Html.HiddenFor(model => model.IdTraningCenter)
             @*<div class="form-group">
                     @Html.LabelFor(model => model.IdObject, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">

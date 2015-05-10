@@ -266,6 +266,7 @@ html, body {
 }
 .tools {
     margin-top: 15px;
+    width: 120px;
 }
 .teachers-blocks .tools {
     width: 120px;

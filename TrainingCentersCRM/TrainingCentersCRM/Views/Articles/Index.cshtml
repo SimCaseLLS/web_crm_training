@@ -1,5 +1,5 @@
-﻿@model IEnumerable<TrainingCentersCRM.Models.Article>
-
+﻿@model PagedList.IPagedList<TrainingCentersCRM.Models.Article>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Список материалов сайта";
 }
@@ -7,15 +7,15 @@
     @if (ViewBag.Type == 1)
     {
         <h3 class="center">Новости</h3>
-        <a class="button" href="@Url.Action("Create", "Articles"," new { type = ViewBag.Type }")">
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
             <i class="fa fa-plus"></i>Добавить новость
         </a>
     }
     else
     {
-        <h3 class="center">Статьи</h3>
-        <a class="button" href="@Url.Action("Create", "Articles"," new { type = ViewBag.Type }")">
-            <i class="fa fa-plus"></i>Добавить статью
+        <h3 class="center">Страницы</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить страницу
         </a>
     }
 </div>
@@ -41,4 +41,8 @@
             </li>
         }
     </ul>
+    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>

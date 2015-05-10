@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
+using PagedList;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -16,9 +17,9 @@ namespace TrainingCentersCRM.Controllers
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: Articles
-        public ActionResult Index(int? id, bool? partial)
+        public ActionResult Index(int? id, bool? partial, int? page)
         {
-            IQueryable<Article> result = db.Articles;
+            IQueryable<Article> result = db.Articles.OrderByDescending(a => a.PublishDate);
             if (TCHelper.GetCurrentTCName() != "" && TCHelper.GetCurrentTCName() != "empty")
             {
                 ViewBag.TrainingCenter = TCHelper.GetCurrentTc(db);
@@ -29,9 +30,14 @@ namespace TrainingCentersCRM.Controllers
                 ViewBag.Type = id;
                 result = result.Where(a => a.Type == (Article.ArticleType)id);
             }
+
+            //int pageSize = page == null ? Int32.MaxValue : (Int32)HttpContext.Application["PageSize"];
+            int pageSize = (Int32)HttpContext.Application["PageSize"];
+            int pageNumber = (page ?? 1);
+            var pagedRes = result.ToPagedList(pageNumber, pageSize);
             if (partial != null && partial == true)
-                return PartialView(result);
-            return View(result);
+                return PartialView(pagedRes);
+            return View(pagedRes);
         }
 
         // GET: Articles/Details/5
@@ -127,7 +133,7 @@ namespace TrainingCentersCRM.Controllers
             int type = (int)article.Type;
             db.Articles.Remove(article);
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = type});
+            return RedirectToAction("Index", new { id = type });
         }
 
         protected override void Dispose(bool disposing)

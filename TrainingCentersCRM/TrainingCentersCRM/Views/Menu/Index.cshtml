@@ -69,10 +69,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Ord_Id)
         </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "mdi-image-edit", @title = "Редактировать" }) 
-            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "mdi-image-details", @title = "Подробнее" }) 
-            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "mdi-content-remove-circle", @title = "Удалить" })
+        <td class="tools">
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil button", @title = "Редактировать" }) 
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "fa fa-chevron-circle-down button", @title = "Подробнее" }) 
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash-o button", @title = "Удалить" })
         </td>
     </tr>
 }

@@ -57,6 +57,12 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -205,6 +211,10 @@
     <Compile Include="Migrations\201505040703382_Init.Designer.cs">
       <DependentUpon>201505040703382_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505101331295_CourseMoodleLink.cs" />
+    <Compile Include="Migrations\201505101331295_CourseMoodleLink.Designer.cs">
+      <DependentUpon>201505101331295_CourseMoodleLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
@@ -267,6 +277,7 @@
     <Content Include="Content\header.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\module.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\default-dark\32px.png" />
     <Content Include="Content\themes\default-dark\40px.png" />
     <Content Include="Content\themes\default-dark\style.css" />
@@ -777,6 +788,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505040703382_Init.resx">
       <DependentUpon>201505040703382_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505101331295_CourseMoodleLink.resx">
+      <DependentUpon>201505101331295_CourseMoodleLink.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -54,10 +54,10 @@ input[type="checkbox"].input-validation-error {
 
 
 .news-block p {
-    font-size: 0.7em;
+    font-size: 0.9em;
     text-align: justify;
 }
 
-.course-info p {
+.course-info p, .content {
     text-align: justify;
 }

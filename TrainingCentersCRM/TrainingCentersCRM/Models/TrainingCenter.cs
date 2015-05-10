@@ -41,7 +41,7 @@ using System;
         [Column(TypeName = "image")]
         public byte[] Logo { get; set; }
 
-        [Display(Name="Идентифкатор города на HeadHunter")]
+        [Display(Name="Id HH")]
         public string HHCityId { get; set; }
 
         [Required]

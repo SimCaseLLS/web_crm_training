@@ -22,19 +22,22 @@ namespace TrainingCentersCRM.Controllers
             //db.TrainingCenters.Add(new TrainingCenter { Url = "empty" });
             //db.SaveChanges();
             ViewBag.TrainingCenter = TCHelper.GetCurrentTc();
-                return View();
+            return View();
         }
 
         public ActionResult About()
         {
-                return View();
+            ViewBag.teachers = db.Teachers.Count();
+            ViewBag.centers = db.TrainingCenters.Count();
+            ViewBag.courses = db.TrainingCourses.Count();
+            return View();
         }
 
         public ActionResult Contact()
         {
 
             ViewBag.Message = "Your contact page.";
-                return View();
+            return View();
         }
 
         [HttpPost]
