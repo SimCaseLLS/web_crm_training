@@ -20,6 +20,7 @@ namespace TrainingCentersCRM
                         "~/Scripts/modernizr-*"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/foundation.css",
+                      "~/Content/themes/default/style.min.css",
                       "~/Content/header.css",
                       "~/Content/footer.css",
                       "~/Content/main.css",
