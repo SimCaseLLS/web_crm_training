@@ -4,63 +4,64 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Детали</h2>
+    <div>
+        <h4>Расписание учебных курсов</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-<div>
-    <h4>ScheduleTtrainingCours</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateStart)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateStart)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateStart)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateEnd)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateEnd)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateEnd)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingCenter.Addres)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingCenter.Addres)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrainingCenter.Addres)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrainingCenter.Addres)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingCours.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingCours.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrainingCours.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrainingCours.Title)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

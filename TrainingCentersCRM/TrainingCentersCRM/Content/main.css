@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 13% 56px 56px 56px;
   color: #fff;
 }
-    .slider-info-small h3,h5 {
+    .slider-info-small h3,.slider-info-small h5 {
         padding: 0.5em 1em;
         color: #fff;
         background-color: rgba(0,0,0,0.5);
@@ -118,10 +118,11 @@ h1, h2, h3, h4, h5, h6 {
         float:left;
         position:relative;
         top: 0px;
+        cursor: default;
         -webkit-transition: top 0.3s linear;
         -moz-transition: top 0.3s linear;
         -o-transition: top 0.3s linear;
-        transition: top 0.3s linear;
+        transition: top 0.3s linear, color 0.1s linear;
     }
         .landing-plus .plus-item:hover {
             color: #fff;
@@ -207,41 +208,52 @@ h1, h2, h3, h4, h5, h6 {
 .container.row {
     max-width: 100%;
 }
+a.news-more,a.more-info {
+    font: inherit;
+    color: inherit;
+}
 .news-block {
     text-align: center;
     padding: 0 1.625rem 1.25rem;
     border: 1px solid transparent;
     position: relative;
+    height: 100%;
 }
     .news-block:hover {
         background-color: #fafafa;
         border-radius: 10px;
         border: 1px solid #e2e2e2;
     }
-    .news-block img {
-        margin-bottom: 20px;
+    .news-block .scale-wrap {
+        height: 150px;
+        margin-bottom: 10px;
     }
     .news-block .date {
         background-color: #ffe32a;
         padding: 4px;
         font-size: 12px;
-        top: 72px;
+        top: 68px;
         right: 8%;
         position: absolute;
+        z-index: 5;
     }
 html, body {
   height: 100%;
+  text-rendering: optimizeLegibility;
 }
 .wrap-body {
     min-height: 100%;
-    padding-bottom: 230px;
+    padding-bottom: 30px;
+}
+.small-text {
+    font-size: 12px;
 }
 .wrap-body:after {
   content: "";
   display: block;
   height: 1px;
 }
-.button,input[type="submit"],.button:focus,input[type="submit"]:focus {
+.button,input[type="submit"] {
     cursor: pointer;
     background-color: #fff;
     font-size: 1rem;
@@ -265,7 +277,7 @@ html, body {
     padding-right:0.5rem;
 }
 .tools {
-    margin-top: 15px;
+    margin: 15px auto 0px auto;
     width: 120px;
 }
 .teachers-blocks .tools {
@@ -277,6 +289,10 @@ html, body {
 }
 .tools i.fa:before {
     padding: 0.5rem;
+}
+.tools-2el {
+    width: 70px;
+    margin: 15px auto 0px auto;
 }
 .course .title {
     font-family: "fira_sansbold";
@@ -318,4 +334,7 @@ html, body {
         float: none;
         width: 80%;
     }
+}
+.no-margin {
+    margin: 0;
 }

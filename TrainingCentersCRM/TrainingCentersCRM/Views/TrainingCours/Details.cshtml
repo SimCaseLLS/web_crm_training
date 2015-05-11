@@ -82,6 +82,7 @@
             {
                     <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Дистанционный курс</a>
             }
+        </aside>
     </section>
     <section class="row">
         <div class="column small-3 right">
@@ -170,18 +171,20 @@
             {
                 <li>
                     <div class="shadow">
-                        <div class="scale-wrap">
-                            @if (t.Image != null)
-                            {
-                                <img class="scale-img" src='/empty/Teachers/Image/@t.Id' />
-                            }
-                        </div>
-                        <div class="teacher-info">
-                            <p class="teacher-name"><b>@t.LastName @t.FirstName @t.Patronymic.</b></p>
-                            <p>
-                                @t.Description
-                            </p>
-                        </div>
+                        <a class="more-info" href='@Url.Action("Details", "Teachers", new { id = t.Id })'>
+                            <div class="scale-wrap">
+                                @if (t.Image != null)
+                                {
+                                    <img class="scale-img" src='/empty/Teachers/Image/@t.Id' />
+                                }
+                            </div>
+                            <div class="teacher-info">
+                                <p class="teacher-name"><b>@t.LastName @t.FirstName @t.Patronymic.</b></p>
+                                <p>
+                                    @t.Description
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 </li>
             }
@@ -223,21 +226,23 @@
                 @foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
                 {
                     <li>
-                        <div class="scale-wrap">
-                            <img src="https://placeimg.com/300/300/tech/@(j++)" class="responsive-img scale-img" alt="" />
-                        </div>
-                        <p class="title">@item.Title</p>
-                        <p>
-                            @if (item.ShortDescription.Length > 300)
-                            {
-                                @Html.Raw(item.ShortDescription.Substring(0, 300))
-                                <text>...</text>
-                            }
-                            else
-                            {
-                                @Html.Raw(item.ShortDescription)
-                            }
-                        </p>
+                        <a class="more-info" href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">
+                            <div class="scale-wrap">
+                                <img src="https://placeimg.com/300/300/tech/@(j++)" class="responsive-img scale-img" alt="" />
+                            </div>
+                            <p class="title">@item.Title</p>
+                            <p>
+                                @if (item.ShortDescription.Length > 300)
+                                {
+                                    @Html.Raw(item.ShortDescription.Substring(0, 300))
+                                    <text>...</text>
+                                }
+                                else
+                                {
+                                    @Html.Raw(item.ShortDescription)
+                                }
+                            </p>
+                        </a>
                         <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">Подробнее</a>
                     </li>
                 }
