@@ -57,15 +57,20 @@ namespace TrainingCentersCRM.Controllers
         }
         public JsonResult GetAllTeachers(int? id)
         {
-            var teachers = from a in db.TrainingCenterTeachers from b in db.Teachers where a.IdTrainingCenter == trainingCenter.Id && a.IdTeacher == b.Id select b;
+            var teachers = from a in db.TrainingCenterTeachers
+                           from b in db.Teachers
+                           where a.IdTrainingCenter == trainingCenter.Id
+                            && a.IdTeacher == b.Id
+                           select b;
             var res = teachers.Select(a => new
             {
                 Id = a.Id,
                 Title = a.LastName + " " + a.FirstName + " " + a.Patronymic,
-                Checked = db.TrainingCourseTeachers.Where(b => b.IdTrainingCourse == id && b.IdTeacher == a.Id && b.TrainingCours.IdTrainingCenter == trainingCenter.Id).Count() > 0 ? true : false
+                Checked = (from c in db.TrainingCourseTeachers from b in db.TrainingCenterCourses where a.Id == c.IdTeacher && b.IdTrainingCourse == id && b.Id == c.IdTrainingCourse select c).Count() > 0 ? true : false
+                //db.TrainingCourseTeachers.Where(b => b.TrainingCours.IdTrainingCourse == id && b.IdTeacher == a.Id).Count() > 0 ? true : false
             });
             return Json(res, JsonRequestBehavior.AllowGet);
-            
+
         }
 
         [HttpPost]
@@ -79,10 +84,10 @@ namespace TrainingCentersCRM.Controllers
                 {
                     int si = Convert.ToInt32(s);
                     var trCourse = db.TrainingCenterCourses.FirstOrDefault(e => e.IdTrainingCourse == si && e.IdTrainingCenter == trainingCenter.Id);
-                    db.RelatedCourses.Add(new RelatedCourse 
-                    { 
+                    db.RelatedCourses.Add(new RelatedCourse
+                    {
                         TrainingCours = trCourse,
-                        IdTrainingCourseRelated = relCourse.Id 
+                        IdTrainingCourseRelated = relCourse.Id
                     });
                 }
             db.SaveChanges();
@@ -94,30 +99,30 @@ namespace TrainingCentersCRM.Controllers
         {
             var tcCourses = from a in db.TrainingCenterCourses where a.IdTrainingCourse == id && a.IdTrainingCenter == trainingCenter.Id select a;
             var teachers = from a in db.TrainingCourseTeachers from b in tcCourses where a.IdTrainingCourse == b.IdTrainingCourse select a;
-            IEnumerable<TrainingCourseTeacher> toDelete = (from a in db.TrainingCourses 
-                        from b in db.TrainingCourseTeachers 
-                        from c in db.TrainingCenterCourses 
-                        where b.IdTrainingCourse == a.Id 
-                        && c.IdTrainingCourse == a.Id 
-                        && c.IdTrainingCenter == trainingCenter.Id 
-                        select b).AsEnumerable();
+            IEnumerable<TrainingCourseTeacher> toDelete = (
+                    from b in db.TrainingCourseTeachers
+                    from c in db.TrainingCenterCourses
+                    where 
+                    b.IdTrainingCourse == c.Id
+                    && c.IdTrainingCourse == id
+                    select b).AsEnumerable();
             //    db.TrainingCourseTeachers.Where(a => a.TrainingCours.TrainingCours.Id == id && a.TrainingCours.IdTrainingCenter == trainingCenter.Id);
-            db.TrainingCourseTeachers.RemoveRange(teachers);
+            db.TrainingCourseTeachers.RemoveRange(toDelete);
             db.SaveChanges();
             if (checkedRelatedTeacher != null)
                 foreach (var s in checkedRelatedTeacher)
                 {
                     int si = Convert.ToInt32(s);
-                    db.TrainingCourseTeachers.Add(new TrainingCourseTeacher 
-                    { 
-                        IdTrainingCourse = db.TrainingCenterCourses.Single(a => a.IdTrainingCenter == trainingCenter.Id && a.IdTrainingCourse == id).Id, 
-                        IdTeacher = si 
+                    db.TrainingCourseTeachers.Add(new TrainingCourseTeacher
+                    {
+                        IdTrainingCourse = db.TrainingCenterCourses.Single(a => a.IdTrainingCenter == trainingCenter.Id && a.IdTrainingCourse == id).Id,
+                        IdTeacher = si
                     });
                 }
             db.SaveChanges();
             return "ok";
         }
-        
+
         [HttpPost]
         public string AddTime([Bind(Include = "IdTrainingCourse,IdTrainingCenter,Description,DateStart,DateEnd")]ScheduleTtrainingCours stc)
         {
@@ -170,7 +175,7 @@ namespace TrainingCentersCRM.Controllers
             {
                 db.TrainingCourses.Add(trainingcours);
                 db.SaveChanges();
-                db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCenter = trainingCenter.Id, IdTrainingCourse = trainingcours.Id});
+                db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCenter = trainingCenter.Id, IdTrainingCourse = trainingcours.Id });
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
