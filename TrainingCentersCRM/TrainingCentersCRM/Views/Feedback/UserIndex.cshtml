@@ -1,109 +1,63 @@
 ﻿@model TrainingCentersCRM.Models.Feedback
 @using BotDetect.Web.UI.Mvc;
-<<<<<<< HEAD
-
-<div class="row">
-
+<div class="container">
     @foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
     {
-        <div class="panel">
-            <label>Имя:</label>
-                @Html.DisplayFor(modelItem => item.Name)
-            <br />
-            <label>Дата:</label>
-                @Html.DisplayFor(modelItem => item.Date)
-            <div>
-                @Html.DisplayFor(modelItem => item.Message)
-            </div>
-=======
-<div class="container">
-@foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
-{
-    <div class="row">
-        <div class="col s12 card">
-            <br />
-            <div class="row">
-                <div class="column small-2">
-                    <label>Имя:</label>
-                    <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+        <div class="row">
+            <div class="col s12 card">
+                <br />
+                <div class="row">
+                    <div class="column small-2">
+                        <label>Имя:</label>
+                        <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                    </div>
+                    <div class="column small-2 small-text">
+                        <label class="small-text">Дата:</label>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </div>
+                    <div class="column small-3"></div>
                 </div>
-                <div class="column small-2 small-text">
-                    <label class="small-text">Дата:</label>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </div>
-                <div class="column small-3"></div>
-            </div>
 
-            <div>
-                @Html.DisplayFor(modelItem => item.Message)
+                <div>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </div>
+                <br />
+                <hr></hr>
             </div>
-            <br />
-            <hr></hr>
->>>>>>> aef9d8f25cb0a00fea905854651bf847d0bb5f91
         </div>
     }
-</div>
 
-<div class="row">
+
     @using (Html.BeginForm("Create", "Feedback"))
     {
         @Html.AntiForgeryToken()
 
-<<<<<<< HEAD
-        <div class="form-horizontal">
+        <div class="form-horizontal row">
             <h4>Напишите отзыв для учебного центра</h4>
-            <hr />
             @Html.ValidationSummary(true)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Name)
                     @Html.ValidationMessageFor(model => model.Name)
                 </div>
-=======
-    <div class="form-horizontal row">
-        <h4>Напишите отзыв для учебного центра</h4>
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
->>>>>>> aef9d8f25cb0a00fea905854651bf847d0bb5f91
             </div>
 
-<<<<<<< HEAD
             <div class="form-group">
-                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Email, new { @class = "control-label" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Email)
                     @Html.ValidationMessageFor(model => model.Email)
                 </div>
-=======
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
->>>>>>> aef9d8f25cb0a00fea905854651bf847d0bb5f91
             </div>
 
-<<<<<<< HEAD
             <div class="form-group">
-                @Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Message, new { @class = "control-label" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Message)
                     @Html.ValidationMessageFor(model => model.Message)
                 </div>
-=======
-        <div class="form-group">
-            @Html.LabelFor(model => model.Message, new { @class = "control-label" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Message)
-                @Html.ValidationMessageFor(model => model.Message)
->>>>>>> aef9d8f25cb0a00fea905854651bf847d0bb5f91
             </div>
             <div class="form-group">
                 @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha"); }
@@ -113,30 +67,16 @@
                     @Html.TextBox("CaptchaCode")
                 </div>
             </div>
-<<<<<<< HEAD
             <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTc().Id" />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Добавить" class="btn btn-default" />
+                    <input type="submit" value="Добавить" class="btn btn-default" /> |
+                    @Html.ActionLink("Вернуться к списку", "Index")
                 </div>
             </div>
         </div>
     }
-=======
-        </div>
-        <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTc().Id" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-default" /> |
-                @Html.ActionLink("Вернуться к списку", "Index")
-            </div>
-        </div>
-    </div>
-}
->>>>>>> aef9d8f25cb0a00fea905854651bf847d0bb5f91
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-
