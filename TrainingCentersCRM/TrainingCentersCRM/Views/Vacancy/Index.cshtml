@@ -51,7 +51,7 @@
                 <p>
                     Заработная плата: @Html.DisplayFor(modelItem => item.Wages)
                 </p>
-                <section class="tools">
+                <section class="tools no-margin">
                     @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
                     @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
                     @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
@@ -63,7 +63,7 @@
     <h3>Вакансии HeadHunter</h3>
     <div id="jobs"></div>
     <div id="template" style="display: none;">
-        <div class=" card-panel col s6 job">
+        <div class="column small-6 job">
             <h5 class="title"> My job </h5>
             <div><span class="ligth-text"> Компания: </span> <span class="company">Dsf</span> </div>
             <div class="salary-wrap"><span class="ligth-text"> Заработная плата: </span> от <span class="salary">1000000</span> </div>

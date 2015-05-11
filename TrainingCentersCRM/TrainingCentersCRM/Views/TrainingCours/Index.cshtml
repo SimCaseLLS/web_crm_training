@@ -69,39 +69,18 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <div class="news-block center">
-                        <div class="tools">
+                    <div class="course">
+                        <div class="tools tools-2el">
                             @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
                             @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
                         </div>
-                        <img src="https://placeimg.com/300/300/tech/@(i++)" class="responsive-img scale-img" alt="" />
-                        <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
-
-                        <p>
-                            <a href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
-                                @if (item.ShortDescription.Length > 80)
-                                {
-                                    @Html.Raw(item.ShortDescription.Substring(0, 80))
-                                    <text>...</text>
-                                }
-                                else
-                                {
-                                    @Html.Raw(item.ShortDescription)
-                                }
-                            </a>
-                        </p>
-                    </div>
-                </li>
-                @*<div id="article-template">
-                        <div class="col s4">
-                            <div class="card medium">
-                                <div class="card-image">
-                                    <a href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
-                                        <img src="https://placeimg.com/300/300/tech/@(i++)" class="responsive-img" alt="" />
-                                        <span class="card-title">@Html.DisplayFor(modelItem => item.Title)</span>
-                                    </a>
-                                </div>
-                                <div class="card-content">
+                        <a class="more-info" href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
+                            <div class="scale-wrap">
+                                <img src="https://placeimg.com/300/300/tech/@(i++)" class="scale-img" alt="" />
+                            </div>
+                            <h5 class="title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <p>
+                                
                                     @if (item.ShortDescription.Length > 80)
                                     {
                                         @Html.Raw(item.ShortDescription.Substring(0, 80))
@@ -111,15 +90,12 @@
                                     {
                                         @Html.Raw(item.ShortDescription)
                                     }
-                                    <div class="card-action">
-                                        <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Edit", "TrainingCours", new { id = item.Id })"><i class="mdi-content-create center"></i></a>
-                                        <a class="waves-effect waves-light btn btn-small" href="@Url.Action("Delete", "TrainingCours", new { id = item.Id })"><i class="mdi-content-clear center"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                    </div>*@
+                               
+                            </p>
+                        </a>
+                    </div>
+                </li>
+               
             }
         </ul>
     }

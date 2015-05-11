@@ -55,8 +55,7 @@ nav a {
     margin-right: 2.7%;
 }
 header nav a:hover, header nav a:focus {
-    font-weight: 700;
-    color: #202020;
+    color: #000;
     padding-bottom: 0px;
     border-bottom: 3px solid #fedd28;
 }

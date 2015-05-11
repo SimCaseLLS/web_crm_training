@@ -15,7 +15,7 @@
     <AssemblyName>TrainingCentersCRM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -279,10 +279,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TrainingCentersDB.mdf" />
-    <Content Include="App_Data\TrainingCentersDB_log.ldf">
-      <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\TrainingCentersDBsuch.mdf" />
+    <Content Include="App_Data\TrainingCentersDBsuch_log.ldf" />
     <Content Include="Content\courses.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\footer.css" />
@@ -841,7 +839,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1037</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://ict-training.net</IISUrl>
+          <IISUrl>http://localhost:1908/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

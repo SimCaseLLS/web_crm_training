@@ -1,144 +1,138 @@
-﻿@model TrainingCentersCRM.Models.UserManEditing
+﻿    @model TrainingCentersCRM.Models.UserManEditing
 
 @{
     ViewBag.Title = "Edit";
 }
+<div class="container">
+    <h2>Редактировать</h2>
 
-<h2>Edit</h2>
 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Пользователь</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id)
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>AspNetUser</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.Id)
+                    @Html.ValidationMessageFor(model => model.Id)
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.Id)
-                @Html.ValidationMessageFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TypeUser, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TypeUser)
+                    @Html.ValidationMessageFor(model => model.TypeUser)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Patronymic, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Patronymic)
+                    @Html.ValidationMessageFor(model => model.Patronymic)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+
+            <div class="form-group" id="DateOfBirthDiv">
+                @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateOfBirth)
+                    @Html.ValidationMessageFor(model => model.DateOfBirth)
+                </div>
+            </div>
+
+            <div class="form-group" id="PassportDataDiv">
+                @Html.LabelFor(model => model.PassportData, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PassportData)
+                    @Html.ValidationMessageFor(model => model.PassportData)
+                </div>
+            </div>
+
+            <div class="form-group" id="PhoneDiv">
+                @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phone)
+                    @Html.ValidationMessageFor(model => model.Phone)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-default" /> | 
+                @Html.ActionLink("Вернуться к списку", "Index")
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName)
-                @Html.ValidationMessageFor(model => model.UserName)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TypeUser, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TypeUser)
-                @Html.ValidationMessageFor(model => model.TypeUser)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName)
-                @Html.ValidationMessageFor(model => model.LastName)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName)
-                @Html.ValidationMessageFor(model => model.FirstName)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Patronymic, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Patronymic)
-                @Html.ValidationMessageFor(model => model.Patronymic)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
-        </div>
-
-        <div class="form-group" id="DateOfBirthDiv">
-            @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfBirth)
-                @Html.ValidationMessageFor(model => model.DateOfBirth)
-            </div>
-        </div>
-
-        <div class="form-group" id="PassportDataDiv">
-            @Html.LabelFor(model => model.PassportData, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PassportData)
-                @Html.ValidationMessageFor(model => model.PassportData)
-            </div>
-        </div>
-
-        <div class="form-group" id="PhoneDiv">
-            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone)
-                @Html.ValidationMessageFor(model => model.Phone)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<script>
-    document.getElementById("UserName").readOnly = true;
-    document.getElementById("Password").readOnly = true;
-    document.getElementById("TypeUser").readOnly = true;
-
-    if (document.getElementById('TypeUser').value == 'teacher') {
-        document.getElementById('DateOfBirthDiv').style.display = 'none';
-        document.getElementById('PassportDataDiv').style.display = 'none';
     }
-    if (document.getElementById('TypeUser').value == 'student') {
-        document.getElementById('PhoneDiv').style.display = 'none';
-    }
-</script>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+    <script>
+        document.getElementById("UserName").readOnly = true;
+        document.getElementById("Password").readOnly = true;
+        document.getElementById("TypeUser").readOnly = true;
+
+        if (document.getElementById('TypeUser').value == 'teacher') {
+            document.getElementById('DateOfBirthDiv').style.display = 'none';
+            document.getElementById('PassportDataDiv').style.display = 'none';
+        }
+        if (document.getElementById('TypeUser').value == 'student') {
+            document.getElementById('PhoneDiv').style.display = 'none';
+        }
+    </script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

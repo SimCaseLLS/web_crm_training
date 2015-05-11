@@ -3,70 +3,70 @@
 @{
     ViewBag.Title = "Delete";
 }
+<div class="container">
+    <h2>Удалить</h2>
 
-<h2>Delete</h2>
+    <h3>Вы действительно хотите удалить это расписание?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ScheduleTtrainingCours</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateStart)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateStart)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateStart)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateEnd)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateEnd)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateEnd)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingCenter.Addres)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingCenter.Addres)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrainingCenter.Addres)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrainingCenter.Addres)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingCours.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingCours.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrainingCours.Title)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrainingCours.Title)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("Вернуться к списку", "Index")
+            </div>
+        }
+    </div>
 </div>
