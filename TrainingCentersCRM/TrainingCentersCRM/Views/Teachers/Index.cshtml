@@ -15,6 +15,11 @@
             {
                 <li>
                     <div class="shadow">
+                        <div class="tools">
+                            @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                            @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
+                            @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                        </div>
                         <div class="scale-wrap">
                             @if (t.Image != null)
                             {
@@ -26,11 +31,6 @@
                             <p>
                                 @t.Description
                             </p>
-                        </div>
-                        <div class="tools">
-                            @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
-                            @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
-                            @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
                         </div>
                     </div>
                 </li>

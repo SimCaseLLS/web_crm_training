@@ -42,6 +42,11 @@
         foreach (var item in Model)
         {
             <div class="card-panel">
+                <section class="tools no-margin">
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                </section>
                 <h5>
                     @Html.DisplayFor(modelItem => item.Description)
                 </h5>
@@ -51,11 +56,6 @@
                 <p>
                     Заработная плата: @Html.DisplayFor(modelItem => item.Wages)
                 </p>
-                <section class="tools no-margin">
-                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
-                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
-                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
-                </section>
             </div>
         }
 

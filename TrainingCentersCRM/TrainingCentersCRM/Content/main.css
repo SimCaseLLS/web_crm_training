@@ -338,3 +338,6 @@ html, body {
 .no-margin {
     margin: 0;
 }
+.hh {
+    margin-right: -20px;
+}
