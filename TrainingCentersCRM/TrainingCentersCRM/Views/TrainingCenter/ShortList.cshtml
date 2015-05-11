@@ -9,14 +9,23 @@
         <li class="accordion-navigation">
             <a href="#panel@(i)"><i class="fa fa-university"></i>@Html.DisplayFor(modelItem => item.Organization)</a>
             <div id="panel@(i++)" class="content">
+                <label>Адрес: </label>
                 @Html.DisplayFor(modelItem => item.Addres)
+                <br /><br />
+                <label>
+                    Телефон:
+                </label>
                 @Html.DisplayFor(modelItem => item.Phone)
+                <br /><br />
+                <label>
+                    e-mail:
+                </label>
                 @Html.DisplayFor(modelItem => item.Email)
-                @Html.Raw(item.Description)
-                @Html.DisplayFor(modelItem => item.Logo)
-                @Html.DisplayFor(modelItem => item.HHCityId)
-                @Html.DisplayFor(modelItem => item.Url)
+                <br /><br />
+                @TrainingCentersCRM.Infrastructure.TCHelper.TruncateString(Html.Raw(item.Description).ToHtmlString())
+                <br />
+                <a href="/@item.Url/TrainingCenter/Details/@item.Id">Подробнее...</a>
             </div>
         </li>
-        }
-    </ul>
+    }
+</ul>

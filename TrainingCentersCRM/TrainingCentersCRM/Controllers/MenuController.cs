@@ -44,7 +44,7 @@ namespace TrainingCentersCRM.Controllers
         // GET: /Menu/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Menu());
         }
 
         // POST: /Menu/Create

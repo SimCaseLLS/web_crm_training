@@ -11,6 +11,8 @@
             <a href="#panelb@(i)"><i class="fa fa-book"></i>@Html.DisplayFor(modelItem => item.Title)</a>
             <div id="panelb@(i++)" class="content">
                 @Html.DisplayFor(modelItem => item.ShortDescription)
+                <br />
+                <a href="/empty/TrainingCours/Details/@item.Id">Подробнее...</a>
             </div>
         </li>
     }

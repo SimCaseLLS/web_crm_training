@@ -69,8 +69,8 @@
             @foreach (var item in Model)
             {
                 <li>
-                    <div class="news-block">
-                        <div class="row-tools">
+                    <div class="news-block center">
+                        <div class="tools">
                             @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
                             @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
                         </div>

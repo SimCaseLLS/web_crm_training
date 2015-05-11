@@ -4,25 +4,27 @@
     ViewBag.Title = Model.Title;
 }
 <div class="container row">
-    <article>
-        <h2>@Model.Title</h2>
-        <a>
-            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
-        </a>
-
-        <div>
-            <label>Опубликовано: @Model.PublishDate</label>
-            <p>
+    <h2>@Model.Title</h2>
+    <a>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
+    </a>
+    <label>Опубликовано: @Model.PublishDate</label><br />
+    <div class="row">
+        <div class="large-3 small-6 columns">
+            <div class="overlay-container">
                 @if (Model.Image != null)
-                { 
+                {
                     <img src="/empty/Articles/Image/@Model.Id" class="detailsImage" />
                 }
-                @(Html.Raw(HttpUtility.HtmlDecode(Model.Annotation)))
-            </p>
-            <p>
-                @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
-            </p>
-            @Html.Action("Index", "FileDocs", new { key = Model.Id })
+            </div>
         </div>
-    </article>
+        <div class="">@(Html.Raw(HttpUtility.HtmlDecode(Model.Annotation)))</div>
+    </div>
+    <br />
+    <div>
+        @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
+    </div>
+    @Html.Action("Index", "FileDocs", new { key = Model.Id })
+
+
 </div>

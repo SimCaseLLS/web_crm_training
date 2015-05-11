@@ -18,7 +18,7 @@ namespace TrainingCentersCRM.Controllers
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: Articles
-        public ActionResult Index(int? id, bool? partial, int? page)
+        public ActionResult Index(int? id, bool? partial, int? page, int? top)
         {
             IQueryable<Article> result = db.Articles.OrderByDescending(a => a.PublishDate);
             if (TCHelper.GetCurrentTCName() != "" && TCHelper.GetCurrentTCName() != "empty")
@@ -33,7 +33,7 @@ namespace TrainingCentersCRM.Controllers
             }
 
             //int pageSize = page == null ? Int32.MaxValue : (Int32)HttpContext.Application["PageSize"];
-            int pageSize = (Int32)HttpContext.Application["PageSize"];
+            int pageSize = top != null ? (int)top : (Int32)HttpContext.Application["PageSize"];
             int pageNumber = (page ?? 1);
             var pagedRes = result.ToPagedList(pageNumber, pageSize);
             if (partial != null && partial == true)

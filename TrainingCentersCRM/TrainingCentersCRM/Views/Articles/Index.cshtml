@@ -21,7 +21,7 @@
     }
 </div>
 
-<div class="clear-fix container">
+<div class="clear-fix container row">
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
         @{int i = 1;}
         @foreach (var item in Model)
@@ -44,7 +44,11 @@
                         <img src="/empty/Articles/Image/@item.Id" class="responsive-img scale-img" />
                     }
                     <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
-                    <p>@(Html.Raw(item.Annotation))</p>
+                    <p>@(TrainingCentersCRM.Infrastructure.TCHelper.TruncateString(Html.Raw(item.Annotation).ToHtmlString()))</p>
+                    <a class="left" href="/@(TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTCName())/Articles/Details/@item.Id">
+                        Подробнее...
+                    </a>
+                    <br />
                 </div>
             </li>
         }
@@ -54,3 +58,4 @@
     @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
+

@@ -18,7 +18,11 @@ namespace TrainingCentersCRM.Controllers
         // GET: /Feedback/
         public ActionResult Index()
         {
-            return View(db.Feedback.ToList());
+            var res = db.Feedback;
+            if (trainingCenter.Url != "empty")
+                return View(res.Where(a => a.IdTrainingCenter == trainingCenter.Id));
+            else
+                return View(res);
         }
 
         public ActionResult UserIndex()
@@ -57,7 +61,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Неправильный код с картинки!")]
-        public ActionResult Create([Bind(Include="Id,Name,Email,Message,IdTrainingCenter")] Feedback feedback)
+        public ActionResult Create([Bind(Include = "Id,Name,Email,Message,IdTrainingCenter")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {

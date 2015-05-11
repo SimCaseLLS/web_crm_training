@@ -311,6 +311,7 @@
     <Content Include="img\feature-icon.svg" />
     <Content Include="img\P1010871.jpg" />
     <Content Include="img\tempus.jpg" />
+    <Content Include="img\tempus_logo.png" />
     <Content Include="log4net.config.xml" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />

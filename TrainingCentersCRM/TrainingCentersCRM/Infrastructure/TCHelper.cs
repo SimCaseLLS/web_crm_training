@@ -41,6 +41,14 @@ namespace TrainingCentersCRM.Infrastructure
             {
                 throw new HttpException(404, "NotFound");
             }
-        } 
+        }
+
+        public static string TruncateString(string text)
+        {
+            if (text.Length > 200)
+                return text.Substring(0, 200) + "...";
+            else
+                return text;
+        }
     }
 }
