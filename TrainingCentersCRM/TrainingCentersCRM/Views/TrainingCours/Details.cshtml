@@ -137,14 +137,14 @@
                     @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
                     {
                         <div>
+                            <div class="tools no-margin">
+                                <a class="button fa fa-pencil" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"></a>
+                                <a class="button fa fa-trash" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"></a>
+                            </div>
                             <h5>
                                 <a href="">@module.TrainingModule.Title</a>
                             </h5>
                             <p>@module.TrainingModule.ShortDescription</p>
-                            <div class="tools">
-                                <a class="button fa fa-pencil" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"></a>
-                                <a class="button fa fa-trash" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"></a>
-                            </div>
                         </div>
                     }
                 </div>

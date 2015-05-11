@@ -271,6 +271,11 @@ body {
      transition: all 0.2s ease-in 0s;
      outline: none;
 }
+.button:focus,input[type="submit"]:focus {
+    background-color: #fff;
+    border: 1px solid #232c3b;
+    color: #232c3b;
+}
     .button:hover,input[type="submit"]:hover {
         background-color: #fefefe;
         border-color: #FA7B4F;
