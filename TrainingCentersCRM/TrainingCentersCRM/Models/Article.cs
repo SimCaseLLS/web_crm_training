@@ -28,5 +28,11 @@ namespace TrainingCentersCRM.Models
         [ForeignKey("TrainingCenter")]
         public int? TrainingCenterId { get; set; }
         public virtual TrainingCenter TrainingCenter { get; set; }
+
+        public byte[] Image { get; set; }
+
+        public string ContentType { get; set; }
+
+        public ICollection<FileDocument> Documents { get; set; }
     }
 }

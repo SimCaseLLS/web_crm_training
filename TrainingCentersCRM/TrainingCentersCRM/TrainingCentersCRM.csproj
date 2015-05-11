@@ -15,7 +15,7 @@
     <AssemblyName>TrainingCentersCRM</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -188,6 +188,7 @@
     <Compile Include="Controllers\CertificationProviderController.cs" />
     <Compile Include="Controllers\CourseTakingController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FileDocsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -215,6 +216,14 @@
     <Compile Include="Migrations\201505101331295_CourseMoodleLink.Designer.cs">
       <DependentUpon>201505101331295_CourseMoodleLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505110535376_AddArticleDocuments.cs" />
+    <Compile Include="Migrations\201505110535376_AddArticleDocuments.Designer.cs">
+      <DependentUpon>201505110535376_AddArticleDocuments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505110557086_ArticleImageContentType.cs" />
+    <Compile Include="Migrations\201505110557086_ArticleImageContentType.Designer.cs">
+      <DependentUpon>201505110557086_ArticleImageContentType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
@@ -226,6 +235,7 @@
     <Compile Include="Models\CourseModule.cs" />
     <Compile Include="Models\CourseTaking.cs" />
     <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\FileDocument.cs" />
     <Compile Include="Models\HoldCours.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
@@ -641,6 +651,7 @@
     <Content Include="Scripts\foundation-datepicker.js" />
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\HeadHunterSelects.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jstree.js" />
@@ -774,6 +785,11 @@
     <Content Include="Views\TrainingCours\ShortList.cshtml" />
     <Content Include="Views\TrainingCours\Calendar.cshtml" />
     <Content Include="Views\Feedback\UserIndex.cshtml" />
+    <Content Include="Views\FileDocs\Create.cshtml" />
+    <Content Include="Views\FileDocs\Delete.cshtml" />
+    <Content Include="Views\FileDocs\Details.cshtml" />
+    <Content Include="Views\FileDocs\Edit.cshtml" />
+    <Content Include="Views\FileDocs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -791,6 +807,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505101331295_CourseMoodleLink.resx">
       <DependentUpon>201505101331295_CourseMoodleLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505110535376_AddArticleDocuments.resx">
+      <DependentUpon>201505110535376_AddArticleDocuments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505110557086_ArticleImageContentType.resx">
+      <DependentUpon>201505110557086_ArticleImageContentType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -811,7 +833,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1037</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1908/</IISUrl>
+          <IISUrl>http://ict-training.net</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,6 +1,7 @@
 ﻿@model PagedList.IPagedList<TrainingCentersCRM.Models.Article>
 @using PagedList.Mvc;
 @{
+
     ViewBag.Title = "Список материалов сайта";
 }
 <div class="container">
@@ -34,7 +35,14 @@
                         @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
                     </div>
                     <span class="date">@(Html.DisplayFor(modelItem => item.PublishDate))</span>
-                    <img src="https://placeimg.com/300/300/tech/@(i++)" runat="server" />
+                    @if (item.Image == null)
+                    { 
+                        <img src="https://placeimg.com/300/300/tech/@(i++)" runat="server" />
+                    }
+                    else
+                    {
+                        <img src="/empty/Articles/Image/@item.Id" />
+                    }
                     <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
                     <p>@(Html.Raw(item.Annotation))</p>
                 </div>

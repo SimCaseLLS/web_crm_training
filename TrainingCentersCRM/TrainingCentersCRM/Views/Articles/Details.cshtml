@@ -13,11 +13,16 @@
         <div>
             <label>Опубликовано: @Model.PublishDate</label>
             <p>
+                @if (Model.Image != null)
+                { 
+                    <img src="/empty/Articles/Image/@Model.Id" class="detailsImage" />
+                }
                 @(Html.Raw(HttpUtility.HtmlDecode(Model.Annotation)))
             </p>
             <p>
                 @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
             </p>
+            @Html.Action("Index", "FileDocs", new { key = Model.Id })
         </div>
     </article>
 </div>

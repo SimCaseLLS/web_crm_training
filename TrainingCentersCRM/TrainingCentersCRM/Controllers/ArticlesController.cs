@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 using PagedList;
+using System.IO;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -70,8 +71,18 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article)
+        public ActionResult Create([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article, HttpPostedFileBase uploadImage)
         {
+            if (uploadImage != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                // установка массива байтов
+                article.Image = imageData;
+                article.ContentType = uploadImage.ContentType;
+            }
             article.TrainingCenterId = this.trainingCenter.Id;
             db.Articles.Add(article);
             db.SaveChanges();
@@ -93,16 +104,36 @@ namespace TrainingCentersCRM.Controllers
             return View(article);
         }
 
+        
+        public ActionResult Image(int id)
+        {
+            var doc = db.Articles.FirstOrDefault(a => a.Id == id);
+            return File(doc.Image, doc.ContentType);
+        }
+
         // POST: Articles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article)
+        public ActionResult Edit([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(article).State = EntityState.Modified;
+                var old = db.Articles.FirstOrDefault(a => a.Id == article.Id);
+                if (uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    // установка массива байтов
+                    old.Image = imageData;
+                    old.ContentType = uploadImage.ContentType;
+                }
+                old.Title = article.Title;
+                old.Annotation = article.Annotation;
+                old.Text = article.Text;
                 db.SaveChanges();
                 return RedirectToAction("Index", new { id = article.Type });
             }

@@ -58,15 +58,17 @@ namespace TrainingCentersCRM.Controllers
 
             if (ModelState.IsValid)
             {
-                byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                if (uploadImage != null)
                 {
-                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    }
+                    // установка массива байтов
+                    teacher.Image = imageData;
                 }
-                // установка массива байтов
-                teacher.Image = imageData;
-
                 db.Users.Add(teacher);
                 db.SaveChanges();
                 var teach = db.Teachers.SingleOrDefault(a => a.Email == teacher.Email);

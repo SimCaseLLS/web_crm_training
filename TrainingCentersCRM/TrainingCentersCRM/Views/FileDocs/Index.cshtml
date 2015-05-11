@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.FileDocument>
+
+@{
+    Layout = null;
+}
+
+@if (Model.Count() > 0)
+{
+    <h4>Прикрепленные файлы</h4>
+}
+
+<a class="button" id="addButton" href="#">
+    <i class="fa fa-plus"></i>Добавить файл
+</a>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="small-2 large-2 columns">
+            <a href="/empty/FileDocs/Download/@item.Id" target="_blank">
+                @Html.DisplayFor(modelItem => item.Title)
+            </a>
+            <br />
+            <small>@Html.DisplayFor(modelItem => item.Description)</small>
+        </div>
+        <div class="tools left">
+            @Html.ActionLink(" ", "Delete", new { id = item.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+        </div>
+    </div>
+}
+
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+</div>
+
+<script type="text/javascript">
+    $("#addButton").click(function () {
+        $('#myModal').foundation('reveal', 'open', '/empty/FileDocs/Create/@ViewBag.ArticleId');
+        return false;
+    });
+
+    hideAddFileDialog = function () {
+        $("#addFile").html(" ");
+    }
+</script>

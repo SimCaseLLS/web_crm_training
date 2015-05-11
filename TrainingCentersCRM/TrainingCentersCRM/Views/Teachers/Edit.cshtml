@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Edit", "Teachers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
@@ -64,16 +64,14 @@
             </div>
         </div>
         <br />
-        <div class="th" style="background-image: url(/empty/Teachers/Image/@Model.Id)">
 
-        </div>
         <img src="/empty/Teachers/Image/@Model.Id" class="detailsImage" />
 
         <div class="editor-label">Файл изображения</div>
         <div class="editor-field">
             <input type="file" name="uploadImage" />
         </div>
-        
+
         <br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

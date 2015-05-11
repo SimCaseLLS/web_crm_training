@@ -42,6 +42,8 @@ namespace TrainingCentersCRM.Models
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Advertize> Advs { get; set; }
 
+        public virtual DbSet<FileDocument> FileDocuments { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CertificationProvider>()
@@ -66,6 +68,13 @@ namespace TrainingCentersCRM.Models
             modelBuilder.Entity<CourseTaking>()
                 .Property(e => e.IdObecjt)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Article>()
+                .HasMany(e => e.Documents)
+                .WithOptional(e => e.Article)
+                .HasForeignKey(e => e.ArticleId)
+                .WillCascadeOnDelete();
+
 
             modelBuilder.Entity<CourseTaking>()
                 .HasMany(e => e.Listeners)
