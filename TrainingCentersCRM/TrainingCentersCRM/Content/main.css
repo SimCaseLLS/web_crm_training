@@ -241,6 +241,9 @@ html, body {
   height: 100%;
   text-rendering: optimizeLegibility;
 }
+body {
+    min-width: 1000px;
+}
 .wrap-body {
     min-height: 100%;
     padding-bottom: 30px;
@@ -283,6 +286,12 @@ html, body {
 .teachers-blocks .tools {
     width: 120px;
     margin: 15px auto;
+}
+.teachers-blocks .shadow{
+    height: 100%;
+}
+.teachers-blocks .scale-wrap{
+    max-height: 200px
 }
 .tools .fa:before {
     padding: 0px;

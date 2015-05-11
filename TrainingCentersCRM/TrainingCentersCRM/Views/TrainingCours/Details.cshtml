@@ -104,10 +104,10 @@
                 </h4>
                 <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Добавить</a>
                 <div id="dropDownRelatedTeachers" style="display: none"></div>
-                <ul class="small-block-grid-3">
+                <ul class="small-block-grid-2 large-block-grid-3" data-equalizer>
                     @foreach (TrainingCentersCRM.Models.Teacher t in ViewBag.trainingCourseTeacher)
                     {
-                        <li>
+                        <li data-equalizer-watch>
                             <div class="shadow">
                                 <a class="more-info" href='@Url.Action("Details", "Teachers", new { id = t.Id })'>
                                     <div class="scale-wrap">
@@ -128,7 +128,7 @@
                     }
                 </ul>
             </section>
-            <section class="container row">
+            <section class="row">
                 <h4>
                     Учебная программа
                 </h4>
@@ -149,7 +149,7 @@
                     }
                 </div>
             </section>
-            <section class="container row">
+            <section class="row">
                 <div class="column small-12">
                     <h4>
                         Рекомендуемые курсы
