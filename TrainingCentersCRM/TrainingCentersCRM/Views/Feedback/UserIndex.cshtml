@@ -1,77 +1,73 @@
 ﻿@model TrainingCentersCRM.Models.Feedback
 @using BotDetect.Web.UI.Mvc;
 
-@foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
-{
-    <div class="row">
-        <div class="col s12 card">
-            <br />
+<div class="row">
+
+    @foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
+    {
+        <div class="panel">
             <label>Имя:</label>
-            <div>
                 @Html.DisplayFor(modelItem => item.Name)
-            </div>
+            <br />
             <label>Дата:</label>
-            <div>
                 @Html.DisplayFor(modelItem => item.Date)
-            </div>
             <div>
                 @Html.DisplayFor(modelItem => item.Message)
             </div>
-            <br />
         </div>
-    </div>
-}
+    }
+</div>
 
+<div class="row">
+    @using (Html.BeginForm("Create", "Feedback"))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Create", "Feedback"))
-{
-    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>Напишите отзыв для учебного центра</h4>
+            <hr />
+            @Html.ValidationSummary(true)
 
-    <div class="form-horizontal">
-        <h4>Напишите отзыв для учебного центра</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Message)
+                    @Html.ValidationMessageFor(model => model.Message)
+                </div>
+            </div>
+            <div class="form-group">
+                @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha"); }
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Captcha(sampleCaptcha)
+                    <br /><br />
+                    @Html.TextBox("CaptchaCode")
+                </div>
+            </div>
+            <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTc().Id" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Message)
-                @Html.ValidationMessageFor(model => model.Message)
-            </div>
-        </div>
-        <div class="form-group">
-            @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha"); }
-            <div class="col-md-offset-2 col-md-10">
-                @Html.Captcha(sampleCaptcha)
-                <br /><br />
-                @Html.TextBox("CaptchaCode")
-            </div>
-        </div>
-        <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTc().Id" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
+    }
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
