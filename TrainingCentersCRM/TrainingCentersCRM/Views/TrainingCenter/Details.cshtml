@@ -6,72 +6,51 @@
 <div class="container">
     <div>
         <h4>@Model.Organization</h4>
-    	<hr />
-        <dl class="dl-horizontal">
+        <hr />
+        <div class="row">
 
-            <dd>
+            @if (Model.Logo != null)
+            {
+                <div class="small-12 large-6 columns">
+                    <img data-interchange="[/empty/TrainingCenter/Image/@Model.Id, (default)]" class="main-image responsive-img scale-img" />
+                </div>
+            }
+            <div class="small-12 large-6 columns left">
                 @Html.Raw(Model.Description)
-            </dd>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Addres)
-            </dt>
-
-            <dd>
+            <div class="details">
+                <label>
+                    @Html.DisplayNameFor(model => model.Addres)
+                </label>
                 @Html.DisplayFor(model => model.Addres)
-            </dd>
+            </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
 
-            <dd>
+            <div class="details">
+                <label>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </label>
                 @Html.DisplayFor(model => model.Phone)
-            </dd>
+            </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
 
-            <dd>
+            <div class="details">
+                <label>
+                    @Html.DisplayNameFor(model => model.Email)
+                </label>
                 @Html.DisplayFor(model => model.Email)
-            </dd>
+            </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Organization)
-            </dt>
-
-            <dd>
+            <div class="details">
+                <label>
+                    @Html.DisplayNameFor(model => model.Organization)
+                </label>
                 @Html.DisplayFor(model => model.Organization)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Logo)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Logo)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Url)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Url)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.HHCityId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.HHCityId)
-            </dd>
-
-        </dl>
+            </div>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Редактирование", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Вернуться к списку", "Index")
-    </p>
 </div>

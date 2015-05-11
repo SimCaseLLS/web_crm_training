@@ -8,7 +8,7 @@
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "TrainingCenter", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         
@@ -16,6 +16,17 @@
             <hr />
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @if (Model.Logo != null)
+                { 
+                    <img src="/empty/TrainingCenter/Image/@Model.Id" class="detailsImage" />
+                }
+                <div class="editor-label">Файл изображения</div>
+                <div class="editor-field">
+                    <input type="file" name="uploadImage" />
+                </div>
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Addres, new { @class = "control-label col-md-2" })
@@ -58,14 +69,6 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Logo, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Logo)
-                    @Html.ValidationMessageFor(model => model.Logo)
-                </div>
-            </div>
-
-            <div class="form-group">
                 @Html.LabelFor(model => model.Url, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Url)
@@ -99,6 +102,6 @@
     $(function () {
         CKEDITOR.config.filebrowserUploadUrl = '/empty/Home/UploadFromEditor';
         CKEDITOR.config.filebrowserBrowseUrl = '/empty/Home/ImageBrowser';
-        $('#Description').ckeditor();
+        //$('#Description').ckeditor();
     });
 </script>

@@ -41,6 +41,8 @@ using System;
         [Column(TypeName = "image")]
         public byte[] Logo { get; set; }
 
+        public string LogoContentType { get; set; }
+
         [Display(Name="Id HH")]
         public string HHCityId { get; set; }
 

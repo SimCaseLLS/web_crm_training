@@ -50,7 +50,8 @@ namespace TrainingCentersCRM
             {
                 if (Parent_ID == 0)
                 {
-                    ul.InnerHtml += "<li><a href='/" + IdTrainingCenter + "/Home/Index'>" + db.TrainingCenters.SingleOrDefault(a => a.Url == IdTrainingCenter).Organization + "</a></li>";
+                    var tclocal = db.TrainingCenters.SingleOrDefault(a => a.Url == IdTrainingCenter);
+                    ul.InnerHtml += "<li><a href='/" + IdTrainingCenter + "/TrainingCenter/Details/" + tclocal.Id + "'>" + tclocal.Organization + "</a></li>";
                 }
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other" || p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
             }
@@ -69,7 +70,7 @@ namespace TrainingCentersCRM
                 {
                     // текущий элемент имеет dropdown
                     icon = "<i class='fa fa-caret-down'></i>";
-                    a.MergeAttribute("aria-expanded","false");
+                    a.MergeAttribute("aria-expanded", "false");
                     var newDropdownId = "dropdown" + IdTrainingCenter + samp.Id.ToString();
                     a.MergeAttribute("data-dropdown", newDropdownId);
                     a.MergeAttribute("aria-controls", newDropdownId);
@@ -120,7 +121,7 @@ namespace TrainingCentersCRM
             ul.MergeAttribute("data-options", "is_hover:true; hover_timeout:5000");
             foreach (var tc in tcs)
             {
-                ul.InnerHtml += "<li><a href='/" + tc.Url + "/Home/Index'>" + tc.Organization + "</a></li>";
+                ul.InnerHtml += "<li><a href='/" + tc.Url + "/TrainingCenter/Details/" + tc.Id + "'>" + tc.Organization + "</a></li>";
             }
             html += ul.ToString();
             return html;

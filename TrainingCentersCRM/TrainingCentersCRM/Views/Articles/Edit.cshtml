@@ -34,7 +34,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <img src="/empty/Articles/Image/@Model.Id" class="detailsImage" />
+                @if (Model.Image != null)
+                {
+                    <img src="/empty/Articles/Image/@Model.Id" class="detailsImage" />
+                }
                 <div class="editor-label">Файл изображения</div>
                 <div class="editor-field">
                     <input type="file" name="uploadImage" />

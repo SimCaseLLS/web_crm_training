@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingCentersCRM.Models;
 using TrainingCentersCRM.Infrastructure;
+using System.IO;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -17,6 +18,13 @@ namespace TrainingCentersCRM.Controllers
         public JsonResult Centers() {
             var tcs = db.TrainingCenters.Where(a => a.Url != "empty");
             return Json(tcs.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Image(int id)
+        {
+            var doc = db.TrainingCenters.FirstOrDefault(a => a.Id == id);
+            return File(doc.Logo, doc.LogoContentType);
+
         }
 
         public ActionResult ShortList()
@@ -96,10 +104,20 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter)
+        public ActionResult Create([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
+                if (uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    // установка массива байтов
+                    trainingcenter.Logo = imageData;
+                    trainingcenter.LogoContentType = uploadImage.ContentType;
+                }
                 db.TrainingCenters.Add(trainingcenter);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,10 +147,20 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter)
+        public ActionResult Edit([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
+                if (uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    // установка массива байтов
+                    trainingcenter.Logo = imageData;
+                    trainingcenter.LogoContentType = uploadImage.ContentType;
+                }
                 db.Entry(trainingcenter).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

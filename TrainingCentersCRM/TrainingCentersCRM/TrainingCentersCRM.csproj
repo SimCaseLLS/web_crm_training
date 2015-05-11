@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201505110557086_ArticleImageContentType.Designer.cs">
       <DependentUpon>201505110557086_ArticleImageContentType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505111023203_TrainingCenterLogo.cs" />
+    <Compile Include="Migrations\201505111023203_TrainingCenterLogo.Designer.cs">
+      <DependentUpon>201505111023203_TrainingCenterLogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
@@ -813,6 +817,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505110557086_ArticleImageContentType.resx">
       <DependentUpon>201505110557086_ArticleImageContentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505111023203_TrainingCenterLogo.resx">
+      <DependentUpon>201505111023203_TrainingCenterLogo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

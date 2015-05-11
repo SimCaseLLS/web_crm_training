@@ -61,3 +61,16 @@ input[type="checkbox"].input-validation-error {
 .course-info p, .content {
     text-align: justify;
 }
+
+.main-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.details{
+    margin: 20px;
+}
+.details label {
+    display: inline;
+}
+
