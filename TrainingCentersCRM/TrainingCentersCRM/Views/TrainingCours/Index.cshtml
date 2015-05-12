@@ -80,8 +80,9 @@
                             </div>
                             <h5 class="title">@Html.DisplayFor(modelItem => item.Title)</h5>
                             <p>
-                                
-                                    @if (item.ShortDescription.Length > 80)
+                                @if (item.ShortDescription != null)
+                                {
+                                    if (item.ShortDescription.Length > 80)
                                     {
                                         @Html.Raw(item.ShortDescription.Substring(0, 80))
                                         <text>...</text>
@@ -90,12 +91,12 @@
                                     {
                                         @Html.Raw(item.ShortDescription)
                                     }
-                               
+                                }
                             </p>
                         </a>
                     </div>
                 </li>
-               
+
             }
         </ul>
     }

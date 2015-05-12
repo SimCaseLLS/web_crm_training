@@ -45,6 +45,8 @@ namespace TrainingCentersCRM.Infrastructure
 
         public static string TruncateString(string text)
         {
+            if (text == null)
+                return "";
             if (text.Length > 200)
                 return text.Substring(0, 200) + "...";
             else
