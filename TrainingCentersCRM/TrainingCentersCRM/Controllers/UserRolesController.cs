@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace TrainingCentersCRM.Controllers.Admin
 {
+    [Authorize(Roles = "admin")]
     public class UserRolesController : Controller
     {
 
