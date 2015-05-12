@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -16,6 +17,7 @@ namespace TrainingCentersCRM.Controllers
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: Advertizes
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Advs.ToList());
@@ -51,6 +53,7 @@ namespace TrainingCentersCRM.Controllers
 
 
         // GET: Advertizes/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -62,6 +65,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Name,Description,Image")] Advertize advertize, HttpPostedFileBase uploadImage, string Enabled)
         {
             if (ModelState.IsValid && uploadImage != null)
@@ -91,6 +95,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: Advertizes/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -111,6 +116,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,Image")] Advertize advertize, HttpPostedFileBase uploadImage, string Enabled)
         {
             if (ModelState.IsValid)
@@ -138,6 +144,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: Advertizes/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -155,6 +162,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: Advertizes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Advertize advertize = db.Advs.Find(id);

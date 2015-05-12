@@ -9,7 +9,7 @@
 
     <div>
         <h4>Vacancy</h4>
-    	<hr />
+        <hr />
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Description)
@@ -70,7 +70,11 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
+            <span>|</span>
+        }
         @Html.ActionLink("Вернуться к списку вакансий", "Index")
     </p>
 </div>

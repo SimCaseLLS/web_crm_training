@@ -96,6 +96,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCenter/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -107,7 +108,8 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -135,6 +137,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCenter/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -155,7 +158,8 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -177,6 +181,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCenter/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -194,6 +199,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: /TrainingCenter/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             TrainingCenter trainingcenter = db.TrainingCenters.Find(id);

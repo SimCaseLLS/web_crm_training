@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -41,6 +42,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Teacher/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -51,6 +53,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Email,Description,Phone")] Teacher teacher, HttpPostedFileBase uploadImage)
         {
             var tcUrl = RouteData.Values["tc"];
@@ -89,6 +92,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Teacher/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -108,6 +112,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Email,Description,Phone")] Teacher teacher, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
@@ -138,6 +143,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Teacher/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -155,6 +161,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: /Teacher/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Teacher teacher = db.Teachers.Find(id);

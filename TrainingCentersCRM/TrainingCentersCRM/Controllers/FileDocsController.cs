@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -39,6 +40,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: FileDocs/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create(int id)
         {
             ViewBag.ArticleId = id;
@@ -56,6 +58,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public string Create([Bind(Include = "Id,Title,Description,Data,ContentType,ArticleId")] FileDocument fileDocument, HttpPostedFileBase uploadedFile)
         {
             if (ModelState.IsValid)
@@ -78,6 +81,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: FileDocs/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +102,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,Data,ContentType,ArticleId")] FileDocument fileDocument)
         {
             if (ModelState.IsValid)
@@ -111,6 +116,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: FileDocs/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id, string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -129,6 +135,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: FileDocs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id, string returnUrl)
         {
             FileDocument fileDocument = db.FileDocuments.Find(id);

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -36,6 +37,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingModule/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create(int id)
         {
             ViewBag.TrainingCenterId = id;
@@ -47,7 +49,8 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,ShortDescription,Numbers,Hours,Topics,IdTrainingCenter,IdTrainingCourse")] TrainingModule trainingmodule, int IdTrainingCourse)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "Id,Title,ShortDescription,Numbers,Hours,Topics,IdTrainingCenter,IdTrainingCourse")] TrainingModule trainingmodule, int IdTrainingCourse)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingModule/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,7 +85,8 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,ShortDescription,Numbers,Hours,Topics,IdTrainingCenter")] TrainingModule trainingmodule)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "Id,Title,ShortDescription,Numbers,Hours,Topics,IdTrainingCenter")] TrainingModule trainingmodule)
         {
             if (ModelState.IsValid)
             {
@@ -94,6 +99,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingModule/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,6 +117,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: /TrainingModule/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             TrainingModule trainingmodule = db.TrainingModules.Find(id);

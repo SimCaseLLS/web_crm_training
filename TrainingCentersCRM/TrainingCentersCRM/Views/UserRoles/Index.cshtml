@@ -18,10 +18,6 @@
 </div>
 <div class="row">
     <div class="small-9 columns">
-        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-        {
-            <h2>For Admin</h2>
-        }
         <label for="tc-select" class="control-label col-md-4">Выберите учебный центр:</label>
         <select id="tc-select" class="form-control" onchange="window.location.href=this.value">
             <option value="@Url.Action("Index", "UserRoles", new { tc = "empty" })">Главные роли</option>

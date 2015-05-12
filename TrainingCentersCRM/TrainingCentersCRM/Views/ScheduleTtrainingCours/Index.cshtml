@@ -5,10 +5,12 @@
 }
 <div class="container">
     <h2>Расписание</h2>
-
-    <p>
-        @Html.ActionLink("Добавить курс", "Create")
-    </p>
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        <p>
+            @Html.ActionLink("Добавить курс", "Create")
+        </p>
+    }
     <table class="table">
         <tr>
             <th>
@@ -32,33 +34,39 @@
             <th></th>
         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrainingCenter.Addres)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrainingCours.Title)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainingCenter.Addres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrainingCours.Title)
+                </td>
+                <td>
+                    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        <span>|</span>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        <span>|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
+                </td>
+            </tr>
+        }
 
     </table>
 </div>

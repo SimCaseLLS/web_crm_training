@@ -5,9 +5,13 @@
 }
 <div class="container row">
     <h2>@Model.Title</h2>
-    <a>
-        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
-    </a>
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        <a>
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }, new { @class = "button" })
+        </a>
+    }
+
     <label>Опубликовано: @Model.PublishDate</label><br />
     <div class="row">
         <div class="large-3 small-6 columns">
@@ -24,7 +28,9 @@
     <div>
         @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
     </div>
-    @Html.Action("Index", "FileDocs", new { key = Model.Id })
-
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        @Html.Action("Index", "FileDocs", new { key = Model.Id })
+    }
 
 </div>

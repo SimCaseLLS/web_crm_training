@@ -1,6 +1,10 @@
 ﻿@model TrainingCentersCRM.Models.Feedback
 @using BotDetect.Web.UI.Mvc;
 <div class="container">
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        @Html.ActionLink("Администрирование отзывов", "Index")
+    }
     @foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
     {
         <div class="row">
@@ -70,8 +74,7 @@
             <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTc().Id" />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Добавить" class="btn btn-default" /> |
-                    @Html.ActionLink("Вернуться к списку", "Index")
+                    <input type="submit" value="Добавить" class="btn btn-default" />
                 </div>
             </div>
         </div>

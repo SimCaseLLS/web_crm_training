@@ -24,7 +24,7 @@ namespace TrainingCentersCRM.Controllers.Admin
             var model = new SelectionUsersRolesViewModel();
             var roles = new List<IdentityRole>();
 
-            if (tc == "")
+            if (tc.Equals("") || tc.Equals("empty"))
             {
                 roles = context.Roles.Where(x => !x.Name.Contains("_")).OrderBy(r => r.Name).ToList();//только общие роли admin и manager
             }

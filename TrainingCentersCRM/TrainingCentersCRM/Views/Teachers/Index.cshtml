@@ -7,7 +7,10 @@
 <div class="container">
     <h2>Преподаватели учебного центра</h2>
     <div class="row">
-        @Html.ActionLink("Добавить", "Create", null, new { @class = "button" })
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            @Html.ActionLink("Добавить", "Create", null, new { @class = "button" })
+        }
     </div>
     <section class="row teachers-blocks">
         <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
@@ -16,14 +19,17 @@
                 <li>
                     <div class="shadow">
                         <div class="tools">
-                            @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
-                            @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
-                            @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                            {
+                                @Html.ActionLink(" ", "Edit", new { id = t.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                                @Html.ActionLink(" ", "Details", new { id = t.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
+                                @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                            }
                         </div>
                         <div class="scale-wrap">
                             @if (t.Image != null)
                             {
-                                 @Html.Raw("<img class='scale-img' src='/empty/Teachers/Image/" + t.Id + "'/>")
+                                @Html.Raw("<img class='scale-img' src='/empty/Teachers/Image/" + t.Id + "'/>")
                             }
                         </div>
                         <div class="teacher-info">

@@ -18,6 +18,7 @@ namespace TrainingCentersCRM.Controllers
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
         private List<ExtendedSelectListItem> areasList = HeadHunterHelper.GetHHSelectList();
         // GET: /Qualification/
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Qualifications.ToList());
@@ -69,6 +70,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Qualification/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create(int id)
         {
             ViewData["ParentId"] = id;
@@ -81,6 +83,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
@@ -93,6 +96,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Qualification/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -113,6 +117,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
@@ -125,6 +130,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Qualification/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -142,6 +148,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: /Qualification/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Qualification qualification = db.Qualifications.Find(id);

@@ -60,5 +60,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
+    }
 </p>
