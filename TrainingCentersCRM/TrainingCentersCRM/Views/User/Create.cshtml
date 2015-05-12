@@ -34,7 +34,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.TypeUser, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.RadioButtonFor(model => model.TypeUser, "student", new { @onclick = "Student()", @class = "with-gap" })
+                    @Html.RadioButtonFor(model => model.TypeUser, "student", new { @onclick = "Student()", @class = "with-gap", @checked="checked" })
                     <label>Студент</label>&nbsp;&nbsp;&nbsp; 
                     @Html.RadioButtonFor(model => model.TypeUser, "teacher", new { @onclick = "Teacher()", @class = "with-gap" })
                     <label>Преподаватель</label>

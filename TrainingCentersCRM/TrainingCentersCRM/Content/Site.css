@@ -97,7 +97,13 @@ footer div.info {
     padding-left: 100px;
 }
 
-footer label{
+    footer div.info img {
+        margin-top: 1.5em;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+footer label {
     color: white;
     display: inline;
 }
@@ -106,3 +112,7 @@ footer label{
     padding-top: 10px;
     display: inline;
 }
+.LBD_CaptchaIconsDiv {
+    display: inline;
+}
+

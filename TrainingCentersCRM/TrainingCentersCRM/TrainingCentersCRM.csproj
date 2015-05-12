@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201505111920447_RemoveAspNetUser.Designer.cs">
       <DependentUpon>201505111920447_RemoveAspNetUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505122132477_MYMIGRATION.cs" />
+    <Compile Include="Migrations\201505122132477_MYMIGRATION.Designer.cs">
+      <DependentUpon>201505122132477_MYMIGRATION.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.cs" />
     <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.Designer.cs">
       <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>
@@ -840,6 +844,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505111920447_RemoveAspNetUser.resx">
       <DependentUpon>201505111920447_RemoveAspNetUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505122132477_MYMIGRATION.resx">
+      <DependentUpon>201505122132477_MYMIGRATION.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.resx">
       <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>

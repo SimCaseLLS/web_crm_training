@@ -22,15 +22,12 @@
                 }
             </div>
         </div>
-        <div style="padding-left: 15px">@(Html.Raw(HttpUtility.HtmlDecode(Model.Annotation)))</div>
+        <div style="padding-left: 15px">@(Model.Annotation)</div>
     </div>
     <br />
     <div>
         @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
     </div>
-    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-    {
-        @Html.Action("Index", "FileDocs", new { key = Model.Id })
-    }
+    @Html.Action("Index", "FileDocs", new { key = Model.Id })
 
 </div>

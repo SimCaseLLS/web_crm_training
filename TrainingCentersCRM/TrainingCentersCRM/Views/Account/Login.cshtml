@@ -1,11 +1,10 @@
 ﻿@model TrainingCentersCRM.Models.LoginViewModel
-
 @{
     ViewBag.Title = "Вход на сайт";
 }
 <div class="container">
     <div class="row">
-        <div class="col m8">
+        <div class="small-5 large-8 columns">
             <h2>@ViewBag.Title</h2>
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -22,13 +21,14 @@
                         @Html.PasswordFor(m => m.Password)
                         @Html.ValidationMessageFor(m => m.Password)
                     </div>
-                    <div class="row">
+                    <div>
                         <div class="col offset-s1 s12">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox-label", style = "display: inline-block" })
                         </div>
                     </div>
-                    <div class="row">
+                    <input type="hidden" name="returnUrl" value="/" />
+                    <div>
                         <div class="col offset-s1 s12">
                             <input type="submit" value="Войти" class="btn" />
                         </div>

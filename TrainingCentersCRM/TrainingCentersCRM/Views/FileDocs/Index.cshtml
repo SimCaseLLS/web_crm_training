@@ -6,28 +6,35 @@
 
 @if (Model.Count() > 0)
 {
-    <h4>Прикрепленные файлы</h4>
+    <h4>Прикрепленные материалы</h4>
 }
-
-<a class="button" id="addButton" href="#">
-    <i class="fa fa-plus"></i>Добавить файл
-</a>
-
-@foreach (var item in Model)
+@if (RolesHelper.IsUserHasPermissionForTc("admin"))
 {
-    <div class="row">
-        <div class="small-2 large-2 columns">
-            <a href="/empty/FileDocs/Download/@item.Id" target="_blank">
-                @Html.DisplayFor(modelItem => item.Title)
-            </a>
-            <br />
-            <small>@Html.DisplayFor(modelItem => item.Description)</small>
-        </div>
-        <div class="tools left">
-            @Html.ActionLink(" ", "Delete", new { id = item.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
-        </div>
-    </div>
+    <a class="button" id="addButton" href="#">
+        <i class="fa fa-plus"></i>Добавить файл
+    </a>
 }
+<table cellpadding="5" cellspacing="5" width="100%">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="/empty/FileDocs/Download/@item.Id" target="_blank">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </a>
+                <br />
+                <small>@Html.DisplayFor(modelItem => item.Description)</small>
+            </td>
+            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+            {
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                </td>
+            }
+        </tr>
+    }
+</table>
 
 <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 </div>

@@ -52,11 +52,19 @@ namespace TrainingCentersCRM.Controllers
                 return "error";
             if (checkedRelatedCourse != null)
             {
-                db.TrainingCenterCourses.RemoveRange(db.TrainingCenterCourses.Where(a => a.IdTrainingCenter == id));
+                var ids = (from a in checkedRelatedCourse select Convert.ToInt32(a)).ToArray<int>();
+                var resdel = db.TrainingCenterCourses.Where(a => !ids.Contains(a.IdTrainingCourse ?? -1));
+                db.RelatedCourses.RemoveRange(db.RelatedCourses.Where(a => !ids.Contains(a.IdTrainingCourseRelated ?? -1)));
+                db.TrainingCourseTeachers.RemoveRange(db.TrainingCourseTeachers.Where(a => !ids.Contains(a.IdTrainingCourse ?? -1)));
+                db.TrainingCenterCourses.RemoveRange(resdel);
+                db.SaveChanges();
+                
+                var existing = db.TrainingCenterCourses.Where(a => a.IdTrainingCenter == trainingCenter.Id).Select(b=> b.IdTrainingCourse);
                 foreach (var s in checkedRelatedCourse)
                 {
                     int si = Convert.ToInt32(s);
-                    db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCourse = si, IdTrainingCenter = id });
+                    if (!existing.Contains(si))
+                        db.TrainingCenterCourses.Add(new TrainingCenterCours { IdTrainingCourse = si, IdTrainingCenter = id });
                 }
                 db.SaveChanges();
             }

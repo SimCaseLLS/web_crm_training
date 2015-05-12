@@ -50,7 +50,7 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult Download(int id)
         {
             var doc = db.FileDocuments.FirstOrDefault(a => a.Id == id);
-            return File(doc.Data, doc.ContentType);
+            return File(doc.Data, doc.ContentType, doc.Title);
         }
 
         // POST: FileDocs/Create
@@ -103,13 +103,13 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TCAuthorize(Roles = "admin")]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Data,ContentType,ArticleId")] FileDocument fileDocument)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description")] FileDocument fileDocument)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(fileDocument).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Article", new { id = fileDocument.ArticleId});
             }
             ViewBag.ArticleId = new SelectList(db.Articles, "Id", "Title", fileDocument.ArticleId);
             return View(fileDocument);

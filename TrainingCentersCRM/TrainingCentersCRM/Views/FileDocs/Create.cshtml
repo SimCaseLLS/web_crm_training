@@ -7,7 +7,7 @@
 
 <h2 id="modalTitle">Добавление файла</h2>
 
-@using ((Html.BeginForm("Edit", "FileDocs", FormMethod.Post, new { enctype = "multipart/form-data", id="fileDocForm" })))
+@using ((Html.BeginForm("Edit", "FileDocs", FormMethod.Post, new { enctype = "multipart/form-data", id = "fileDocForm" })))
 {
     @Html.AntiForgeryToken()
     <input type="hidden" name="ArticleId" value="@ViewBag.ArticleId" />
@@ -15,7 +15,9 @@
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">
+                Название
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title)
                 @Html.ValidationMessageFor(model => model.Title)
@@ -23,7 +25,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">
+                Описание
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description)
                 @Html.ValidationMessageFor(model => model.Description)

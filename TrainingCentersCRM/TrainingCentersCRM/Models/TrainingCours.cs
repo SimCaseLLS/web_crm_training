@@ -22,14 +22,17 @@ using System;
         public int Id { get; set; }
 
         [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
+        [Required]
         [Display(Name = "Название")]
         public string Title { get; set; }
 
         [StringLength(2048, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
+        [Required]
         [Display(Name = "Краткое описание")]
         public string ShortDescription { get; set; }
 
         [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
+        [Range(0, 1000, ErrorMessage="Недопустимое количество часов")]
         [Display(Name = "Количество часов")]
         public Nullable<int> Hourse { get; set; }
 

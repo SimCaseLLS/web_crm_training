@@ -75,20 +75,25 @@ namespace TrainingCentersCRM.Controllers
         [TCAuthorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article, HttpPostedFileBase uploadImage)
         {
-            if (uploadImage != null)
+            if (ModelState.IsValid)
             {
-                byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
-                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
-                // установка массива байтов
-                article.Image = imageData;
-                article.ContentType = uploadImage.ContentType;
+                if (uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    // установка массива байтов
+                    article.Image = imageData;
+                    article.ContentType = uploadImage.ContentType;
+                }
+                article.TrainingCenterId = this.trainingCenter.Id;
+                db.Articles.Add(article);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { id = (int)article.Type });
             }
-            article.TrainingCenterId = this.trainingCenter.Id;
-            db.Articles.Add(article);
-            db.SaveChanges();
-            return RedirectToAction("Index", new { id = (int)article.Type });
+            else
+                return View(article);
         }
 
         // GET: Articles/Edit/5

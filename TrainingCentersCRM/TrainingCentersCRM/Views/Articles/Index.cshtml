@@ -25,7 +25,6 @@
         }
     }
 </div>
-
 <div class="clear-fix container row">
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4" data-equalizer>
         @{int i = 1;}
@@ -61,8 +60,12 @@
             </li>
         }
     </ul>
-    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @if (!string.IsNullOrEmpty(Request.Url.Query))
+    {
+        <text>
+            Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </text>
+    }
 </div>
