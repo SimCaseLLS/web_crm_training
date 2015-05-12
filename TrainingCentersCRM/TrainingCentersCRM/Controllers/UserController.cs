@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using TrainingCentersCRM.Models;
 
@@ -10,13 +11,13 @@ namespace TrainingCentersCRM.Controllers
     public class UserController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+        private ApplicationDbContext appDb = new ApplicationDbContext();
 
         // GET: /User/
         public ActionResult Index()
         {
-            IQueryable<AspNetUser> aspnetusers;
-                 aspnetusers = db.AspNetUsers.Include(a => a.User);
-            return View(aspnetusers.ToList());
+            var users = appDb.Users;
+            return View(users.ToList());
         }
 
         public ActionResult Teachers()
@@ -31,14 +32,14 @@ namespace TrainingCentersCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspnetuser = db.AspNetUsers.SingleOrDefault(a => a.Id == id);
+            ApplicationUser aspnetuser = appDb.Users.SingleOrDefault(a => a.Id == id);
 
 
             UserMan user = new UserMan();
             user.UserName = aspnetuser.UserName;
 
-            Student student = db.Students.SingleOrDefault(a => a.Id == aspnetuser.UserId);
-            Teacher teacher = db.Teachers.SingleOrDefault(a => a.Id == aspnetuser.UserId);
+            Student student = db.Students.SingleOrDefault(a => a.AspNetUserId == aspnetuser.Id);
+            Teacher teacher = db.Teachers.SingleOrDefault(a => a.AspNetUserId == aspnetuser.Id);
             if (student != null)
             {
                 user.DateOfBirth = "" + student.DateOfBirth;
@@ -78,7 +79,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserMan user)
+        public async Task<ActionResult> Create([Bind(Include = "UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserMan user)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +106,7 @@ namespace TrainingCentersCRM.Controllers
                     db.SaveChanges();
 
                     var teach = db.Teachers.SingleOrDefault(a => a.Email == user.Email);
-                    anu.UserId = teach.Id;
+                    //anu.UserId = teach.Id;
 
                     TrainingCenterTeacher trainingCenterTeacher = new TrainingCenterTeacher() { IdTeacher = teach.Id, IdTrainingCenter = tc.Id };
                     db.TrainingCenterTeachers.Add(trainingCenterTeacher);
@@ -127,29 +128,38 @@ namespace TrainingCentersCRM.Controllers
                     db.SaveChanges();
 
                     var stud = db.Students.SingleOrDefault(a => a.Email == user.Email);
-                    anu.UserId = stud.Id;
+                    //anu.UserId = stud.Id;
                 }
 
                 AccountController q = new AccountController();
-                q.Register(anu);
+                await q.Register(anu);
+
+                var savedUser = db.Users.SingleOrDefault(a => a.Email == user.Email);
+                var savedAspNetUser = appDb.Users.SingleOrDefault(a => a.UserName == user.UserName);
+
+                savedUser.AspNetUserId = savedAspNetUser.Id;
+
+                db.Entry(savedUser).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             return View(user);
         }
 
         // GET: /User/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspnetuser = db.AspNetUsers.Find(id);
+            ApplicationUser aspnetuser = appDb.Users.Find(id);
             UserManEditing user = new UserManEditing();
             user.UserName = aspnetuser.UserName;
 
-            Student student = db.Students.SingleOrDefault(a => a.Id == aspnetuser.UserId);
-            Teacher teacher = db.Teachers.SingleOrDefault(a => a.Id == aspnetuser.UserId);
+            Student student = db.Students.SingleOrDefault(a => a.AspNetUserId == aspnetuser.Id);
+            Teacher teacher = db.Teachers.SingleOrDefault(a => a.AspNetUserId == aspnetuser.Id);
             if (student != null)
             {
                 user.DateOfBirth = "" + student.DateOfBirth;
@@ -185,15 +195,15 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserManEditing user)
+        public ActionResult Edit([Bind(Include = "AspNetUserId,UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserManEditing user)
         {
             if (ModelState.IsValid)
             {
-                var aspNetUser = db.AspNetUsers.SingleOrDefault(a => a.UserName == user.UserName);
+                ApplicationUser aspNetUser = appDb.Users.SingleOrDefault(a => a.Id == user.AspNetUserId);
 
                 if (user.TypeUser == "teacher")
                 {
-                    var teacher = db.Teachers.SingleOrDefault(a => a.Id == aspNetUser.UserId);
+                    var teacher = db.Teachers.SingleOrDefault(a => a.AspNetUserId == aspNetUser.Id);
                     teacher.Description = user.Description;
                     teacher.Email = user.Email;
                     teacher.FirstName = user.FirstName;
@@ -205,7 +215,7 @@ namespace TrainingCentersCRM.Controllers
                 }
                 if (user.TypeUser == "student")
                 {
-                    var student = db.Students.SingleOrDefault(a => a.Id == aspNetUser.UserId);
+                    var student = db.Students.SingleOrDefault(a => a.AspNetUserId == aspNetUser.Id);
                     student.Description = user.Description;
                     student.Email = user.Email;
                     student.FirstName = user.FirstName;
@@ -222,13 +232,13 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /User/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspnetuser = db.AspNetUsers.Find(id);
+            ApplicationUser aspnetuser = appDb.Users.Find(id);
             if (aspnetuser == null)
             {
                 return HttpNotFound();
@@ -241,8 +251,8 @@ namespace TrainingCentersCRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AspNetUser aspnetuser = db.AspNetUsers.Find(id);
-            db.AspNetUsers.Remove(aspnetuser);
+            ApplicationUser aspnetuser = appDb.Users.Find(id);
+            appDb.Users.Remove(aspnetuser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

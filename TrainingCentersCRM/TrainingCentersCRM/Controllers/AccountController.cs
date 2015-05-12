@@ -78,7 +78,7 @@ namespace TrainingCentersCRM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, UserId = model.UserId };
+                var user = new ApplicationUser() { UserName = model.UserName };//, UserId = model.UserId };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

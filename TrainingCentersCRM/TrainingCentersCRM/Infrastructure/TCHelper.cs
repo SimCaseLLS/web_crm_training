@@ -9,6 +9,11 @@ namespace TrainingCentersCRM.Infrastructure
 {
     public static class TCHelper
     {
+        public static List<TrainingCenter> GetAllTc()
+        {
+            TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+            return db.TrainingCenters.ToList(); 
+        }
         public static string GetCurrentTCName()
         {
             var name = HttpContext.Current.Request.RequestContext.RouteData.Values["tc"].ToString();

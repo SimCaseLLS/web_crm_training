@@ -9,6 +9,7 @@ namespace TrainingCentersCRM.Models
     public class UserManEditing
     {
         public int Id { get; set; }
+        public string AspNetUserId { get; set; }
 
         [Display(Name = "Логин")]
         public string UserName { get; set; }
@@ -59,6 +60,7 @@ namespace TrainingCentersCRM.Models
     public class UserMan
     {
         public int Id { get; set; }
+        public string AspNetUserId { get; set; }
 
         [Required]
         [Display(Name = "Логин")]

@@ -12,7 +12,6 @@ namespace TrainingCentersCRM.Models
         {
         }
 
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CertificationProvider> CertificationProviders { get; set; }
         public virtual DbSet<Certification> Certifications { get; set; }
         public virtual DbSet<CertificationTaking> CertificationTakings { get; set; }
@@ -214,15 +213,14 @@ namespace TrainingCentersCRM.Models
             modelBuilder.Entity<Vacancy>()
                 .HasMany(e => e.Qualifications);
             modelBuilder.Entity<Article>();
-            
+
             modelBuilder.Entity<Advertize>().HasKey(e => e.Id);
 
-
-            modelBuilder.Entity<AspNetUser>()
-                .HasKey(e => e.UserId);
-                //.HasRequired(a => a.User)
-                //.WithMany()
-                //.HasForeignKey(u => u.UserId).WillCascadeOnDelete(false);;
+            //modelBuilder.Entity<AspNetUser>()
+            //    .HasKey(e => e.Id);
+            //.HasRequired(a => a.User)
+            //.WithMany()
+            //.HasForeignKey(u => u.UserId).WillCascadeOnDelete(false);;
         }
     }
 }
