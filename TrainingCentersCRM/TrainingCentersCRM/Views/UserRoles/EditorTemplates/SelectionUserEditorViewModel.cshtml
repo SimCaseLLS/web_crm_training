@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "SelectionUserEditorViewModel";
+}
+
+@model TrainingCentersCRM.Models.SelectionUserEditorViewModel
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.UserName)
+    </td>
+    <td>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserName)
+    </td>
+    @Html.EditorFor(model => model.Roles)
+</tr>

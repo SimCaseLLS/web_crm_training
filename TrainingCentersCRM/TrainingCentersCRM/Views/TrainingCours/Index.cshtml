@@ -8,9 +8,12 @@
     <h2>Список курсов</h2>
     <div class="row">
         <div class="column right small-6">
+            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+            {
             <a class="button" href="@Url.Action("Create", "TrainingCours")"><i class="fa fa-plus-square"></i>Создать новый курс</a>
-            &nbsp;
+                <span>&nbsp;</span>
             <a class="button" href="#" onclick="javascript: showRelatedCourses(); return false;"><i class="fa fa-files-o"></i>Добавить существующий</a>
+            }
             <script type="text/javascript">
                 showRelatedCourses = function () {
                     $.ajax({
@@ -71,8 +74,11 @@
                 <li>
                     <div class="course">
                         <div class="tools tools-2el">
+                            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                            {
                             @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
                             @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                            }
                         </div>
                         <a class="more-info" href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
                             <div class="scale-wrap">
@@ -96,7 +102,7 @@
                         </a>
                     </div>
                 </li>
-
+               
             }
         </ul>
     }

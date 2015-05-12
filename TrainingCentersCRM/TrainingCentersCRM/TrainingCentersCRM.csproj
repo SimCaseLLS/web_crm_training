@@ -201,12 +201,15 @@
     <Compile Include="Controllers\TrainingCoursController.cs" />
     <Compile Include="Controllers\TrainingModuleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Filters\TCAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomHtmlHelpers.cs" />
     <Compile Include="Infrastructure\HeadHunterHelper.cs" />
+    <Compile Include="Infrastructure\RolesHelper.cs" />
+    <Compile Include="Infrastructure\TCAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\TCHelper.cs" />
     <Compile Include="Migrations\201505040703382_Init.cs" />
     <Compile Include="Migrations\201505040703382_Init.Designer.cs">
@@ -228,11 +231,19 @@
     <Compile Include="Migrations\201505111023203_TrainingCenterLogo.Designer.cs">
       <DependentUpon>201505111023203_TrainingCenterLogo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505111920447_RemoveAspNetUser.cs" />
+    <Compile Include="Migrations\201505111920447_RemoveAspNetUser.Designer.cs">
+      <DependentUpon>201505111920447_RemoveAspNetUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.Designer.cs">
+      <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
     <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\Certification.cs" />
     <Compile Include="Models\CertificationProvider.cs" />
     <Compile Include="Models\CertificationTaking.cs" />
@@ -256,7 +267,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserViewModels.cs" />
+    <Compile Include="Models\ViewModels\UserRolesViewModels.cs" />
+    <Compile Include="Models\ViewModels\UserViewModels.cs" />
     <Compile Include="Models\ViewModels\HHSpecialization.cs" />
     <Compile Include="Models\Qualification.cs" />
     <Compile Include="Models\QualificationCertification.cs" />
@@ -279,8 +291,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TrainingCentersDBsuch.mdf" />
-    <Content Include="App_Data\TrainingCentersDBsuch_log.ldf" />
+    <Content Include="App_Data\TrainingCentersDB.mdf" />
+    <Content Include="App_Data\TrainingCentersDB_log.ldf">
+      <DependentUpon>TrainingCentersDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\courses.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\footer.css" />
@@ -793,6 +807,10 @@
     <Content Include="Views\FileDocs\Details.cshtml" />
     <Content Include="Views\FileDocs\Edit.cshtml" />
     <Content Include="Views\FileDocs\Index.cshtml" />
+    <Content Include="Views\UserRoles\EditorTemplates\SelectionRoleEditorViewModel.cshtml" />
+    <Content Include="Views\UserRoles\EditorTemplates\SelectionUserEditorViewModel.cshtml" />
+    <Content Include="Views\UserRoles\Index.cshtml" />
+    <Content Include="Views\UserRoles\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -819,6 +837,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505111023203_TrainingCenterLogo.resx">
       <DependentUpon>201505111023203_TrainingCenterLogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505111920447_RemoveAspNetUser.resx">
+      <DependentUpon>201505111920447_RemoveAspNetUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.resx">
+      <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

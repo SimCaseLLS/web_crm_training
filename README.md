@@ -44,3 +44,15 @@ Debug -> Exception
 Убрать галочку на против Common Language Runtime Exception
 
 https://www.nuget.org/packages/log4net
+
+
+====
+
+для миграций с разными контекстами - 
+
+Add-Migration SomeMigrationName -ConfigurationTypeName TrainingCentersCRM.Migrations.Configuration
+update-Database -ConfigurationTypeName TrainingCentersCRM.Migrations.Configuration
+
+
+Add-Migration SomeMigrationInApplicationDBContext -ConfigurationTypeName TrainingCentersCRM.Migrations.ApplicationDbContext.Configuration
+update-Database -ConfigurationTypeName TrainingCentersCRM.Migrations.ApplicationDbContext.Configuration

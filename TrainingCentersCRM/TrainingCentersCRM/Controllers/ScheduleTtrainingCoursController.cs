@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -40,6 +41,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /ScheduleTtrainingCours/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.IdTrainingCenter = new SelectList(db.TrainingCenters, "Id", "Addres");
@@ -52,7 +54,8 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Description,DateStart,DateEnd,IdTrainingCenter,IdTrainingCourse")] ScheduleTtrainingCours schedulettrainingcours)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,DateEnd,IdTrainingCenter,IdTrainingCourse")] ScheduleTtrainingCours schedulettrainingcours)
         {
             if (ModelState.IsValid)
             {
@@ -67,6 +70,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /ScheduleTtrainingCours/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,7 +92,8 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,Description,DateStart,DateEnd,IdTrainingCenter,IdTrainingCourse")] ScheduleTtrainingCours schedulettrainingcours)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,DateStart,DateEnd,IdTrainingCenter,IdTrainingCourse")] ScheduleTtrainingCours schedulettrainingcours)
         {
             if (ModelState.IsValid)
             {
@@ -102,6 +107,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /ScheduleTtrainingCours/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,6 +125,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: /ScheduleTtrainingCours/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             ScheduleTtrainingCours schedulettrainingcours = db.ScheduleTtrainingCourses.Find(id);

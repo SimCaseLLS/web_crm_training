@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
@@ -16,6 +17,7 @@ namespace TrainingCentersCRM.Controllers
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: /Feedback/
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Index()
         {
             var res = db.Feedback;

@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using TrainingCentersCRM.Infrastructure
+@model TrainingCentersCRM.Models.SelectionUsersRolesViewModel
+<div class="row">
+    <div class="small-12">
+        <h2>Назначение ролей</h2>
+        <p style="color: #999">
+            На сайте установлено разграничение доступа пользователей по ролям.
+            Для назначения роли админа и менеджера главного сайта выберите пункт "Роли главного сайта".
+            Для назначения пользователям ролей определенного учебного центра
+            выберите его название в выпадающем списке.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="small-9 columns">
+        <label for="tc-select" class="control-label col-md-4">Выберите учебный центр:</label>
+        <select id="tc-select" class="form-control" onchange="window.location.href=this.value">
+            <option value="@Url.Action("Index", "UserRoles", new { tc = "empty" })">Главные роли</option>
+            @foreach (var tc in TCHelper.GetAllTc())
+            {
+                if (!tc.Url.Equals("empty"))
+                {
+                    <option value="@Url.Action("Index", "UserRoles", new { tc = tc.Url })">
+                        @tc.Organization
+                    </option>
+                }
+            }
+        </select>
+        <script type="text/javascript">
+            var element = document.getElementById('tc-select');
+            element.value = "@Request.Url.PathAndQuery";
+        </script>
+    </div>
+
+    <div class="small-3 columns">
+        <a href="@Url.Action("Index", "UserRoles", new { tc = "empty" })" style="float:right; margin-top:7px;">Роли главного сайта</a>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="small-12 columns">
+        @using (Html.BeginForm("SubmitSelected", "UserRoles", FormMethod.Post, new { @class = "", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Логин
+                    </th>
+                    <th></th>
+                    @foreach (var role in ViewBag.Roles)
+                    {
+                        <th class="text-center">
+                            @role.Name
+                        </th>
+                        <th></th>
+                    }
+                </tr>
+                @Html.EditorFor(model => model.Users)
+            </table>
+            <input type="submit" name="operation" id="submit" class="btn btn-primary" value="Подтвердить" />
+        }
+    </div>
+</div>
+
+

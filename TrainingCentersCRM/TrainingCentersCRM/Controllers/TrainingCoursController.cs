@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingCentersCRM.Infrastructure;
 using TrainingCentersCRM.Models;
 using TrainingCentersCRM.Models.ViewModels;
 
@@ -158,6 +159,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCours/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -169,6 +171,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Title,ShortDescription,Hourse,MoodleId,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)
@@ -184,6 +187,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCours/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -204,6 +208,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Title,ShortDescription,Hourse,MoodleId,PriceForOrganizations,PriceForIndividuals,CostOfOneHourForOrganizations,CostOfOneHourForIndividuals,LevelOfDifficulty,RequiredPreliminaryPreparation,MandatoryPreliminaryPreparation,IdTraningCenter,IdObject")] TrainingCours trainingcours)
         {
             if (ModelState.IsValid)
@@ -216,6 +221,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCours/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -233,6 +239,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: /TrainingCours/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             TrainingCours trainingcours = db.TrainingCourses.Find(id);

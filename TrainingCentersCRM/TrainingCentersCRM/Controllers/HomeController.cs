@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TrainingCentersCRM.Controllers
 {
@@ -33,9 +35,9 @@ namespace TrainingCentersCRM.Controllers
             return View();
         }
 
+        //[TCAuthorize(Roles = "admin")]
         public ActionResult Contact()
         {
-
             ViewBag.Message = "Your contact page.";
             return View();
         }

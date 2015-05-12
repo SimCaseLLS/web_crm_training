@@ -31,9 +31,12 @@
     })
 </script>
 <div class="container row">
-    <a>
-        @Html.ActionLink("Добавить вакансию", "Create", null, new { @class = "button" })
-    </a>
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        <a>
+            @Html.ActionLink("Добавить вакансию", "Create", null, new { @class = "button" })
+        </a>
+    }
     @if (Model.Count() > 0)
     {
         <text>
@@ -43,12 +46,15 @@
         {
             <div class="card-panel">
                 <section class="tools no-margin">
-                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
-                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
-                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                    {
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                        @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                    }
                 </section>
                 <h5>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    <a href="@Url.Action("Details", "Vacancy", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Description)</a>
                 </h5>
                 <p>
                     @Html.DisplayFor(modelItem => item.Organization)
@@ -76,4 +82,3 @@
         </div>
     </div>
 </div>
-

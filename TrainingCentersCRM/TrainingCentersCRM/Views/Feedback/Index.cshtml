@@ -5,10 +5,12 @@
 }
 <div class="container">
     <h2>Отзывы</h2>
-
-    <p>
-        @Html.ActionLink("Создать новый", "Create")
-    </p>
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        <p>
+            @Html.ActionLink("Создать новый", "Create")
+        </p>
+    }
     <table class="table">
         <tr>
             <th>
@@ -26,26 +28,31 @@
             <th></th>
         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.ActionLink("Подробнее", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                    {
+                        @Html.ActionLink("Подробнее", "Details", new { id = item.Id })
+                        <span>|</span>
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    }
+                </td>
+            </tr>
+        }
 
     </table>
 </div>

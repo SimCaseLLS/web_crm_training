@@ -57,6 +57,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: Articles/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create(int? type)
         {
             if (type == null)
@@ -71,6 +72,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article, HttpPostedFileBase uploadImage)
         {
             if (uploadImage != null)
@@ -90,6 +92,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: Articles/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -116,6 +119,7 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Annotation,Text,UserId,PublishDate,Type")] Article article, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
@@ -141,6 +145,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: Articles/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -158,6 +163,7 @@ namespace TrainingCentersCRM.Controllers
         // POST: Articles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Article article = db.Articles.Find(id);

@@ -1,23 +1,28 @@
 ﻿@model PagedList.IPagedList<TrainingCentersCRM.Models.Article>
 @using PagedList.Mvc;
+@using TrainingCentersCRM.Infrastructure
 @{
 
     ViewBag.Title = "Список материалов сайта";
 }
 <div class="container">
-    @if (ViewBag.Type == 1)
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
     {
-        <h3 class="center">Новости</h3>
-        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
-            <i class="fa fa-plus"></i>Добавить новость
-        </a>
-    }
-    else
-    {
-        <h3 class="center">Страницы</h3>
-        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
-            <i class="fa fa-plus"></i>Добавить страницу
-        </a>
+
+        if (ViewBag.Type == 1)
+        {
+            <h3 class="center">Новости</h3>
+            <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+                <i class="fa fa-plus"></i>Добавить новость
+            </a>
+        }
+        else
+        {
+            <h3 class="center">Страницы</h3>
+            <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+                <i class="fa fa-plus"></i>Добавить страницу
+            </a>
+        }
     }
 </div>
 
@@ -29,9 +34,12 @@
             <li data-equalizer-watch>
                 <div class="news-block">
                     <div class="tools tools-2el">
-                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
-                        @*@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })*@
-                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                        {
+                            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                            @*@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })*@
+                            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                        }
                     </div>
                     <a class="news-more" href="/@(TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTCName())/Articles/Details/@item.Id">
                         <span class="date">@(Html.DisplayFor(modelItem => item.PublishDate))</span>

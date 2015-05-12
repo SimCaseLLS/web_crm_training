@@ -11,6 +11,8 @@
     {
         public int Id { get; set; }
 
+        public string AspNetUserId { get; set; }
+
         [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }

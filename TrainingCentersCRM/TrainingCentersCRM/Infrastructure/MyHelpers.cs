@@ -62,6 +62,14 @@ namespace TrainingCentersCRM
                 if (((IdTrainingCenter == null || IdTrainingCenter == "empty") && samp.IdTrainingCenter == "other" && samp.NotBindInTrainingCenter) ||
                      (IdTrainingCenter != null && IdTrainingCenter != "empty" && samp.IdTrainingCenter == "empty" && !samp.NotBindInTrainingCenter))
                     continue;
+
+                if (samp.Title.Equals("Администрирование")) // FIXME хардкор!
+                {
+                    if (!RolesHelper.IsUserHasPermission("admin"))
+                    {
+                        continue;
+                    }
+                }
                 string str_temp = "";
                 TagBuilder li = new TagBuilder("li");
                 TagBuilder a = new TagBuilder("a");

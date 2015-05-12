@@ -9,12 +9,15 @@ using System.Web.Mvc;
 using TrainingCentersCRM.Models;
 using TrainingCentersCRM.Infrastructure;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TrainingCentersCRM.Controllers
 {
     public class TrainingCenterController : RoutingTrainingCenterController
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+        private ApplicationDbContext appDb = new ApplicationDbContext();
         public JsonResult Centers() {
             var tcs = db.TrainingCenters.Where(a => a.Url != "empty");
             return Json(tcs.ToList(), JsonRequestBehavior.AllowGet);
@@ -93,6 +96,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCenter/Create
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -104,7 +108,8 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -120,6 +125,11 @@ namespace TrainingCentersCRM.Controllers
                 }
                 db.TrainingCenters.Add(trainingcenter);
                 db.SaveChanges();
+                
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(appDb));
+                var role = new IdentityRole { Name = "admin_" + trainingcenter.Url };
+                roleManager.Create(role);
+                
                 return RedirectToAction("Index");
             }
 
@@ -127,6 +137,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCenter/Edit/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -147,7 +158,8 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -169,6 +181,7 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /TrainingCenter/Delete/5
+        [TCAuthorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -186,9 +199,16 @@ namespace TrainingCentersCRM.Controllers
         // POST: /TrainingCenter/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [TCAuthorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             TrainingCenter trainingcenter = db.TrainingCenters.Find(id);
+
+            var roleName = "admin_" + trainingcenter.Url;
+            var role = appDb.Roles.SingleOrDefault(r => r.Name == roleName);
+            appDb.Roles.Remove(role);
+            appDb.SaveChanges();
+
             db.TrainingCenters.Remove(trainingcenter);
             db.SaveChanges();
             return RedirectToAction("Index");

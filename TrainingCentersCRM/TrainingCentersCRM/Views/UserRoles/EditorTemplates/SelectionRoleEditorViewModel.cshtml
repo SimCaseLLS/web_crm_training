@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "SelectionRoleEditorViewModel";
+}
+
+@model TrainingCentersCRM.Models.SelectionRoleEditorViewModel
+<td style="text-align:center">
+    @Html.CheckBoxFor(model => model.Selected)
+</td>
+<td>
+    @Html.HiddenFor(model => model.Name)
+</td>
+

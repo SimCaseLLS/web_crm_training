@@ -10,6 +10,7 @@ using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class MenuController : Controller
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();

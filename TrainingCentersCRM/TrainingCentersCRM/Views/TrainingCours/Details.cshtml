@@ -26,7 +26,10 @@
 </script>
 @Scripts.Render("~/bundles/coursedetails")
 <div class="container row">
-    <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать учебный курс</a>
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать учебный курс</a>
+    }
     <div class="row">
         <h2 class="column small-10">@Html.DisplayFor(model => model.Title)</h2>
         <div class="column small-2 notes right"><i class="fa fa-clock-o"></i>@Html.DisplayFor(model => model.Hourse) ч.</div>
@@ -65,8 +68,10 @@
                         <div class="row">
                             <div id="qualificationTree" style="width: 50%; margin-bottom:10px; overflow-x: scroll; white-space: nowrap; float: left"></div>
                         </div>
-                        <button id="submitQualifTC" name="submitQualifTC" class="button" style="">Сохранить</button>
-
+                        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                        {
+                            <button id="submitQualifTC" name="submitQualifTC" class="button" style="">Сохранить</button>
+                        }
                         @section Scripts {
                             <script src="~/Scripts/vacancyTree.js"></script>
                             @Scripts.Render("~/bundles/jqueryval")
@@ -102,7 +107,10 @@
                 <h4>
                     Преподаватели
                 </h4>
-                <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Добавить</a>
+                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                {
+                    <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Добавить</a>
+                }
                 <div id="dropDownRelatedTeachers" style="display: none"></div>
                 <ul class="small-block-grid-2 large-block-grid-3" data-equalizer>
                     @foreach (TrainingCentersCRM.Models.Teacher t in ViewBag.trainingCourseTeacher)
@@ -132,7 +140,10 @@
                 <h4>
                     Учебная программа
                 </h4>
-                <a class="button" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="fa fa-plus"></i>Добавить</a>
+                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                {
+                    <a class="button" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="fa fa-plus"></i>Добавить</a>
+                }
                 <div class="column small-11 offset-s1">
                     @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
                     {
@@ -154,7 +165,10 @@
                     <h4>
                         Рекомендуемые курсы
                     </h4>
-                    <a class="button" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="fa fa-plus"></i>Добавить</a>
+                    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                    {
+                        <a class="button" href="#" onclick="javascript: showRelated(courseId); return false;"><i class="fa fa-plus"></i>Добавить</a>
+                    }
                     <div id="dropDownRelated" style="display: none">
                     </div>
                     <ul id="articles" class="course small-block-grid-3">
@@ -195,7 +209,10 @@
                         <input class="span2" size="16" type="text" value="12-02-2012">
                         <span class="add-on"><i class="fa fa-th"></i></span>
                     </div>*@
-                <a class="button button-center" href="#" title="Добавить" onclick="javascript: showAddCourseTime(); return false;"><i class="fa fa-plus"></i> Добавить</a>
+                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                {
+                    <a class="button button-center" href="#" title="Добавить" onclick="javascript: showAddCourseTime(); return false;"><i class="fa fa-plus"></i> Добавить</a>
+                }
                 @foreach (ScheduleTtrainingCours date in ViewBag.Dates)
                 {
                     <br />
@@ -220,7 +237,10 @@
                         <input type="text" id="dpd2" name="DateEnd" />
                         <input type="hidden" name="IdTrainingCourse" id="IdTrainingCourse" value="@Model.Id" />
                         <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@(TCHelper.GetCurrentTc().Id)" />
-                        <button name="AddCourseDateButton" id="AddCourseDateButton" class="button"><i class="fa fa-plus"></i> Добавить</button>
+                        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                        {
+                            <button name="AddCourseDateButton" id="AddCourseDateButton" class="button"><i class="fa fa-plus"></i> Добавить</button>
+                        }
                     </form>
                 </div>
                 <br />
@@ -234,7 +254,7 @@
                 <br />
                 @if (Model.MoodleId != 0)
                 {
-                        <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Дистанционный курс</a>
+                    <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Дистанционный курс</a>
                 }
             </aside>
             <div class="column small-12 hh right">
