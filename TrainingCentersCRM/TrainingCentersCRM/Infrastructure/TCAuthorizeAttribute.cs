@@ -27,7 +27,7 @@ namespace TrainingCentersCRM.Infrastructure
                 {
                     var tcRole = RolesHelper.RoleForTc(role, current_tc_name);
                     
-                    if (httpContext.User.IsInRole(tcRole)) return true;
+                    if (httpContext.User.IsInRole(tcRole) || httpContext.User.IsInRole(role)) return true;
                 }
                 return false;
             }
