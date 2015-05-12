@@ -3,44 +3,45 @@
 @{
     ViewBag.Title = "Вход на сайт";
 }
-
-<h2>@ViewBag.Title</h2>
-<div class="row">
-    <div class="col m8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-                <div class="input-field col s12">
-                    @Html.LabelFor(m => m.UserName)
-                    @Html.TextBoxFor(m => m.UserName)
-                    @Html.ValidationMessageFor(m => m.UserName)
-                </div>
-                <div class="input-field col s12">
-                    @Html.LabelFor(m => m.Password)
-                    @Html.PasswordFor(m => m.Password)
-                    @Html.ValidationMessageFor(m => m.Password)
-                </div>
-                <div class="row">
-                    <div class="col offset-s1 s12">
-                        @Html.CheckBoxFor(m => m.RememberMe)
-                        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox-label" })
+<div class="container">
+    <div class="row">
+        <div class="col m8">
+            <h2>@ViewBag.Title</h2>
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="input-field col s12">
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                        @Html.ValidationMessageFor(m => m.UserName)
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col offset-s1 s12">
-                        <input type="submit" value="Войти" class="btn" />
+                    <div class="input-field col s12">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.Password)
                     </div>
-                </div>
-            }
-        </section>
+                    <div class="row">
+                        <div class="col offset-s1 s12">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox-label", style = "display: inline-block" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col offset-s1 s12">
+                            <input type="submit" value="Войти" class="btn" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+        <!--<div class="col m-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>-->
     </div>
-    <!--<div class="col m-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>-->
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

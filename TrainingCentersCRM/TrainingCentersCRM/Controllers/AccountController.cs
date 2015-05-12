@@ -283,13 +283,22 @@ namespace TrainingCentersCRM.Controllers
         }
 
         //
+        // GET: /Account/LogOut
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("About", "Home");
+        }
+
+        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("About", "Home");
         }
 
         //
