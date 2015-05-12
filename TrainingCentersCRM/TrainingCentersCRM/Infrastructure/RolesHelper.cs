@@ -47,7 +47,12 @@ namespace TrainingCentersCRM.Infrastructure
             // вероятно кеш обновляется в момент залогинивания пользователя. Возможно этот вариант не так плох(у нас не так много ролей, 
             // которые надо переназначать не так уж часто)
             var account = new AccountController();
-            var res = account.UserManager.IsInRole(HttpContext.Current.User.Identity.GetUserId(), role);
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return false;
+            }
+            var res = account.UserManager.IsInRole(userId, role);
             return res;
             //return HttpContext.Current.User.IsInRole(role);
         }

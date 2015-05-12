@@ -32,6 +32,13 @@ namespace TrainingCentersCRM.Migrations.ApplicationDbContext
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var role = new IdentityRole { Name = "admin" };
             roleManager.Create(role);
+
+            role = new IdentityRole { Name = "admin_kaznu" };
+            roleManager.Create(role);
+            role = new IdentityRole { Name = "admin_sstu" };
+            roleManager.Create(role);
+            role = new IdentityRole { Name = "admin_ulstu" };
+            roleManager.Create(role);
             context.SaveChanges();
             // чтото не робит. или робит?
         }
