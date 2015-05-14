@@ -60,7 +60,7 @@
             </li>
         }
     </ul>
-    @if (!string.IsNullOrEmpty(Request.Url.Query))
+    @if (!string.IsNullOrEmpty(Request.Url.Query) || Request.Url.Query .StartsWith("?"))
     {
         <text>
             Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount

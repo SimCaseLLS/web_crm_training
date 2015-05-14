@@ -1,39 +1,40 @@
 ﻿@model TrainingCentersCRM.Models.Feedback
 @using BotDetect.Web.UI.Mvc;
 <div class="container">
-    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-    {
+    <div class="row">
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
         @Html.ActionLink("Администрирование отзывов", "Index")
-    }
+        }
+    </div>
     @foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
     {
-        <div class="row">
-            <div class="col s12 card">
-                <br />
-                <div class="row">
-                    <div class="column small-2">
-                        <label>Имя:</label>
-                        <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
-                    </div>
-                    <div class="column small-2 small-text">
-                        <label class="small-text">Дата:</label>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </div>
-                    <div class="column small-3"></div>
+    <div class="row">
+        <div class="col s12 card">
+            <br />
+            <div class="row">
+                <div class="column small-2">
+                    <label>Имя:</label>
+                    <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
                 </div>
-
-                <div>
-                    @Html.DisplayFor(modelItem => item.Message)
+                <div class="column small-2 small-text">
+                    <label class="small-text">Дата:</label>
+                    @Html.DisplayFor(modelItem => item.Date)
                 </div>
-                <br />
-                <hr></hr>
+                <div class="column small-3"></div>
             </div>
+            <div>
+                @Html.DisplayFor(modelItem => item.Message)
+            </div>
+            <br />
+            <hr></hr>
         </div>
+    </div>
     }
 
-
-    @using (Html.BeginForm("Create", "Feedback"))
-    {
+    <div class="row">
+        @using (Html.BeginForm("Create", "Feedback"))
+        {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal row">
@@ -47,7 +48,6 @@
                     @Html.ValidationMessageFor(model => model.Name)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, new { @class = "control-label" })
                 <div class="col-md-10">
@@ -55,7 +55,6 @@
                     @Html.ValidationMessageFor(model => model.Email)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.Message, new { @class = "control-label" })
                 <div class="col-md-10">
@@ -78,7 +77,8 @@
                 </div>
             </div>
         </div>
-    }
+        }
+    </div>
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

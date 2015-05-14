@@ -22,10 +22,11 @@
                 }
             </div>
         </div>
-        <div style="padding-left: 15px">@(Model.Annotation)</div>
+        <div style="padding-left: 15px; text-align: justify">@(Model.Annotation)</div>
     </div>
     <br />
-    <div>
+    <br />
+    <div style="text-align: justify">
         @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
     </div>
     @Html.Action("Index", "FileDocs", new { key = Model.Id })
