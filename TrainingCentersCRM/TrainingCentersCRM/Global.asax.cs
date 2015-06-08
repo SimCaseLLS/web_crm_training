@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,7 @@ namespace TrainingCentersCRM
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+
         protected void Application_Start()
         {
             Application["PageSize"] = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
@@ -20,6 +22,10 @@ namespace TrainingCentersCRM
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<TrainingCentersDBEntities>());
+            if (ConfigurationManager.AppSettings["EnableLucene"] == "1")
+            {
+
+            }
         }
 
         void Application_Error(object sender, EventArgs e)
