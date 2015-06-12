@@ -116,3 +116,28 @@ footer label {
     display: inline;
 }
 
+.ya-search {
+    position: absolute;
+    top: 80px;
+    display: none;
+    right: 0px;
+    width: 400px;
+    height: 20px;
+}
+
+#SearchButton {
+    cursor:pointer;
+    display: inline;
+}
+
+table.b-head {
+    border: none;
+}
+
+table.ya-site-form__search {
+    margin-bottom:0px;
+}
+
+.ya-site-form__input-text {
+    height: 20px;
+}
