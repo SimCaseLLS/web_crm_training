@@ -363,6 +363,7 @@
     <Content Include="img\feature-icon-hover.svg" />
     <Content Include="img\feature-icon.svg" />
     <Content Include="img\P1010871.jpg" />
+    <Content Include="img\Search.png" />
     <Content Include="img\tempus.jpg" />
     <Content Include="img\tempus_logo.png" />
     <Content Include="log4net.config.xml" />
