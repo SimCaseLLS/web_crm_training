@@ -1,6 +1,8 @@
 ﻿@model PagedList.IPagedList<TrainingCentersCRM.Models.Article>
 @using PagedList.Mvc;
-@using TrainingCentersCRM.Infrastructure
+@using TrainingCentersCRM.Infrastructure;
+@using System;
+@using System.Globalization;
 @{
 
     ViewBag.Title = "Список материалов сайта";
@@ -41,7 +43,13 @@
                         }
                     </div>
                     <a class="news-more" href="/@(TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTCName())/Articles/Details/@item.Id">
-                        <span class="date">@(Html.DisplayFor(modelItem => item.PublishDate))</span>
+                        <span class="date">
+                            @{
+                              DateTime dateValue = item.PublishDate;
+                              }
+                            @(dateValue.ToString("dd MMMM yyyy")
+)
+                        </span>
                         <div class="scale-wrap">
                             @if (item.Image == null)
                             {
@@ -52,6 +60,7 @@
                                 <img src="/empty/Articles/Image/@item.Id" class="responsive-img scale-img" />
                             }
                         </div>
+                        
                         <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
                         <p>@(TrainingCentersCRM.Infrastructure.TCHelper.TruncateString(Html.Raw(item.Annotation).ToHtmlString()))</p>
                     </a>

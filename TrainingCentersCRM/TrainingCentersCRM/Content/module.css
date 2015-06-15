@@ -5,7 +5,7 @@
   max-width: 12%;
   font-size: 1.2rem;
   text-align: center;
-  margin-right: 14px;
+  margin-left: 1.9375rem;
 }
 
 .notes-grey {
@@ -55,22 +55,35 @@
 
 .pricing-table {
   border-radius: 10px 10px 0px 0px;
+  position: relative;
 }
 .course-pay .title {
-  color: #fedd28;
+  color: #6fc5e5;
   background-color: #232c3b;
   font-size: 1.1rem;
   font-family: 'fira_sansbold';
   border-radius: 10px 10px 0px 0px;
 }
-.course-pay .price {
-  font-size: 1.5rem;
-  color: #232c3b;
-}
 .course-pay .description {
   font-size: 1rem;
-  color: #282828;
+  width: 49%;
+  display: inline-block;
+}
+.pricing-table .line {
+  position: absolute;
+  bottom: 15px;
+  height: 50px;
+  width: 2px;
+  background-color: #e2e2e2;
+  transform: rotate(30deg);
+}
+.table-price {
+  font-size: 1.3rem;
+  color: #000;
 }
 .cta-button .button {
   padding: 0.5rem 0.7rem;
+}
+.teachers-blocks {
+ max-width: 100rem;
 }

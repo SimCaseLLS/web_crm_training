@@ -4,12 +4,12 @@
 
 @Html.Action("Slider", "Advertizes", null)
 <section class="landing-plus clear-fix">
-    <div class="plus-item it-member"> <h6>IT специалистам</h6> <p class="description">Вы хотите <a href="/empty/Articles/Details/2">приобрести</a> новую квалификацию?</p></div>
-    <div class="plus-item it-company"><h6>IT компаниям</h6><p class="description">Хотите <a href="/empty/TrainingCours/Index">обучить</a> сових сотрудников?</p></div>
-    <div class="plus-item it-center"><h6>Учебным заведениям</h6><p class="description">Хотите <a href="/empty/Articles/Details/10">открыть</a> собственный центр?</p></div>
+    <a href="/empty/Articles/Details/2" class="plus-item it-member shadow"> <h6>IT специалистам</h6> <p class="description">Вы хотите <strong>приобрести</strong> новую квалификацию?</p></a>
+    <a href="/empty/TrainingCours/Index" class="plus-item it-company shadow"><h6>IT компаниям</h6><p class="description">Хотите <strong>обучить</strong> сових сотрудников?</p></a>
+    <a href="/empty/Articles/Details/10" class="plus-item it-center shadow"><h6>Учебным заведениям</h6><p class="description">Хотите <strong>открыть</strong> собственный центр?</p></a>
 </section>
-<div class="clear-fix">
-    <article class="about-us">
+<div class="about-us-wrap clear-fix">
+    <article class="about-us left">
         <h2>О проекте</h2>
         <p class="text-justify">
             В России запустилась сеть центров профессионального ИКТ-образования в рамках совместного европейского проекта "EQF-based professional ICT training for Russia and Kazakhstan".<br /><br />
@@ -18,11 +18,6 @@
             Партнерами по проекту являются ведущие ИТ-компании России, обеспечивая контроль качества образовательных материалов, рабочих программ и рамок квалификаций.
         </p>
     </article>
-    <aside class="landing-feature">
-        <section class="feature-item"><span class="number">@ViewBag.teachers</span><span class="content">преподавателей</span></section>
-        <section class="feature-item"><span class="number">@ViewBag.centers</span><span class="content">учебных заведений</span></section>
-        <section class="feature-item"><span class="number">@ViewBag.courses</span><span class="content">качественных курсов</span></section>
-    </aside>
 </div>
 
 @Html.Action("Index", "Articles", new { id = 1, partial = true, top = 4 })
@@ -35,6 +30,7 @@
     <div class="column large-6 small-12">
         <h3 class="center">Курсы</h3>
         @Html.Action("ShortList", "TrainingCours")
+
     </div>
 </div>
 

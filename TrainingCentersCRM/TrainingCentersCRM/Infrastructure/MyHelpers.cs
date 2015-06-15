@@ -18,6 +18,12 @@ namespace TrainingCentersCRM
             //Rec_menu(0, db1);
             return new MvcHtmlString(Rec_menu(0, db1, IdTrainingCenter));
         }
+        public static MvcHtmlString MenuTcCenter()
+        {
+            var IdTrainingCenter = TCHelper.GetCurrentTCName();
+            TrainingCentersCRM.Models.TrainingCentersDBEntities db1 = new Models.TrainingCentersDBEntities();
+            return new MvcHtmlString(TrainingCentersMenu(0, db1, IdTrainingCenter));
+        }
 
         static string Rec_menu(int Parent_ID, Models.TrainingCentersDBEntities db, string IdTrainingCenter, string curDropdownId = null)
         {
@@ -36,26 +42,16 @@ namespace TrainingCentersCRM
                 // если этот пункт меню - не dropdown
                 ul.MergeAttribute("class", "clear-fix navigation");
             }
-
+                       
             IQueryable<TrainingCentersCRM.Models.Menu> SaM;
             if (IdTrainingCenter == "empty" || IdTrainingCenter == null)
             {
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == "empty" || p.IdTrainingCenter == "other").OrderBy(a => a.Ord_Id);
-                if (Parent_ID == 0)
-                {
-                    ul.InnerHtml += TcDropdown(db);
-                }
             }
             else
             {
-                if (Parent_ID == 0)
-                {
-                    var tclocal = db.TrainingCenters.SingleOrDefault(a => a.Url == IdTrainingCenter);
-                    ul.InnerHtml += "<li><a href='/" + IdTrainingCenter + "/TrainingCenter/Details/" + tclocal.Id + "'>" + tclocal.Organization + "</a></li>";
-                }
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other" || p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
             }
-
             var first_sam = SaM.Where(p => p.Parent_Id == Parent_ID).OrderBy(a => a.Ord_Id);
             foreach (var samp in first_sam)
             {
@@ -102,6 +98,29 @@ namespace TrainingCentersCRM
             return ul.ToString();
         }
 
+        static string TrainingCentersMenu(int Parent_ID, Models.TrainingCentersDBEntities db, string IdTrainingCenter, string curDropdownId = null)
+        {
+            TagBuilder span = new TagBuilder("span");
+            IQueryable<TrainingCentersCRM.Models.Menu> SaM;
+            if (IdTrainingCenter == "empty" || IdTrainingCenter == null)
+            {
+                SaM = db.Menu.Where(p => p.IdTrainingCenter == "empty" || p.IdTrainingCenter == "other").OrderBy(a => a.Ord_Id);
+                if (Parent_ID == 0)
+                {
+                    span.InnerHtml += TcDropdown(db);
+                }
+            }
+            else
+            {
+                if (Parent_ID == 0)
+                {
+                    var tclocal = db.TrainingCenters.SingleOrDefault(a => a.Url == IdTrainingCenter);
+                    span.InnerHtml += "<a href='/" + IdTrainingCenter + "/TrainingCenter/Details/" + tclocal.Id + "'>" + tclocal.Organization + "</a>";
+                }
+                SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other" || p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
+            }
+            return span.ToString();
+        }
 
         public static string GetSiteUrl()
         {
@@ -121,7 +140,7 @@ namespace TrainingCentersCRM
         static string TcDropdown(Models.TrainingCentersDBEntities db)
         {
             var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty"));
-            var html = "<li><a href='#!' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Учебные центры<i class='fa fa-caret-down'></i></a></li>";
+            var html = "<a href='#!' class='trainig-center' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Учебные центры<i class='fa fa-caret-down'></i></a>";
             TagBuilder ul = new TagBuilder("ul");
             ul.MergeAttribute("id", "TrainingCentersDropdown");
             ul.MergeAttribute("class", "f-dropdown");

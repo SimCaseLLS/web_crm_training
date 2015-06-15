@@ -7,17 +7,53 @@ header {
     background-color: #fff;
 }
 .logo {
-    font: 400 23.94px Arial;
+    font-size: 1.5rem;
     text-align: center;
-    width: 73px;
     float: left;
-    margin: 14px 1.7% 0% 1.8%;
 }
 .logo a {
-    color: #202020;
+    color: #fff;
 }
-.nav {
-    float: left;
+a {
+    outline: none;
+}
+.logo a:hover {
+    color: #6fc5e5;
+}
+.sign-in {
+    position: relative;
+    margin-left: 20px;
+}
+.sign-in a {
+    padding-left: 30px;
+}
+.sign-in:before {
+    content: "";
+    display: inline-block;
+    top: 2px;
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    background: url("/img/sign-in.png") no-repeat; 
+    background-size: 190%;
+}
+.trainig-center {
+    border-bottom: 1px dashed #6fc5e5;
+}
+
+.sign-in:hover:before {
+    background-position: -16px 0px;
+}
+.dark-menu {
+    background: #232c3b;
+    color: #6fc5e5;
+    padding: 15px 5% 5px 5%;
+}
+.dark-menu a {
+    color: #fff;
+}
+.sign-in:hover a {
+    color: #6fc5e5;
 }
 .clear-fix:after {
     display: block;
@@ -29,6 +65,7 @@ header {
 nav ul {
     float: left;
     width: 89%;
+    margin-left: 5%;
 }
 nav ul li {
     float: left;
@@ -54,13 +91,24 @@ nav a {
     float: right;
     margin-right: 2.7%;
 }
+header nav a {
+    padding-top: 31px;
+    border-top: 4px solid transparent;
+}
 header nav a:hover, header nav a:focus {
-    color: #000;
-    padding-bottom: 0px;
-    border-bottom: 3px solid #fedd28;
+    color: #6fc5e5;
+    padding-top: 31px;
+    border-top: 4px solid #6fc5e5;
+    transition: all 0.2s ease-in 0s;
+}
+.f-dropdown a {
+    border-top: 0px;
 }
 .f-dropdown a:hover {
-    border-bottom: 8px solid #fff;
+    border-top: 0px;
+    padding: 0.5rem;
+    color: #6fc5e5;
+    transition: all 0.1s ease-in 0s;
 }
 
 .f-dropdown li:hover, .f-dropdown li:focus {

@@ -42,6 +42,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 90%;
     margin: 0 auto;
     max-height: 500px;
+    min-height: 500px;
     position: relative;
     overflow: hidden;
 }
@@ -49,7 +50,21 @@ h1, h2, h3, h4, h5, h6 {
 .orbit-content {
     display: none;
 }
-
+.orbit-content .slider-overlay {
+    content: "";
+    width: 100%;
+    min-height: 10px;
+    position: absolute;
+    height: 100%;
+    display: block;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.17);
+    transition: background 0.2s ease-in 0s;
+}
+.orbit-container .orbit-slides-container img {
+    width: 100%;
+}
 .slider-info-small {
     position: absolute;
     width: 80%;
@@ -67,14 +82,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .slider-info {
     position: absolute;
-    width: 50%;
-    height: 60%;
-    border-radius: 50%;
-    right: -10%;
-    top: -6%;
-    background-color: rgba(254, 221, 40,0.9);
-    padding: 13% 56px 56px 56px;
-    box-sizing: border-box;
+    width: 60%;
+    left: 40%;
+    top: 50px;
+    z-index: 5;
 }
 
     .slider-info .slider-text {
@@ -82,16 +93,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 
         .slider-info .slider-text h3 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-family: 'fira_sansbold';
+            color: #fff;
         }
 
         .slider-info .slider-text h5 {
             color: #fff;
-            background-color: #232c3b;
-            font-size: 18px;
-            font-family: 'fira_sanslight';
-            padding: 0px 12px;
+            background-color: rgba(35, 44, 59,0.8);
+            font-size: 16px;
+            font-family: 'fira_sansregular';
+            padding: 20px 12px;
             margin: 2px;
             display: inline-block;
         }
@@ -109,24 +121,29 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0px auto;
     position: relative;
     top: -50px;
+    margin-left: 15%;
     color: #232c3b;
     display: none;
     z-index: 10;
 }
-
-    .landing-plus .plus-item {
+    .landing-plus a {
+        color: #232c3b;
+    } 
+    .landing-plus strong {
         font-family: 'fira_sansbold';
+    }
+    .landing-plus .plus-item {
+        font-family: 'fira_sansregular';
         overflow: visible;
         text-align: center;
         padding: 10px 25px 0px 25px;
-        width: 32%;
-        margin-right: 2%;
-        background-color: #FA7B4F;
-        min-height: 165px;
+        width: 26%;
+        margin-right: 4%;
+        background-color: #6fc5e5;
+        height: 157px;
         float: left;
         position: relative;
         top: 0px;
-        cursor: default;
         -webkit-transition: top 0.3s linear;
         -moz-transition: top 0.3s linear;
         -o-transition: top 0.3s linear;
@@ -184,15 +201,19 @@ h1, h2, h3, h4, h5, h6 {
         }
 
 .about-us {
-    background-color: #fbfbfb;
-    border: 1px solid #e2e2e2;
     border-left: 0px;
-    margin-top: 50px;
-    padding: 20px 20px 20px 8.8%;
+    padding: 10px 12% 20px 5.8%;
     width: 60.5%;
-    float: left;
+    color: #fff;
 }
-
+.about-us h2 {
+    color: #fff;
+}
+.about-us-wrap {
+    background: url("/img/mainphoto.png") right no-repeat;
+    margin-top: 30px;
+    background-color: #6fc5e5;
+}
 .landing-feature {
     margin-top: 50px;
     float: right;
@@ -212,7 +233,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
         .landing-feature .feature-item:hover {
-            color: #FA7B4F;
+            color: #6fc5e5;
         }
 
         .landing-feature .feature-item .number {
@@ -240,16 +261,16 @@ a.news-more, a.more-info {
 }
 
 .news-block {
-    text-align: center;
     padding: 0 1.625rem 1.25rem;
     border: 1px solid transparent;
     position: relative;
     height: 100%;
 }
-
+    .news-block h5 {
+        font-size: 1rem !important;
+    }
     .news-block:hover {
         background-color: #fafafa;
-        border-radius: 10px;
         border: 1px solid #e2e2e2;
     }
 
@@ -257,13 +278,13 @@ a.news-more, a.more-info {
         height: 150px;
         margin-bottom: 10px;
     }
-
     .news-block .date {
-        background-color: #ffe32a;
+        background-color: #6fc5e5;
+        color: #232c3b;
         padding: 4px;
         font-size: 12px;
-        top: 68px;
-        right: 8%;
+        top: 15px;
+        left: 26px;
         position: absolute;
         z-index: 5;
     }
@@ -298,7 +319,6 @@ body {
     font-size: 1rem;
     font-family: 'fira_sansregular',sans-serif;
     color: #232c3b;
-    border-radius: 5px;
     border: 1px solid #232c3b;
     padding: 0.3rem 0.5rem;
     -webkit-transition: all 0.2s ease-in 0s;
@@ -316,8 +336,8 @@ body {
 
     .button:hover, input[type="submit"]:hover {
         background-color: #fefefe;
-        border-color: #FA7B4F;
-        color: #FA7B4F;
+        border-color: #6fc5e5;
+        color: #6fc5e5;
     }
 
 .fa:before {
@@ -363,7 +383,7 @@ body {
 
 .shadow:hover {
     box-shadow: 0 25px 35px -32px rgba(0,0,0,.35), 0 36px 65px -60px rgba(0,0,0,.35);
-    transition: box-shadow 0.15s ease-in-out 0s;
+    transition: all 0.2s ease-in 0s;
 }
 
 .scale-wrap {

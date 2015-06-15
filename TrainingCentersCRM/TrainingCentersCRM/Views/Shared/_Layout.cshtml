@@ -11,7 +11,12 @@
 <body>
     <div class="wrap-body">
         <header class="clear-fix">
-            <div class="logo"><a href="/">ICT <br />Training</a></div>
+            <div class="dark-menu clear-fix">
+                <div class="logo"><a href="/">ICT Training</a></div>
+                <div class="right">
+                    @MyHelpers.MenuTcCenter()
+                </div>
+            </div>
             <nav class="clear-fix">
                 @MyHelpers.Menu()
             </nav>
@@ -40,11 +45,11 @@
     @if (User.Identity.IsAuthenticated)
         {
             <text>
-                $('.navigation').append('<li class="right"><a href="/empty/Account/LogOut" id="loginLink">Выйти</a><li>');
+                $('.dark-menu .right').append('<span class="sign-out right"><a href="/empty/Account/LogOut" id="loginLink">Выйти</a></span>');
             </text>
         } else {
             <text>
-                $('.navigation').append('<li class="right"><a href="/empty/Account/Login" id="loginLink">Войти</a><li>');
+                $('.dark-menu .right').append('<span class="sign-in right"><a href="/empty/Account/Login" id="loginLink">Войти</a></span>');
             </text>
         }
         $(document).foundation();

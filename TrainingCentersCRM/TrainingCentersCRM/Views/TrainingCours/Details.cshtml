@@ -30,8 +30,8 @@
         <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать учебный курс</a>
     }
     <div class="row">
-        <h2 class="column small-10">@Html.DisplayFor(model => model.Title)</h2>
-        <div class="column small-2 notes right"><i class="fa fa-clock-o"></i>@Html.DisplayFor(model => model.Hourse) ч.</div>
+        <h2 class="column small-12">@Html.DisplayFor(model => model.Title)</h2>
+        <div class="column small-2 notes left"><i class="fa fa-clock-o"></i>@Html.DisplayFor(model => model.Hourse) ч.</div>
     </div>
     <div class="row">
         <div class="column small-8">
@@ -82,20 +82,42 @@
                     <div class="column small-6">
                         <ul class="pricing-table shadow">
                             <li class="title">Для физических лиц</li>
-                            <li class="price">@Html.DisplayFor(model => model.PriceForIndividuals) руб.</li>
-                            <li class="description">Полный курс</li>
-                            <li class="price">@Html.DisplayFor(model => model.CostOfOneHourForIndividuals) руб.</li>
-                            <li class="description">За час курса</li>
+                            <li class="description">
+                                <span class="table-price">
+                                    @Html.DisplayFor(model => model.PriceForIndividuals)
+                                    руб.<br>
+                                </span>
+                                Полный курс
+                            </li>
+                            <span class="line"></span>
+                            <li class="description">
+                                 <span class="table-price">
+                                    @Html.DisplayFor(model => model.CostOfOneHourForIndividuals) 
+                                    руб.<br>
+                                </span>
+                                За час курса
+                             </li>
                             @*<li class="cta-button"><a class="button" href="#">Купить</a></li>*@
                         </ul>
                     </div>
                     <div class="column small-6">
                         <ul class="pricing-table shadow">
                             <li class="title">Для организаций</li>
-                            <li class="price">@Html.DisplayFor(model => model.PriceForOrganizations) руб.</li>
-                            <li class="description">Полный курс</li>
-                            <li class="price">@Html.DisplayFor(model => model.CostOfOneHourForOrganizations) руб.</li>
-                            <li class="description">За час курса</li>
+                            <li class="description">
+                                <span class="table-price">
+                                    @Html.DisplayFor(model => model.PriceForOrganizations)
+                                    руб. <br>
+                                </span>
+                                Полный курс
+                            </li>
+                            <span class="line"></span>
+                            <li class="description">
+                                <span class="table-price">
+                                    @Html.DisplayFor(model => model.CostOfOneHourForOrganizations)
+                                    руб. <br>
+                                </span>
+                                За час курса
+                            </li>                            
                             @*<li class="cta-button"><a class="button" href="#">Купить</a></li>*@
                         </ul>
                     </div>
