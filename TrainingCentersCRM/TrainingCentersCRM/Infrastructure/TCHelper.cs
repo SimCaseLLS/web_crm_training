@@ -52,8 +52,8 @@ namespace TrainingCentersCRM.Infrastructure
         {
             if (text == null)
                 return "";
-            if (text.Length > 200)
-                return text.Substring(0, 200) + "...";
+            if (text.Length > 150)
+                return text.Substring(0, 150) + "...";
             else
                 return text;
         }

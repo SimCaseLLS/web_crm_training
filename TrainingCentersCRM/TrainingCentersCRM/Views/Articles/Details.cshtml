@@ -14,15 +14,13 @@
 
     <label>Опубликовано: @Model.PublishDate</label><br />
     <div class="row">
-        <div class="large-3 small-6 columns">
-            <div class="overlay-container">
+        <div class="overlay-container">
                 @if (Model.Image != null)
                 {
                     <img src="/empty/Articles/Image/@Model.Id" class="detailsImage" />
                 }
-            </div>
         </div>
-        <div style="padding-left: 15px; text-align: justify">@(Model.Annotation)</div>
+        <p style="padding-left: 15px; text-align: justify">@(Model.Annotation)</p>
     </div>
     <br />
     <br />

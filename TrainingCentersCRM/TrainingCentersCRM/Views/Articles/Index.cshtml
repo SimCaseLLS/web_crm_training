@@ -47,7 +47,7 @@
                             @{
                               DateTime dateValue = item.PublishDate;
                               }
-                            @(dateValue.ToString("dd MMMM yyyy")
+                            @(dateValue.ToString("dd MMMM", CultureInfo.CreateSpecificCulture("ru-RU"))
 )
                         </span>
                         <div class="scale-wrap">

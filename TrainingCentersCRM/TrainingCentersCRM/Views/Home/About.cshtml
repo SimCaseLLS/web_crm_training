@@ -8,8 +8,8 @@
     <a href="/empty/TrainingCours/Index" class="plus-item it-company shadow"><h6>IT компаниям</h6><p class="description">Хотите <strong>обучить</strong> сових сотрудников?</p></a>
     <a href="/empty/Articles/Details/10" class="plus-item it-center shadow"><h6>Учебным заведениям</h6><p class="description">Хотите <strong>открыть</strong> собственный центр?</p></a>
 </section>
-<div class="about-us-wrap clear-fix">
-    <article class="about-us left">
+<div class="about-us-wrap clear-fix" data-equalizer>
+    <article class="about-us column medium-6 left" data-equalizer-watch>
         <h2>О проекте</h2>
         <p class="text-justify">
             В России запустилась сеть центров профессионального ИКТ-образования в рамках совместного европейского проекта "EQF-based professional ICT training for Russia and Kazakhstan".<br /><br />
@@ -18,6 +18,7 @@
             Партнерами по проекту являются ведущие ИТ-компании России, обеспечивая контроль качества образовательных материалов, рабочих программ и рамок квалификаций.
         </p>
     </article>
+    <div class="background-image column medium-6" data-equalizer-watch></div>
 </div>
 
 @Html.Action("Index", "Articles", new { id = 1, partial = true, top = 4 })
