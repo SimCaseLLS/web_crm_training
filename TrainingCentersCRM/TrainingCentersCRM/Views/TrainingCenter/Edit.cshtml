@@ -4,7 +4,7 @@
     ViewBag.Title = "Редактирование учебного центра";
 }
 <div class="container">
-    <h2>Редактирование учебного центра</h2>
+    <h2>Редактирование информации об учебном центре</h2>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/ckeditor/adapters/jquery.js"></script>
 
@@ -102,6 +102,6 @@
     $(function () {
         CKEDITOR.config.filebrowserUploadUrl = '/empty/Home/UploadFromEditor';
         CKEDITOR.config.filebrowserBrowseUrl = '/empty/Home/ImageBrowser';
-        //$('#Description').ckeditor();
+        $('#Description').ckeditor();
     });
 </script>

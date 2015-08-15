@@ -24,29 +24,36 @@ namespace TrainingCentersCRM.Controllers
         /// <returns></returns>
         public ActionResult Index(string key)
         {
-            // core_course_get_courses
-            // core_course_get_categories
-            var res = MoodleRequestManager.InvokeMethod("core_course_get_categories", HttpContext);
-            SingleResult root;
-            if (trainingCenter != null)
-                key = trainingCenter.Url;
-            if (key == null)
+            try
             {
-                root = new SingleResult()
+                // core_course_get_courses
+                // core_course_get_categories
+                var res = MoodleRequestManager.InvokeMethod("core_course_get_categories", HttpContext);
+                SingleResult root;
+                if (trainingCenter != null)
+                    key = trainingCenter.Url;
+                if (key == null)
                 {
-                    KeyValues = new Key[] 
+                    root = new SingleResult()
+                    {
+                        KeyValues = new Key[] 
                     {
                         new Key() { Name = "name", Value="Все курсы"},
                         new Key() { Name = "id", Value = "0"},
                         new Key() { Name = "shortname", Value = "Все курсы"}
                     }
-                };
+                    };
+                }
+                else
+                    root = res.MultiValue.Where(a => a["idnumber"] == key).Single();
+                MoodleCategory cat = new MoodleCategory(root, res.MultiValue, HttpContext);
+                //var model = MoodleCategory.BuildCategories(root, res.MultiValue, HttpContext);
+                return View(cat);
             }
-            else
-                root = res.MultiValue.Where(a => a["idnumber"] == key).Single();
-            MoodleCategory cat = new MoodleCategory(root, res.MultiValue, HttpContext);
-            //var model = MoodleCategory.BuildCategories(root, res.MultiValue, HttpContext);
-            return View(cat);
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
 
         public ActionResult CourseTeachers(int courseid)

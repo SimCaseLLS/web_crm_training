@@ -32,7 +32,7 @@ namespace TrainingCentersCRM.Controllers
 
         public ActionResult ShortList()
         {
-            return View(db.TrainingCenters.Where(a => a.Url != "empty"));
+            return View(db.TrainingCenters.Where(a => a.Url != "empty").OrderBy(b => b.Organization));
         }
 
         // GET: /TrainingCenter/
@@ -117,7 +117,7 @@ namespace TrainingCentersCRM.Controllers
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         [TCAuthorize(Roles = "admin")]
-        public ActionResult Create([Bind(Include = "Id,Addres,Phone,Email,Organization,Description,Logo,Url")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
+        public ActionResult Create([Bind(Include = "Id,Addres,Phone,Email,Organization,Description,Logo,Url,HHCityId")] TrainingCenter trainingcenter, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -214,7 +214,11 @@ namespace TrainingCentersCRM.Controllers
 
             var roleName = "admin_" + trainingcenter.Url;
             var role = appDb.Roles.SingleOrDefault(r => r.Name == roleName);
-            appDb.Roles.Remove(role);
+            try
+            {
+                appDb.Roles.Remove(role);
+            }
+            catch { }
             appDb.SaveChanges();
 
             db.TrainingCenters.Remove(trainingcenter);

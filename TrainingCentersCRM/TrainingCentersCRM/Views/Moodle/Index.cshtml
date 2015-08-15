@@ -6,5 +6,8 @@
 }
 <div class="container">
     <h2>Дистанционные учебные курсы</h2>
-    @Html.Partial("Category", Model)
+    @if (Model != null)
+    { 
+        @Html.Partial("Category", Model)
+    }
 </div>

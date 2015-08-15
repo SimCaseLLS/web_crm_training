@@ -31,7 +31,7 @@ using System;
         public string Email { get; set; }
 
         [StringLength(255, ErrorMessage = "Длина строки должна быть менее 256 символов")]
-        [Display(Name = "Организация")]
+        [Display(Name = "Город")]
         public string Organization { get; set; }
 
         [Display(Name = "Общее описание центра")]

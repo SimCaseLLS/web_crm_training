@@ -85,6 +85,7 @@ namespace TrainingCentersCRM.Controllers
         [TCAuthorize(Roles = "admin")]
         public async Task<ActionResult> Create([Bind(Include = "UserName,Password,TypeUser,LastName,FirstName,Patronymic,Email,Description,Phone,DateOfBirth,PassportData")] UserMan user)
         {
+            user.DateOfBirth = DateTime.Now.ToString();
             if (ModelState.IsValid)
             {
                 var tcUrl = RouteData.Values["tc"];
@@ -162,6 +163,7 @@ namespace TrainingCentersCRM.Controllers
             ApplicationUser aspnetuser = appDb.Users.Find(id);
             UserManEditing user = new UserManEditing();
             user.UserName = aspnetuser.UserName;
+            user.AspNetUserId = id;
 
             Student student = db.Students.SingleOrDefault(a => a.AspNetUserId == aspnetuser.Id);
             Teacher teacher = db.Teachers.SingleOrDefault(a => a.AspNetUserId == aspnetuser.Id);

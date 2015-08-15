@@ -1,29 +1,30 @@
 ﻿@using TrainingCentersCRM.Models;
 @using Microsoft.AspNet.Identity;
 @{
-    ViewBag.Title = "Manage Account";
+    ViewBag.Title = "Смена пароля";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@ViewBag.Title.</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div class="row">
-    <div class="col-md-12">
-        @if (ViewBag.HasLocalPassword)
-        {
-            @Html.Partial("_ChangePasswordPartial")
-        }
-        else
-        {
-            @Html.Partial("_SetPasswordPartial")
-        }
+            <p class="text-success">@ViewBag.StatusMessage</p>
+            @if (ViewBag.HasLocalPassword)
+            {
+                @Html.Partial("_ChangePasswordPartial")
+            }
+            else
+            {
+                @Html.Partial("_SetPasswordPartial")
+            }
 
-        <section id="externalLogins">
-            @Html.Action("RemoveAccountList")
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+            <section id="externalLogins">
+                @Html.Action("RemoveAccountList")
+            </section>
+        </div>
     </div>
-</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+</div>

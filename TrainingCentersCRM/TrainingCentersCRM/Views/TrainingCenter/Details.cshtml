@@ -3,19 +3,25 @@
 @{
     ViewBag.Title = Model.Organization;
 }
-<div class="container">
+<br />
+<div class="row">
     <div>
         <h4>@Model.Organization</h4>
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            <a href="@Url.Action("Edit", "TrainingCenter", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать информацию о центре</a>
+        }
+
         <hr />
         <div class="row">
 
             @if (Model.Logo != null)
             {
-                <div class="small-12 large-6 columns">
+                <div class="small-12 large-2 columns">
                     <img data-interchange="[/empty/TrainingCenter/Image/@Model.Id, (default)]" class="main-image" />
                 </div>
             }
-            <div class="small-12 large-6 columns left" style="text-align: justify">
+            <div class="small-12 large-10 columns left" style="text-align: justify">
                 @Html.Raw(Model.Description)
             </div>
         </div>

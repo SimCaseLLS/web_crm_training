@@ -139,8 +139,8 @@ namespace TrainingCentersCRM
 
         static string TcDropdown(Models.TrainingCentersDBEntities db)
         {
-            var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty"));
-            var html = "<a href='#!' class='trainig-center' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Выберите город<i class='fa fa-caret-down'></i></a>";
+            var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty")).OrderBy(b => b.Organization);
+            var html = "<a href='#!' class='trainig-center' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Выберите город<i class='fa fa-caret-down'></i></a>&nbsp;&nbsp;";
             TagBuilder ul = new TagBuilder("ul");
             ul.MergeAttribute("id", "TrainingCentersDropdown");
             ul.MergeAttribute("class", "f-dropdown");

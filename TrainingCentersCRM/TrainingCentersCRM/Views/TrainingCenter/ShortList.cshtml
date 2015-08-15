@@ -22,7 +22,7 @@
                 </label>
                 @Html.DisplayFor(modelItem => item.Email)
                 <br /><br />
-                @TrainingCentersCRM.Infrastructure.TCHelper.TruncateString(Html.Raw(item.Description).ToHtmlString())
+                @(Html.Raw(TrainingCentersCRM.Infrastructure.TCHelper.TruncateString(System.Text.RegularExpressions.Regex.Replace(item.Description ?? "", @"<[^>]+>|&nbsp;", "").Trim())))
                 <br />
                 <a href="/@item.Url/TrainingCenter/Details/@item.Id">Подробнее...</a>
             </div>
