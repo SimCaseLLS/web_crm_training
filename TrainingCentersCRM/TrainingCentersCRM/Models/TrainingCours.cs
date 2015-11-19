@@ -66,7 +66,7 @@ using System;
 
         [Display(Name="Идентификатор курса в Moodle")]
         [RegularExpression("[0-9]+", ErrorMessage = "Недопустимое значение")]
-        public int MoodleId { get; set; }
+        public int? MoodleId { get; set; }
 
         [Display(Name = "Обязательная предварительная подготовка")]
         [StringLength(1023, ErrorMessage = "Длина строки должна быть менее 1024 символов")]
