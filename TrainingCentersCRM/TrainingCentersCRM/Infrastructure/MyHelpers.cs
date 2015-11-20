@@ -107,7 +107,7 @@ namespace TrainingCentersCRM
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == "empty" || p.IdTrainingCenter == "other").OrderBy(a => a.Ord_Id);
                 if (Parent_ID == 0)
                 {
-                    span.InnerHtml += TcDropdown(db);
+                    span.InnerHtml += TcDropdown(db, true);
                 }
             }
             else
@@ -115,7 +115,8 @@ namespace TrainingCentersCRM
                 if (Parent_ID == 0)
                 {
                     var tclocal = db.TrainingCenters.SingleOrDefault(a => a.Url == IdTrainingCenter);
-                    span.InnerHtml += "<a href='/" + IdTrainingCenter + "/TrainingCenter/Details/" + tclocal.Id + "'>" + tclocal.Organization + "</a>";
+                    span.InnerHtml += "<a href='/" + IdTrainingCenter + "/TrainingCenter/Details/" + tclocal.Id + "'>" + tclocal.Organization + "</a> <a href='#'class='trainig-center' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'><i class='fa fa-caret-down'></i></a>";
+                    span.InnerHtml += TcDropdown(db, false);
                 }
                 SaM = db.Menu.Where(p => p.IdTrainingCenter == IdTrainingCenter || p.IdTrainingCenter == "other" || p.IdTrainingCenter == "empty").OrderBy(a => a.Ord_Id);
             }
@@ -137,10 +138,13 @@ namespace TrainingCentersCRM
             return url;
         }
 
-        static string TcDropdown(Models.TrainingCentersDBEntities db)
+        static string TcDropdown(Models.TrainingCentersDBEntities db, bool needLabel = true)
         {
             var tcs = db.TrainingCenters.Where(a => !a.Url.Equals("empty")).OrderBy(b => b.Organization);
-            var html = "<a href='#!' class='trainig-center' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Выберите город<i class='fa fa-caret-down'></i></a>&nbsp;&nbsp;";
+            string html = "";
+            if (needLabel)
+                html= "<a href='#!' class='trainig-center' data-dropdown='TrainingCentersDropdown' aria-controls='TrainingCentersDropdown' aria-expanded='false'>Выберите город<i class='fa fa-caret-down'></i></a>";
+            html += "&nbsp; &nbsp;";
             TagBuilder ul = new TagBuilder("ul");
             ul.MergeAttribute("id", "TrainingCentersDropdown");
             ul.MergeAttribute("class", "f-dropdown");

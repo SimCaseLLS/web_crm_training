@@ -133,3 +133,7 @@ table.ya-site-form__search {
 .ya-site-form__input-text {
     height: 20px;
 }
+
+.CourseModuleDescription {
+    margin-left: 3px;
+}

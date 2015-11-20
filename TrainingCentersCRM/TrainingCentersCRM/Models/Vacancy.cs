@@ -36,6 +36,11 @@ using System;
         [Display(Name = "—сылка на сайт с резмещеной вакансией")]
         public string Link { get; set; }
 
+        public int? IdTrainingCenter { get; set; }
+
+        [Display(Name = "”чебный центр")]
+        public TrainingCenter TrainingCenter { get; set; }
+
         public virtual ICollection<Qualification> Qualifications { get; set; }
     }
 

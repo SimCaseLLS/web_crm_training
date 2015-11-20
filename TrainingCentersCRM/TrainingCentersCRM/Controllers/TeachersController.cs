@@ -74,7 +74,7 @@ namespace TrainingCentersCRM.Controllers
                 }
                 db.Users.Add(teacher);
                 db.SaveChanges();
-                var teach = db.Teachers.SingleOrDefault(a => a.Email == teacher.Email);
+                var teach = db.Teachers.FirstOrDefault(a => a.Email == teacher.Email);
                 TrainingCenterTeacher trainingCenterTeacher = new TrainingCenterTeacher() { IdTeacher = teach.Id, IdTrainingCenter = tc.Id };
                 db.TrainingCenterTeachers.Add(trainingCenterTeacher);
                 db.SaveChanges();

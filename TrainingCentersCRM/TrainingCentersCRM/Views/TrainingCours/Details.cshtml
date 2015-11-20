@@ -42,41 +42,41 @@
             </section>
             <section class="row">
                 @* <p class="text s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>*@
-                <p class="column small-12"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Компетенции</a>, на развитие которых нацелен этот курс:</p>
-                <div class="column small-12" id="qualificationTCFormDiv">
-                    <form id="qualificationTCForm" name="qualificationTCForm" action="/empty/TRainingCourc/SetQualifications" method="post">
-                        @Html.HiddenFor(model => model.Id)
-                        @{
-                            int cnt = 0;
-                            List<TrainingCentersCRM.Models.ViewModels.RelatedQualifications> qualifications = ViewBag.Qualifications;
-                            if (qualifications != null)
-                            {
-                                foreach (var qualification in qualifications)
-                                {
-                                    <div style="display: none">
-                                        <input type="checkbox"
-                                               name="selectedQualifications"
-                                               value="@qualification.QualificationID"
-                                               @(Html.Raw(qualification.Assigned ? "checked=\"checked\"" : "")) />
-                                        @qualification.Title
-                                    </div>
-                                }
-                            }
-                        }
-                        <div class="row">
-                            <div id="qualificationTree" style="width: 50%; margin-bottom:10px; overflow-x: scroll; white-space: nowrap; float: left"></div>
-                        </div>
-                        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                {
+                    <p class="column small-12"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Компетенции</a>, на развитие которых нацелен этот курс:</p>
+                    <div class="column small-12" id="qualificationTCFormDiv">
+                        <form id="qualificationTCForm" name="qualificationTCForm" action="/empty/TRainingCourc/SetQualifications" method="post">
+                            @Html.HiddenFor(model => model.Id)
+                            @{
+                    int cnt = 0;
+                    List<TrainingCentersCRM.Models.ViewModels.RelatedQualifications> qualifications = ViewBag.Qualifications;
+                    if (qualifications != null)
+                    {
+                        foreach (var qualification in qualifications)
                         {
+                            <div style="display: none">
+                                <input type="checkbox"
+                                       name="selectedQualifications"
+                                       value="@qualification.QualificationID"
+                                       @(Html.Raw(qualification.Assigned ? "checked=\"checked\"" : "")) />
+                                @qualification.Title
+                            </div>
+                        }
+                    }
+                            }
+                            <div class="row">
+                                <div id="qualificationTree" style="width: 50%; margin-bottom:10px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+                            </div>
                             <button id="submitQualifTC" name="submitQualifTC" class="button" style="">Сохранить</button>
-                        }
-                        @section Scripts {
-                            <script src="~/Scripts/vacancyTree.js"></script>
-                            @Scripts.Render("~/bundles/jqueryval")
-                        }
-                    </form>
-                </div>
-                <div class="column small-12" id="qualificationList"></div>
+                            @section Scripts {
+                                <script src="~/Scripts/vacancyTree.js"></script>
+                                @Scripts.Render("~/bundles/jqueryval")
+                            }
+                        </form>
+                    </div>
+                    <div class="column small-12" id="qualificationList"></div>
+                }
                 <h4 class="column small-12 course-pay">Стоимость курса</h4>
                 <div class="column small-12 course-pay left">
                     <div class="column small-6">
@@ -91,12 +91,12 @@
                             </li>
                             <span class="line"></span>
                             <li class="description">
-                                 <span class="table-price">
-                                    @Html.DisplayFor(model => model.CostOfOneHourForIndividuals) 
+                                <span class="table-price">
+                                    @Html.DisplayFor(model => model.CostOfOneHourForIndividuals)
                                     руб.<br>
                                 </span>
                                 За час курса
-                             </li>
+                            </li>
                             @*<li class="cta-button"><a class="button" href="#">Купить</a></li>*@
                         </ul>
                     </div>
@@ -117,7 +117,7 @@
                                     руб. <br>
                                 </span>
                                 За час курса
-                            </li>                            
+                            </li>
                             @*<li class="cta-button"><a class="button" href="#">Купить</a></li>*@
                         </ul>
                     </div>
@@ -131,7 +131,7 @@
                     </h4>
                     @if (RolesHelper.IsUserHasPermissionForTc("admin"))
                     {
-                        <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Добавить</a>
+                        <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Назначить</a>
                     }
                     <div id="dropDownRelatedTeachers" style="display: none"></div>
                     <ul class="small-block-grid-2 large-block-grid-3" data-equalizer>
@@ -165,23 +165,23 @@
                 </h4>
                 @if (RolesHelper.IsUserHasPermissionForTc("admin"))
                 {
-                    <a class="button" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="fa fa-plus"></i>Добавить</a>
+                    <a class="button" href="@Url.Action("Create", "TrainingModule", new { id = Model.Id })"><i class="fa fa-plus"></i>Добавить модуль</a>
                 }
                 <div class="column small-11 offset-s1">
                     @foreach (var module in Model.CourseModules.OrderBy(a => a.TrainingModule.Numbers))
                     {
                         <div>
-                            <div class="tools no-margin">
+                            <h5>
+                                @module.TrainingModule.Title (@module.TrainingModule.Hours ч.)
                                 @if (RolesHelper.IsUserHasPermissionForTc("admin"))
                                 {
-                                    <a class="button fa fa-pencil" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"></a>
-                                    <a class="button fa fa-trash" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"></a>
+                                    @*<div class="no-margin">*@
+                                    <a class="fa fa-pencil" href="@Url.Action("Edit", "TrainingModule", new { id = module.IdTrainingModule })"></a>
+                                    <a class="fa fa-trash" href="@Url.Action("Delete", "TrainingModule", new { id = module.IdTrainingModule })"></a>
+                                    @*</div>*@
                                 }
-                            </div>
-                            <h5>
-                                <a href="">@module.TrainingModule.Title</a>
                             </h5>
-                            <p>@module.TrainingModule.ShortDescription</p>
+                            <p class="CourseModuleDescription">@module.TrainingModule.ShortDescription</p>
                         </div>
                     }
                 </div>
@@ -202,8 +202,14 @@
                         @{
                 int j = 1;
                         }
-                        @foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
+                        @if ((IEnumerable<TrainingCours>)ViewBag.RelatedCourses != null)
                         {
+                        foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
+                        {
+                            if (item == null)
+                            {
+                                continue;
+                            }
                             <li>
                                 <a class="more-info" href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">
                                     <div class="scale-wrap">
@@ -224,6 +230,7 @@
                                 </a>
                                 <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">Подробнее</a>
                             </li>
+                        }
                         }
                     </ul>
                 </section>
@@ -288,7 +295,7 @@
                 <br />
                 @if (Model.MoodleId != 0)
                 {
-                    <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Дистанционный курс</a>
+                    <a target="_blank" href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Программа и дистанционный курс</a>
                 }
             </aside>
             <aside class="column small-12 hh right left-align">

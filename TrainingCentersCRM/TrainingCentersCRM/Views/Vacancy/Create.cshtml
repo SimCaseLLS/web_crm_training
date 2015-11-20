@@ -31,6 +31,7 @@
                     @Html.ValidationMessageFor(model => model.Organization)
                 </div>
             </div>
+            <input type="hidden" name="IdTrainingCenter" value="@TCHelper.GetCurrentTc().Id" />
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Wages, new { @class = "control-label col-md-2" })
@@ -57,7 +58,7 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-2 col-md-10" style="display: none">
                     <table>
                         <tr>
                             @{
@@ -84,20 +85,18 @@
                             }
                         </table>
                     </div>
+                    <label>Квалификации</label>
+                    <div class="row">
+                        <div id="qualificationTree" style="width: 400px; margin-top:20px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+                    </div>
                 </div>
 
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-                <a href='@Url.Action("Index")'>
-                    <i class="fa fa-angle-left"></i> К списку вакансий
-                </a>
+                <input type="submit" value="Добавить" class="btn btn-default" />
             </div>
         </div>
     }
-    <div class="row">
-        <div id="qualificationTree" style="width: 400px; margin-top:20px; overflow-x: scroll; white-space: nowrap; float: left"></div>
-    </div>
 </div>
 @section Scripts {
     <script src="~/Scripts/vacancyTree.js"></script>

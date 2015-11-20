@@ -276,11 +276,18 @@
     <Compile Include="Migrations\201505122132477_MYMIGRATION.Designer.cs">
       <DependentUpon>201505122132477_MYMIGRATION.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511191530122_moodleNullableCourse.cs" />
+    <Compile Include="Migrations\201511191530122_moodleNullableCourse.Designer.cs">
+      <DependentUpon>201511191530122_moodleNullableCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511191859426_VacancyTrainingCenter.cs" />
+    <Compile Include="Migrations\201511191859426_VacancyTrainingCenter.Designer.cs">
+      <DependentUpon>201511191859426_VacancyTrainingCenter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.cs" />
     <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.Designer.cs">
       <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertize.cs" />
@@ -884,6 +891,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505122132477_MYMIGRATION.resx">
       <DependentUpon>201505122132477_MYMIGRATION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511191530122_moodleNullableCourse.resx">
+      <DependentUpon>201511191530122_moodleNullableCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511191859426_VacancyTrainingCenter.resx">
+      <DependentUpon>201511191859426_VacancyTrainingCenter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.resx">
       <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>

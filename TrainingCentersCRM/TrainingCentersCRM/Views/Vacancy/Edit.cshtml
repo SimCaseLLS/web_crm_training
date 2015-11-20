@@ -56,9 +56,13 @@
                     @Html.ValidationMessageFor(model => model.Link)
                 </div>
             </div>
-
+            @Html.HiddenFor(model => model.IdTrainingCenter)
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <label>Квалификации</label>
+                <div class="row">
+                    <div id="qualificationTree" style="width: 400px; margin-top: 20px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+                </div>
+                <div class="col-md-offset-2 col-md-10" style="display: none">
                     <table>
                         <tr>
                             @{
@@ -86,19 +90,16 @@
                         </table>
                     </div>
                 </div>
-
+            <br />
+            <br />
             <div class="form-group column offset-4">
                     <input type="submit" value="Сохранить" class="btn btn-default" />
-                    <a href='@Url.Action("Index")'>
-                        <i class="fa fa-angle-left"></i> К списку вакансий
-                    </a>
             </div>
+            <br />
+            <br />
         </div>
     }
 
-    <div class="row">
-        <div id="qualificationTree" style="width: 400px; margin-top: 20px; overflow-x: scroll; white-space: nowrap; float: left"></div>
-    </div>
 </div>
 @section Scripts {
     <script src="~/Scripts/vacancyTree.js"></script>

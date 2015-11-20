@@ -28,7 +28,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ShortDescription, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ShortDescription)
+                    @Html.TextAreaFor(model => model.ShortDescription)
                     @Html.ValidationMessageFor(model => model.ShortDescription)
                 </div>
             </div>
@@ -49,27 +49,10 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Topics, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Topics)
-                    @Html.ValidationMessageFor(model => model.Topics)
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdTrainingCenter, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IdTrainingCenter)
-                    @Html.ValidationMessageFor(model => model.IdTrainingCenter)
-                </div>
-            </div>
+            @Html.HiddenFor(model => model.IdTrainingCenter)
 
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-default" />
-                 <a href='@Url.Action("Index")'>
-                    <i class="fa fa-angle-left"></i> Вернуться
-                </a>
             </div>
         </div>
     }

@@ -19,7 +19,7 @@ namespace TrainingCentersCRM.Controllers
         // GET: /Vacancy/
         public ActionResult Index()
         {
-            return View(db.Vacancies.ToList());
+            return View(db.Vacancies.Where(a => a.IdTrainingCenter == trainingCenter.Id || a.IdTrainingCenter == db.TrainingCenters.FirstOrDefault(b => b.Url == "empty").Id).ToList());
         }
 
         // GET: /Vacancy/Details/5
@@ -53,7 +53,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TCAuthorize(Roles = "admin")]
-        public ActionResult Create([Bind(Include = "Id,Description,Organization,Wages,Additionally,Link")] Vacancy vacancy, string[] selectedQualifications)
+        public ActionResult Create([Bind(Include = "Id,IdTrainingCenter,Description,Organization,Wages,Additionally,Link")] Vacancy vacancy, string[] selectedQualifications)
         {
             if (selectedQualifications != null)
             {

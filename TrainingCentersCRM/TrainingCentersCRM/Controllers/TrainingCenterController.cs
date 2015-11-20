@@ -53,9 +53,11 @@ namespace TrainingCentersCRM.Controllers
             if (checkedRelatedCourse != null)
             {
                 var ids = (from a in checkedRelatedCourse select Convert.ToInt32(a)).ToArray<int>();
-                var resdel = db.TrainingCenterCourses.Where(a => !ids.Contains(a.IdTrainingCourse ?? -1));
-                db.RelatedCourses.RemoveRange(db.RelatedCourses.Where(a => !ids.Contains(a.IdTrainingCourseRelated ?? -1)));
-                db.TrainingCourseTeachers.RemoveRange(db.TrainingCourseTeachers.Where(a => !ids.Contains(a.IdTrainingCourse ?? -1)));
+#warning удаляет все, даже то, что менять не надо + у других центров тоже
+                var resdel = db.TrainingCenterCourses.Where(a => !ids.Contains(a.IdTrainingCourse ?? -1) && a.IdTrainingCenter == trainingCenter.Id);
+                
+                //db.RelatedCourses.RemoveRange(db.RelatedCourses.Where(a => !ids.Contains(a.IdTrainingCourseRelated ?? -1)));
+                //db.TrainingCourseTeachers.RemoveRange(db.TrainingCourseTeachers.Where(a => !ids.Contains(a.IdTrainingCourse ?? -1)));
                 db.TrainingCenterCourses.RemoveRange(resdel);
                 db.SaveChanges();
                 

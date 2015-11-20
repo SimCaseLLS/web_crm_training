@@ -120,6 +120,12 @@ namespace TrainingCentersCRM.Models
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<TrainingCenter>()
+                .HasMany(e => e.Vacancies)
+                .WithOptional(e => e.TrainingCenter)
+                .HasForeignKey(e => e.IdTrainingCenter)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<TrainingCenter>()
                 .HasMany(e => e.TrainingCenterTeachers)
                 .WithOptional(e => e.TrainingCenter)
                 .HasForeignKey(e => e.IdTrainingCenter)
