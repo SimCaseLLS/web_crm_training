@@ -1,67 +1,37 @@
 ﻿@model TrainingCentersCRM.Models.Teacher
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Информация о преподавателе";
 }
-
 <div class="container row">
-    <h4>Преподаватель</h4>
-    <hr />
-    <img src="/empty/Teachers/Image/@Model.Id" class="detailsImage" />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
+    <h4>Преподаватель учебного центра</h4>
+    <p>
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
+        }
+    </p>
+    <br />
+    <div class="row">
+        
+        <div class="column small-3">
+            <img src="/empty/Teachers/Image/@Model.Id" />
+        </div>
+        <div class="column small-9 left">
+            <h3>
+                @Html.DisplayFor(model => model.FirstName)
+                @Html.DisplayFor(model => model.Patronymic)
+                @Html.DisplayFor(model => model.LastName)
+            </h3>
+            <br />
+            <b>@Html.DisplayNameFor(model => model.Email): </b>
             @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
+            <br />
+            <b>@Html.DisplayNameFor(model => model.Phone): </b>
             @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-    </dl>
+            <br /><br />
+            <p class="description">
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-    {
-        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
-    }
-</p>

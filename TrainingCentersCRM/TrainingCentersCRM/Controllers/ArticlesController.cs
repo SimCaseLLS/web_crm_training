@@ -17,6 +17,12 @@ namespace TrainingCentersCRM.Controllers
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
+        public JsonResult GetAllJson(string term)
+        {
+            var res = db.Articles.Where(a => a.Title.Contains(term)).Select(b => new { id = b.Id, value = b.Title });
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Articles
         public ActionResult Index(int? id, bool? partial, int? page, int? top)
         {
@@ -112,7 +118,7 @@ namespace TrainingCentersCRM.Controllers
             return View(article);
         }
 
-        
+
         public ActionResult Image(int id)
         {
             var doc = db.Articles.FirstOrDefault(a => a.Id == id);

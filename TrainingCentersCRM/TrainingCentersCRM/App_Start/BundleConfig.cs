@@ -37,6 +37,10 @@ namespace TrainingCentersCRM
                       "~/Scripts/foundation-datepicker.js"));
             bundles.Add(new ScriptBundle("~/bundles/coursedetails").Include(
                         "~/Scripts/CourseDetails.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui_js").Include(
+                        "~/Scripts/jquery-ui/jquery-ui.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui_css").Include(
+                        "~/Scripts/jquery-ui/jquery-ui.css"));
 
         }
     }

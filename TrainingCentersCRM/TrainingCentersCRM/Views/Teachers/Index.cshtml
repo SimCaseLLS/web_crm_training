@@ -4,14 +4,12 @@
     ViewBag.Title = "Преподаватели";
 }
 <link rel="stylesheet" href="/Content/module.css">
-<div class="container">
+<div class="container row">
     <h2>Преподаватели учебного центра</h2>
-    <div class="row">
         @if (RolesHelper.IsUserHasPermissionForTc("admin"))
         {
-            @Html.ActionLink("Добавить", "Create", null, new { @class = "button" })
+            @Html.ActionLink("Добавить", "Create", null, new { @class = "button left" })
         }
-    </div>
     <section class="row teachers-blocks">
         <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
             @foreach (TrainingCentersCRM.Models.Teacher t in Model)
@@ -26,18 +24,20 @@
                                 @Html.ActionLink(" ", "Delete", new { id = t.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
                             }
                         </div>
-                        <div class="scale-wrap">
-                            @if (t.Image != null)
-                            {
-                                @Html.Raw("<img class='scale-img' src='/empty/Teachers/Image/" + t.Id + "'/>")
-                            }
-                        </div>
-                        <div class="teacher-info">
-                            <p class="teacher-name"><b>@t.LastName @t.FirstName @t.Patronymic.</b></p>
-                            <p>
-                                @t.Description
-                            </p>
-                        </div>
+                        <a class="more-info" href="/@TCHelper.GetCurrentTCName()/Teachers/Details/@t.Id" target="_self">
+                            <div class="scale-wrap">
+                                @if (t.Image != null)
+                                {
+                                    @Html.Raw("<img class='scale-img' src='/empty/Teachers/Image/" + t.Id + "'/>")
+                                }
+                            </div>
+                            <div class="teacher-info">
+                                <p class="teacher-name"><b>@t.FirstName @t.Patronymic <br />@t.LastName </b></p>
+                                <p class="teacher-description">
+                                    @(t.Description != null && t.Description.Length > 190 ? t.Description.Substring(0, 190) + "..." : t.Description)
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 </li>
             }

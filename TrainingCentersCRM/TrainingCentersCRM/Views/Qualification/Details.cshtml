@@ -9,7 +9,7 @@
     <h4>@Html.DisplayFor(model => model.Title)</h4>
 	<hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt class="strong">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
@@ -17,15 +17,23 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <!--<dt>
-            @Html.DisplayNameFor(model => model.Type)
+        <dt class="strong">
+            @Html.DisplayNameFor(model => model.ArticleQualification)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>-->
+            @if (ViewBag.Article != null) 
+            {
+                <a href='/empty/Articles/Details/@(((TrainingCentersCRM.Models.Article)ViewBag.Article).Id)'> @(((TrainingCentersCRM.Models.Article)ViewBag.Article).Title)</a>
+            } else
+            { 
+                <text>
+                нет данных
+                </text>
+            }
+        </dd>
 
-        <dt>
+        <dt class="strong">
             @Html.DisplayNameFor(model => model.HeadHunterName)
         </dt>
 

@@ -250,7 +250,11 @@ namespace TrainingCentersCRM.Controllers
 
         public JsonResult Qualifications(int? id)
         {
-            var res = db.QualificationTrainingCours.Include(a => a.Qualification).Where(a => a.IdTrainingCours == id).Select(b => b.Qualification.Title);
+            var qualifications = db.QualificationTrainingCours.Include(a => a.Qualification).Where(a => a.IdTrainingCours == id).Select(b => b.Qualification).Include(d => d.ArticleQualification);
+            var res = qualifications.Select(c => new { 
+                id = c.ArticleQualification == null ? 0 : c.ArticleQualification.Id, 
+                text = c.ArticleQualification == null ? c.Title : c.ArticleQualification.Title 
+            });
             return Json(res.ToArray(), JsonRequestBehavior.AllowGet);
         }
 

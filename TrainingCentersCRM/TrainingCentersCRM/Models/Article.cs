@@ -12,7 +12,7 @@ namespace TrainingCentersCRM.Models
     {
         public enum ArticleType
         {
-            News = 1, Article = 2
+            News = 1, Article = 2, Qualification = 3
         }
         public int Id { get; set; }
         [Required(ErrorMessage="Поле обязательно для заполнения")]
@@ -24,9 +24,10 @@ namespace TrainingCentersCRM.Models
         [AllowHtml]
         [Required]
         public string Text { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public DateTime PublishDate { get; set; }
         public ArticleType Type { get; set; }
+
 
         [ForeignKey("TrainingCenter")]
         public int? TrainingCenterId { get; set; }
@@ -37,5 +38,8 @@ namespace TrainingCentersCRM.Models
         public string ContentType { get; set; }
 
         public ICollection<FileDocument> Documents { get; set; }
+
+        public ICollection<Qualification> Qualifications { get; set; }
+
     }
 }
