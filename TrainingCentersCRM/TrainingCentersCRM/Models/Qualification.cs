@@ -41,6 +41,12 @@ using System;
         [Display(Name = "Ключевые слова")]
         public string HeadHunterKeys { get; set; }
 
+        [Display(Name="Статья, связанная с квалификацией")]
+        public int? ArticleId { get; set; }
+
+        [Display(Name = "Статья, связанная с квалификацией")]
+        public Article ArticleQualification { get; set; }
+
         public Nullable<int> ParentId { get; set; }
         public virtual ICollection<QualificationCertification> QualificationCertifications { get; set; }
 

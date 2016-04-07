@@ -30,7 +30,7 @@
         <a href="@Url.Action("Edit", "TrainingCours", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать учебный курс</a>
     }
     <div class="row">
-        <h2 class="column small-12">@Html.DisplayFor(model => model.Title)</h2>
+        <h2 class="small-12">@Html.DisplayFor(model => model.Title)</h2>
         <div class="column small-2 notes left"><i class="fa fa-clock-o"></i>@Html.DisplayFor(model => model.Hourse) ч.</div>
     </div>
     <div class="row">
@@ -41,44 +41,46 @@
                 </p>
             </section>
             <section class="row">
-                @* <p class="text s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>*@
-                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-                {
-                    <p class="column small-12"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Компетенции</a>, на развитие которых нацелен этот курс:</p>
-                    <div class="column small-12" id="qualificationTCFormDiv">
-                        <form id="qualificationTCForm" name="qualificationTCForm" action="/empty/TRainingCourc/SetQualifications" method="post">
-                            @Html.HiddenFor(model => model.Id)
-                            @{
-                    int cnt = 0;
-                    List<TrainingCentersCRM.Models.ViewModels.RelatedQualifications> qualifications = ViewBag.Qualifications;
-                    if (qualifications != null)
+                <div>
+                    @* <p class="text s12"> <a href="">Вакансии</a> на которые вы сможете претендовать после прохождения нашего курса.</p>*@
+                    <div class="small-12" id="qualificationList"></div>
+                    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
                     {
-                        foreach (var qualification in qualifications)
-                        {
-                            <div style="display: none">
-                                <input type="checkbox"
-                                       name="selectedQualifications"
-                                       value="@qualification.QualificationID"
-                                       @(Html.Raw(qualification.Assigned ? "checked=\"checked\"" : "")) />
-                                @qualification.Title
-                            </div>
-                        }
+                        <p class="column small-12"> <a href="" id="competenceLink" onclick='javascript: $("#qualificationTCFormDiv").toggle(); return false;'>Назначить квалификации</a></p>
+                        <div class="column small-12" id="qualificationTCFormDiv">
+                            <form id="qualificationTCForm" name="qualificationTCForm" action="/empty/TRainingCourc/SetQualifications" method="post">
+                                @Html.HiddenFor(model => model.Id)
+                                @{
+                                    int cnt = 0;
+                                    List<TrainingCentersCRM.Models.ViewModels.RelatedQualifications> qualifications = ViewBag.Qualifications;
+                                    if (qualifications != null)
+                                    {
+                                        foreach (var qualification in qualifications)
+                                        {
+                                            <div style="display: none">
+                                                <input type="checkbox"
+                                                       name="selectedQualifications"
+                                                       value="@qualification.QualificationID"
+                                                       @(Html.Raw(qualification.Assigned ? "checked=\"checked\"" : "")) />
+                                                @qualification.Title
+                                            </div>
+                                        }
+                                    }
+                                }
+                                <div class="row">
+                                    <div id="qualificationTree" style="width: 50%; margin-bottom:10px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+                                </div>
+                                <button id="submitQualifTC" name="submitQualifTC" class="button" style="">Сохранить</button>
+                                @section Scripts {
+                                    <script src="~/Scripts/vacancyTree.js"></script>
+                                    @Scripts.Render("~/bundles/jqueryval")
+                                }
+                            </form>
+                        </div>
                     }
-                            }
-                            <div class="row">
-                                <div id="qualificationTree" style="width: 50%; margin-bottom:10px; overflow-x: scroll; white-space: nowrap; float: left"></div>
-                            </div>
-                            <button id="submitQualifTC" name="submitQualifTC" class="button" style="">Сохранить</button>
-                            @section Scripts {
-                                <script src="~/Scripts/vacancyTree.js"></script>
-                                @Scripts.Render("~/bundles/jqueryval")
-                            }
-                        </form>
-                    </div>
-                    <div class="column small-12" id="qualificationList"></div>
-                }
-                <h4 class="column small-12 course-pay">Стоимость курса</h4>
-                <div class="column small-12 course-pay left">
+                </div>
+                <h4 class="course-pay">Стоимость курса</h4>
+                <div class="column course-pay left">
                     <div class="column small-6">
                         <ul class="pricing-table shadow">
                             <li class="title">Для физических лиц</li>
@@ -131,25 +133,25 @@
                     </h4>
                     @if (RolesHelper.IsUserHasPermissionForTc("admin"))
                     {
-                        <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Назначить</a>
+                    <a class="button" href="#" onclick="javascript: showRelatedTeachers(courseId); return false;"><i class="fa fa-plus"></i> Назначить</a>
                     }
                     <div id="dropDownRelatedTeachers" style="display: none"></div>
-                    <ul class="small-block-grid-2 large-block-grid-3" data-equalizer>
+                    <ul class="small-block-grid-2 medium-block-grid-2  large-block-grid-3">
                         @foreach (TrainingCentersCRM.Models.Teacher t in ViewBag.trainingCourseTeacher)
                         {
-                            <li data-equalizer-watch>
+                            <li>
                                 <div class="shadow">
                                     <a class="more-info" href='@Url.Action("Details", "Teachers", new { id = t.Id })'>
                                         <div class="scale-wrap">
                                             @if (t.Image != null)
                                             {
-                                                <img class="scale-img" src='/empty/Teachers/Image/@t.Id' />
+                                                <img class='scale-img' src='/empty/Teachers/Image/@t.Id' />
                                             }
                                         </div>
                                         <div class="teacher-info">
-                                            <p class="teacher-name"><b>@t.LastName @t.FirstName @t.Patronymic.</b></p>
-                                            <p>
-                                                @t.Description
+                                            <p class="teacher-name"><b>@t.FirstName @t.Patronymic<br />@t.LastName </b></p>
+                                            <p class="teacher-description">
+                                                @(t.Description != null && t.Description.Length > 190 ? t.Description.Substring(0, 190) + "..." : t.Description)
                                             </p>
                                         </div>
                                     </a>
@@ -181,7 +183,7 @@
                                     @*</div>*@
                                 }
                             </h5>
-                            <p class="CourseModuleDescription">@module.TrainingModule.ShortDescription</p>
+                            <p class="CourseModuleDescription description">@module.TrainingModule.ShortDescription</p>
                         </div>
                     }
                 </div>
@@ -204,33 +206,33 @@
                         }
                         @if ((IEnumerable<TrainingCours>)ViewBag.RelatedCourses != null)
                         {
-                        foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
-                        {
-                            if (item == null)
+                            foreach (var item in (IEnumerable<TrainingCours>)ViewBag.RelatedCourses)
                             {
-                                continue;
+                                if (item == null)
+                                {
+                                    continue;
+                                }
+                                <li>
+                                    <a class="more-info" href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">
+                                        <div class="scale-wrap">
+                                            <img src="https://placeimg.com/300/300/tech/@(j++)" class="responsive-img scale-img" alt="" />
+                                        </div>
+                                        <p class="title">@item.Title</p>
+                                        @*<p>
+                                                @if (item.ShortDescription.Length > 300)
+                                                {
+                                                    @Html.Raw(item.ShortDescription.Substring(0, 300))
+                                                    <text>...</text>
+                                                }
+                                                else
+                                                {
+                                                    @Html.Raw(item.ShortDescription)
+                                                }
+                                            </p>*@
+                                    </a>
+                                    @*<a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">Подробнее</a>*@
+                                </li>
                             }
-                            <li>
-                                <a class="more-info" href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">
-                                    <div class="scale-wrap">
-                                        <img src="https://placeimg.com/300/300/tech/@(j++)" class="responsive-img scale-img" alt="" />
-                                    </div>
-                                    <p class="title">@item.Title</p>
-                                    <p>
-                                        @if (item.ShortDescription.Length > 300)
-                                        {
-                                            @Html.Raw(item.ShortDescription.Substring(0, 300))
-                                            <text>...</text>
-                                        }
-                                        else
-                                        {
-                                            @Html.Raw(item.ShortDescription)
-                                        }
-                                    </p>
-                                </a>
-                                <a href="/@(TCHelper.GetCurrentTc().Url)/TrainingCours/Details/@item.Id">Подробнее</a>
-                            </li>
-                        }
                         }
                     </ul>
                 </section>
@@ -287,15 +289,17 @@
                 <br />
                 <div class="left-align">
                     <b class="center">Рекомендуемый уровень знаний:</b><br />
-                    @Html.DisplayFor(model => model.RequiredPreliminaryPreparation) <br /><br />
+                    <div class="description">@Html.DisplayFor(model => model.RequiredPreliminaryPreparation)</div> <br /><br />
                     <b>Обязательный уровень знаний:</b> <br />
-                    @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation) <br /><br />
-                    <b>Сложность:</b> @Html.DisplayFor(model => model.LevelOfDifficulty) /10
+                    <div class="description">
+                        @Html.DisplayFor(model => model.MandatoryPreliminaryPreparation)
+                    </div> <br />
+                    <b>Сложность:</b> @Html.DisplayFor(model => model.LevelOfDifficulty) / 10
                 </div>
                 <br />
                 @if (Model.MoodleId != 0)
                 {
-                    <a target="_blank" href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Программа и дистанционный курс</a>
+                    <a target="_blank" class="description" href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]/course/view.php?id=@Model.MoodleId">Программа и дистанционный курс...</a>
                 }
             </aside>
             <aside class="column small-12 hh right left-align">

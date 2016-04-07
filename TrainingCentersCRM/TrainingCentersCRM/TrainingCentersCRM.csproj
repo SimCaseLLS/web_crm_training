@@ -284,6 +284,14 @@
     <Compile Include="Migrations\201511191859426_VacancyTrainingCenter.Designer.cs">
       <DependentUpon>201511191859426_VacancyTrainingCenter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511200736080_QualificationArticle.cs" />
+    <Compile Include="Migrations\201511200736080_QualificationArticle.Designer.cs">
+      <DependentUpon>201511200736080_QualificationArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602020706568_ArticleUserIdString.cs" />
+    <Compile Include="Migrations\201602020706568_ArticleUserIdString.Designer.cs">
+      <DependentUpon>201602020706568_ArticleUserIdString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.cs" />
     <Compile Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.Designer.cs">
       <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>
@@ -715,6 +723,30 @@
     <Content Include="Scripts\foundation-datepicker.js" />
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\HeadHunterSelects.js" />
+    <Content Include="Scripts\jquery-ui\external\jquery\jquery.js" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Scripts\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\jquery-ui\index.html" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.structure.css" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.theme.css" />
+    <Content Include="Scripts\jquery-ui\jquery-ui.theme.min.css" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -897,6 +929,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511191859426_VacancyTrainingCenter.resx">
       <DependentUpon>201511191859426_VacancyTrainingCenter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511200736080_QualificationArticle.resx">
+      <DependentUpon>201511200736080_QualificationArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602020706568_ArticleUserIdString.resx">
+      <DependentUpon>201602020706568_ArticleUserIdString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ApplicationDbContext\201505112027285_AddRoles.resx">
       <DependentUpon>201505112027285_AddRoles.cs</DependentUpon>

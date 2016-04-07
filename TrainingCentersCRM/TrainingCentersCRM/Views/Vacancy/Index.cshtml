@@ -52,7 +52,7 @@
         });
     });
 
-        
+
 </script>
 <div class="container row">
     @if (RolesHelper.IsUserHasPermissionForTc("admin"))
@@ -61,32 +61,36 @@
             @Html.ActionLink("Добавить вакансию", "Create", null, new { @class = "button" })
         </a>
     }
-    @if (Model.Count() > 0)
+    @if (Model != null && Model.Count() > 0)
     {
-        <text>
-            <h3>Вакансии учебного центра</h3>
-        </text>
-        foreach (var item in Model)
-        {
-            <div class="card-panel">
-                <h5>
-                    <a href="@Url.Action("Details", "Vacancy", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Description)</a>
-                    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-                    {
-                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil", @title = "Редактировать" })
-                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash-o", @title = "Удалить" })
-                    }
+        <h3>Вакансии учебного центра</h3>
+        <ul class="small-block-grid-2">
 
-
-                </h5>
-                <p>
-                    @Html.DisplayFor(modelItem => item.Organization)
-                </p>
-                <p>
-                    Заработная плата: @Html.DisplayFor(modelItem => item.Wages)
-                </p>
-            </div>
-        }
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="card shadow ">
+                        <div class="card-section">
+                            <h4>
+                                <a href="@Url.Action("Details", "Vacancy", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Description)</a>
+                                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                                {
+                                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil", @title = "Редактировать" })
+                                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash-o", @title = "Удалить" })
+                                }
+                            </h4>
+                            <b>
+                                @Html.DisplayFor(modelItem => item.Organization)
+                            </b>
+                            <br />
+                            <p>
+                                <b>Заработная плата:</b> @Html.DisplayFor(modelItem => item.Wages)
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
 
     }
     <hr />
@@ -95,15 +99,17 @@
     <div id="template" style="display: none;">
         <div class="column small-6 job">
             <h5 class="title"> My job </h5>
-            <div><span class="ligth-text"> Компания: </span> <span class="company">Dsf</span> </div>
+            <div>
+                <span class="ligth-text"> Компания: </span> <span class="company">Dsf</span>
+            </div>
             <div class="salary-wrap"><span class="ligth-text"> Заработная плата: </span> от <span class="salary">1000000</span> </div>
             <div><span class="ligth-text"> Город: </span> <span class="city">Ekmdzf</span> </div>
-            <div class="more-hide hide" >
+            <div class="more-hide hide">
                 <p class="ligth-text">Описание:</p>
                 <div class="description">sdfsdfsdfvvgrvvd</div>
             </div>
-            <a class="show-more">Показать подробнее</a> |
-            <a href="#" class="link" target="_blank"> Посмотреть на HH </a>
+            <a class="show-more">Подробнее</a> |
+            <a href="#" class="link" target="_blank"> Открыть на HH </a>
             <hr />
             <br />
         </div>

@@ -360,7 +360,7 @@ body {
 }
 
 .teachers-blocks .scale-wrap {
-    max-height: 200px;
+    max-height: 290px;
 }
 
 .tools .fa:before {
@@ -439,4 +439,14 @@ body {
 
 ul.accordion {
     margin-left: 0;
+}
+
+.teacher-name {
+    font-size: 1em;
+    text-align: center;
+}
+
+.teacher-description {
+    font-size: 0.8em;
+    text-align: justify;
 }

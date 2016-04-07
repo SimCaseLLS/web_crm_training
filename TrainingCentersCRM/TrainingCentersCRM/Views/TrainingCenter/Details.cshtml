@@ -6,56 +6,50 @@
 <br />
 <div class="row">
     <div>
-        <h4>@Model.Organization</h4>
         @if (RolesHelper.IsUserHasPermissionForTc("admin"))
         {
             <a href="@Url.Action("Edit", "TrainingCenter", new { id = Model.Id })"><i class="fa fa-pencil"></i>Редактировать информацию о центре</a>
         }
 
-        <hr />
+        <br />
         <div class="row">
 
             @if (Model.Logo != null)
             {
-                <div class="small-12 large-2 columns">
+                <div class="small-3 columns">
                     <img data-interchange="[/empty/TrainingCenter/Image/@Model.Id, (default)]" class="main-image" />
                 </div>
             }
-            <div class="small-12 large-10 columns left" style="text-align: justify">
-                @Html.Raw(Model.Description)
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-
-            <div class="details">
-                <label>
-                    @Html.DisplayNameFor(model => model.Addres)
-                </label>
-                @Html.DisplayFor(model => model.Addres)
-            </div>
-
-
-            <div class="details">
-                <label>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </label>
-                @Html.DisplayFor(model => model.Phone)
-            </div>
-
-
-            <div class="details">
-                <label>
-                    @Html.DisplayNameFor(model => model.Email)
-                </label>
-                @Html.DisplayFor(model => model.Email)
-            </div>
-
-            <div class="details">
-                <label>
-                    @Html.DisplayNameFor(model => model.Organization)
-                </label>
+            <div class="small-9 columns left" style="text-align: justify">
+                <h4>@Model.Organization</h4>
+                <div class="description">
+                    @Html.Raw(Model.Description)
+                </div>
+                <br />
+                <b>
+                    @Html.DisplayNameFor(model => model.Organization):
+                </b>
                 @Html.DisplayFor(model => model.Organization)
+                <br />
+
+                <b>
+                    @Html.DisplayNameFor(model => model.Addres):
+                </b>
+                @Html.DisplayFor(model => model.Addres)
+                <br />
+
+
+                <b>
+                    @Html.DisplayNameFor(model => model.Phone):
+                </b>
+                @Html.DisplayFor(model => model.Phone)
+                <br />
+
+                <b>
+                    @Html.DisplayNameFor(model => model.Email):
+                </b>
+                @Html.DisplayFor(model => model.Email)
+
             </div>
         </div>
     </div>

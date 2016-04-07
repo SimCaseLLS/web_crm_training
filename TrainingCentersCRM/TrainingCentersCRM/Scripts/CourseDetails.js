@@ -15,7 +15,7 @@ showRelated = function (courseId) {
                     res += "<input type='checkbox' class='filled-in' name='checkedRelated' id='checkedRelated" + courseIdc + "' value='" + c.Id + "' /><label for='checkedRelated" + courseIdc + "' class='control-label'>" + c.Title + "</label>";
                 res += "</p>";
             });
-            res += "<button id='chooseRelButton' class='button'>Добавить</button><br /><hr />";
+            res += "<button id='chooseRelButton' class='button'>Сохранить</button><br /><hr />";
             res += "</form>";
             $("#dropDownRelated").html(res);
             $("#dropDownRelated").toggle();
@@ -87,10 +87,16 @@ reloadQualificationsTC = function (courseId) {
     $.ajax({
         url: '/empty/TrainingCours/Qualifications/' + courseId,
         success: function (data) {
-            var res = "| ";
+            var res = "<section class='block-list'>";
+            res += "<h4>Квалификации</h4>";
+            res += "<ul class='qualificationList'>";
             $.map(data, function (item) {
-                res += item + " | ";
+                if (item.id > 0)
+                    res += "<li><a href='/empty/Articles/Details/" + item.id + "'>" + item.text + "</a></li>";
+                else
+                    res += "<li><a href='#'>" + item.text + "</a></li>";
             });
+            res += "</ul></section>";
             $("#qualificationList").html(res);
             $("#qualificationTCFormDiv").hide();
         }

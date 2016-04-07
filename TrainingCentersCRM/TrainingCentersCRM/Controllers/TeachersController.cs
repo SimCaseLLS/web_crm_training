@@ -88,6 +88,8 @@ namespace TrainingCentersCRM.Controllers
         public ActionResult Image(int id)
         {
             byte[] imageData = db.Teachers.SingleOrDefault(a => a.Id == id).Image;
+            if (imageData == null)
+                return null;
             return File(imageData, "image/jpeg");
         }
 

@@ -74,6 +74,11 @@ namespace TrainingCentersCRM.Models
                 .HasForeignKey(e => e.ArticleId)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<Article>()
+                .HasMany(e => e.Qualifications)
+                .WithOptional(e => e.ArticleQualification)
+                .HasForeignKey(e => e.ArticleId)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<CourseTaking>()
                 .HasMany(e => e.Listeners)

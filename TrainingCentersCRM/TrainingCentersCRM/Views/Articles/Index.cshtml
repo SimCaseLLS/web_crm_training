@@ -7,27 +7,36 @@
 
     ViewBag.Title = "Список материалов сайта";
 }
-<div class="container">
-    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
-    {
+@if (RolesHelper.IsUserHasPermissionForTc("admin"))
+{
+    <div class="container">
 
-        if (ViewBag.Type == 1)
+        @if (ViewBag.Type == 1)
         {
-            <h3 class="center">Новости</h3>
-            <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
-                <i class="fa fa-plus"></i>Добавить новость
-            </a>
+        <h3 class="center">Новости</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить новость
+        </a>
         }
-        else
+        else if (ViewBag.Type == 2)
         {
-            <h3 class="center">Страницы</h3>
-            <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
-                <i class="fa fa-plus"></i>Добавить страницу
-            </a>
+        <h3 class="center">Страницы</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить страницу
+        </a>
         }
-    }
-</div>
+        else if (ViewBag.Type == 3)
+        {
+        <h3 class="center">Квалификации</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить квалификацию
+        </a>
+        }
+    </div>
+}
 <div class="clear-fix container row">
+    <a href="/empty/Articles/Index/1?page=1">Все новости</a>
+
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4" data-equalizer>
         @{int i = 1;}
         @foreach (var item in Model)

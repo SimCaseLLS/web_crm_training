@@ -20,13 +20,27 @@
                     <img src="/empty/Articles/Image/@Model.Id" class="detailsImage" />
                 }
         </div>
-        <p style="padding-left: 15px; text-align: justify">@(Model.Annotation)</p>
+        <p class="ArticleAnnotation">@(Model.Annotation)</p>
     </div>
     <br />
     <br />
-    <div style="text-align: justify">
+    <div style="text-align: justify" id="ArticleContent">
         @(Html.Raw(HttpUtility.HtmlDecode(Model.Text)))
     </div>
+    <div id="FotoGallery" class="fotorama" data-nav="thumbs">
+    </div>
+    <script type="text/javascript">
+        var images = $('#ArticleContent img').map(function () {
+            return $(this);
+        }).get();
+        $.map(images, function (val, i) {
+            $(".fotorama").append("<a href='" + val.attr('src') + "'><img src='" + val.attr('src') + "' alt='" + val.attr('alt') + "' /></a>");
+        });
+        $('#ArticleContent img').remove();
+        $(function () {
+            $('.fotorama').fotorama();
+        });
+    </script>
     @Html.Action("Index", "FileDocs", new { key = Model.Id })
 
 </div>

@@ -19,7 +19,10 @@ namespace TrainingCentersCRM.Controllers
         // GET: /Vacancy/
         public ActionResult Index()
         {
-            return View(db.Vacancies.Where(a => a.IdTrainingCenter == trainingCenter.Id || a.IdTrainingCenter == db.TrainingCenters.FirstOrDefault(b => b.Url == "empty").Id).ToList());
+            var res = db.Vacancies.Where(a => a.IdTrainingCenter == trainingCenter.Id 
+                || a.IdTrainingCenter == db.TrainingCenters.FirstOrDefault(b => b.Url == "empty").Id 
+                || a.IdTrainingCenter == null);
+            return View(res);
         }
 
         // GET: /Vacancy/Details/5

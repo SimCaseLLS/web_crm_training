@@ -60,7 +60,11 @@ namespace TrainingCentersCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Qualification qualification = db.Qualifications.Find(id);
+            Qualification qualification = db.Qualifications.FirstOrDefault(a => a.Id == id);
+            
+            ViewBag.Article = qualification.ArticleId != null 
+                ? db.Articles.FirstOrDefault(a => a.Id == qualification.ArticleId) 
+                : null; 
             if (qualification == null)
             {
                 return HttpNotFound();
@@ -84,7 +88,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TCAuthorize(Roles = "admin")]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
+        public ActionResult Create([Bind(Include = "Id,ArticleId,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +122,7 @@ namespace TrainingCentersCRM.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [TCAuthorize(Roles = "admin")]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
+        public ActionResult Edit([Bind(Include = "Id,Title,ArticleId,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
         {
             if (ModelState.IsValid)
             {

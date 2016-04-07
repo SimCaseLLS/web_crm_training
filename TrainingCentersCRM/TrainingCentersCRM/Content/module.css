@@ -19,8 +19,11 @@
 .row .text {
   padding-right: 90px; }
 
-.course-info.row,.course-pay {
+.course-info.row {
   margin: 30px 0px;
+}
+.course-pay {
+    margin: 10px 0px;
 }
 .row .pay-label {
   background-color: #01579b;
@@ -37,7 +40,7 @@
   padding: 20px;
   box-sizing: border-box; }
 .teachers-blocks .scale-wrap {
-  height: 280px;
+  /*height: 290px;*/
 }
 .teachers-blocks li>div{
   background-color: #fafafa;
