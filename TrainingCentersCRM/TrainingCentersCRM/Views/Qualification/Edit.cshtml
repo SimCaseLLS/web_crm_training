@@ -1,18 +1,35 @@
 ﻿@model TrainingCentersCRM.Models.Qualification
+<<<<<<< HEAD
 
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
+=======
+@using TrainingCentersCRM.Infrastructure
+
+
+@{
+    ViewBag.Title = "Изменение квалификации";
+    var sep = new char[] { '.' };
+    var HHAreaId = Model.HeadHunterId != null ? Model.HeadHunterId.Split(sep)[0] : null;
+}
+
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
 
 @using (Ajax.BeginForm("Edit", new AjaxOptions { UpdateTargetId = "qualificationData", OnSuccess = "refreshTree" })) 
 {
     @Html.AntiForgeryToken()
+<<<<<<< HEAD
     
     <div class="form-horizontal">
         <h4>Qualification</h4>
+=======
+<div class="container">    
+    <div class="form-horizontal">
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
@@ -41,6 +58,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -49,6 +67,58 @@
     </div>
 }
 
+=======
+        <div class="form-group card-panel">
+            @Html.LabelFor(model => model.HeadHunterName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <label for="HeadHunterAreas"> Область деятельности: </label>
+                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control browser-default" })
+                <br>
+                <label for="HeadHunterId"> Квалификация: </label>
+                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control browser-default" })
+                @Html.HiddenFor(model => model.HeadHunterName)
+                <br>
+                @Html.LabelFor(model => model.HeadHunterKeys)
+                @Html.TextBoxFor(model => model.HeadHunterKeys, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HeadHunterKeys)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArticleQualification, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="QualificationArticles" type="text" class="text-box single-line" />
+                <input type="hidden" name="ArticleId" id="ArticleId" />
+                <script type="text/javascript">
+                    $("#QualificationArticles").autocomplete({
+                        source: '/empty/Articles/GetAllJson',
+                        minLength: 3,
+                        select: function (event, ui) {
+                            $("#ArticleId").val(ui.item.id);
+                        }
+                    });
+                    $('.ui-autocomplete').addClass('f-dropdown');
+                    $('.ui-autocomplete').addClass('small');
+                </script>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<!-- NOTE не будет рабобтать, если будет не аякс -->
+<script type="text/javascript">
+    setupSpecializationsSelect();
+    setSpecializationsSelect("@HHAreaId", "@Model.HeadHunterId");
+</script>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

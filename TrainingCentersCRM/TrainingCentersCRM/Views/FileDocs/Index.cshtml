@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.FileDocument>
+
+@{
+    Layout = null;
+}
+
+@if (Model.Count() > 0)
+{
+    <h4>Прикрепленные материалы</h4>
+}
+@if (RolesHelper.IsUserHasPermissionForTc("admin"))
+{
+    <a class="button" id="addButton" href="#">
+        <i class="fa fa-plus"></i>Добавить файл
+    </a>
+}
+<table cellpadding="5" cellspacing="5" width="100%">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="/empty/FileDocs/Download/@item.Id" target="_blank">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </a>
+                <br />
+                <small>@Html.DisplayFor(modelItem => item.Description)</small>
+            </td>
+            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+            {
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id, returnUrl = Request.Url.AbsoluteUri }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+</div>
+
+<script type="text/javascript">
+    $("#addButton").click(function () {
+        $('#myModal').foundation('reveal', 'open', '/empty/FileDocs/Create/@ViewBag.ArticleId');
+        return false;
+    });
+
+    hideAddFileDialog = function () {
+        $("#addFile").html(" ");
+    }
+</script>

@@ -1,0 +1,72 @@
+﻿@model TrainingCentersCRM.Models.ScheduleTtrainingCours
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container">
+    <h2>Удалить</h2>
+
+    <h3>Вы действительно хотите удалить это расписание?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateStart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateEnd)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingCenter.Addres)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrainingCenter.Addres)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingCours.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrainingCours.Title)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("Вернуться к списку", "Index")
+            </div>
+        }
+    </div>
+</div>

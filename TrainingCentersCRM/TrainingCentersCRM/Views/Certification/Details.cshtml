@@ -8,7 +8,11 @@
 
 <div>
     <h4>Certification</h4>
+<<<<<<< HEAD
 	<hr />
+=======
+    <hr />
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -37,6 +41,14 @@
     </dl>
 </div>
 <p>
+<<<<<<< HEAD
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+=======
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        <span>|</span>
+    }
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
     @Html.ActionLink("Back to List", "Index")
 </p>

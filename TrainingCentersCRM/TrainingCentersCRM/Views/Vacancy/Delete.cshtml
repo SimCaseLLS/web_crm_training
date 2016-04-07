@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
+<<<<<<< HEAD
 
 <h2>Delete</h2>
 
@@ -62,3 +63,64 @@
         </div>
     }
 </div>
+=======
+<div class="container">
+    <h2>Удалить</h2>
+
+    <h3>Вы действительно хотите удалить эту вакансию?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Wages)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wages)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Additionally)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Additionally)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Link)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("вернуться к списку вакансий", "Index")
+            </div>
+        }
+    </div>
+</div>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

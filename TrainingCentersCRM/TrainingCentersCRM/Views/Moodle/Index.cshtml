@@ -1,0 +1,13 @@
+﻿@model TrainingCentersCRM.Models.Moodle.MoodleCategory
+
+@{
+    ViewBag.Title = "Дистанционные учебные курсы";
+    Layout = null;
+}
+<div class="container">
+    <h2>Дистанционные учебные курсы</h2>
+    @if (Model != null)
+    { 
+        @Html.Partial("Category", Model)
+    }
+</div>

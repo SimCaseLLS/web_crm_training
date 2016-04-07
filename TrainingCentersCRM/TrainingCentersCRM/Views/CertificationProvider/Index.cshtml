@@ -6,9 +6,19 @@
 
 <h2>Index</h2>
 
+<<<<<<< HEAD
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+=======
+@if (RolesHelper.IsUserHasPermissionForTc("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 <table class="table">
     <tr>
         <th>
@@ -26,6 +36,7 @@
         <th></th>
     </tr>
 
+<<<<<<< HEAD
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -47,5 +58,34 @@
         </td>
     </tr>
 }
+=======
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Addres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    <span>|</span>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
 </table>

@@ -1,10 +1,20 @@
 ﻿@model TrainingCentersCRM.Models.TrainingModule
+<<<<<<< HEAD
 
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
+=======
+@using TrainingCentersCRM.Infrastructure;
+
+@{
+    ViewBag.Title = "Создание учебного модуля";
+}
+<div class="container">
+<h2>Создание учебного модуля</h2>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +22,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+<<<<<<< HEAD
         <h4>TrainingModule</h4>
+=======
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         <hr />
         @Html.ValidationSummary(true)
 
@@ -48,6 +61,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="form-group">
             @Html.LabelFor(model => model.Topics, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -67,15 +81,29 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+=======
+        <input type="hidden" name="IdTrainingCenter" value="@TCHelper.GetCurrentTc().Id" id="IdTrainingCenter" />
+        <input type="hidden" name="IdTrainingCourse" value="@ViewBag.TrainingCenterId" id="IdTrainingCourse" />
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Создать" class="btn btn-default" /> | 
+                @Html.ActionLink("Вернуться к списку", "Index")
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             </div>
         </div>
     </div>
 }
+<<<<<<< HEAD
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+=======
+</div>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

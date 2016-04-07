@@ -1,0 +1,89 @@
+﻿@model TrainingCentersCRM.Models.Feedback
+@using BotDetect.Web.UI.Mvc;
+<div class="container">
+    <div class="row">
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            @Html.ActionLink("Администрирование отзывов", "Index")
+        }
+    </div>
+    <div class="row">
+        <ul class="small-block-grid-2">
+            @foreach (var item in (IEnumerable<TrainingCentersCRM.Models.Feedback>)ViewBag.Feedback)
+            {
+                <li>
+                    <div class="card shadow">
+                        <div class="card-section">
+                            <div>
+                                <div class="small-text">
+                                    <b>Имя:</b>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </div>
+                                <div class="small-text">
+                                    <b>Дата:</b>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </div>
+                            </div>
+                            <p>
+                                <div class="description text-justify" style="margin-top: 15px;">
+                                    @Html.DisplayFor(modelItem => item.Message)
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm("Create", "Feedback"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal row">
+                <h4>Напишите отзыв для учебного центра</h4>
+                @Html.ValidationSummary(true)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name)
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email)
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Message, new { @class = "control-label" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Message)
+                        @Html.ValidationMessageFor(model => model.Message)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @{ MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha"); }
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.Captcha(sampleCaptcha)
+                        <br /><br />
+                        @Html.TextBox("CaptchaCode")
+                    </div>
+                </div>
+                <input type="hidden" name="IdTrainingCenter" id="IdTrainingCenter" value="@TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTc().Id" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Добавить" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

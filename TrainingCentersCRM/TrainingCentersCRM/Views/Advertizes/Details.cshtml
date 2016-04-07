@@ -1,0 +1,49 @@
+﻿@model TrainingCentersCRM.Models.Advertize
+
+@{
+    ViewBag.Title = "Объявление на главной странице";
+}
+<div class="container">
+    <h2>Объявление на главной странице</h2>
+
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Enabled)
+            </dt>
+
+            <dd>
+                @(Model.Enabled ? "Да" : "Нет")
+            </dd>
+
+            <dt>
+                <img src="/empty/Advertizes/Image/@(Model.Id)" class="materialboxed" width="350" />
+                <script type="text/javascript">
+                    $('.materialboxed').materialbox();
+                </script>
+            </dt>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+</div>

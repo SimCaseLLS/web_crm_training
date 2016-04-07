@@ -1,0 +1,89 @@
+﻿@model PagedList.IPagedList<TrainingCentersCRM.Models.Article>
+@using PagedList.Mvc;
+@using TrainingCentersCRM.Infrastructure;
+@using System;
+@using System.Globalization;
+@{
+
+    ViewBag.Title = "Список материалов сайта";
+}
+@if (RolesHelper.IsUserHasPermissionForTc("admin"))
+{
+    <div class="container">
+
+        @if (ViewBag.Type == 1)
+        {
+        <h3 class="center">Новости</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить новость
+        </a>
+        }
+        else if (ViewBag.Type == 2)
+        {
+        <h3 class="center">Страницы</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить страницу
+        </a>
+        }
+        else if (ViewBag.Type == 3)
+        {
+        <h3 class="center">Квалификации</h3>
+        <a class="button" href="@Url.Action("Create", "Articles", new { type = ViewBag.Type })">
+            <i class="fa fa-plus"></i>Добавить квалификацию
+        </a>
+        }
+    </div>
+}
+<div class="clear-fix container row">
+    <a href="/empty/Articles/Index/1?page=1">Все новости</a>
+
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-4" data-equalizer>
+        @{int i = 1;}
+        @foreach (var item in Model)
+        {
+            <li data-equalizer-watch>
+                <div class="news-block">
+                    <div class="tools tools-2el">
+                        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                        {
+                            @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                            @*@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "button fa fa-chevron-circle-down", @title = "Подробнее" })*@
+                            @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                        }
+                    </div>
+                    <a class="news-more" href="/@(TrainingCentersCRM.Infrastructure.TCHelper.GetCurrentTCName())/Articles/Details/@item.Id">
+                        <span class="date">
+                            @{
+                              DateTime dateValue = item.PublishDate;
+                              }
+                            @(dateValue.ToString("dd MMMM", CultureInfo.CreateSpecificCulture("ru-RU"))
+)
+                        </span>
+                        <div class="scale-wrap">
+                            @if (item.Image == null)
+                            {
+                                <img src="https://placeimg.com/300/300/tech/@(i++)" class="responsive-img scale-img" />
+                            }
+                            else
+                            {
+                                <img src="/empty/Articles/Image/@item.Id" class="responsive-img scale-img" />
+                            }
+                        </div>
+                        
+                        <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
+                        <p>@(TrainingCentersCRM.Infrastructure.TCHelper.TruncateString(Html.Raw(item.Annotation).ToHtmlString()))</p>
+                    </a>
+                    <br />
+                </div>
+            </li>
+        }
+    </ul>
+    @if (!string.IsNullOrEmpty(Request.Url.Query) || Request.Url.Query .StartsWith("?"))
+    {
+        <text>
+            Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </text>
+    }
+</div>

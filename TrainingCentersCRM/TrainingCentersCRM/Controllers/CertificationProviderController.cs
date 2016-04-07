@@ -6,11 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+<<<<<<< HEAD
+=======
+using TrainingCentersCRM.Infrastructure;
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
+<<<<<<< HEAD
     public class CertificationProviderController : Controller
+=======
+    public class CertificationProviderController : RoutingTrainingCenterController
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
@@ -36,6 +44,10 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /CertificationProvider/Create
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult Create()
         {
             return View();
@@ -46,7 +58,12 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create([Bind(Include="Id,Title,Addres,Phone,Email")] CertificationProvider certificationprovider)
+=======
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "Id,Title,Addres,Phone,Email")] CertificationProvider certificationprovider)
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +76,10 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /CertificationProvider/Edit/5
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +99,12 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Edit([Bind(Include="Id,Title,Addres,Phone,Email")] CertificationProvider certificationprovider)
+=======
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "Id,Title,Addres,Phone,Email")] CertificationProvider certificationprovider)
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +116,10 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /CertificationProvider/Delete/5
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +137,10 @@ namespace TrainingCentersCRM.Controllers
         // POST: /CertificationProvider/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult DeleteConfirmed(int id)
         {
             CertificationProvider certificationprovider = db.CertificationProviders.Find(id);

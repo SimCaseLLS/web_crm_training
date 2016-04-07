@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.ScheduleTtrainingCours>
+
+<div class="container">
+    <h2>Расписание учебных курсов</h2>
+    <ul class="small-block-grid-2">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="card shadow">
+                    <div class="card-section">
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.TrainingCours.Title)
+                        </h4>
+                        <label>Учебный центр:</label>
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.TrainingCenter.Organization)
+                        </h4>
+                        <label>Даты проведения:</label>
+                        <h4>
+                            @{
+                            var culture = new System.Globalization.CultureInfo("ru-RU");
+                            }
+                            @(item.DateStart == null ? "" : ((DateTime)item.DateStart).ToString("d", culture))
+                            -
+                            @(item.DateEnd == null ? "" : ((DateTime)item.DateEnd).ToString("d", culture))
+                        </h4>
+                        <div>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

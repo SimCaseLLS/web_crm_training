@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TrainingCentersCRM.Models.TrainingCours>
+<<<<<<< HEAD
 
 @{
     ViewBag.Title = "Index";
@@ -97,3 +98,111 @@
 }
 
 </table>
+=======
+@using TrainingCentersCRM.Infrastructure;
+@{
+    ViewBag.Title = "Курсы учебного центра";
+}
+<div class="container">
+    <h2>Список курсов</h2>
+    <div class="row">
+        <div class="column  small-6">
+            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+            {
+                <a class="button" href="@Url.Action("Create", "TrainingCours")"><i class="fa fa-plus-square"></i>Создать новый курс</a>
+                <span>&nbsp;</span>
+                <a class="button" href="#" onclick="javascript: showRelatedCourses(); return false;"><i class="fa fa-files-o"></i>Добавить существующий</a>
+            }
+            <script type="text/javascript">
+                showRelatedCourses = function () {
+                    $.ajax({
+                        url: '/empty/TrainingCenter/GetAllLinkedCourses/@(TCHelper.GetCurrentTc().Id)',
+                        type: 'get',
+                        success: function (data) {
+                            var res = "<form method='post' name='formRelatedCourses' id='formRelatedCourses'>";
+                            var courseId = 0;
+                            $.map(data, function (c) {
+                                courseId++;
+                                res += "<p>";
+                                if (c.Checked)
+                                    res += "<input type='checkbox' checked='checked' name='checkedRelatedCourse' id='checkedRelatedCourse" + courseId + "' class='filled-in'  value='" + c.Id + "' /><label for='checkedRelatedCourse" + courseId + "' class='control-label'>" + c.Title + "</label>";
+                                else
+                                    res += "<input type='checkbox' name='checkedRelatedCourse' id='checkedRelatedCourse" + courseId + "' class='filled-in' value='" + c.Id + "' /><label for='checkedRelatedCourse" + courseId + "' class='control-label'>" + c.Title + "</label>";
+                                res += "</p>";
+                            });
+                            res += "<button id='chooseRelCourseButton' class='button'><i class='fa fa-floppy-o'></i>Сохранить</button><br />";
+                            res += "</form>";
+                            $("#dropDownRelatedCourses").html(res);
+                            $("#dropDownRelatedCourses").toggle();
+                            $("#chooseRelCourseButton").click(function (event) {
+                                event.preventDefault();
+                                chooseRelatedTeacher();
+                            });
+                        }
+                    });
+                    chooseRelatedTeacher = function (id) {
+                        $.ajax({
+                            url: '/@(TCHelper.GetCurrentTc().Url)/TrainingCenter/AddRelatedCourse/@(TCHelper.GetCurrentTc().Id)',
+                            type: 'post',
+                            data: $("#formRelatedCourses").serialize(),
+                            success: function (data) {
+                                location.reload();
+                            }
+                        });
+                    }
+                    return false;
+                }
+
+            </script>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column small-12" id="dropDownRelatedCourses" style="display: none">
+        </div>
+    </div>
+</div>
+<div class="clear-fix container">
+    @if (Model.Count() > 0)
+    {
+        <ul id="articles" class="small-block-grid-1 medium-block-grid-2 large-block-grid-4">
+            @{int i = 1;}
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="course">
+                        <div class="tools tools-2el">
+                            @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                            {
+                                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "button fa fa-pencil", @title = "Редактировать" })
+                                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "button fa fa-trash-o", @title = "Удалить" })
+                            }
+                        </div>
+                        <a class="more-info" href="@Url.Action("Details", "TrainingCours", new { id = item.Id })">
+                            <div class="scale-wrap">
+                                <img src="https://placeimg.com/300/300/tech/@(i++)" class="scale-img" alt="" />
+                            </div>
+                            <h5 class="title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <p>
+                                @if (item.ShortDescription != null)
+                                {
+                                    if (item.ShortDescription.Length > 80)
+                                    {
+                                        @Html.Raw(item.ShortDescription.Substring(0, 80))
+                                        <text>...</text>
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(item.ShortDescription)
+                                    }
+                                }
+                            </p>
+                        </a>
+                    </div>
+                </li>
+
+            }
+        </ul>
+    }
+</div>
+@Html.Action("Index", "Moodle", new { key = ViewBag.Key })
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

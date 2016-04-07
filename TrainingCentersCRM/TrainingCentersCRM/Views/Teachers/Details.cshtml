@@ -1,0 +1,37 @@
+﻿@model TrainingCentersCRM.Models.Teacher
+@{
+    ViewBag.Title = "Информация о преподавателе";
+}
+<div class="container row">
+    <h4>Преподаватель учебного центра</h4>
+    <p>
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
+        }
+    </p>
+    <br />
+    <div class="row">
+        
+        <div class="column small-3">
+            <img src="/empty/Teachers/Image/@Model.Id" />
+        </div>
+        <div class="column small-9 left">
+            <h3>
+                @Html.DisplayFor(model => model.FirstName)
+                @Html.DisplayFor(model => model.Patronymic)
+                @Html.DisplayFor(model => model.LastName)
+            </h3>
+            <br />
+            <b>@Html.DisplayNameFor(model => model.Email): </b>
+            @Html.DisplayFor(model => model.Email)
+            <br />
+            <b>@Html.DisplayNameFor(model => model.Phone): </b>
+            @Html.DisplayFor(model => model.Phone)
+            <br /><br />
+            <p class="description">
+                @Html.DisplayFor(model => model.Description)
+            </p>
+        </div>
+    </div>
+</div>

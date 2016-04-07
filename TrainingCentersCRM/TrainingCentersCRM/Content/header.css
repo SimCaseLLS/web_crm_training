@@ -1,0 +1,119 @@
+header {
+    min-height: 78px;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 1px 2px 9px 0.00px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 5;
+    background-color: #fff;
+}
+.logo {
+    font-size: 1.5rem;
+    text-align: center;
+    float: left;
+}
+.logo a {
+    color: #fff;
+}
+a {
+    outline: none;
+}
+.logo a:hover {
+    color: #6fc5e5;
+}
+.sign-in {
+    position: relative;
+    margin-left: 20px;
+}
+.sign-in a {
+    padding-left: 30px;
+}
+.sign-in:before {
+    content: "";
+    display: inline-block;
+    top: 2px;
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    background: url("/img/sign-in.png") no-repeat; 
+    background-size: 190%;
+}
+.trainig-center {
+    border-bottom: 1px dashed #6fc5e5;
+}
+
+.sign-in:hover:before {
+    background-position: -16px 0px;
+}
+.dark-menu {
+    background: #232c3b;
+    color: #6fc5e5;
+    padding: 15px 5% 5px 5%;
+}
+.dark-menu a {
+    color: #fff;
+}
+.sign-in:hover a {
+    color: #6fc5e5;
+}
+.clear-fix:after {
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    content: ".";
+}
+nav ul {
+    float: left;
+    width: 89%;
+    margin-left: 5%;
+}
+nav ul li {
+    float: left;
+}
+.f-dropdown li {
+    float: none;
+} 
+nav ul li a,.menu-item-right a {
+    color: #202020;
+}
+nav ul li,nav li {
+    list-style: none;
+    margin-right: 2.7%;
+    margin-top: 33px;
+}
+nav a {
+    font-size: 14px;
+}
+.fa {
+    padding-left: 8px;
+}
+#loginLink {
+    float: right;
+    margin-right: 2.7%;
+}
+header nav a {
+    padding-top: 31px;
+    border-top: 4px solid transparent;
+}
+header nav a:hover, header nav a:focus {
+    color: #6fc5e5;
+    padding-top: 31px;
+    border-top: 4px solid #6fc5e5;
+    transition: all 0.2s ease-in 0s;
+}
+.f-dropdown a {
+    border-top: 0px;
+}
+.f-dropdown a:hover {
+    border-top: 0px;
+    padding: 0.5rem;
+    color: #6fc5e5;
+    transition: all 0.1s ease-in 0s;
+}
+
+.f-dropdown li:hover, .f-dropdown li:focus {
+    background-color: transparent;
+}
+.f-dropdown {
+    margin-top: 8px;
+}

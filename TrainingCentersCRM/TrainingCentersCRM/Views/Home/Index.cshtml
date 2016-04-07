@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@{
     ViewBag.Title = "Home Page";
 }
@@ -29,3 +30,43 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+=======
+﻿@using TrainingCentersCRM.Infrastructure
+
+@{
+    ViewBag.Title = "Страница учебного центра";
+}
+
+<article class="container row ">
+    <h2>
+        @ViewBag.TrainingCenter.Organization
+    </h2>
+    <div class="col s12">
+
+        <p>@Html.Raw(ViewBag.TrainingCenter.Description)</p>
+        <p>
+            <dl class="dl-horizontal">
+                <dt>
+                    Адрес:
+                </dt>
+                <dd>
+                    @ViewBag.TrainingCenter.Addres
+                </dd>
+                <dt>
+                    Телефон:
+                </dt>
+                <dd>
+                    @ViewBag.TrainingCenter.Phone
+                </dd>
+                <dt>
+                    Email:
+                </dt>
+                <dd>
+                    @ViewBag.TrainingCenter.Email
+                </dd>
+            </dl>
+        </p>
+    </div>
+</article>
+
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

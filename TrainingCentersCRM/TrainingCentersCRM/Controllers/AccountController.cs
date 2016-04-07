@@ -13,7 +13,11 @@ using TrainingCentersCRM.Models;
 namespace TrainingCentersCRM.Controllers
 {
     [Authorize]
+<<<<<<< HEAD
     public class AccountController : Controller
+=======
+    public class AccountController : RoutingTrainingCenterController
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
     {
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
@@ -78,11 +82,18 @@ namespace TrainingCentersCRM.Controllers
         {
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
+=======
+                var user = new ApplicationUser() { UserName = model.UserName };//, UserId = model.UserId };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -284,13 +295,29 @@ namespace TrainingCentersCRM.Controllers
         }
 
         //
+<<<<<<< HEAD
+=======
+        // GET: /Account/LogOut
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("About", "Home");
+        }
+
+        //
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+<<<<<<< HEAD
             return RedirectToAction("Index", "Home");
+=======
+            return RedirectToAction("About", "Home");
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         }
 
         //

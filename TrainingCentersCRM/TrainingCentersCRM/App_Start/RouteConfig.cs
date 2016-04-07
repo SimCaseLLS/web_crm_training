@@ -13,10 +13,25 @@ namespace TrainingCentersCRM
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+<<<<<<< HEAD
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+=======
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}",
+              new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+            //routes.MapRoute(name: "MoodleRoute", url: "{controller}/{action}/{id}", defaults: new {controller="Moodle", action="Index", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{tc}/{controller}/{action}/{id}",
+                defaults: new { tc = "empty", controller = "Home", action = "About", id = UrlParameter.Optional }
+                //url: "{controller}/{action}/{id}",
+                //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             );
         }
     }

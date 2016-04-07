@@ -1,0 +1,80 @@
+﻿@model TrainingCentersCRM.Models.TrainingCenter
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container">
+    <h2>Удалить</h2>
+
+    <h3>Вы действительно хотите удалить этот учебный центр?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Addres)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Addres)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Logo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Logo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Url)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Url)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("Вернуться к списку", "Index")
+            </div>
+        }
+    </div>
+</div>

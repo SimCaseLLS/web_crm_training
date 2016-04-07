@@ -1,10 +1,18 @@
 ﻿@model TrainingCentersCRM.Models.Qualification
+<<<<<<< HEAD
+=======
+@using TrainingCentersCRM.Infrastructure
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
 @{
     ViewBag.Title = "Create";
 }
 
+<<<<<<< HEAD
 <h2>Create</h2>
+=======
+<h2>Создание квалификации</h2>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
 
 @using (Ajax.BeginForm("Create", new AjaxOptions { UpdateTargetId = "qualificationData", OnSuccess = "refreshTree" }))
@@ -12,7 +20,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+<<<<<<< HEAD
         <h4>Qualification</h4>
+=======
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         <hr />
         @Html.ValidationSummary(true)
 
@@ -41,6 +52,54 @@
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
+=======
+            @Html.LabelFor(model => model.ArticleId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArticleId)
+                @Html.ValidationMessageFor(model => model.ArticleId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArticleQualification, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="QualificationArticles" type="text" class="text-box single-line" />
+                <input type="hidden" name="ArticleId" id="ArticleId" />
+                <script type="text/javascript">
+                    $("#QualificationArticles").autocomplete({
+                        source: '/empty/Articles/GetAllJson',
+                        minLength: 3,
+                        select: function (event, ui) {
+                            $("#ArticleId").val(ui.item.id);
+                        }
+                    });
+                    $('.ui-autocomplete').addClass('f-dropdown');
+                    $('.ui-autocomplete').addClass('small');
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group card-panel">
+            @Html.LabelFor(model => model.HeadHunterName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                <label for="HeadHunterAreas"> Область деятельности: </label>
+                @Html.DropDownListWithOptions("HeadHunterAreas", (List<ExtendedSelectListItem>)ViewBag.AreasSelectList, new { @class = "form-control browser-default" })
+                <br>
+                <label for="HeadHunterId"> Квалификация: </label>
+                @Html.DropDownListWithOptions("HeadHunterId", new List<ExtendedSelectListItem>(), new { @class = "form-control browser-default" })
+                @Html.ValidationMessageFor(model => model.HeadHunterName)
+                @Html.ValidationMessageFor(model => model.HeadHunterId)
+                @Html.HiddenFor(model => model.HeadHunterName)
+                <br>
+                @Html.LabelFor(model => model.HeadHunterKeys)
+                @Html.TextBoxFor(model => model.HeadHunterKeys, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HeadHunterKeys)
+            </div>
+        </div>
+
+        <div class="form-group">
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             <div class="col-md-10">
                 @Html.Hidden("ParentId", ViewData["ParentId"])
             </div>
@@ -48,13 +107,27 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
+<<<<<<< HEAD
                 <input type="submit" value="Create" class="btn btn-default" />
+=======
+                <input type="submit" value="Добавить" class="btn btn-default" />
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             </div>
         </div>
     </div>
 }
+<<<<<<< HEAD
+=======
+<script type="text/javascript"> 
+    setupSpecializationsSelect();
+</script>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

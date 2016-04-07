@@ -1,0 +1,22 @@
+﻿@model TrainingCentersCRM.Models.Teacher
+
+@{
+    ViewBag.Title = "Удаление данных о преподавателе";
+}
+<div class="row">
+
+    <h2>Удаление данных о преподавателе</h2>
+
+    <h3>
+        Вы действительно хотите удалить данные о преподавателе &nbsp;@Html.DisplayFor(model => model.LastName) &nbsp;@Html.DisplayFor(model => model.FirstName)&nbsp;@Html.DisplayFor(model => model.Patronymic)?</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> 
+            <br /><br />
+            @Html.ActionLink("Вернуться", "Index")
+        </div>
+    }
+</div>

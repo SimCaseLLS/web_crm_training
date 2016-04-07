@@ -1,6 +1,7 @@
 ﻿@model TrainingCentersCRM.Models.TrainingModule
 
 @{
+<<<<<<< HEAD
     ViewBag.Title = "Delete";
 }
 
@@ -60,13 +61,29 @@
         </dd>
 
     </dl>
+=======
+    ViewBag.Title = "Удаление модуля";
+}
+
+<div class="row">
+<h2>Удаление модуля</h2>
+
+<h3>Вы действительно хотите удалить учебный модуль "@Html.DisplayFor(model => model.Title)"?</h3>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
+<<<<<<< HEAD
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
 </div>
+=======
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+        </div>
+    }
+</div>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

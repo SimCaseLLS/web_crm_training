@@ -1,4 +1,5 @@
 ﻿@model TrainingCentersCRM.Models.Qualification
+<<<<<<< HEAD
 
 @{
     ViewBag.Title = "Details";
@@ -33,6 +34,75 @@
         <dd>
             @Html.DisplayFor(model => model.Type)
         </dd>
+=======
+@using TrainingCentersCRM.Infrastructure;
+
+@{
+    ViewBag.Title = "О квалификации";
+}
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt class="strong">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="strong">
+            @Html.DisplayNameFor(model => model.ArticleQualification)
+        </dt>
+
+        <dd>
+            @if (ViewBag.Article != null) 
+            {
+                <a href='/empty/Articles/Details/@(((TrainingCentersCRM.Models.Article)ViewBag.Article).Id)'> @(((TrainingCentersCRM.Models.Article)ViewBag.Article).Title)</a>
+            } else
+            { 
+                <text>
+                нет данных
+                </text>
+            }
+        </dd>
+
+        <dt class="strong">
+            @Html.DisplayNameFor(model => model.HeadHunterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeadHunterName)
+            
+            <div class="headhunter">
+                @{
+                    string hhkeys = "";
+                    List<string> ids = new List<string>();
+                    foreach (var key in Model.QualificationTrainingCours)
+                    {
+                        hhkeys += key.Qualification.HeadHunterKeys + ",";
+                        if (key.Qualification != null && key.Qualification.HeadHunterId != null)
+                        {
+                            ids.Add(key.Qualification.HeadHunterId.ToString());
+                        }
+                    }
+                }
+
+
+                @Html.HeadHunterWidget(Model.HeadHunterKeys,ids.ToArray(), TCHelper.GetCurrentTc().HHCityId)
+                <style>
+                    div.headhunter > div, div.headhunter > div:hover {
+                        max-width: 300px !important;/* стили для блока */
+                    }
+                </style>
+            </div>
+            <!-- NOTE скрипт ниже нужен только для админки, или в местах, где всё подгружается аяксом(пробовать сперва без него!) -->
+            <script type="text/javascript"> delete window.hhScriptCounter </script>
+
+</dd>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 
     </dl>
 </div>

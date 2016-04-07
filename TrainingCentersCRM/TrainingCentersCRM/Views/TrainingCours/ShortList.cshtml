@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.TrainingCours>
+
+@{
+    Layout = null;
+}
+<ul class="accordion" data-accordion>
+    @{int i = 1;}
+    @foreach (var item in Model)
+    {
+        <li class="accordion-navigation">
+            <a href="#panelb@(i)"><i class="fa fa-book"></i>@Html.DisplayFor(modelItem => item.Title)</a>
+            <div id="panelb@(i++)" class="content">
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+                <br />
+                <a href="/empty/TrainingCours/Details/@item.Id">Подробнее...</a>
+            </div>
+        </li>
+    }
+</ul>

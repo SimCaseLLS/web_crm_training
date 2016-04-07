@@ -1,4 +1,5 @@
 ﻿@model TrainingCentersCRM.Models.LoginViewModel
+<<<<<<< HEAD
 
 @{
     ViewBag.Title = "Log in";
@@ -51,6 +52,50 @@
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
         </section>
+=======
+@{
+    ViewBag.Title = "Вход на сайт";
+}
+<div class="container">
+    <div class="row">
+        <div class="small-5 large-8 columns">
+            <h2>@ViewBag.Title</h2>
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="input-field col s12">
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                    <div class="input-field col s12">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    <div>
+                        <div class="col offset-s1 s12">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox-label", style = "display: inline-block" })
+                        </div>
+                    </div>
+                    <input type="hidden" name="returnUrl" value="/" />
+                    <div>
+                        <div class="col offset-s1 s12">
+                            <input type="submit" value="Войти" class="btn" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+        <!--<div class="col m-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>-->
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
     </div>
 </div>
 @section Scripts {

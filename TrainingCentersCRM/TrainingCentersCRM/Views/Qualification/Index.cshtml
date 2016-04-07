@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<TrainingCentersCRM.Models.Qualification>
 
 @{
+<<<<<<< HEAD
     ViewBag.Title = "Index";
 }
 
@@ -23,3 +24,27 @@
 </div>
 <script src="~/Scripts/QualificationPageSelect.js"></script>
 <script src="~/Scripts/createTree.js"></script>
+=======
+    ViewBag.Title = "Квалификации";
+}
+<div class="container row">
+    <h2>Квалификации</h2>
+    <div class="small-5 columns">
+        <div id="qualificationTree" style="width: 400px; overflow-x: scroll; white-space: nowrap; float: left"></div>
+    </div>
+    <div id="qualificationBlock" class="small-7 columns">
+        <div id="qualificationButtons" class="tools" style="display: none">
+            <button id="editQualification" class="fa fa-pencil button" title="Изменить"></button>
+            <button id="deleteQualification" class="fa fa-trash-o button" title="Удалить"></button>
+            <button id="createQualification" class="fa fa-plus button" title="Создать"></button>
+        </div>
+        <div id="qualificationData"></div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/QualificationPageSelect.js"></script>
+    <script src="~/Scripts/createTree.js"></script>
+    <script src="@Url.Content("~/Scripts/HeadHunterSelects.js")" type="text/javascript"></script>
+}
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

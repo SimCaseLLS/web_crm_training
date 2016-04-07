@@ -8,15 +8,28 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Services;
 using System.Web.Services;
+<<<<<<< HEAD
+=======
+using TrainingCentersCRM.Infrastructure;
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 using TrainingCentersCRM.Models;
 
 namespace TrainingCentersCRM.Controllers
 {
+<<<<<<< HEAD
     public class QualificationController : Controller
     {
         private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
 
         // GET: /Qualification/
+=======
+    public class QualificationController : RoutingTrainingCenterController
+    {
+        private TrainingCentersDBEntities db = new TrainingCentersDBEntities();
+        private List<ExtendedSelectListItem> areasList = HeadHunterHelper.GetHHSelectList();
+        // GET: /Qualification/
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult Index()
         {
             return View(db.Qualifications.ToList());
@@ -58,18 +71,38 @@ namespace TrainingCentersCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+<<<<<<< HEAD
             Qualification qualification = db.Qualifications.Find(id);
+=======
+            Qualification qualification = db.Qualifications.FirstOrDefault(a => a.Id == id);
+            
+            ViewBag.Article = qualification.ArticleId != null 
+                ? db.Articles.FirstOrDefault(a => a.Id == qualification.ArticleId) 
+                : null; 
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             if (qualification == null)
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             return PartialView(qualification);
         }
 
         // GET: /Qualification/Create
+<<<<<<< HEAD
         public ActionResult Create(int id)
         {
             ViewData["ParentId"] = id;
+=======
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create(int id)
+        {
+            ViewData["ParentId"] = id;
+            ViewBag.AreasSelectList = areasList;
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             return PartialView();
         }
 
@@ -78,7 +111,12 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create([Bind(Include = "Id,Title,Description,Type,ParentId")] Qualification qualification)
+=======
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Create([Bind(Include = "Id,ArticleId,Title,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         {
             if (ModelState.IsValid)
             {
@@ -86,11 +124,18 @@ namespace TrainingCentersCRM.Controllers
                 db.SaveChanges();
                 return PartialView("Details", qualification);
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             return PartialView(qualification);
         }
 
         // GET: /Qualification/Edit/5
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -102,6 +147,10 @@ namespace TrainingCentersCRM.Controllers
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
+=======
+            ViewBag.AreasSelectList = areasList;
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
             return PartialView(qualification);
         }
 
@@ -110,7 +159,12 @@ namespace TrainingCentersCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Edit([Bind(Include = "Id,Title,Description,Type,ParentId")] Qualification qualification)
+=======
+        [TCAuthorize(Roles = "admin")]
+        public ActionResult Edit([Bind(Include = "Id,Title,ArticleId,Description,Type,ParentId,HeadHunterId,HeadHunterName,HeadHunterKeys")] Qualification qualification)
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         {
             if (ModelState.IsValid)
             {
@@ -122,6 +176,10 @@ namespace TrainingCentersCRM.Controllers
         }
 
         // GET: /Qualification/Delete/5
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -139,6 +197,10 @@ namespace TrainingCentersCRM.Controllers
         // POST: /Qualification/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
+=======
+        [TCAuthorize(Roles = "admin")]
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
         public ActionResult DeleteConfirmed(int id)
         {
             Qualification qualification = db.Qualifications.Find(id);

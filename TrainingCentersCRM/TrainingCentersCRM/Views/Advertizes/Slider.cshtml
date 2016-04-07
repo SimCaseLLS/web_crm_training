@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TrainingCentersCRM.Models.Advertize>
+@{
+    Layout = null;
+}
+<ul class="orbit-content" data-orbit data-options="variable_height: true;slide_number: false; bullets: false;timer:false; pause_on_hover:false; timer_speed:5000;">
+    @foreach (var item in Model)
+    {
+        <li data-orbit-slide="headline-1">
+            <div>
+                <div class="slider-overlay"></div>
+                <div class="slider-info show-for-large-up">
+                    <div class="slider-text">
+                        <h3>@item.Name</h3>
+                        <h5 class="light grey-text text-lighten-3">@Html.Raw(item.Description)</h5>
+                    </div>
+                </div>
+                <div class="slider-info-small hide-for-large-up">
+                    <h3>@item.Name</h3>
+                    <h5 class="light grey-text text-lighten-3">@Html.Raw(item.Description)</h5>
+                </div>
+                <img src="/empty/Advertizes/Image/@item.Id" />
+            </div>
+        </li>
+    }
+</ul>

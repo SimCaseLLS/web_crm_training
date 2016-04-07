@@ -1,0 +1,40 @@
+﻿@model TrainingCentersCRM.Models.Moodle.MoodleCategory
+<div class="MoodleCourse">
+    <div>
+        <hr />
+        <h3>
+            @Html.DisplayFor(model => model.Name)
+        </h3>
+        <a href="@(System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"])course/index.php?categoryid=@Model.Id" target="_blank" title="Перейти на портал дистанционного образования">Подробнее...</a>
+    </div>
+    @if (Model.Courses != null)
+    {
+        foreach (var c in Model.Courses)
+        {
+            <div class="card-panel">
+                <h4>@c.Name</h4>
+                <h5>@c.ShortName</h5>
+                <p>
+                    @if (c.Description.Length > 500)
+                    {
+                        @c.Description.Substring(0, 500)
+                        <span>...</span>
+                    }
+                    else
+                    {
+                        @c.Description
+                    }
+                </p>
+                <a href="@System.Configuration.ConfigurationManager.AppSettings["MoodleBaseAddress"]course/view.php?id=@c.Id" target="_blank" title="Перейти на портал дистанционного образования">Подробнее...</a>
+            </div>
+        }
+    }
+
+    @if (Model.Categories != null)
+    {
+        foreach (TrainingCentersCRM.Models.Moodle.MoodleCategory cat in Model.Categories)
+        {
+            @Html.Partial("Category", cat)
+        }
+    }
+</div>

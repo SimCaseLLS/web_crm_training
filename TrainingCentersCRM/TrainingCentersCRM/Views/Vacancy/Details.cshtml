@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
+<<<<<<< HEAD
 
 <h2>Details</h2>
 
@@ -56,3 +57,79 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+=======
+<div class="container">
+    <h2>Вакансии</h2>
+
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Organization)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Organization)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Wages)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wages)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Additionally)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Additionally)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Link)
+            </dt>
+
+            <dd></dd>
+
+            <dt>
+                @Html.Label("Требуемые квалификации")
+            </dt>
+
+            <dd>
+                @if (Model.Qualifications != null)
+                {
+                    foreach (var qualification in Model.Qualifications)
+                    {
+                        @Html.Raw(qualification.Title + " ")
+                    }
+                }
+
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Link)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+        {
+            @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
+            <span>|</span>
+        }
+        @Html.ActionLink("Вернуться к списку вакансий", "Index")
+    </p>
+</div>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

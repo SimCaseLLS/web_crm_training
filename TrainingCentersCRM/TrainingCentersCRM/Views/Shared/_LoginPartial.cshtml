@@ -3,6 +3,7 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
+<<<<<<< HEAD
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
@@ -11,12 +12,24 @@
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
+=======
+        @Html.AntiForgeryToken()
+
+        <li class="menu-item-right"><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+        <li class="menu-item-right">
+            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Details" + "/" + User.Identity.GetUserId(), "User", routeValues: null, htmlAttributes: new { title = "Профиль" })
+        </li>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
     }
 }
 else
 {
+<<<<<<< HEAD
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
+=======
+    <li class="menu-item-right">@Html.ActionLink("Войти", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
 }

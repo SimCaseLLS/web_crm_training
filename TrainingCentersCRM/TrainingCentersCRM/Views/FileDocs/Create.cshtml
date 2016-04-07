@@ -1,0 +1,70 @@
+﻿@model TrainingCentersCRM.Models.FileDocument
+
+@{
+    Layout = null;
+    ViewBag.Title = "Create";
+}
+
+<h2 id="modalTitle">Добавление файла</h2>
+
+@using ((Html.BeginForm("Edit", "FileDocs", FormMethod.Post, new { enctype = "multipart/form-data", id = "fileDocForm" })))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="ArticleId" value="@ViewBag.ArticleId" />
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Название
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Описание
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Файл</label>
+            <input type="file" name="uploadedFile" />
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Добавить" id="addFileButton" class="button" />
+            </div>
+        </div>
+    </div>
+}
+
+<a class="close-reveal-modal" aria-label="Закрыть">&#215;</a>
+
+@Scripts.Render("~/bundles/jqueryform")
+
+<script type="text/javascript">
+    $("#addFileButton").click(function () {
+        var form = document.getElementById("fileDocForm");
+        var formData = new FormData(form);
+        $.ajax({
+            url: '/empty/FileDocs/Create',
+            type: 'post',
+            processData: false,  //Add this
+            contentType: false, //Add this
+            data: formData,
+            success: function (data) {
+                $('#myModal').foundation('reveal', 'close');
+                window.location.reload();
+            }
+        });
+        return false;
+    });
+</script>

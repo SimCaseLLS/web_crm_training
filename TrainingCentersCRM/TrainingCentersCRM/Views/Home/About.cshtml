@@ -1,7 +1,56 @@
 ﻿@{
+<<<<<<< HEAD
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+=======
+    ViewBag.Title = "";
+}
+
+@Html.Action("Slider", "Advertizes", null)
+<section class="landing-plus clear-fix">
+    <a href="/empty/Articles/Index/3?page=1" class="plus-item it-member shadow"> <h6>IT специалистам</h6> <p class="description">Вы хотите <strong>приобрести</strong> новую квалификацию?</p></a>
+    <a href="/empty/TrainingCours/Index" class="plus-item it-company shadow"><h6>IT компаниям</h6><p class="description">Хотите <strong>обучить</strong> своих сотрудников?</p></a>
+    <a href="/empty/Articles/Details/10" class="plus-item it-center shadow"><h6>Учебным заведениям</h6><p class="description">Хотите <strong>открыть</strong> собственный центр?</p></a>
+</section>
+<div class="about-us-wrap clear-fix" data-equalizer>
+    <article class="about-us column medium-6 left" data-equalizer-watch>
+        <h2>О проекте</h2>
+        <p class="text-justify">
+            В России запустилась сеть центров профессионального ИКТ-образования в рамках совместного европейского проекта "EQF-based professional ICT training for Russia and Kazakhstan".<br /><br />
+            На этом сайте Вы можете ознакомиться с материалами проекта и записаться на профессиональные курсы ИКТ.<br /><br />
+            Учебные курсы в центрах основаны на европейской рамке квалификаций EQF, что обеспечивает международное качество ИКТ-образования.<br />  <br />
+            Партнерами по проекту являются ведущие ИТ-компании России, обеспечивая контроль качества образовательных материалов, рабочих программ и рамок квалификаций.
+        </p>
+    </article>
+    <div class="background-image column medium-6" data-equalizer-watch></div>
+</div>
+
+@Html.Action("Index", "Articles", new { id = 1, partial = true, top = 4 })
+<div class="row clear-fix container ">
+    <div class="column large-6 small-12">
+        <h3 class="center">Учебные центры</h3>
+        @Html.Action("ShortList", "TrainingCenter")
+    </div>
+    <div class="column large-6 small-12">
+        <h3 class="center">Курсы</h3>
+        @Html.Action("ShortList", "TrainingCours")
+
+    </div>
+</div>
+
+<script>
+$( document ).ready(function() {
+    $('.orbit-content').show();
+    $(".accordion").on("click", "li", function (event) {
+        $("dd.active").find(".content").slideToggle("fast");
+        $(this).find(".content").slideToggle("fast");
+    });
+    $('.landing-plus').show();
+
+});
+</script>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TrainingCentersCRM.Models.Vacancy>
+<<<<<<< HEAD
 
 @{
     ViewBag.Title = "Index";
@@ -55,3 +56,121 @@
 }
 
 </table>
+=======
+@using TrainingCentersCRM.Infrastructure;
+
+@{
+    ViewBag.Title = "Вакансии";
+}
+
+<script>
+    var tcHHId = '@TCHelper.GetCurrentTc().HHCityId';
+    var url = '';
+    if (tcHHId == '' || tcHHId == 'empty')
+        url = "https://api.hh.ru/vacancies?specialization=1&salary=30000&only_with_salary=true";
+    else
+        url = "https://api.hh.ru/vacancies?specialization=1&salary=30000&only_with_salary=true&area=" + tcHHId;
+    $.getJSON(url).done(function (msg) {
+        var items = msg.items;
+        var promise = new Promise(function (resolve, reject) {
+            var complete = 0;
+            for (var i = 0; i < items.length; i++) {
+                $.getJSON("https://api.hh.ru/vacancies/" + items[i].id).done(function (item) {
+                    var content = "";
+                    var tmpl = $("#template");
+                    tmpl.find("h5.title").text(item.name)
+                    tmpl.find(".description").html(item.description)
+                    tmpl.find(".salary").text(item.salary.from)
+                    tmpl.find(".city").text(item.area.name)
+                    tmpl.find(".company").text(item.employer.name)
+                    tmpl.find(".link").attr("href", item.alternate_url)
+                    content += tmpl.html();
+                    $("#jobs").append(content);
+                    complete++;
+                    if (complete == items.length) {
+                        resolve();
+                    }
+                });
+
+            }
+        });
+        promise.then(function (result) {
+            $('.show-more').click(function (e) {
+                e.preventDefault();
+                var moreText = $(this).parent().find('.more-hide');
+                if (moreText.hasClass('hide')) {
+                    moreText.removeClass('hide');
+                    $(this).html('Скрыть');
+                }
+                else {
+                    moreText.addClass('hide');
+                    $(this).html('Показать подробнее')
+                }
+            });
+        });
+    });
+
+
+</script>
+<div class="container row">
+    @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+    {
+        <a>
+            @Html.ActionLink("Добавить вакансию", "Create", null, new { @class = "button" })
+        </a>
+    }
+    @if (Model != null && Model.Count() > 0)
+    {
+        <h3>Вакансии учебного центра</h3>
+        <ul class="small-block-grid-2">
+
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="card shadow ">
+                        <div class="card-section">
+                            <h4>
+                                <a href="@Url.Action("Details", "Vacancy", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Description)</a>
+                                @if (RolesHelper.IsUserHasPermissionForTc("admin"))
+                                {
+                                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil", @title = "Редактировать" })
+                                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash-o", @title = "Удалить" })
+                                }
+                            </h4>
+                            <b>
+                                @Html.DisplayFor(modelItem => item.Organization)
+                            </b>
+                            <br />
+                            <p>
+                                <b>Заработная плата:</b> @Html.DisplayFor(modelItem => item.Wages)
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+
+    }
+    <hr />
+    <h3>Вакансии HeadHunter</h3>
+    <div id="jobs"></div>
+    <div id="template" style="display: none;">
+        <div class="column small-6 job">
+            <h5 class="title"> My job </h5>
+            <div>
+                <span class="ligth-text"> Компания: </span> <span class="company">Dsf</span>
+            </div>
+            <div class="salary-wrap"><span class="ligth-text"> Заработная плата: </span> от <span class="salary">1000000</span> </div>
+            <div><span class="ligth-text"> Город: </span> <span class="city">Ekmdzf</span> </div>
+            <div class="more-hide hide">
+                <p class="ligth-text">Описание:</p>
+                <div class="description">sdfsdfsdfvvgrvvd</div>
+            </div>
+            <a class="show-more">Подробнее</a> |
+            <a href="#" class="link" target="_blank"> Открыть на HH </a>
+            <hr />
+            <br />
+        </div>
+    </div>
+</div>
+>>>>>>> 77e7434ea7678d938336fcb397236ab4ac0ef878
